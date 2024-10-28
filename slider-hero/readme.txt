@@ -1,20 +1,20 @@
-=== Slider Hero with Animation, Video Background ===
+=== Slider Hero with Video Background, Animation ===
 Contributors: quantumcloud
 Donate link: https://www.quantumcloud.com
 Tags: slider, video background, banner slider, elementor slider, video slider
 Requires at least: 4.6
 Tested up to: 6.6
-Stable tag: 8.8.5
+Stable tag: 8.8.7
 Requires PHP: 5.6
 License: GPLv2 or later
-License URI: http://www.quantumcloud.com
+License URI: https://www.quantumcloud.com
 
 Hero Slider with Youtube Video Background & Animation Effects. Adverts, Text Carousels, Animated Header - Elementor Slider Widget & Gutenberg
 
 == Description ==
 Slider Hero is a futuristic, responsive header Hero Slider plugin and <strong>Dyanmic Website Intro Advert</strong> maker with Youtube Video background and animated background effects for hero banners, hero sliders and Landing pages. Create awesome <strong>animation slider</strong> and animated header with text carousel and Call to Action buttons from Gutenberg Slider Block & Elementor Slider Widget. Use youtube video background or combine animation effect and youtube video. 
 
-> 🚀 [Support, Bug Report, Feature Requests](https://www.quantumcloud.com/resources/free-support/) | [Slider Hero](https://dev2.testversions.com/sliderhero/) Live Demo | <strong>Upgrade to [Slider Hero Pro!](https://www.quantumcloud.com/products/slider-hero/)</strong>
+> 🚀 [Support, Bug Report, Feature Requests](https://www.quantumcloud.com/resources/free-support/) | [Slider Hero](https://dev2.testversions.com/sliderhero/) Live Demo | <strong>Upgrade to [Slider Hero Pro!](https://www.quantumcloud.com/products/slider-hero/) with HALLOWEEN SALE. Use coupon code [monster] during checkout!</strong>
 
 Slider Hero also includes a <strong>Gutenberg Slider</strong> block and an <strong>Elementor Slider</strong> widget. Use the Elementor Slider Widget or the Gutenberg Slider block to quickly embed Slider Hero anywhere on your page.
 

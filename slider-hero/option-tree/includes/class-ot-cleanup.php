@@ -96,7 +96,7 @@ if ( ! class_exists( 'OT_Cleanup' ) ) {
 				$link = sprintf( '<a href="%s">%s</a>', admin_url( 'themes.php?page=ot-cleanup' ), apply_filters( 'ot_cleanup_menu_title', esc_html__( 'OptionTree Cleanup', 'option-tree' ) ) );
 
 				/* translators: %s: internal admin page URL */
-				echo '<div class="update-nag">' . sprintf( esc_html__( 'OptionTree has outdated data that should be removed. Please go to %s for more information.', 'option-tree' ), $link ) . '</div>'; // phpcs:ignore
+				//echo '<div class="update-nag">' . sprintf( esc_html__( 'OptionTree has outdated data that should be removed. Please go to %s for more information.', 'option-tree' ), $link ) . '</div>'; // phpcs:ignore
 			}
 		}
 
