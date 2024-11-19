@@ -3,8 +3,8 @@ Contributors: quantumcloud
 Donate link: https://www.quantumcloud.com
 Tags: slider, video background, banner slider, elementor slider, video slider
 Requires at least: 4.6
-Tested up to: 6.6
-Stable tag: 8.8.8
+Tested up to: 6.7
+Stable tag: 8.8.9
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.quantumcloud.com
@@ -274,6 +274,9 @@ https://www.quantumcloud.com/products/support/
 
 
 == Changelog ==
+
+= 8.8.9 =
+# Black Friday sale
 
 = 8.8.8 =
 # End sale
