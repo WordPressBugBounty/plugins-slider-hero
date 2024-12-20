@@ -3,7 +3,7 @@
 * Plugin Name: Slider Hero
 * Plugin URI: https://wordpress.org/plugins/slider-hero
 * Description: Slider Hero is a Unique Hero Slider Plugin with Background Animation Effects, Video Background & Intro Builder. Animation Slider Carousels, INCREDIBLE Adverts. Animated Header with Text Carousel.
-* Version: 8.9.0
+* Version: 8.9.1
 * Author: Slider Hero
 * Author URI: https://www.quantumcloud.com/products/slider-hero
 * Requires at least: 4.6
@@ -1336,7 +1336,7 @@ function qchero_admin_torus_notice() {
 }
 
 
-//add_action( 'admin_notices', 'qchero_pro_notice', 100 );
+add_action( 'admin_notices', 'qchero_pro_notice', 100 );
 function qchero_pro_notice(){
     global $pagenow, $typenow;
 
@@ -1349,12 +1349,12 @@ function qchero_pro_notice(){
     								$screen->base == 'slider-hero_page_qcpro-promo-page-qcld-slider-hero-pro-support' ||
     								$screen->base == 'slider-hero_page_qc-sliderhero-sessions-help-license' ) ){
     ?>
-    <div id="message-heros" class="notice notice-info is-dismissible" style="padding:4px 0px 0px 4px;background:#151618;">
+    <div id="message-heros" class="notice notice-info is-dismissible" style="padding:4px 0px 0px 4px;background:#e80607;">
         <?php
             printf(
                 __('%s  %s  %s', 'qchero'),
                 '<a href="'.esc_url('https://www.quantumcloud.com/products/slider-hero/').'" target="_blank">',
-                '<img src="'.esc_url(QCLD_SLIDERHERO_IMAGES).'/blackfriday24-slider-hero.jpg" >',
+                '<img src="'.esc_url(QCLD_SLIDERHERO_IMAGES).'/newyear24-slider-hero.jpg" >',
                 '</a>'
             );
 
