@@ -62,9 +62,9 @@
 	$('.qchero_preview').on ("click", function(e){
 		e.preventDefault();
 		jQuery(".qchero_save_all").click();
-		id = $(this).data('id');
-		setTimeout(
-					function() {
+		var id = $(this).data('id');
+		setTimeout(function() {
+
 					$.post(
 						ajaxurl,
 						{
@@ -73,9 +73,7 @@
 							
 						},
 						function(data){
-							
 							$('#wpwrap').append(data);
-							
 						}
 					)
 		}, 1000);
@@ -86,7 +84,7 @@
 	$('.qchero_preview_p5').on ("click", function(e){
 		e.preventDefault();
 		jQuery(".qchero_save_all").click();
-		id = $(this).data('id');
+		var id = $(this).data('id');
 		
 		setTimeout(
 					function() {

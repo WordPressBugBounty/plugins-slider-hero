@@ -3,10 +3,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 function qcld_show_arrow_items_fnc(){
-$elem = sanitize_text_field($_POST['elem']);
-$slidid = sanitize_text_field($_POST['slidid']);
-$selfelem = sanitize_text_field($_POST['selfelem']);
-$btn = sanitize_text_field($_POST['btnval']);
+$elem 		= isset($_POST['elem']) ? sanitize_text_field($_POST['elem']) : '';
+$slidid 	= isset($_POST['slidid']) ? sanitize_text_field($_POST['slidid']) : '';
+$selfelem 	= isset($_POST['selfelem']) ? sanitize_text_field($_POST['selfelem']) : '';
+$btn 		= isset($_POST['btnval']) ? sanitize_text_field($_POST['btnval']) : '';
 if($btn!=''){
 	$btn = json_decode(wp_unslash(htmlspecialchars_decode($btn)));
 }
@@ -34,47 +34,47 @@ if($btn!=''){
 			</div>
 			<div class="hero_single_field_btn">
 				<label style="width: 250px;display: inline-block;">Button Target</label><select id="hero_button_target">
-					<option <?php echo (@$btn->button_target=='_self'?'selected="selected"':''); ?> value="_self">_Self</option>
-					<option <?php echo (@$btn->button_target=='_blank'?'selected="selected"':''); ?> value="_blank">_Blank</option>
+					<option <?php echo ( isset($btn->button_target) && $btn->button_target=='_self'?'selected="selected"':''); ?> value="_self">_Self</option>
+					<option <?php echo ( isset($btn->button_target) && $btn->button_target=='_blank'?'selected="selected"':''); ?> value="_blank">_Blank</option>
 				</select>
 			</div>
 
 		
 			<div class="hero_single_field_btn">
 				<label style="width: 250px;display: inline-block;">Button Border</label>
-				Square <input type="radio" checked <?php echo (@$btn->button_border=='square'?'checked':''); ?> name="hero_button_border" value="square" />
-				Rounded <input type="radio" <?php echo (@$btn->button_border=='rounded'?'checked':''); ?> name="hero_button_border" value="rounded" />
+				Square <input type="radio" checked <?php echo ( isset($btn->button_border) && $btn->button_border=='square'?'checked':''); ?> name="hero_button_border" value="square" />
+				Rounded <input type="radio" <?php echo ( isset($btn->button_border) && $btn->button_border=='rounded'?'checked':''); ?> name="hero_button_border" value="rounded" />
 				
 			</div>
 			<div class="hero_single_field_btn">
 				<label style="width: 250px;display: inline-block;">Button Style</label>
-				Full Background <input type="radio" checked <?php echo (@$btn->button_style=='full_background'?'checked':''); ?> name="hero_button_style" value="full_background" />
-				Border <input type="radio" <?php echo (@$btn->button_style=='border'?'checked':''); ?> name="hero_button_style" value="border" />
+				Full Background <input type="radio" checked <?php echo ( isset($btn->button_style) && $btn->button_style=='full_background'?'checked':''); ?> name="hero_button_style" value="full_background" />
+				Border <input type="radio" <?php echo ( isset($btn->button_style) && $btn->button_style=='border'?'checked':''); ?> name="hero_button_style" value="border" />
 				
 			</div>
 			<div class="hero_single_field_btn">
 				<label style="width: 250px;display: inline-block;">Button Effect</label>
 				<div style="display: inline-block;
     width: 57%;line-height: 23px;">
-				None <input type="radio" checked <?php echo (@$btn->button_effect=='none'?'checked':''); ?> name="hero_button_effect" value="none" />
+				None <input type="radio" checked <?php echo ( isset($btn->button_effect) && $btn->button_effect=='none'?'checked':''); ?> name="hero_button_effect" value="none" />
 				
-				Glitch <input type="radio" <?php echo (@$btn->button_effect=='glitch'?'checked':''); ?> name="hero_button_effect" value="glitch" />
+				Glitch <input type="radio" <?php echo ( isset($btn->button_effect) && $btn->button_effect=='glitch'?'checked':''); ?> name="hero_button_effect" value="glitch" />
 				
-				Animated Fill <input type="radio" <?php echo (@$btn->button_effect=='fill'?'checked':''); ?> name="hero_button_effect" value="fill" />
+				Animated Fill <input type="radio" <?php echo ( isset($btn->button_effect) && $btn->button_effect=='fill'?'checked':''); ?> name="hero_button_effect" value="fill" />
 				
-				Spin Effect <input type="radio" <?php echo (@$btn->button_effect=='spin'?'checked':''); ?> name="hero_button_effect" value="spin" />
+				Spin Effect <input type="radio" <?php echo ( isset($btn->button_effect) && $btn->button_effect=='spin'?'checked':''); ?> name="hero_button_effect" value="spin" />
 				
-				Shiney Effect <input type="radio" <?php echo (@$btn->button_effect=='shiney'?'checked':''); ?> name="hero_button_effect" value="shiney" />
+				Shiney Effect <input type="radio" <?php echo ( isset($btn->button_effect) && $btn->button_effect=='shiney'?'checked':''); ?> name="hero_button_effect" value="shiney" />
 				
-				3D Effect <input type="radio" <?php echo (@$btn->button_effect=='3d'?'checked':''); ?> name="hero_button_effect" value="3d" />
+				3D Effect <input type="radio" <?php echo ( isset($btn->button_effect) && $btn->button_effect=='3d'?'checked':''); ?> name="hero_button_effect" value="3d" />
 				
-				Expend Border Effect <input type="radio" <?php echo (@$btn->button_effect=='exborder'?'checked':''); ?> name="hero_button_effect" value="exborder" />
+				Expend Border Effect <input type="radio" <?php echo ( isset($btn->button_effect) && $btn->button_effect=='exborder'?'checked':''); ?> name="hero_button_effect" value="exborder" />
 				
-				Nanuk Effect <input type="radio" <?php echo (@$btn->button_effect=='nanuk'?'checked':''); ?> name="hero_button_effect" value="nanuk" />
+				Nanuk Effect <input type="radio" <?php echo ( isset($btn->button_effect) && $btn->button_effect=='nanuk'?'checked':''); ?> name="hero_button_effect" value="nanuk" />
 				
-				Nina Effect <input type="radio" <?php echo (@$btn->button_effect=='nina'?'checked':''); ?> name="hero_button_effect" value="nina" />
+				Nina Effect <input type="radio" <?php echo ( isset($btn->button_effect) && $btn->button_effect=='nina'?'checked':''); ?> name="hero_button_effect" value="nina" />
 				
-				Moema Effect <input type="radio" <?php echo (@$btn->button_effect=='moema'?'checked':''); ?> name="hero_button_effect" value="moema" />
+				Moema Effect <input type="radio" <?php echo ( isset($btn->button_effect) && $btn->button_effect=='moema'?'checked':''); ?> name="hero_button_effect" value="moema" />
 				
 				</div>
 			</div>
@@ -101,8 +101,8 @@ if($btn!=''){
 			</div>
 			<div class="hero_single_field_btn">
 				<label style="width: 250px;display: inline-block;">Font Weight</label><select id="hero_button_font_weight">
-					<option <?php echo (@$btn->button_font_weight=='normal'?'selected="selected"':''); ?> value="normal">Normal</option>
-					<option <?php echo (@$btn->button_font_weight=='bold'?'selected="selected"':''); ?> value="bold">Bold</option>
+					<option <?php echo ( isset($btn->button_font_weight) && $btn->button_font_weight=='normal'?'selected="selected"':''); ?> value="normal">Normal</option>
+					<option <?php echo ( isset($btn->button_font_weight) && $btn->button_font_weight=='bold'?'selected="selected"':''); ?> value="bold">Bold</option>
 				</select>
 			</div>
 			<div class="hero_single_field_btn">
@@ -172,11 +172,11 @@ add_action( 'wp_ajax_qcld_show_arrow_items', 'qcld_show_arrow_items_fnc');
 ?>
 <?php
 function qcld_show_stomp_config_fnc(){
-$elem = sanitize_text_field($_POST['elem']);
-$slidid = sanitize_text_field($_POST['slidid']);
-$selfelem = sanitize_text_field($_POST['selfelem']);
-$btn = sanitize_text_field($_POST['btnval']);
-$ordering = sanitize_text_field($_POST['ordering']);
+$elem 		= isset($_POST['elem']) ? sanitize_text_field($_POST['elem']) : '';
+$slidid 	= isset($_POST['slidid']) ? sanitize_text_field($_POST['slidid']) : '';
+$selfelem 	= isset($_POST['selfelem']) ? sanitize_text_field($_POST['selfelem']) : '';
+$btn 		= isset($_POST['btnval']) ? sanitize_text_field($_POST['btnval']) : '';
+$ordering 	= isset($_POST['ordering']) ? sanitize_text_field($_POST['ordering']) : '';
 if($btn!=''){
 	$btn = json_decode(wp_unslash(htmlspecialchars_decode($btn)));
 }
@@ -203,7 +203,7 @@ if($btn!=''){
 				<select id="hero_stomp_animation">
 				
 					<?php foreach($animations as $animation): ?>
-						<option <?php echo (@$btn->hero_stomp_animation==$animation?'selected="selected"':''); ?> value="<?php echo esc_attr( $animation ); ?>"><?php echo esc_attr( $animation ); ?></option>
+						<option <?php echo ( isset($btn->hero_stomp_animation) && ( $btn->hero_stomp_animation==$animation?'selected="selected"':'')); ?> value="<?php echo esc_attr( $animation ); ?>"><?php echo esc_attr( $animation ); ?></option>
 					<?php endforeach; ?>
 
 				</select>
@@ -242,8 +242,8 @@ if($btn!=''){
 			</div>
 			<div class="hero_single_field_btn">
 				<label style="width: 250px;display: inline-block;">Font Weight</label><select id="hero_stomp_font_weight">
-					<option <?php echo (@$btn->hero_stomp_font_weight=='normal'?'selected="selected"':''); ?> value="normal">Normal</option>
-					<option <?php echo (@$btn->hero_stomp_font_weight=='bold'?'selected="selected"':''); ?> value="bold">Bold</option>
+					<option <?php echo ( isset($btn->hero_stomp_font_weight) && $btn->hero_stomp_font_weight=='normal'?'selected="selected"':''); ?> value="normal">Normal</option>
+					<option <?php echo ( isset($btn->hero_stomp_font_weight) && $btn->hero_stomp_font_weight=='bold'?'selected="selected"':''); ?> value="bold">Bold</option>
 				</select>
 			</div>
 			

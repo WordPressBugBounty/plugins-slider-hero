@@ -1293,13 +1293,13 @@ jQuery(document).ready(function($){
 		descPositionLeft:'0%',
 		
 		//titleTextAnimation:'pulse',
-		titleTextColor:'<?php echo $params->titlecolor != ''? esc_attr($params->titlecolor):'#000' ?>',
+		titleTextColor:'<?php echo (isset($params->titlecolor)&&$params->titlecolor != ''? esc_attr($params->titlecolor):'#000') ?>',
 		
-		descriptionTextColor:'<?php echo $params->descriptioncolor != ''? esc_attr($params->descriptioncolor):'#000' ?>',
+		descriptionTextColor:'<?php echo (isset($params->descriptioncolor)&&$params->descriptioncolor != ''? esc_attr($params->descriptioncolor):'#000') ?>',
 		
-		titleFontSize:'<?php echo $params->titlefontsize != ''? esc_attr($params->titlefontsize):'20' ?>',
-		arrowClass: '<?php echo $params->arrow != ''? esc_attr($params->arrow):'qc-sliderX' ?>',
-		descriptionFontSize:'<?php echo $params->descfontsize != ''? esc_attr($params->descfontsize):'30' ?>',
+		titleFontSize:'<?php echo (isset($params->titlefontsize)&&$params->titlefontsize != ''? esc_attr($params->titlefontsize):'20') ?>',
+		arrowClass: '<?php echo (isset($params->arrow)&&$params->arrow != ''? esc_attr($params->arrow):'qc-sliderX') ?>',
+		descriptionFontSize:'<?php echo (isset($params->descfontsize)&&$params->descfontsize != ''? esc_attr($params->descfontsize):'30') ?>',
 		<?php 
 		if(isset($style->screenoption) and $style->screenoption=='1'){
 		?>

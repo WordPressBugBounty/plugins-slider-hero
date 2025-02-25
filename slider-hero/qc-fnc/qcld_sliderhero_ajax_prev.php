@@ -4,7 +4,8 @@ if ( !function_exists( 'add_action' ) ) {
 	exit;
 }
 function qcld_show_preview_items_fnc(){
-$id = sanitize_text_field($_POST['sid']);
+	ob_start();
+$id = isset($_POST['sid']) ? sanitize_text_field($_POST['sid']) : '';
 
 global $wpdb;
 $query   = $wpdb->prepare( "SELECT * FROM " . QCLD_TABLE_SLIDERS . " WHERE id = '%d' ", $id );
@@ -208,7 +209,13 @@ require(QCLD_sliderhero_view.'/slider_hero_front_end_audio.php');
 
 <?php endif; ?>
 
-<?php if($_slider[0]->type=='youtube_video' && !empty($preimg)):?>
+<?php if($_slider[0]->type=='youtube_video' && !empty($preimg)):
+
+	//var_dump( $preimg[0] );
+	//wp_die();
+
+
+	?>
 <div class="sh_bg_video sh_bg_video_y">
 	<div class="sh_bg_video_fluid sh_bg_video_fluid_y" style="width: 100%;position: relative;padding: 0;padding-top: 56.5%;">
 		<div id="hero_youtube_video"></div>
@@ -232,7 +239,7 @@ jQuery( document ).ready(function($) {
 				showinfo: 0,
 				<?php if(isset($params->videoslide_loop)&& $params->videoslide_loop=='1'){ ?>
 				loop: 1,
-				<?php echo esc_attr( $preimg[0] ); ?>
+				playlist: '<?php echo esc_attr( $preimg[0] ); ?>',
 				<?php }else{ ?>
 				loop: 0,
 				<?php } ?>
@@ -281,7 +288,13 @@ jQuery( document ).ready(function($) {
 		</div>
 	</div>
 <?php
-exit;
+
+$content = ob_get_clean();
+$content = preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $content);
+echo $content;
+
+
+//exit;
 }
 add_action( 'wp_ajax_qcld_show_preview_items', 'qcld_show_preview_items_fnc');
 ?>

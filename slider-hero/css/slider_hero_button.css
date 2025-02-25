@@ -1,9 +1,8 @@
 /* style for button Glitch Effect */
-.shero_glitch_button:after, .button:before {
+.shero_glitch_button:after, .shero_glitch_button:before {
   bottom: 0;
   left: 0;
   position: absolute;
-  
   right: 0;
   top: 0;
 }    
