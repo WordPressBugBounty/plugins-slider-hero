@@ -694,6 +694,14 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 									</select>
 								</div>
 								
+								<div class="params fullscreenmobile" style="display: none">
+									<label class="customlevel" for="qchero-caption-text-color" style="display: inline-block;">Full Screen on Tab and mobile</label> 
+									<select name="params[fullscreenmobile]">
+										<option value="0" <?php echo (isset($params->fullscreenmobile)&& $params->fullscreenmobile==0?'selected="selected"':''); ?>>Off</option>
+										<option value="1" <?php echo (isset($params->fullscreenmobile)&& $params->fullscreenmobile==1?'selected="selected"':''); ?>>On</option>
+									</select>
+								</div>
+								
 								<?php endif; ?>
 
 							</div>

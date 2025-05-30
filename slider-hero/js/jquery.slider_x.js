@@ -78,7 +78,6 @@ function preloadImage(url)
 					'height':fullheight+'px',
 				});
 			}
-
 			
 			if(fullwidth < 1024){
 				console.log(fullwidth);
@@ -86,6 +85,11 @@ function preloadImage(url)
 				if(new_height < 200){
 					new_height = 200;
 				}
+
+				if(typeof settings.fullscreenmobile !== 'undefined' && settings.fullscreenmobile){
+					new_height = fullheight;
+				}
+				console.log(new_height);
 				
 				slider.css({
 					'width':fullwidth+'px',

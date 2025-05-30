@@ -372,7 +372,9 @@ function qcheroGetSliderParams(custom) {
 	var screenoption = jQuery('input[name="style[fullwidth]"]:checked').val();
 	qcheror['style']['screenoption'] = screenoption;
 	//console.log(qcheror);
+
 }
+
 
 function qcheroGetSlideParams(slide) {
     var params = 'custom';// || 'params';
@@ -1006,4 +1008,26 @@ jQuery(document).ready(function($){
 			
 		});
 	}
+});
+
+
+
+jQuery(document).ready(function($){
+    var screenoptions = jQuery('input[name="style[fullwidth]"]:checked').val();
+    if(typeof screenoptions !== 'undefined' && screenoptions == 2){
+        jQuery('.fullscreenmobile').show();
+    }
+
+    jQuery(document).on( 'click', 'input[name="style[fullwidth]"]', function(){
+        var screenoptions = jQuery('input[name="style[fullwidth]"]:checked').val();
+        console.log(screenoptions);
+        if(typeof screenoptions !== 'undefined' && screenoptions == 2){
+            jQuery('.fullscreenmobile').show();
+        }else{
+
+            jQuery('.fullscreenmobile').hide();
+        }
+
+    });
+
 });

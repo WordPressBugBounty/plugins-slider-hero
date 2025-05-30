@@ -253,6 +253,7 @@ endforeach;
 		lfxtitleout:'<?php echo (isset($params->lfxtitleout) && $params->lfxtitleout!=''?esc_attr($params->lfxtitleout):'') ?>',
 		lfxdesin:'<?php echo (isset($params->lfxdesin) && $params->lfxdesin!=''?esc_attr($params->lfxdesin):'') ?>',
 		lfxdesout:'<?php echo (isset($params->lfxdesout) && $params->lfxdesout!=''?esc_attr($params->lfxdesout):'') ?>',
+		fullscreenmobile:'<?php echo (isset($params->fullscreenmobile) && $params->fullscreenmobile!=''?esc_attr($params->fullscreenmobile):'') ?>',
 		
 		mainId: 'slider_hero_pop_modal_content',
         beforeChange: function(){

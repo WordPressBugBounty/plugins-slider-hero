@@ -246,7 +246,7 @@ if($atts['preloader']=='on'){
 <?php if($_slider[0]->type=='youtube_video' && !empty($preimg)):?>
 <div class="sh_bg_video sh_bg_video_y">
 	<div class="sh_bg_video_fluid sh_bg_video_fluid_y" style="width: 100%;position: relative;padding: 0;padding-top: 56.5%;">
-		<div id="hero_youtube_video"></div>
+		<div id="hero_youtube_video<?php echo intval( esc_html( $_id ) ); ?>"></div>
 	</div>
 </div>
 <script type="text/javascript">
@@ -254,7 +254,7 @@ if($atts['preloader']=='on'){
 jQuery( document ).ready(function($) {
 	var player;
 	function onYouTubeIframeAPIReady() {
-	    player = new YT.Player('hero_youtube_video', {
+	    player = new YT.Player('hero_youtube_video<?php echo intval( esc_html( $_id ) ); ?>', {
 	        width: 600,
 	        height: 400,
 	        videoId: '<?php echo esc_attr($preimg[0]); ?>',
@@ -294,7 +294,7 @@ jQuery( document ).ready(function($) {
 
 	jQuery(window).load(function($){
 		
-		iframeHeight = jQuery('#hero_youtube_video').height();
+		iframeHeight = jQuery('#hero_youtube_video<?php echo intval( esc_html( $_id ) ); ?>').height();
 		containerHeight = jQuery('#particles-js<?php echo intval( esc_html( $_id ) ); ?>').height();
 		actualHeight = (iframeHeight - containerHeight)/2;
 		jQuery('.sh_bg_video_fluid> iframe').css({'top': '-'+actualHeight+'px'});

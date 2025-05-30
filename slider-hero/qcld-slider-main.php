@@ -3,11 +3,11 @@
 * Plugin Name: Slider Hero
 * Plugin URI: https://wordpress.org/plugins/slider-hero
 * Description: Slider Hero is a Unique Hero Slider Plugin with Background Animation Effects, Video Background & Intro Builder. Animation Slider Carousels, INCREDIBLE Adverts. Animated Header with Text Carousel.
-* Version: 8.9.3
+* Version: 8.9.5
 * Author: QuantumCloud
 * Author URI: https://www.quantumcloud.com/
 * Requires at least: 4.6
-* Tested up to: 6.7.2
+* Tested up to: 6.8.1
 */
 
 
@@ -474,6 +474,9 @@ function qcld_qchero_resliders_shortcode( $atts, $content, $tag ) {
 		$atts
 	);
 
+	$qcld_uniqid = rand(100,100000);
+	$atts['uniq_id'] = $qcld_uniqid;
+
 	return qcld_qchero_load_front_end_slider( $atts );
 
 }
@@ -651,7 +654,7 @@ CREATE TABLE IF NOT EXISTS  `$table`  (
 			array(
 				'title'        => 'First Slider',
 				'type'         => 'particle_snow',
-				'params'       => '{"watereffect":{"color":""},"autoplay":1,"pauseonhover":1,"directionnav":1,"controlnav":1,"effect":{"interval":11000},"title":{"show":1,"align":"center","style":{"width":213,"height":61,"left":"0px","top":"10%"}},"button1":{"show":1,"position":"1","align":"center","style":{"width":213,"height":61,"left":"0%","top":"80%"}},"titleffect":"bounceInLeft","deseffect":"bounceInRight","description":{"show":1,"align":"center","style":{"width":213,"height":61,"left":"0%","top":"30%"}},"titlefontsize":40,"descfontsize":20,"background":"#4e56fc","titlecolor":"#ffffff","descriptioncolor":"#ffffff","btneffect":"","blur":{"canvas_bg":"","particle_color":""},"wave":{"one_color":"","two_color":"","three_color":""},"metaballs":{},"matrix":{},"tiny_galaxy":{},"tagcanvas":{},"water_swimming":{},"warp_speed":{},"line":{},"circle":{},"waaave":{},"ballsgravity":{},"iconsahedron":{},"helix":{},"corruption":{},"chaos":{},"helix_multiple":{},"neno_hexagon":{},"cosmic_web":{},"directional":{},"distance":{},"valentine":{},"cloudysky":{},"particle_snow":{"color":"","type":"circle"},"herotop":{"decoration":""},"herobottom":{"decoration":""},"rays_particles":{"particles":""},"hero404":{"title":""},"paddingtime":500,"slidendredirect":"","slideredirectdelay":"","contentspace":"","titlebottommargin":"","descriptionbottommargin":"","buttonbottommargin":"","titlebgcolor":"","descriptionbgcolor":"","topdecorationcolor":"","bottomdecorationcolor":"","canvasopacity":"","titlefontheight":"","descfontheight":"","lfxtitlein":"","lfxtitleout":"","lfxdesin":"","lfxdesout":"","contentoffset":"","custom_video_mp4":"","custom_video_webm":"","bg_video_youtube":"","bg_video_vimeo":"","video_overlay_color":"","video_overlay_opacity":"","audiorepeatcount":"","arrow":"arrow-circle","arrowcolor":"","arrowhovercolor":"","navigatorcolor":"","navigatorhovercolor":"","stopslide":0,"repeat":0,"randomslide":0,"disableinmobile":0,"onlyonce":0,"content":"center","bgimageeffect":"","slideimageeffect":"fade","slideimageeffectreverse":"fade","titleouteffect":"","descouteffect":"","btnouteffect":"","hidearrow":0,"hidenavigation":0,"herorestart":0,"heropause":0,"video":"","video_loop":1,"video_mute":1,"sound_control":1,"video_overlay":0,"audioautoplay":1,"audiocontrol":1,"audiorepeat":0,"controllerposition":"topleft","arrow_style":"default"}',
+				'params'       => '{"watereffect":{"color":""},"autoplay":1,"pauseonhover":1,"directionnav":1,"controlnav":1,"effect":{"interval":11000},"title":{"show":1,"align":"center","style":{"width":213,"height":61,"left":"0px","top":"10%"}},"button1":{"show":1,"position":"1","align":"center","style":{"width":213,"height":61,"left":"0%","top":"80%"}},"titleffect":"bounceInLeft","deseffect":"bounceInRight","description":{"show":1,"align":"center","style":{"width":213,"height":61,"left":"0%","top":"30%"}},"titlefontsize":40,"descfontsize":20,"background":"#4e56fc","titlecolor":"#ffffff","descriptioncolor":"#ffffff","btneffect":"","blur":{"canvas_bg":"","particle_color":""},"wave":{"one_color":"","two_color":"","three_color":""},"metaballs":{},"matrix":{},"tiny_galaxy":{},"tagcanvas":{},"water_swimming":{},"warp_speed":{},"line":{},"circle":{},"waaave":{},"ballsgravity":{},"iconsahedron":{},"helix":{},"corruption":{},"chaos":{},"helix_multiple":{},"neno_hexagon":{},"cosmic_web":{},"directional":{},"distance":{},"valentine":{},"cloudysky":{},"particle_snow":{"color":"","type":"circle"},"herotop":{"decoration":""},"herobottom":{"decoration":""},"rays_particles":{"particles":""},"hero404":{"title":""},"paddingtime":500,"slidendredirect":"","slideredirectdelay":"","contentspace":"","titlebottommargin":"","descriptionbottommargin":"","buttonbottommargin":"","titlebgcolor":"","descriptionbgcolor":"","topdecorationcolor":"","bottomdecorationcolor":"","canvasopacity":"","titlefontheight":"","descfontheight":"","lfxtitlein":"","lfxtitleout":"","lfxdesin":"","lfxdesout":"","contentoffset":"","custom_video_mp4":"","custom_video_webm":"","bg_video_youtube":"","bg_video_vimeo":"","video_overlay_color":"","video_overlay_opacity":"","audiorepeatcount":"","arrow":"arrow-circle","arrowcolor":"","arrowhovercolor":"","navigatorcolor":"","navigatorhovercolor":"","stopslide":0,"repeat":0,"randomslide":0,"disableinmobile":0,"onlyonce":0,"fullscreenmobile":0,"content":"center","bgimageeffect":"","slideimageeffect":"fade","slideimageeffectreverse":"fade","titleouteffect":"","descouteffect":"","btnouteffect":"","hidearrow":0,"hidenavigation":0,"herorestart":0,"heropause":0,"video":"","video_loop":1,"video_mute":1,"sound_control":1,"video_overlay":0,"audioautoplay":1,"audiocontrol":1,"audiorepeat":0,"controllerposition":"topleft","arrow_style":"default"}',
 				'time'         => date( 'Y-m-d H:i:s' ),
 				'slide'        => 'NULL',
 				'style'        => '{"background":"blue;","border":"1px solid red;","color":"yellow","width":"800","height":"480","marginLeft":"0","marginRight":"0","marginTop":"0","marginBottom":"0","screenoption":"1","fullwidth":"3"}',

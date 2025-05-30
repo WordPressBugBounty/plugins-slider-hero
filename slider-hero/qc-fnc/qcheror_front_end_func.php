@@ -16,5 +16,6 @@ function qcld_slide_show_published_sliders($atts ) {
 	$query   = $wpdb->prepare( "SELECT * FROM " . QCLD_TABLE_SLIDES . " WHERE sliderid = '%d' ORDER BY ordering DESC", $id );
 	$qcheros = $wpdb->get_results( $query );
 	
+	$id = $atts['uniq_id'];
 	return qcld_slider_front_end( $id, $qcheror, $qcheros, $atts );
 }
