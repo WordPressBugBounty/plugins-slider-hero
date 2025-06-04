@@ -17,5 +17,8 @@ function qcld_slide_show_published_sliders($atts ) {
 	$qcheros = $wpdb->get_results( $query );
 	
 	$id = $atts['uniq_id'];
+
+	//var_dump( $qcheror );
+	//wp_die();
 	return qcld_slider_front_end( $id, $qcheror, $qcheros, $atts );
 }

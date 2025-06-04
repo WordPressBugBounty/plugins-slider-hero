@@ -102,7 +102,7 @@ function getOffset1( el ) {
 					new_height = 200;
 				}
 
-        <?php if(isset($style->fullscreenmobile) and $style->fullscreenmobile == 1){ ?>
+        <?php if( (isset($style->fullscreenmobile) && $style->fullscreenmobile == 1) || (isset($params->fullscreenmobile) && $params->fullscreenmobile == 1)  ){ ?>
 
           new_height = fullheight;
         
@@ -1586,6 +1586,14 @@ $(window).resize(function() {
 			if(new_height < 200){
 				new_height = 200;
 			}
+
+      
+
+      <?php if( (isset($style->fullscreenmobile) && $style->fullscreenmobile == 1) || (isset($params->fullscreenmobile) && $params->fullscreenmobile == 1)  ){ ?>
+
+        new_height = fullheight;
+      
+      <?php } ?>
 			
 			jQuery('#particles-js<?php echo intval( esc_html( $_id ) ); ?>').css({
 				'width':fullwidth+'px',
