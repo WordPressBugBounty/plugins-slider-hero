@@ -90,7 +90,7 @@ require(QCLD_sliderhero_view.'/slider_hero_front_end_style.php');
 }else{
 ?>
 <?php $totalSlide = 0; ?>
-<?php foreach($_slide as $slide) : 
+<?php foreach($_slide as $slider_key => $slide) : 
 
 if($slide->published=='1' and $slide->draft!='1') :
 $totalSlide++;
@@ -153,7 +153,7 @@ $totalSlide++;
 			$preimg[] = $slide->image_link;
 		}
 		?>
-	<div class="qcld_hero_content_area" <?php echo (isset($slide->image_link)&&$slide->image_link!=''?'data-bg-image="'.esc_attr( $slide->image_link ).'"':'data-bg-image=""') ?>>
+	<div class="qcld_hero_content_area" <?php echo (isset($slide->image_link)&&$slide->image_link!=''?'data-bg-image="'.esc_attr( $slide->image_link ).'"':'data-bg-image=""') ?>  <?php echo (( isset($slider_key) && $slider_key > 0 ) ? 'style="display:none;"':'') ?> >
 	
 		<?php 
 			foreach($odarr as $key=>$val ){

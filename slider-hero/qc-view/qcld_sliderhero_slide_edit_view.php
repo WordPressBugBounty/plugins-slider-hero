@@ -295,7 +295,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 							<option value="intro" <?php echo (isset($_slider[0]->type)&&$_slider[0]->type=='intro'?'selected="selected"':''); ?> >Intro Builder</option>
 							
 							<option value="particle" <?php echo (isset($_slider[0]->type)&&$_slider[0]->type=='particle'?'selected="selected"':''); ?> >Particle Effect</option>
-							<option value="particle_snow" <?php echo (isset($_slider[0]->type)&&$_slider[0]->type=='particle_nasa'?'selected="selected"':''); ?> >Particle Nasa Effect</option>
+							<option value="particle_nasa" <?php echo (isset($_slider[0]->type)&&$_slider[0]->type=='particle_nasa'?'selected="selected"':''); ?> >Particle Nasa Effect</option>
 							<option value="particle_snow" <?php echo (isset($_slider[0]->type)&&$_slider[0]->type=='particle_snow'?'selected="selected"':''); ?> >Particle Snow Effect</option>
 							<option value="particle_bubble" <?php echo (isset($_slider[0]->type)&&$_slider[0]->type=='particle_bubble'?'selected="selected"':''); ?> >Particle bubble Effect</option>
 							<option value="nyan_cat" <?php echo (isset($_slider[0]->type)&&$_slider[0]->type=='nyan_cat'?'selected="selected"':''); ?> >Nyan Cat Effect</option>

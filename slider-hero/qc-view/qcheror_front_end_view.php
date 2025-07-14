@@ -118,7 +118,7 @@ if($atts['preloader']=='on'){
 		$totalSlide = 0;
 		$preimg = array();
 	?>
-	<?php foreach($_slide as $slide) : 
+	<?php foreach($_slide as $slider_key => $slide) : 
 
 	if($slide->published=='1' and $slide->draft!='1') :
 	$totalSlide++;
@@ -189,7 +189,7 @@ if($atts['preloader']=='on'){
 			$preimg[] = $slide->image_link;
 		}
 		?>
-		<div class="qcld_hero_content_area" <?php echo ( isset($slide->image_link)&&$slide->image_link!='' && ( !isset($params->video) || $params->video!='youtube' ) ? 'data-bg-image="'.( $slide->image_link ).'"':'data-bg-image=""') ?> style="display:none;">
+		<div class="qcld_hero_content_area" <?php echo ( isset($slide->image_link)&&$slide->image_link!='' && ( !isset($params->video) || $params->video!='youtube' ) ? 'data-bg-image="'.( $slide->image_link ).'"':'data-bg-image=""') ?> <?php echo (( isset($slider_key) && $slider_key > 0 ) ? 'style="display:none;"':'') ?>>
 		
 			<?php 
 				foreach($odarr as $key=>$val ){
