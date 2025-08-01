@@ -198,6 +198,7 @@ if($atts['preloader']=='on'){
 					}elseif($key=='description'){
 					?>
 						<div class="slider-x-item-title slider-x-item-title<?php echo intval( esc_html( $_id ) ); ?>">
+							<p>
 							<?php
 
 								//Fixing for XSS issues ON 07-02-2024 by Kadir
@@ -207,6 +208,7 @@ if($atts['preloader']=='on'){
 								echo wp_kses( wp_unslash(htmlspecialchars_decode($slide->description)), $arrayOfAllowedTags );
 
 							?>
+							</p>
 						</div>
 					<?php
 					}else{
