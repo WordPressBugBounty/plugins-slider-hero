@@ -78,6 +78,130 @@ function sliderhero_register_options_pages() {
 									'class'     => '',
 									'section'   => 'general',
 								),
+                                array(
+                                    'label'       => __('Title Tag'),
+                                    'id'          => 'hero_title_tag',
+                                    'std'         => 'h2',
+                                    'type'        => 'select',
+                                    'desc'        => __('Choose for Title Tag.'),
+                                    'section'     => 'general',
+                                    'rows'        => '',
+                                    'post_type'   => '',
+                                    'taxonomy'    => '',
+                                    'min_max_step'=> '',
+                                    'class'       => '',
+                                    'condition'   => '',
+                                    'operator'    => 'and',
+                                    'choices'     => array(
+                                        array(
+                                            'value'       => 'h1',
+                                            'label'       => __( 'h1', 'qcld-express-cart-summary' ),
+                                            'src'         => ''
+                                        ),
+                                        array(
+                                            'value'       => 'h2',
+                                            'label'       => __( 'h2', 'qcld-express-cart-summary' ),
+                                            'src'         => ''
+                                        ),
+                                        array(
+                                            'value'       => 'h3',
+                                            'label'       => __( 'h3', 'qcld-express-cart-summary' ),
+                                            'src'         => ''
+                                        ),
+                                        array(
+                                            'value'       => 'h4',
+                                            'label'       => __( 'h4', 'qcld-express-cart-summary' ),
+                                            'src'         => ''
+                                        ),
+                                        array(
+                                            'value'       => 'h5',
+                                            'label'       => __( 'h5', 'qcld-express-cart-summary' ),
+                                            'src'         => ''
+                                        ),
+                                        array(
+                                            'value'       => 'h6',
+                                            'label'       => __( 'h6', 'qcld-express-cart-summary' ),
+                                            'src'         => ''
+                                        ),
+                                        array(
+                                            'value'       => 'p',
+                                            'label'       => __( 'p', 'qcld-express-cart-summary' ),
+                                            'src'         => ''
+                                        ),
+                                        array(
+                                            'value'       => 'span',
+                                            'label'       => __( 'span', 'qcld-express-cart-summary' ),
+                                            'src'         => ''
+                                        ),
+                                        array(
+                                            'value'       => 'div',
+                                            'label'       => __( 'div', 'qcld-express-cart-summary' ),
+                                            'src'         => ''
+                                        ),
+                                    )
+                                ),
+                                array(
+                                    'label'       => __('Description Tag'),
+                                    'id'          => 'hero_description_tag',
+                                    'std'         => 'p',
+                                    'type'        => 'select',
+                                    'desc'        => __('Choose for Description Tag.'),
+                                    'section'     => 'general',
+                                    'rows'        => '',
+                                    'post_type'   => '',
+                                    'taxonomy'    => '',
+                                    'min_max_step'=> '',
+                                    'class'       => '',
+                                    'condition'   => '',
+                                    'operator'    => 'and',
+                                    'choices'     => array(
+                                        array(
+                                            'value'       => 'h1',
+                                            'label'       => __( 'h1', 'qcld-express-cart-summary' ),
+                                            'src'         => ''
+                                        ),
+                                        array(
+                                            'value'       => 'h2',
+                                            'label'       => __( 'h2', 'qcld-express-cart-summary' ),
+                                            'src'         => ''
+                                        ),
+                                        array(
+                                            'value'       => 'h3',
+                                            'label'       => __( 'h3', 'qcld-express-cart-summary' ),
+                                            'src'         => ''
+                                        ),
+                                        array(
+                                            'value'       => 'h4',
+                                            'label'       => __( 'h4', 'qcld-express-cart-summary' ),
+                                            'src'         => ''
+                                        ),
+                                        array(
+                                            'value'       => 'h5',
+                                            'label'       => __( 'h5', 'qcld-express-cart-summary' ),
+                                            'src'         => ''
+                                        ),
+                                        array(
+                                            'value'       => 'h6',
+                                            'label'       => __( 'h6', 'qcld-express-cart-summary' ),
+                                            'src'         => ''
+                                        ),
+                                        array(
+                                            'value'       => 'p',
+                                            'label'       => __( 'p', 'qcld-express-cart-summary' ),
+                                            'src'         => ''
+                                        ),
+                                        array(
+                                            'value'       => 'span',
+                                            'label'       => __( 'span', 'qcld-express-cart-summary' ),
+                                            'src'         => ''
+                                        ),
+                                        array(
+                                            'value'       => 'div',
+                                            'label'       => __( 'div', 'qcld-express-cart-summary' ),
+                                            'src'         => ''
+                                        ),
+                                    )
+                                ),
 								array(
 									'label'     => __( 'Preloader Image (Pro)' ),
 									'id'        => 'hero_enable_preloader_image',

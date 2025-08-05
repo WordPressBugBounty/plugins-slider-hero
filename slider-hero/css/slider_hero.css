@@ -3362,3 +3362,9 @@ from {
 .hero_section_video{float: left;
     margin-right: 32px;}
 .hero_video_container{margin-top: 30px;}
+
+
+body .qcld_hero_content_area .slider-x-item-title {
+    max-width: 70%;
+    margin: 0 auto !important;
+}

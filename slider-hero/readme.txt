@@ -3,8 +3,8 @@ Contributors: quantumcloud
 Donate link: https://www.quantumcloud.com
 Tags: slider, video background, banner slider, elementor slider, video slider
 Requires at least: 4.6
-Tested up to: 6.7
-Stable tag: 8.9.8
+Tested up to: 6.8
+Stable tag: 8.9.9
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.quantumcloud.com
@@ -236,6 +236,9 @@ All technical stuffs could be tough for your busy schedule. But you don’t need
 
 == Frequently Asked Questions ==
 
+= How do I change the Title and Description tags to h1/h2? =
+You can do so from the Slider Hero main Settings page in the WordPress menu. Slider Hero->Settings
+
 = How do I remove ‘watch later’, ‘share’ and channel ‘subscribe’ buttons =
 Unfortunately, since September 2018 there is no option to hide Watch Later, Share and Video Title within embedded YouTube iframe. Simply, YouTube does not allow anymore ‘clean’ embed without those components.
 
@@ -275,6 +278,9 @@ https://www.quantumcloud.com/products/support/
 
 
 == Changelog ==
+
+= 8.9.9 =
+# Added option to choose H1/H2 tags for title and description
 
 = 8.9.8 =
 # Description p tag added

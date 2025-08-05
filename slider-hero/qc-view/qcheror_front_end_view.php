@@ -65,7 +65,7 @@ asort($odarr);
 
 $preloader = get_option('sh_plugin_options');
 
-if(isset($preloader['hero_enable_preloader_image']) and $preloader['hero_enable_preloader_image']!=''){
+if(isset($preloader['hero_enable_preloader_image']) && $preloader['hero_enable_preloader_image']!=''){
 	$preloader_img = $preloader['hero_enable_preloader_image'];
 }
 if($atts['preloader']=='off'){
@@ -73,6 +73,17 @@ if($atts['preloader']=='off'){
 }
 if($atts['preloader']=='on'){
 	$preloader['hero_enable_preloader'] = 'on';
+}
+
+
+$hero_title_tag = 'h2';
+if(isset($preloader['hero_title_tag']) && !empty($preloader['hero_title_tag']) ){
+	$hero_title_tag = $preloader['hero_title_tag'];
+}
+
+$hero_description_tag = 'p';
+if(isset($preloader['hero_description_tag']) && !empty($preloader['hero_description_tag']) ){
+	$hero_description_tag = $preloader['hero_description_tag'];
 }
 
 ?>
@@ -198,7 +209,7 @@ if($atts['preloader']=='on'){
 					}elseif($key=='description'){
 					?>
 						<div class="slider-x-item-title slider-x-item-title<?php echo intval( esc_html( $_id ) ); ?>">
-							<p>
+							<<?php echo $hero_description_tag; ?>>
 							<?php
 
 								//Fixing for XSS issues ON 07-02-2024 by Kadir
@@ -208,7 +219,7 @@ if($atts['preloader']=='on'){
 								echo wp_kses( wp_unslash(htmlspecialchars_decode($slide->description)), $arrayOfAllowedTags );
 
 							?>
-							</p>
+							</<?php echo $hero_description_tag; ?>>
 						</div>
 					<?php
 					}else{

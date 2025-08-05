@@ -147,7 +147,27 @@ if(isset($params->description->align) and $params->description->align!=''){
 
 </style>
 
-<?php $totalSlide = 0; ?>
+
+
+<?php 
+$preloader = get_option('sh_plugin_options');
+
+if(isset($preloader['hero_enable_preloader_image']) && $preloader['hero_enable_preloader_image']!=''){
+	$preloader_img = $preloader['hero_enable_preloader_image'];
+}
+$hero_title_tag = 'h2';
+if(isset($preloader['hero_title_tag']) && !empty($preloader['hero_title_tag']) ){
+	$hero_title_tag = $preloader['hero_title_tag'];
+}
+
+$hero_description_tag = 'p';
+if(isset($preloader['hero_description_tag']) && !empty($preloader['hero_description_tag']) ){
+	$hero_description_tag = $preloader['hero_description_tag'];
+}
+
+
+
+$totalSlide = 0; ?>
 <?php foreach($_slide as $slide) : 
 
 if($slide->published=='1' and $slide->draft!='1') :

@@ -23,10 +23,24 @@ if(isset($slide->d_font) && strlen($slide->d_font)>2){
 if(isset($slide->dl_space) && $slide->dl_space>0){
 	$dlspace = $slide->dl_space;
 }
+
+$preloader = get_option('sh_plugin_options');
+
+$hero_title_tag = 'h2';
+if(isset($preloader['hero_title_tag']) && !empty($preloader['hero_title_tag']) ){
+	$hero_title_tag = $preloader['hero_title_tag'];
+}
+
+$hero_description_tag = 'p';
+if(isset($preloader['hero_description_tag']) && !empty($preloader['hero_description_tag']) ){
+	$hero_description_tag = $preloader['hero_description_tag'];
+}
+
+
 ?>
 
 <style type="text/css">
-.slider-x-lead-title<?php echo intval($_id); ?>, .slider-x-lead-title<?php echo intval($_id); ?> p, .slider-x-lead-title<?php echo intval($_id); ?> h1, .slider-x-lead-title<?php echo intval($_id); ?> h2, .slider-x-lead-title<?php echo intval($_id); ?> span{
+.slider-x-lead-title<?php echo intval($_id); ?>, .slider-x-lead-title<?php echo intval($_id); ?> p, .slider-x-lead-title<?php echo intval($_id); ?> h1, .slider-x-lead-title<?php echo intval($_id); ?> h2, .slider-x-lead-title<?php echo intval($_id); ?> <?php echo $hero_title_tag; ?>, .slider-x-lead-title<?php echo intval($_id); ?> span{
 	<?php if($tfont!=''): ?>
 	font-family:'<?php echo $tfont; ?>', sans-serif !important;
 	<?php endif; ?>
@@ -34,7 +48,7 @@ if(isset($slide->dl_space) && $slide->dl_space>0){
 	letter-spacing: <?php echo $tlspace ?> !important;
 	<?php endif; ?>
 }
-.slider-x-item-title<?php echo intval($_id); ?>, .slider-x-item-title<?php echo intval($_id); ?> p, .slider-x-item-title<?php echo intval($_id); ?> div{
+.slider-x-item-title<?php echo intval($_id); ?>, .slider-x-item-title<?php echo intval($_id); ?> p,, .slider-x-item-title<?php echo intval($_id); ?> <?php echo $hero_title_tag; ?>, .slider-x-item-title<?php echo intval($_id); ?> div{
 	<?php if($dfont!=''): ?>
 	font-family:'<?php echo $dfont; ?>', sans-serif !important;
 	<?php endif; ?>
@@ -68,17 +82,17 @@ if(isset($params->titleffect) and $params->titleffect=='hero_peeled_effect'):
 			color:#fff !important;
 		}
 	</style>
-	<h2 class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?>"><?php 
+	<<?php echo $hero_title_tag; ?> class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?>"><?php 
 		$titletext = esc_attr( wp_unslash(($slide->title)) );
 		$titletext = str_split_unicode($titletext,1);
 		foreach($titletext as $k=>$v):
 			echo '<span data-text="'.$v.'">'.$v.'</span>';
 		endforeach;
-	?></h2>
+	?></<?php echo $hero_title_tag; ?>>
 <?php // code for Text Animation effect
 elseif(isset($params->titleffect) and $params->titleffect=='hero_text_animation'):
 ?>
-	<h2 class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?>">
+	<<?php echo $hero_title_tag; ?> class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?>">
 		<svg class="hero_svg_style">
 			<symbol id="s-text<?php echo $slide->id; ?>">
 				<text text-anchor="middle" x="50%" y="80%"><?php echo esc_attr( wp_unslash(($slide->title)) ); ?></text>
@@ -92,38 +106,38 @@ elseif(isset($params->titleffect) and $params->titleffect=='hero_text_animation'
 				<use xlink:href="#s-text<?php echo $slide->id; ?>" class="hero-text-copy"></use>
 			</g>
 		</svg>
-	</h2>
+	</<?php echo $hero_title_tag; ?>>
 
 
 <?php // code for Happy Text effect
 elseif(isset($params->titleffect) and $params->titleffect=='hero_happy_text'):
 ?>
-<h2 class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?>"><?php 
+<<?php echo $hero_title_tag; ?> class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?>"><?php 
 		$titletext = esc_attr( wp_unslash(($slide->title)) );
 		$titletext = str_split_unicode($titletext,1);
 		foreach($titletext as $k=>$v):
 			echo '<span>'.($v).'</span>';
 		endforeach;
-	?></h2>
+	?></<?php echo $hero_title_tag; ?>>
 
 <?php // code for Hero Glitch effect
 elseif(isset($params->titleffect) and $params->titleffect=='hero_glitch'):
 ?>
 <div class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?> hero_glitch_header" id="hero-glitch">
-	<h1 class="glitched"><?php echo esc_attr( wp_unslash(($slide->title)) ); ?></h1>
+	<<?php echo $hero_title_tag; ?> class="glitched"><?php echo esc_attr( wp_unslash(($slide->title)) ); ?></<?php echo $hero_title_tag; ?>>
 </div>
 <script type="text/javascript">
 
 jQuery(".hero_glitch_header").append("<div class='hero-glitch-window'></div>");
 //fill div with clone of real header
-jQuery( ".hero_glitch_header h1" ).clone().appendTo( " .hero-glitch-window" );
+jQuery( ".hero_glitch_header <?php echo $hero_title_tag; ?>" ).clone().appendTo( " .hero-glitch-window" );
 </script>
 
 <?php // code for Hero shuffle effect
 elseif(isset($params->titleffect) and $params->titleffect=='hero_shuffle'):
 ?>
 <style type="text/css">
-#hero-shuffle h1{
+#hero-shuffle <?php echo $hero_title_tag; ?>{
 <?php 
 if(isset($params->titlefontsize) and $params->titlefontsize!=''){
 	echo 'font-size: '.esc_attr($params->titlefontsize).'px;';	
@@ -145,7 +159,7 @@ padding: 10px;
 
 <div class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?>" id="hero-shuffle" data-title="<?php echo esc_attr( wp_unslash(($slide->title)) ) ?>">
 
-	<h1></h1>
+	<<?php echo $hero_title_tag; ?>></<?php echo $hero_title_tag; ?>>
 	
 </div>
 
@@ -160,14 +174,14 @@ var shuffle_text ='<?php echo esc_attr( wp_unslash(($slide->title)) ) ?>';
 elseif(isset($params->titleffect) and $params->titleffect=='hero_rearrange'):
 ?>
 <style type="text/css">
-#hero-rearrange h1 span.hero_rearrange_character {
+#hero-rearrange <?php echo $hero_title_tag; ?> span.hero_rearrange_character {
   display: inline-block;
   -webkit-transition: opacity 3s 0.5s ease, -webkit-transform 4s ease-out;
   transition: opacity 3s 0.5s ease, -webkit-transform 4s ease-out;
   transition: opacity 3s 0.5s ease, transform 4s ease-out;
   transition: opacity 3s 0.5s ease, transform 4s ease-out, -webkit-transform 4s ease-out;
 }
-#hero-rearrange h1{
+#hero-rearrange <?php echo $hero_title_tag; ?>{
 <?php 
 if(isset($params->titlefontsize) and $params->titlefontsize!=''){
 	echo 'font-size: '.esc_attr($params->titlefontsize).'px;';	
@@ -187,7 +201,7 @@ padding: 10px;
 }
 </style>
 <div class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?>" id="hero-rearrange">
-	<h1><?php echo esc_attr( wp_unslash(($slide->title)) ) ?></h1>
+	<<?php echo $hero_title_tag; ?>><?php echo esc_attr( wp_unslash(($slide->title)) ) ?></<?php echo $hero_title_tag; ?>>
 </div>
 
 <?php // code for Hero hollywood_console effect
@@ -195,7 +209,7 @@ elseif(isset($params->titleffect) and $params->titleffect=='hollywood_console'):
 ?>
 
 <div class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?>">
-	<span id="play_info_text" class="pre_play_info_text"><?php echo esc_attr( wp_unslash(($slide->title)) ); ?></span>
+	<<?php echo $hero_title_tag; ?> id="play_info_text" class="pre_play_info_text"><?php echo esc_attr( wp_unslash(($slide->title)) ); ?></<?php echo $hero_title_tag; ?>>
 </div>
 
 <script type="text/javascript">
@@ -280,7 +294,7 @@ animateInfoTextIn();
 
 ?>
 
-<h2 class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?> mast__text">
+<<?php echo $hero_title_tag; ?> class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?> mast__text">
 	<?php 
 
 		$titletext = esc_attr( wp_unslash(($slide->title)) );
@@ -293,7 +307,7 @@ animateInfoTextIn();
 
  	?>
  	
- </h2>
+ </<?php echo $hero_title_tag; ?>>
 
 
 <?php // code for Text Multicolor effect
@@ -302,7 +316,7 @@ animateInfoTextIn();
 
 ?>
 
-<h2 class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?>" id="hero_multicolor">
+<<?php echo $hero_title_tag; ?> class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?>" id="hero_multicolor">
 	<?php 
 
 		$titletext = esc_attr( wp_unslash(($slide->title)) );
@@ -313,7 +327,7 @@ animateInfoTextIn();
 
   ?>
  	
- </h2>
+ </<?php echo $hero_title_tag; ?>>
  
 <?php // code for Blur effect
 
@@ -338,7 +352,7 @@ animateInfoTextIn();
 ?>
 
 <div class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?> hero_prompt">
-	<p><?php echo esc_attr( wp_unslash(($slide->title)) ); ?></p>
+	<<?php echo $hero_title_tag; ?>><?php echo esc_attr( wp_unslash(($slide->title)) ); ?></<?php echo $hero_title_tag; ?>>
 </div>
  
  
@@ -373,11 +387,11 @@ animateInfoTextIn();
 ?>
 
 
-<h1 class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?> flag">
+<<?php echo $hero_title_tag; ?> class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?> flag">
 
 	<?php echo esc_attr( trim(wp_unslash($slide->title)) ); ?>
 		
-</h1>
+</<?php echo $hero_title_tag; ?>>
 
 <script src="<?php echo QCLD_SLIDERHERO_JS . "/jquery.lettering.js?time=".time(); ?>" type="text/javascript"></script>
 
@@ -394,7 +408,7 @@ animateInfoTextIn();
 ?>
 
 <div class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?>">
-	<h2 class="slidingtext"><span><?php echo esc_attr( trim(wp_unslash($slide->title)) ); ?></span></h1>
+	<<?php echo $hero_title_tag; ?> class="slidingtext"><span><?php echo esc_attr( trim(wp_unslash($slide->title)) ); ?></span></<?php echo $hero_title_tag; ?>>
 </div>
 
 <script type="text/javascript">
@@ -422,11 +436,11 @@ animateInfoTextIn();
 
 <script src="<?php echo QCLD_SLIDERHERO_JS . "/qcmax.js?time=".time(); ?>" type="text/javascript"></script>
 
-<h2 class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?> clip-text clip-text_one">
+<<?php echo $hero_title_tag; ?> class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?> clip-text clip-text_one">
 	
 	<?php echo esc_attr( wp_unslash(($slide->title)) ); ?>
 		
-</h2>
+</<?php echo $hero_title_tag; ?>>
 
 <script type="text/javascript">
 	var tl = new TimelineMax({repeat:-1, yoyo:true});
@@ -445,31 +459,31 @@ animateInfoTextIn();
 	}
 	</style>
 
-<h2 class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?>">
+<<?php echo $hero_title_tag; ?> class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?>">
 	
 	<?php echo esc_attr( wp_unslash(($slide->title)) ); ?>
 		
-</h2>
+</<?php echo $hero_title_tag; ?>>
 
 <?php else: ?>
 
 	<?php if(isset($params->titlebgcolor) and $params->titlebgcolor!=''): ?>
 
-		<h2 class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?>">
+		<<?php echo $hero_title_tag; ?> class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?>">
 			<span style="background-color:<?php echo $params->titlebgcolor; ?>;padding: 0px 10px;">
 				
 				<?php echo esc_attr( wp_unslash(($slide->title)) ); ?>
 					
 			</span>
-		</h2>
+		</<?php echo $hero_title_tag; ?>>
 
 	<?php else: ?>
 	
-		<h2 class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?>">
+		<<?php echo $hero_title_tag; ?> class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?>">
 
 			<?php echo esc_attr( wp_unslash(($slide->title)) ); ?>
 				
-		</h2>
+		</<?php echo $hero_title_tag; ?>>
 
 	<?php endif; ?>
 
