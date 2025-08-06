@@ -3364,6 +3364,15 @@ from {
 .hero_video_container{margin-top: 30px;}
 
 
+
+body .qcld_hero_content_area .slider-x-lead-title p, 
+body .qcld_hero_content_area .slider-x-lead-title h1, 
+body .qcld_hero_content_area .slider-x-lead-title h2, 
+body .qcld_hero_content_area .slider-x-lead-title h4, 
+body .qcld_hero_content_area .slider-x-lead-title span {
+display: inline-block;
+}
+
 body .qcld_hero_content_area .slider-x-item-title {
     max-width: 70%;
     margin: 0 auto !important;

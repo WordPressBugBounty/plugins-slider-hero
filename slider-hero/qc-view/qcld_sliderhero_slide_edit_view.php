@@ -1110,6 +1110,36 @@ endif;
 									</select>
 								</div>
 								
+								<div class="params customitemstyle" >
+									<label class="customlevel" for="qchero-caption-text-color" style="display: inline-block;">Select Title Tag</label> 
+									<select name="params[titletag]">
+										<option value="h2" <?php echo (isset($params->titletag)&& $params->titletag=='h2'?'selected="selected"':''); ?>>h2</option>
+										<option value="h1" <?php echo (isset($params->titletag)&& $params->titletag=='h1'?'selected="selected"':''); ?>>h1</option>
+										<option value="h3" <?php echo (isset($params->titletag)&& $params->titletag=='h3'?'selected="selected"':''); ?>>h3</option>
+										<option value="h4" <?php echo (isset($params->titletag)&& $params->titletag=='h4'?'selected="selected"':''); ?>>h4</option>
+										<option value="h5" <?php echo (isset($params->titletag)&& $params->titletag=='h5'?'selected="selected"':''); ?>>h5</option>
+										<option value="h6" <?php echo (isset($params->titletag)&& $params->titletag=='h6'?'selected="selected"':''); ?>>h6</option>
+										<option value="p" <?php echo (isset($params->titletag)&& $params->titletag=='p'?'selected="selected"':''); ?>>p</option>
+										<option value="span" <?php echo (isset($params->titletag)&& $params->titletag=='span'?'selected="selected"':''); ?>>span</option>
+										<option value="div" <?php echo (isset($params->titletag)&& $params->titletag=='div'?'selected="selected"':''); ?>>div</option>
+									</select>
+								</div>
+								
+								<div class="params customitemstyle" >
+									<label class="customlevel" for="qchero-caption-text-color" style="display: inline-block;">Select Description Tag</label> 
+									<select name="params[hero_description_tag]">
+										<option value="p" <?php echo (isset($params->hero_description_tag)&& $params->hero_description_tag=='p'?'selected="selected"':''); ?>>p</option>
+										<option value="h1" <?php echo (isset($params->hero_description_tag)&& $params->hero_description_tag=='h1'?'selected="selected"':''); ?>>h1</option>
+										<option value="h2" <?php echo (isset($params->hero_description_tag)&& $params->hero_description_tag=='h2'?'selected="selected"':''); ?>>h2</option>
+										<option value="h3" <?php echo (isset($params->hero_description_tag)&& $params->hero_description_tag=='h3'?'selected="selected"':''); ?>>h3</option>
+										<option value="h4" <?php echo (isset($params->hero_description_tag)&& $params->hero_description_tag=='h4'?'selected="selected"':''); ?>>h4</option>
+										<option value="h5" <?php echo (isset($params->hero_description_tag)&& $params->hero_description_tag=='h5'?'selected="selected"':''); ?>>h5</option>
+										<option value="h6" <?php echo (isset($params->hero_description_tag)&& $params->hero_description_tag=='h6'?'selected="selected"':''); ?>>h6</option>
+										<option value="span" <?php echo (isset($params->hero_description_tag)&& $params->hero_description_tag=='span'?'selected="selected"':''); ?>>span</option>
+										<option value="div" <?php echo (isset($params->hero_description_tag)&& $params->hero_description_tag=='div'?'selected="selected"':''); ?>>div</option>
+									</select>
+								</div>
+								
 								
 								
 								

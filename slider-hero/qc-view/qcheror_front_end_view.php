@@ -76,15 +76,8 @@ if($atts['preloader']=='on'){
 }
 
 
-$hero_title_tag = 'h2';
-if(isset($preloader['hero_title_tag']) && !empty($preloader['hero_title_tag']) ){
-	$hero_title_tag = $preloader['hero_title_tag'];
-}
-
-$hero_description_tag = 'p';
-if(isset($preloader['hero_description_tag']) && !empty($preloader['hero_description_tag']) ){
-	$hero_description_tag = $preloader['hero_description_tag'];
-}
+$titletag = isset($params->titletag) ? $params->titletag : 'h2';
+$hero_description_tag = isset($params->hero_description_tag) ? $params->hero_description_tag : 'p';
 
 ?>
 
@@ -201,8 +194,13 @@ if(isset($preloader['hero_description_tag']) && !empty($preloader['hero_descript
 		}
 		?>
 		<div class="qcld_hero_content_area" <?php echo ( isset($slide->image_link)&&$slide->image_link!='' && ( !isset($params->video) || $params->video!='youtube' ) ? 'data-bg-image="'.( $slide->image_link ).'"':'data-bg-image=""') ?> <?php echo (( isset($slider_key) && $slider_key > 0 ) ? 'style="display:none;"':'') ?>>
+
+
 		
 			<?php 
+
+				$hero_description_tag = isset($params->hero_description_tag) ? $params->hero_description_tag : 'p';
+
 				foreach($odarr as $key=>$val ){
 					if($key=='title'){
 						require(QCLD_sliderhero_view.'/slider_hero_front_end_title_effect.php');
