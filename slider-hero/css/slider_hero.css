@@ -3337,28 +3337,7 @@ from {
 .hero_mute_div{position:absolute;bottom:25px;right:50px;z-index: 999999;}
 .hero_mute_div span{font-size:50px;color:#ddd;cursor:pointer;}
 
-.hero_pro_feature_export:before {
-    background: red;
-    margin-bottom: 10px;
-    content: '';
-    position: absolute;
-    width: 98%;
-    height: 82%;
-    z-index: 9999;
-    opacity: 0.1;
-    left: 7px;
-}
-.hero_pro_feature-wrap:before {
-    background: red;
-    margin-bottom: 10px;
-    content: '';
-    position: absolute;
-    width: 101%;
-    height: 94%;
-    z-index: 9999;
-    opacity: 0.1;
-    left: -10px;
-}
+
 .hero_section_video{float: left;
     margin-right: 32px;}
 .hero_video_container{margin-top: 30px;}

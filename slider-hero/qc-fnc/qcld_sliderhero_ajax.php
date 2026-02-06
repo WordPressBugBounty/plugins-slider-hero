@@ -17,7 +17,7 @@ if($btn!=''){
 		<div class="modal-content" data-elem="<?php echo esc_attr($elem); ?>" data-self="<?php echo esc_attr( $selfelem ); ?>" data-sid="<?php echo esc_attr( $slidid ); ?>" style="width: 60%;">
 			<span class="close"><?php _e( "X", 'Slider X' ); ?></span>
 			<h3><?php _e( "Create A Button", 'Slider X' ); ?></h3>
-			<hr/>
+	
 
 <div class="hero_tab">
   <button class="hero_tablinks hero_active" onclick="openCity(event, 'hero_general')">General</button>
@@ -111,6 +111,9 @@ if($btn!=''){
 			<div class="hero_single_field_btn">
 				<label style="width: 250px;display: inline-block;">Letter Spacing</label><input style="width: 225px;" type="text" id="hero_button_letter_spacing" value="<?php echo (isset($btn->button_letter_spacing)?esc_attr($btn->button_letter_spacing):''); ?>" placeholder="Ex: 0.5px" />
 			</div>
+			
+			
+			<div class="hero_single_field_btn_wrap">
 			<div class="hero_single_field_btn">
 				<label style="width: 250px;display: inline-block;">Button Text Color</label>
 				
@@ -136,7 +139,7 @@ if($btn!=''){
 				<input type="text" name="hero_button_bg_hover_color" id="hero_button_bg_hover_color" class="color-field" value="<?php echo (isset($btn->button_background_hover_color)?esc_attr($btn->button_background_hover_color):''); ?>" />
 				
 			</div>
-
+			</div>
 
 
         </div>
@@ -355,7 +358,7 @@ $exists = explode(':',$exists);
 			<span class="close"><?php _e( "X", 'Slider X' ); ?></span>
 			<h3 style="display: inline;margin-right: 15px;font-size: 20px;"><?php _e( "Choose A Google Font", 'Slider X' ); ?></h3>
 			
-			<hr/>
+
         <div class="qc-slider-x-item_arrow">
 <?php 
 	$json  = file_get_contents( QCLD_SLIDER_HERO_DIR . '/fonts/webfont.json' );

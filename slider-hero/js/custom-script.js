@@ -637,13 +637,6 @@ function openCity(evt, cityName) {
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " hero_active";
 }
-jQuery(window).scroll(function() {
-    if (jQuery(this).scrollTop()) {
-        jQuery('.hero_bottom_save_button').fadeIn();
-    } else {
-        jQuery('.hero_bottom_save_button').fadeOut();
-    }
-});
 
 
 

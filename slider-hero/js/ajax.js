@@ -434,6 +434,8 @@ $(document).on( 'click', '.remove_bg_video2', function(){
 					appendHTML += html;
 					
 				}
+
+				appendHTML += '<li class="qcld-hero-add-new-slide"><div class="add_slide_container"><a class="add_image"><span>Add Slide</span><span><i style="color:#000" class="fa fa-plus" aria-hidden="true"></i></span></a></div></li>';
 				
 				jQuery('.total_delay_time').html(delay_cnt);
 				jQuery('#qchero_slider_images_list .qcheroitem.add').remove();
@@ -620,6 +622,26 @@ $('input[name="style[fullwidth]"]').click(function(){
 	  $("#qcslide-width").prop("readonly", true);
 	  $("#qcslide-height").prop("readonly", false); 
    }
+
+
+var repeaterSlideContainer = $('#qchero_slider_images_list');
+	if(repeaterSlideContainer){
+		function updateSlideIndexes() {
+			$('.qcld-slider-index').remove();
+		    repeaterSlideContainer.find('li').each(function(index) {
+		        var newIndex = index;
+		        //console.log(newIndex);
+		        // Update title
+		        var NewIndexDiv = `<div class="qcld-slider-index">Slide #${newIndex + 1}</div>`;
+		        $(this).find('.qcheroitem-img-container').prepend(NewIndexDiv);
+		       
+		    });
+		}
+		updateSlideIndexes()
+		$(document).ajaxComplete(function(event, xhr, settings) {
+			updateSlideIndexes()
+		});
+	}
 
 
 })

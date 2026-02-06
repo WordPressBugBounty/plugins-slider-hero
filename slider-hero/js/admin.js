@@ -125,12 +125,12 @@ document.onkeydown = function (evt) {
 
         /****     menu slider settings ***/
 
-        jQuery('#qchero_slider_edit .settings  .menu ul > li a').click(function () {
+        jQuery('.qchero_slider_edit .settings  .menu ul > li a').click(function () {
             var menu_setting = jQuery(this).parent().attr('rel');
-            jQuery('#qchero_slider_edit .settings  .menu ul > li a').removeClass('active');
+            jQuery('.qchero_slider_edit .settings  .menu ul > li a').removeClass('active');
             jQuery(this).addClass('active');
-            jQuery('#qchero_slider_edit .settings .menu-content ul li').removeClass('active');
-            jQuery('#qchero_slider_edit .settings .menu-content ul li.' + menu_setting).addClass('active');
+            jQuery('.qchero_slider_edit .settings .menu-content ul li').removeClass('active');
+            jQuery('.qchero_slider_edit .settings .menu-content ul li.' + menu_setting).addClass('active');
             return false;
 
         });
@@ -223,7 +223,8 @@ function qcheroGetSliderStyles() {
 	//console.log(qcheror);
 }
 function qcheroGetSliderMainOptions() {
-    jQuery('#general-settings li input[name^="cs["]').each(function () {
+    //jQuery('#general-settings li input[name^="cs["]').each(function () {
+    jQuery('#general-settingscbgfdgb li input[name^="cs["]').each(function () {
         var param = jQuery(this).attr('name');
         param = param.replace('cs[', '');
         param = param.replace(']', '');
@@ -371,6 +372,12 @@ function qcheroGetSliderParams(custom) {
 	
 	var screenoption = jQuery('input[name="style[fullwidth]"]:checked').val();
 	qcheror['style']['screenoption'] = screenoption;
+    
+    var screenoptions = jQuery('input[name="style[height]"]').val();
+    qcheror['style']['height'] = screenoptions;
+    
+    var screenoptionss = jQuery('input[name="style[width]"]').val();
+    qcheror['style']['width'] = screenoptionss;
 	//console.log(qcheror);
 
 }
@@ -1020,7 +1027,7 @@ jQuery(document).ready(function($){
 
     jQuery(document).on( 'click', 'input[name="style[fullwidth]"]', function(){
         var screenoptions = jQuery('input[name="style[fullwidth]"]:checked').val();
-        console.log(screenoptions);
+        //console.log(screenoptions);
         if(typeof screenoptions !== 'undefined' && screenoptions == 2){
             jQuery('.fullscreenmobile').show();
         }else{
@@ -1031,3 +1038,20 @@ jQuery(document).ready(function($){
     });
 
 });
+
+
+
+
+jQuery(document).ready(function($){
+  $(".openPopup").click(function () {
+    $(".qchero_slider_edit_wrap").addClass("active");
+    $("#overlay").addClass("active");
+  });
+
+  $("#closePopup, #overlay").click(function () {
+    $(".qchero_slider_edit_wrap").removeClass("active");
+    $("#overlay").removeClass("active");
+  });
+});
+
+

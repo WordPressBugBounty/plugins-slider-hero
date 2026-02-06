@@ -253,7 +253,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
 
 						echo '<div class="wrap settings-wrap" id="page-' . esc_attr( $page['id'] ) . '">';
 
-						echo '<h2>' . wp_kses_post( $page['page_title'] ) . '</h2>';
+						echo '<h3>' . wp_kses_post( $page['page_title'] ) . '</h3>';
 
 						echo ot_alert_message( $page ); // phpcs:ignore
 

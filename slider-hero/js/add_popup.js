@@ -157,7 +157,9 @@ jQuery('#qchero_slider_images_list').on('click','.qchero_slide_image_remove',fun
 })
 		
 		
-        jQuery('#add_image').on ("click", function(){
+        //jQuery('.add_image').on ("click", function(){
+        jQuery(document).on ("click", '.add_image', function(){
+
 			
 			ordering = jQuery('.qcheroitem').length;
 			ordering++;
@@ -197,7 +199,7 @@ jQuery('#qchero_slider_images_list').on('click','.qchero_slide_image_remove',fun
 		
 		jQuery.ajax({
 			url: qchero_ajax_object.ajax_url, data: (data), method: 'POST', beforeSend: function () {
-				qchero_loading();
+				qchero_loading(true);
 			},
 			complete: function () {
 				qchero_loading(false);
@@ -322,6 +324,8 @@ jQuery('#qchero_slider_images_list').on('click','.qchero_slide_image_remove',fun
 					appendHTML += html;
 					
 				}
+
+				appendHTML += '<li class="qcld-hero-add-new-slide"><div class="add_slide_container"><a class="add_image"><span>Add Slide</span><span><i style="color:#000" class="fa fa-plus" aria-hidden="true"></i></span></a></div></li>';
 				
 				jQuery('.total_delay_time').html(delay_cnt);
 				jQuery('#qchero_slider_images_list .qcheroitem.add').remove();

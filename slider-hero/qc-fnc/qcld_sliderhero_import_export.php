@@ -14,24 +14,20 @@ function qcld_sliderhero_sliders_import_export(){
 
                 <div id="post-body" class="metabox-holder columns-3">
 
-                    <div id="post-body-content" style="padding: 50px;
-    box-sizing: border-box;
-    box-shadow: 0 8px 25px 3px rgba(0,0,0,.2);
-    background: #fff;">
+                    <div id="post-body-content" >
 					<div class="hero_pro_feature_export">
 
-                        <u>
-                            <h1>Bulk Export/Import (Requires the Pro Version)</h1>
-                        </u>
-
+                        
+                        <h3>Bulk Export/Import <span style="color:red; font-weight:bold;">(Requires the Pro Version)</span></h3>
+                       
                         
 						<hr>
 						<div style="padding: 15px; margin: 20px 0;" id="sld-export-container">
 
-							<h3><u>Export to a CSV File</u></h3>
+							<h3>Export to a CSV File</h3>
 
 	                        <p>
-	                        	<strong><u>Option Details:</u></strong>
+	                        	<strong>Option Details:</strong>
 	                        </p>
 	                        <p>
 	                        	Export button will create a downloadable CSV file for your selected slider.
@@ -51,7 +47,7 @@ function qcld_sliderhero_sliders_import_export(){
 									
 								?>
 							  </select>
-							  <input class="button-primary" type="submit" value="Export Slider Data">
+							  <input class="button-primary qchero_preview_button" type="submit" value="Export Slider Data">
 							</form>
 							
 							
@@ -61,12 +57,12 @@ function qcld_sliderhero_sliders_import_export(){
 
                         <div style="padding: 15px; margin: 10px 0;">
 
-                        <h3><u>Import from a CSV File</u></h3>
+                        <h3>Import from a CSV File</h3>
 
-                        <p><strong><u>Importing in Another Website:</u></strong> Please note that uploaded images for Slides will not be copied if you import the CSV file to another WordPress installation.</p>
+                        <p><strong>Importing in Another Website:</strong> Please note that uploaded images for Slides will not be copied if you import the CSV file to another WordPress installation.</p>
 
                         <p>
-                        	<strong><u>Option Details:</u></strong>
+                        	<strong>Option Details:</strong>
                         </p>
                         <p>
                         	CSV file must be as per the exported format.
@@ -106,7 +102,7 @@ function qcld_sliderhero_sliders_import_export(){
                                 </p>
 								<p style="color:red;">**CSV File & Characters must be saved with UTF-8 encoding**</p>
                                 <p>
-                                    <input class="button-primary sld-add-as-new" type="submit" name="upload_csv" id="" value="<?php echo __('Import') ?>"/>
+                                    <input class="button-primary sld-add-as-new qchero_preview_button" type="submit" name="upload_csv" id="" value="<?php echo __('Import') ?>"/>
 
                                    
                                 </p>

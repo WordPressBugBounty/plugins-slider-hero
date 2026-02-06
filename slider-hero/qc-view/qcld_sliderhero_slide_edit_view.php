@@ -86,206 +86,14 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 
 	
     <div class="qchero_slider_view_wrapper">
-        <div id="qchero_slider_view">
-            
-			<?php if( isset($_slider[0]->type) && $_slider[0]->type=='play_or_work'): ?>
-				<?php if(! count( $_row )): ?>
-                <div class="add_slide_container"><a id="add_image"><span><?php _e( 'Add Slide', 'qchero' ); ?></span><span><i style="color:#000" class="fa fa-plus"
-                                                                 aria-hidden="true"></i></span></a></div>
-				<?php endif; ?>		
-			<?php else: ?>
-				<div class="add_slide_container"><a id="add_image"><span><?php _e( 'Add Slide', 'qchero' ); ?></span><span><i style="color:#000" class="fa fa-plus"
-                                                                 aria-hidden="true"></i></span></a></div>
-			<?php endif; ?>												 
-            
+	<div id="qchero_slider_view_wrapper_top">
 
-            <div class="qchero_slider_images_list_wrapper">
-                <ul id="qchero_slider_images_list">
-                    <?php if ( ! count( $_row ) ) {
-                        ; ?>
-                        <li class="noimage">
-							<span class="noimage-add" href="#">No Slides!</span>
-                        </li>
-                        <?php
-                    }
-					$delay_time = 0;
-					$slide_count = 0;
-                    foreach ( $_row as $rows ) {
-						$slide_count++;
-                        switch ( $rows->type ) {
-							
-
-                            default: ?>
-								
-								<?php 
-									$draftclass='';
-									if(isset($rows->draft) and $rows->draft==1){
-										$draftclass='hero_draft_elem';
-									}
-								?>
-								
-                                <li id="qcheroitem_<?php echo esc_attr( $rows->id ); ?>" data-sid="<?php echo esc_attr( $rows->id ); ?>" class="qcheroitem <?php echo sanitize_html_class( $draftclass ); ?> ">
-                                    <div class="qcheroitem-img-container">
-									
-										<?php if(isset($_slider[0]->type) && $_slider[0]->type!='youtube_video' && $_slider[0]->type!='vimeo_video' ): ?>
-										<div class="qcheroitem-image">
-											<div class="slide_image_container">
-											<?php if(isset($rows->image_link) and $rows->image_link!=''): ?>
-												<img data-slide-id="<?php echo esc_attr( $rows->id ); ?>" src="<?php echo (isset($_slider[0]->type) && $_slider[0]->type=='video'?QCLD_SLIDERHERO_IMAGES.'/video.png':$rows->image_link); ?>" <?php echo (isset($_slider[0]->type) && $_slider[0]->type=='video'?'style="width:57px"':''); ?> />
-												<span class="qchero_slide_image_remove" data-slide-id="<?php echo esc_attr( $rows->id ); ?>" title="Remove image">X</span>
-											<?php else: ?>
-												<button class="qchero_slide_image_upload" data-slide-id="<?php echo esc_attr( $rows->id ); ?>"><?php echo (isset($_slider[0]->type) && $_slider[0]->type=='video'?'Upload Video':'Upload Image'); ?></button>
-											<?php endif; ?>
-											</div>
-										</div>
-										<?php endif; ?>
-										
-										<?php if(isset($_slider[0]->type) && $_slider[0]->type=='youtube_video'): ?>
-										<input type="text" class="qcheroitem-add-url" value="<?php echo esc_attr($rows->image_link); ?>" placeholder="Youtube Video ID">
-										<?php endif; ?>
-										
-										<?php if(isset($_slider[0]->type) && $_slider[0]->type=='vimeo_video'): ?>
-										<input type="text" class="qcheroitem-add-url" value="<?php echo esc_attr($rows->image_link); ?>" placeholder="Vimeo Video ID">
-										<?php endif; ?>
-										
-										<div class="slider-hero-slide-number">
-											<span class="slide-number-title">Slide</span>
-											<span class="slide-order-number"><?php echo ($slide_count); ?></span>
-											<?php 
-											if(isset($rows->draft) and $rows->draft==1){
-												echo '<span class="hero_draft_style">Draft</span>';
-											}
-											?>
-										</div>
-										
-                                        <div class="qcheroitem-properties">
-                                            <b title="collapse"><a href="#" class="quick_edit"
-                                                  data-slide-id="<?php echo esc_attr($rows->id); ?>"><i
-                                                        class="fa fa-compress" aria-hidden="true"></i></a></b>
-                                            </a>
-                                            <b title="Remove slide"><a href="#" class="qchero_remove_image"
-                                                  data-slide-id="<?php echo esc_attr($rows->id); ?>"><i class="fa fa-remove"
-                                                                                              aria-hidden="true"></i></a></b>
-                                            <b title="Published"><label href="#" class="qchero_on_off_image"><input style="margin-top: 0px;"
-                                                        data-slide-id="<?php echo esc_attr( $rows->id ); ?>"
-                                                        class="slide-checkbox" <?php if ( $rows->published == 1 ) {echo 'checked  value="1"';}else{echo 'value="0"';} ?> type="checkbox" /></label></b>
-											<b style="cursor:move" title="Order using drag and drop"><i class="fa fa-arrows" aria-hidden="true"></i></b>
-                                        </div>
-
-                                        <form class="qchero-nodisplay">
-										
-											
-											
-                                            <input type="text" class="qcheroitem-edit-title"
-                                                   value="<?php echo esc_attr( wp_unslash( $rows->title ) ); ?>" placeholder="Default Title">
-                                            <textarea class="qcheroitem-edit-description"><?php echo qchero_text_sanitize( $rows->description ); ?></textarea>
-											
-											
-											<div class="hero_configuration_info">
-												<?php 
-													$config = json_decode(wp_unslash(htmlspecialchars_decode($rows->stomp)));
-												?>
-												<?php if(isset($config->hero_stomp_animation) && $config->hero_stomp_animation!=''): ?>
-												<div class="hero_config_item">
-													<p><span>Animation: </span><?php echo esc_attr( $config->hero_stomp_animation ); ?></p>
-												</div>
-												<?php endif; ?>
-												<?php if(isset($config->hero_stomp_delay) && $config->hero_stomp_delay!=''): 
-												$delay_time = $delay_time+$config->hero_stomp_delay;
-												?>
-												<div class="hero_config_item">
-													<p><span>Delay: </span><?php echo esc_attr( $config->hero_stomp_delay ); ?></p>
-												</div>
-												<?php endif; ?>
-												
-												<?php if(isset($config->hero_stomp_fontsize) && $config->hero_stomp_fontsize!=''): ?>
-												<div class="hero_config_item">
-													<p><span>Font Size: </span><?php echo esc_attr( $config->hero_stomp_fontsize ); ?></p>
-												</div>
-												<?php endif; ?>
-												
-												<?php if(isset($config->hero_stomp_text_color) && $config->hero_stomp_text_color!=''): ?>
-												<div class="hero_config_item">
-													<p style="color:<?php echo esc_attr( $config->hero_stomp_text_color ); ?>"><span>Font</span></p>
-												</div>
-												<?php endif; ?>
-												
-												<?php if(isset($config->hero_stomp_background_color) && $config->hero_stomp_background_color!=''): ?>
-												<div class="hero_config_item">
-													<p style="color:<?php echo esc_attr( $config->hero_stomp_background_color ); ?>"><span>Background</span></p>
-												</div>
-												<?php endif; ?>
-												
-												
-											</div>
-											
-											
-											<div class="hero_slide_inputs">
-												<input type="text" class="hero_title_gfont" placeholder="Title Font" value="<?php echo wp_unslash( $rows->t_font ); ?>" /><input type="text" class="hero_description_gfont" placeholder="Description Font" value="<?php echo wp_unslash( $rows->d_font ); ?>" />
-												<input type="text" class="hero_title_lspace" placeholder="Title Letter Spacing(px)" value="<?php echo wp_unslash( $rows->tl_space ); ?>" />
-												<input type="text" class="hero_description_lspace" placeholder="Desc Letter Spacing(px)" value="<?php echo wp_unslash( $rows->dl_space ); ?>" />
-											</div>
-											<input type="hidden" class="qcheroitem-add-btn"
-                                                   value="<?php echo wp_unslash( esc_js($rows->btn) ); ?>" placeholder="Add Button">
-											<input type="button" class="qcheroitem-add-btn1" style="width: 49%;border: 1px solid #ddd;float:left;" value="<?php echo (isset($rows->btn)&&strlen($rows->btn)>10)?'Edit Button':'Add A Button';?>" />  
-											
-											<input type="hidden" class="qcheroitem-btn2-hd"
-                                                   value="<?php echo wp_unslash( esc_js($rows->btn2) ); ?>" placeholder="Add Button">
-											<input type="button" class="qcheroitem-btn2-sw" style="width: 49%;border: 1px solid #ddd;" value="<?php echo (isset($rows->btn2)&&strlen($rows->btn2)>10)?'Edit Button':'Add A Button';?>" />
-
-											<input type="button" data-ordering="<?php echo esc_attr( $rows->ordering ); ?>" class="qcheroitem-stomp-config" style="width: 99%;border: 1px solid #ddd;" value="<?php echo (isset($rows->stomp)&&strlen($rows->stomp)>10)?'Edit Configuration':'Add Configuration';?>" />
-											
-											<input type="hidden" class="qcheroitem-stomp-value"
-                                                   value="<?php echo wp_unslash( esc_js($rows->stomp) ); ?>" />
-											<input type="hidden" class="qcheroitem-draft-value"
-                                                   value="0" />
-											<?php if(isset($_slider[0]->type) && $_slider[0]->type!='youtube_video'): ?>
-											<input type="hidden" class="qcheroitem-add-url" value="<?php echo esc_attr($rows->image_link); ?>">
-											<?php endif; ?>
-                                            <input type="hidden" class="qcheroitem-ordering"
-                                                   value="<?php echo esc_attr($rows->ordering); ?>">
-                                        </form>
-										</div>
-                                </li>
-                                <?php
-                        }
-                    } ?>
-                </ul>
-                <button id="save_slider">Save Slide Changes</button>
-            
-			</div>
-        </div>
-        
-		
-        <div id="qchero_slider_edit">
-		<?php if( isset($_slider[0]->type) && $_slider[0]->type=='play_or_work'): ?>
-			<p style="text-align:center;color:red;">Play Or Work effect does not support more then one slide.</p>
-		<?php endif; ?>
-			<div class="sliderhero_menu_title effect_title" style="margin-left: 1.5%;margin-bottom: 10px;width: 95.3%;margin-top: 8px;">
+	
+		<div class="sliderhero_menu_title effect_title" style="margin-bottom: 10px;width: 100%;margin-top: 8px;">
 			<?php if( isset($_slider[0]->type) && $_slider[0]->type=='intro'): ?>
 				<h2>TOTAL SLIDE TIME : <span class="total_delay_time"><?php echo esc_attr( $delay_time ); ?></span></h2>
 			<?php else: ?>
-				<h2><?php 
-					if( isset($_slider[0]->type) && $_slider[0]->type=='cubes_animation'){
-						echo 'Cubes Animation';
-					}elseif( isset($_slider[0]->type) && $_slider[0]->type=='no_effect'){
-						echo 'No Effect';
-					}elseif( isset($_slider[0]->type) && $_slider[0]->type=='particle'){
-						echo 'Particle Effect';
-					}elseif( isset($_slider[0]->type) && $_slider[0]->type=='particle_snow'){
-						echo 'Snow Effect';
-					}elseif( isset($_slider[0]->type) && $_slider[0]->type=='particle_nasa'){
-						echo 'NASA';
-					}elseif( isset($_slider[0]->type) && $_slider[0]->type=='particle_bubble'){
-						echo 'Bubble';
-					}elseif( isset($_slider[0]->type) && $_slider[0]->type=='nyan_cat'){
-						echo 'Nyan Cat';
-					}elseif( isset($_slider[0]->type) && $_slider[0]->type=='intro'){
-						echo 'Intro Builder';
-					}elseif( isset($_slider[0]->type) && $_slider[0]->type=='youtube_video'){
-						echo 'Youtube Video';
-					}
-				?></h2>
+				<h2>Change Effect</h2>
 			<?php endif; ?>
 				<div class="right_form_effect">
 					<form action="admin.php" method="post">
@@ -451,12 +259,646 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 				</div>
 			</div>
 
-			<div class="sliderhero_menu_title" style="margin-left: 1.5%;margin-bottom: 10px;width: 95.3%;margin-top: 7px;">
+
+
+
+											 
+             <div class="qchero_slider_main-heading_wrapper">
+				<div class="qchero_slider_main-heading_wrapper_title"><span><img src="https://ps.w.org/slider-hero/assets/icon-256x256.png"/></span>Slider Hero</div>
+				<div class="qchero_slider_main-heading_wrapper_setting">
+
+					<ul>
+						<li> <a class="openPopup">Settings</a></li>
+						<li><a href="https://www.quantumcloud.com/products/slider-hero/" target="_blank">Go Pro</a></li>
+					</ul>
+
+				</div>
+			</div>
+
+
+
+
+
+			<div class="sliderhero_menu_title" style="margin-bottom: 10px;width: 100%;margin-top: 7px;">
 				<h2 style="font-size: 26px;"><?php echo wp_unslash($_slider[0]->title); ?></h2>
 					
                     <a class="qchero_save_all" href="#">Save</a>
 <a class="<?php echo (  (isset($_slider[0]->type) && $_slider[0]->type=='directional') ||  (isset($_slider[0]->type) && $_slider[0]->type=='ygekpg') ?'qchero_preview_p5':'qchero_preview') ?>" href="#" data-id="<?php echo esc_attr( $_id ); ?>" style="margin-right: 12px;">Save & Preview</a>		
 			</div>
+
+
+				</div>
+
+
+
+
+
+ <div class="qchero_slider_edit">
+	
+		<?php if( isset($_slider[0]->type) && $_slider[0]->type=='play_or_work'): ?>
+			<p style="text-align:center;color:red;">Play Or Work effect does not support more then one slide.</p>
+		<?php endif; ?>
+
+	
+            <div class="settings">
+				
+                <div class="menu-content">
+                    <ul class="main-content">
+                        <li class="generalcustom">
+                            <ul id="general-settingscbgfdgb">
+                                <li class="style designstyle"><label for="qchero-name">Name:</label><input class="myElements" id="qcheror-name"
+                                                                                                name="cs[name]" type="text"
+                                                                                                value="<?php echo esc_attr( stripslashes_deep($_slider[0]->title) ); ?>"/>
+                                </li>
+                                <div class="designstyle-wrap">
+								<li class="style designstyle"><label for="qcslide-width">Width(px):</label><input class="myElements" style="width:60px" id="qcslide-width" name="style[width]"type="number" value="<?php echo esc_attr($style->width); ?>"/>
+								
+								<span style="    color: #444;
+    margin-right: 4px;
+    display: inline-block;
+    margin-left: 0;     font-weight: bold;
+    font-size: 14px;">Custom:</span> <input class="myElements" name="style[fullwidth]" style="display: inline-block;width: 13px;height: 16px;margin: 0px;float: none;" type="radio" value="0" <?php 
+									if(isset($style->screenoption) and $style->screenoption=='0'){
+										echo "checked";
+									}else{
+										echo "checked";
+									}
+								?>/>
+								<span style="    color: #444;
+    margin-right: 4px;
+    display: inline-block;
+    margin-left: 0;">Full Width:</span> <input class="myElements" name="style[fullwidth]" style="display: inline-block;width: 13px;height: 16px;margin: 0px;float: none;" type="radio" value="1" <?php 
+									if(isset($style->screenoption) and $style->screenoption=='1'){
+										echo "checked";
+									}
+								?>/>
+<span style="    color: #444;
+    margin-right: 4px;
+    display: inline-block;
+    margin-left: 0;">Full Screen:</span> <input class="myElements" name="style[fullwidth]" style="display: inline-block;width: 13px;height: 16px;margin: 0px;float: none;" type="radio" value="2" <?php 
+									if(isset($style->screenoption) and $style->screenoption=='2'){
+										echo "checked";
+									}
+								?>/>
+								<span style="    color: #444;
+    margin-right: 4px;
+    display: inline-block;
+    margin-left: 0;padding: 10px 0px;">Auto:</span> <input class="myElements" name="style[fullwidth]" style="display: inline-block;width: 13px;height: 16px;margin: 0px;float: none;" type="radio" value="3" <?php 
+									if(isset($style->screenoption) and $style->screenoption=='3'){
+										echo "checked";
+									}
+								?>/>								
+                                </li>
+                                <li class="style designstyle"><label for="qcslide-height">Height(px):</label><input class="myElements" id="qcslide-height"
+                                                                                                        name="style[height]"
+                                                                                                        type="number"
+                                                                                                        value="<?php echo esc_attr($style->height); ?>"/>
+                                </li>
+								</div>
+
+                                <a class="openPopup qchero_preview_button">More Settings</a>							
+
+                            </ul>
+
+
+
+	<div id="qchero_slider_view_doc_inner">
+
+	<div class="qchero_slider_view_doc_content">
+		
+		<img src="<?php echo QCLD_SLIDERHERO_IMAGES.'/sliderhero.jpg' ?>" alt="Vimeo Video" />
+	 <div class="qchero_slider_view_doc_content_inner">
+	</div>	
+		</div>							
+
+	</div>
+
+
+	<div id="qchero_slider_view_doc_inner_pro_into">
+
+									<div class="qchero_slider_view_doc_inner_pro_into_inn">
+
+									<h2>Why upgrade to Slider Hero Pro?</h2>
+									<ul>
+										<li><i class="fa fa-check-circle" aria-hidden="true"></i>85+ Special Effects</li>
+										<li><i class="fa fa-check-circle" aria-hidden="true"></i>Cinematic Intro Builder</li>
+										<li><i class="fa fa-check-circle" aria-hidden="true"></i>Unique Text Animation</li>
+										<li><i class="fa fa-check-circle" aria-hidden="true"></i>Background Video and Audio</li>
+										<li><i class="fa fa-check-circle" aria-hidden="true"></i>Google Fonts & Call to Action</li>
+										<li><i class="fa fa-check-circle" aria-hidden="true"></i>Video Slider</li>
+									</ul>
+									<a href="https://www.quantumcloud.com/products/slider-hero/" target="_blank">Upgrade to Pro <i class="fa fa-external-link" aria-hidden="true"></i>
+</a>
+
+									</div>
+
+	</div>
+
+
+
+
+
+
+					
+						
+						
+                    </ul>
+                </div>
+            </div>
+          
+    </div>
+
+
+
+
+
+        
+	<div id="qchero_slider_view_wrapper_inner">
+		<div id="qchero_slider_view">
+            
+
+
+            <div class="qchero_slider_images_list_wrapper">
+                <ul id="qchero_slider_images_list">
+
+
+                    <?php if ( ! count( $_row ) ) {
+                        ; ?>
+                        <li class="noimage">
+							<span class="noimage-add" href="#">No Slides!</span>
+                        </li>
+
+
+
+						
+                        <?php
+                    }
+					$delay_time = 0;
+					$slide_count = 0;
+                    foreach ( $_row as $rows ) {
+						$slide_count++;
+                        switch ( $rows->type ) {
+							
+
+                            default: ?>
+								
+								<?php 
+									$draftclass='';
+									if(isset($rows->draft) and $rows->draft==1){
+										$draftclass='hero_draft_elem';
+									}
+								?>
+								
+
+									
+
+
+                                <li id="qcheroitem_<?php echo esc_attr( $rows->id ); ?>" data-sid="<?php echo esc_attr( $rows->id ); ?>" class="qcheroitem <?php echo sanitize_html_class( $draftclass ); ?> ">
+                                    <div class="qcheroitem-img-container">
+									<div class="qcheroitem-image-wrapper">
+										<?php if(isset($_slider[0]->type) && $_slider[0]->type!='youtube_video' && $_slider[0]->type!='vimeo_video' ): ?>
+										<div class="qcheroitem-image">
+											<div class="slide_image_container">
+											<?php if(isset($rows->image_link) and $rows->image_link!=''): ?>
+												<img data-slide-id="<?php echo esc_attr( $rows->id ); ?>" src="<?php echo (isset($_slider[0]->type) && $_slider[0]->type=='video'?QCLD_SLIDERHERO_IMAGES.'/video.png':$rows->image_link); ?>" <?php echo (isset($_slider[0]->type) && $_slider[0]->type=='video'?'style="width:57px"':''); ?> />
+												<span class="qchero_slide_image_remove" data-slide-id="<?php echo esc_attr( $rows->id ); ?>" title="Remove image">X</span>
+											<?php else: ?>
+												<button class="qchero_slide_image_upload" data-slide-id="<?php echo esc_attr( $rows->id ); ?>"><?php echo (isset($_slider[0]->type) && $_slider[0]->type=='video'?'Upload Video':'Upload Image'); ?></button>
+											<?php endif; ?>
+											</div>
+										</div>
+										<?php endif; ?>
+										
+										<?php if(isset($_slider[0]->type) && $_slider[0]->type=='youtube_video'): ?>
+										<input type="text" class="qcheroitem-add-url" value="<?php echo esc_attr($rows->image_link); ?>" placeholder="Youtube Video ID">
+										<?php endif; ?>
+										
+										<?php if(isset($_slider[0]->type) && $_slider[0]->type=='vimeo_video'): ?>
+										<input type="text" class="qcheroitem-add-url" value="<?php echo esc_attr($rows->image_link); ?>" placeholder="Vimeo Video ID">
+										<?php endif; ?>
+										
+										<div class="slider-hero-slide-number">
+											<span class="slide-number-title">Slide</span>
+											<span class="slide-order-number"><?php echo ($slide_count); ?></span>
+											<?php 
+											if(isset($rows->draft) and $rows->draft==1){
+												echo '<span class="hero_draft_style">Draft</span>';
+											}
+											?>
+										</div>
+										
+                                        <div class="qcheroitem-properties">
+                                            <b title="collapse"><a href="#" class="quick_edit"
+                                                  data-slide-id="<?php echo esc_attr($rows->id); ?>"><i
+                                                        class="fa fa-compress" aria-hidden="true"></i></a></b>
+                                            </a>
+                                            <b title="Remove slide"><a href="#" class="qchero_remove_image"
+                                                  data-slide-id="<?php echo esc_attr($rows->id); ?>"><i class="fa fa-remove"
+                                                                                              aria-hidden="true"></i></a></b>
+                                            <b title="Published"><label href="#" class="qchero_on_off_image"><input style="margin-top: 0px;"
+                                                        data-slide-id="<?php echo esc_attr( $rows->id ); ?>"
+                                                        class="slide-checkbox" <?php if ( $rows->published == 1 ) {echo 'checked  value="1"';}else{echo 'value="0"';} ?> type="checkbox" /></label></b>
+											<b style="cursor:move" title="Order using drag and drop"><i class="fa fa-arrows" aria-hidden="true"></i></b>
+                                        </div>
+  									</div>
+
+
+                                        <form class="qchero-nodisplay">
+										
+											
+											
+                                            <input type="text" class="qcheroitem-edit-title"
+                                                   value="<?php echo esc_attr( wp_unslash( $rows->title ) ); ?>" placeholder="Default Title">
+                                            <textarea class="qcheroitem-edit-description"><?php echo qchero_text_sanitize( $rows->description ); ?></textarea>
+											
+											
+											<div class="hero_configuration_info">
+												<?php 
+													$config = json_decode(wp_unslash(htmlspecialchars_decode($rows->stomp)));
+												?>
+												<?php if(isset($config->hero_stomp_animation) && $config->hero_stomp_animation!=''): ?>
+												<div class="hero_config_item">
+													<p><span>Animation: </span><?php echo esc_attr( $config->hero_stomp_animation ); ?></p>
+												</div>
+												<?php endif; ?>
+												<?php if(isset($config->hero_stomp_delay) && $config->hero_stomp_delay!=''): 
+												$delay_time = $delay_time+$config->hero_stomp_delay;
+												?>
+												<div class="hero_config_item">
+													<p><span>Delay: </span><?php echo esc_attr( $config->hero_stomp_delay ); ?></p>
+												</div>
+												<?php endif; ?>
+												
+												<?php if(isset($config->hero_stomp_fontsize) && $config->hero_stomp_fontsize!=''): ?>
+												<div class="hero_config_item">
+													<p><span>Font Size: </span><?php echo esc_attr( $config->hero_stomp_fontsize ); ?></p>
+												</div>
+												<?php endif; ?>
+												
+												<?php if(isset($config->hero_stomp_text_color) && $config->hero_stomp_text_color!=''): ?>
+												<div class="hero_config_item">
+													<p style="color:<?php echo esc_attr( $config->hero_stomp_text_color ); ?>"><span>Font</span></p>
+												</div>
+												<?php endif; ?>
+												
+												<?php if(isset($config->hero_stomp_background_color) && $config->hero_stomp_background_color!=''): ?>
+												<div class="hero_config_item">
+													<p style="color:<?php echo esc_attr( $config->hero_stomp_background_color ); ?>"><span>Background</span></p>
+												</div>
+												<?php endif; ?>
+												
+												
+											</div>
+											
+											
+											<div class="hero_slide_inputs">
+												<input type="text" class="hero_title_gfont" placeholder="Title Font" value="<?php echo wp_unslash( $rows->t_font ); ?>" /><input type="text" class="hero_description_gfont" placeholder="Description Font" value="<?php echo wp_unslash( $rows->d_font ); ?>" />
+												<input type="text" class="hero_title_lspace" placeholder="Title Letter Spacing(px)" value="<?php echo wp_unslash( $rows->tl_space ); ?>" />
+												<input type="text" class="hero_description_lspace" placeholder="Desc Letter Spacing(px)" value="<?php echo wp_unslash( $rows->dl_space ); ?>" />
+											</div>
+											<input type="hidden" class="qcheroitem-add-btn"
+                                                   value="<?php echo wp_unslash( esc_js($rows->btn) ); ?>" placeholder="Add Button">
+											<input type="button" class="qcheroitem-add-btn1" style="width: 49%;border: 1px solid #ddd;float:left;" value="<?php echo (isset($rows->btn)&&strlen($rows->btn)>10)?'Edit Button':'Add A Button';?>" />  
+											
+											<input type="hidden" class="qcheroitem-btn2-hd"
+                                                   value="<?php echo wp_unslash( esc_js($rows->btn2) ); ?>" placeholder="Add Button">
+											<input type="button" class="qcheroitem-btn2-sw" style="width: 49%;border: 1px solid #ddd;" value="<?php echo (isset($rows->btn2)&&strlen($rows->btn2)>10)?'Edit Button':'Add A Button';?>" />
+
+											<input type="button" data-ordering="<?php echo esc_attr( $rows->ordering ); ?>" class="qcheroitem-stomp-config" style="width: 99%;border: 1px solid #ddd;" value="<?php echo (isset($rows->stomp)&&strlen($rows->stomp)>10)?'Edit Configuration':'Add Configuration';?>" />
+											
+											<input type="hidden" class="qcheroitem-stomp-value"
+                                                   value="<?php echo wp_unslash( esc_js($rows->stomp) ); ?>" />
+											<input type="hidden" class="qcheroitem-draft-value"
+                                                   value="0" />
+											<?php if(isset($_slider[0]->type) && $_slider[0]->type!='youtube_video'): ?>
+											<input type="hidden" class="qcheroitem-add-url" value="<?php echo esc_attr($rows->image_link); ?>">
+											<?php endif; ?>
+                                            <input type="hidden" class="qcheroitem-ordering"
+                                                   value="<?php echo esc_attr($rows->ordering); ?>">
+                                        </form>
+										</div>
+
+
+									
+
+                                </li>
+                                <?php
+                        }
+                    } ?>
+
+<li class="qcld-hero-add-new-slide">
+			<?php if( isset($_slider[0]->type) && $_slider[0]->type=='play_or_work'): ?>
+				<?php if(! count( $_row )): ?>
+                <div class="add_slide_container"><a class="add_image"><span><?php _e( 'Add Slide', 'qchero' ); ?></span><span><i class="fa fa-plus-circle" aria-hidden="true"></i>
+</span></a></div>
+				<?php endif; ?>		
+			<?php else: ?>
+				<div class="add_slide_container"><a class="add_image"><span><?php _e( 'Add Slide', 'qchero' ); ?></span><span><i class="fa fa-plus-circle" aria-hidden="true"></i>
+</span></a></div>
+			<?php endif; ?>		
+			</li>
+ </ul>
+
+ 
+      
+
+
+
+               
+                <button id="save_slider">Save Slide Changes</button>
+            
+			</div>
+        </div>
+        
+
+
+
+
+		
+       
+ </div>
+
+
+    <div id="qchero_slider_title_styling" class="qchero-styling main-content">
+        <div class="qchero_close"><i class="fa fa-remove" aria-hidden="true"></i></div>
+        <span class="popup-type" data="off"><img
+                src="<?php echo QCLD_SLIDERHERO_IMAGES . "/light_1.png"; ?>"></span>
+        <form id="qchero-title-styling" class="params">
+            <input type="hidden" class="width" name="params[title][style][width]" rel="px"
+                   value="<?php echo esc_attr($params->title->style->width); ?>">
+            <input type="hidden" class="height" name="params[title][style][height]" rel="px"
+                   value="<?php echo esc_attr($params->title->style->height); ?>">
+            <input type="hidden" class="top" name="params[title][style][top]" rel="0"
+                   value="<?php echo esc_attr($params->title->style->top); ?>">
+            <input type="hidden" class="left" name="params[title][style][left]" rel="0"
+                   value="<?php echo esc_attr($params->title->style->left); ?>">
+            
+        </form>
+        <div class="qchero_content">
+            <div class="qchero_title">
+                <div class="qchero_title_child"></div>
+                <span class="title">Title</span>
+            </div>
+        </div>
+    </div>
+	
+    <div id="qchero_slider_button1_styling" class="qchero-styling main-content">
+        <div class="qchero_close"><i class="fa fa-remove" aria-hidden="true"></i></div>
+        <span class="popup-type" data="off"><img
+                src="<?php echo QCLD_SLIDERHERO_IMAGES . "/light_1.png"; ?>"></span>
+        <form id="qchero-button1-styling" class="params">
+            <input type="hidden" class="width" name="params[button1][style][width]" rel="px"
+                   value="<?php echo esc_attr($params->button1->style->width); ?>">
+            <input type="hidden" class="height" name="params[button1][style][height]" rel="px"
+                   value="<?php echo esc_attr($params->button1->style->height); ?>">
+            <input type="hidden" class="top" name="params[button1][style][top]" rel="0"
+                   value="<?php echo esc_attr($params->button1->style->top); ?>">
+            <input type="hidden" class="left" name="params[button1][style][left]" rel="0"
+                   value="<?php echo esc_attr($params->button1->style->left); ?>">
+            
+        </form>
+        <div class="qchero_content">
+            <div class="qchero_button1">
+                <div class="qchero_button1_child"></div>
+                <span class="title">button1</span>
+            </div>
+        </div>
+    </div>
+	
+    <div id="qchero_slider_description_styling" class="qchero-styling main-content">
+        <div class="qchero_close"><i class="fa fa-remove" aria-hidden="true"></i></div>
+        <span class="popup-type" data="off"><img
+                src="<?php echo QCLD_SLIDERHERO_IMAGES . "/light_1.png"; ?>"></span>
+        <form id="qchero-description-styling" class="params">
+            <input type="hidden" class="width" name="params[description][style][width]" rel="px"
+                   value="<?php echo esc_attr($params->description->style->width); ?>">
+            <input type="hidden" class="height" name="params[description][style][height]" rel="px"
+                   value="<?php echo esc_attr($params->description->style->height); ?>">
+            <input type="hidden" class="top" name="params[description][style][top]" rel="0"
+                   value="<?php echo esc_attr($params->description->style->top); ?>">
+            <input type="hidden" class="left" name="params[description][style][left]" rel="0"
+                   value="<?php echo esc_attr($params->description->style->left); ?>">
+            
+        </form>
+        <div class="qchero_content">
+            <div class="qchero_description">
+                <div class="qchero_description_child"></div>
+                <span class="description">description</span>
+            </div>
+        </div>
+    </div>
+<div id="qchero_loading_overlay" style="display:none;">
+	<div class="hero_loader"></div>
+</div>
+
+    <style>
+        #qchero_slider_preview_popup {
+            display: none;
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            background: #000000;
+            opacity: 0.7;
+            top: 0;
+            left: 0;
+            z-index: 9998;
+        }
+
+        #qchero_slider_preview {
+            padding: 40px;
+            overflow-y: scroll;
+            overflow: overlay;
+            display: none;
+            position: fixed;
+            height: 80%;
+            width: 90%;
+            background: #f1f1f1;
+            opacity: 1;
+            top: 10%;
+            left: 5%;
+            z-index: 10000;
+            box-sizing: border-box;
+        }
+
+        .qchero-custom-styling .qchero_content .qchero_custom .qchero_img {
+            box-sizing: border-box;
+            border-style: solid !important;
+        }
+
+        .qchero-custom-styling .qchero_content .qchero_custom img {
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            max-height: 100%;
+            display: block;
+        }
+
+        .qcheroimg {
+            overflow: hidden;
+            box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        #qchero_slider_preview .qchero_content {
+            position: absolute;
+            background: #FBABAB;
+            width: 100%;
+            height: 100%;
+        }
+
+        #qchero-slider-construct {
+            width: 100%;
+            height: 500px;
+            position: relative;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            overflow: hidden;
+            background: #E5E3DF;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            
+
+        }
+
+        .qchero_construct {
+            max-width: 100%;
+            max-height: <?php echo absint($style->height);?>px;
+            position: absolute;
+            width: 100px;
+            height: 50px;
+            margin: 0;
+            padding: 0;
+            word-wrap: break-word;
+            background: green;
+            display: inline-block;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            cursor: move;
+        }
+
+        img.qchero_construct {
+            width: 100px;
+            height: auto;
+        }
+
+        #qchero-title-construct {
+            position: absolute;
+            min-width: 50px;
+            width: 100%;
+            height: <?php echo absint($params->title->style->height);?>px;
+            background: transparent;
+            cursor: move;
+            top: <?php echo esc_attr($params->title->style->top);?>;
+            left: <?php echo esc_attr($params->title->style->left);?>;
+            opacity: 0.9;
+            color: rgb(86, 88, 85);
+            filter: alpha(opacity=<?php echo (isset($params->title->style->opacity)?abs($params->title->style->opacity):'');?>);
+            border: 2px dashed #898989;
+            word-wrap: break-word;
+            overflow: hidden;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            box-sizing: border-box;
+        }
+        #qchero-button1-construct {
+            position: absolute;
+            min-width: 50px;
+            width: 100%;
+            height: <?php echo absint($params->button1->style->height);?>px;
+            background: transparent;
+            cursor: move;
+            top: <?php echo esc_attr($params->button1->style->top);?>;
+            left: <?php echo esc_attr($params->button1->style->left);?>;
+            opacity: 0.9;
+            color: rgb(86, 88, 85);
+            filter: alpha(opacity=<?php echo (isset($params->title->style->opacity)?abs($params->title->style->opacity):'');?>);
+            border: 2px dashed #898989;
+            word-wrap: break-word;
+            overflow: hidden;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            box-sizing: border-box;
+        }
+
+        #qchero-description-construct {
+            position: absolute;
+            min-width: 50px;
+            width: 100%;
+            height: <?php echo absint($params->description->style->height);?>px;
+            background: <?php echo (isset($params->description->style->background->color)?"#".$params->description->style->background->color:'');?>;
+            background: transparent;
+
+            cursor: move;
+            top: <?php echo esc_attr($params->description->style->top);?>;
+            left: <?php echo esc_attr($params->description->style->left);?>;
+            opacity: 0.9;
+            color: rgb(86, 88, 85);
+            border: 2px dashed #898989;
+            filter: alpha(opacity=<?php echo (isset($params->description->style->opacity)?abs($params->description->style->opacity):'');?>);
+            word-wrap: break-word;
+            overflow: hidden;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            box-sizing: border-box;
+        }
+
+        #qchero-custom-construct {
+            position: absolute;
+            min-width: 50px;
+            cursor: move;
+            word-wrap: break-word;
+            overflow: hidden;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+
+        #qchero-description-construct #qchero_remove {
+            opacity: 0;
+        }
+    </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="overlay"></div>
+ <div class="qchero_slider_edit_wrap">
+        <div class="qchero_slider_edit">
+		<?php if( isset($_slider[0]->type) && $_slider[0]->type=='play_or_work'): ?>
+			<p style="text-align:center;color:red;">Play Or Work effect does not support more then one slide.</p>
+		<?php endif; ?>
+
+	<button id="closePopup" class="close-btn">&times;</button>
             <div class="settings">
 				
 			    <div class="menu">
@@ -476,57 +918,9 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
                 <div class="menu-content">
                     <ul class="main-content">
                         <li class="general active">
-                            <ul id="general-settings">
-                                <li class="style designstyle"><label for="qchero-name">Name:</label><input class="myElements" id="qcheror-name"
-                                                                                                name="cs[name]" type="text"
-                                                                                                value="<?php echo esc_attr( stripslashes_deep($_slider[0]->title) ); ?>"/>
-                                </li>
-                                <li class="style designstyle"><label for="qcslide-width">Width(px):</label><input class="myElements" style="width:40%" id="qcslide-width" name="style[width]"type="number" value="<?php echo esc_attr($style->width); ?>"/>
-								
-								<span style="    color: #444;
-    margin-right: 4px;
-    display: inline-block;
-    margin-left: 20px;">Custom:</span> <input class="myElements" name="style[fullwidth]" style="display: inline-block;width: 13px;height: 16px;margin: 0px;float: none;" type="radio" value="0" <?php 
-									if(isset($style->screenoption) and $style->screenoption=='0'){
-										echo "checked";
-									}else{
-										echo "checked";
-									}
-								?>/>
-								<span style="    color: #444;
-    margin-right: 4px;
-    display: inline-block;
-    margin-left: 20px;">Full Width:</span> <input class="myElements" name="style[fullwidth]" style="display: inline-block;width: 13px;height: 16px;margin: 0px;float: none;" type="radio" value="1" <?php 
-									if(isset($style->screenoption) and $style->screenoption=='1'){
-										echo "checked";
-									}
-								?>/>
-<span style="    color: #444;
-    margin-right: 4px;
-    display: inline-block;
-    margin-left: 20px;">Full Screen:</span> <input class="myElements" name="style[fullwidth]" style="display: inline-block;width: 13px;height: 16px;margin: 0px;float: none;" type="radio" value="2" <?php 
-									if(isset($style->screenoption) and $style->screenoption=='2'){
-										echo "checked";
-									}
-								?>/>
-								<span style="    color: #444;
-    margin-right: 4px;
-    display: inline-block;
-    margin-left: 20px;padding: 10px 0px;">Auto:</span> <input class="myElements" name="style[fullwidth]" style="display: inline-block;width: 13px;height: 16px;margin: 0px;float: none;" type="radio" value="3" <?php 
-									if(isset($style->screenoption) and $style->screenoption=='3'){
-										echo "checked";
-									}
-								?>/>								
-                                </li>
-                                <li class="style designstyle"><label for="qcslide-height">Height(px):</label><input class="myElements" id="qcslide-height"
-                                                                                                        name="style[height]"
-                                                                                                        type="number"
-                                                                                                        value="<?php echo esc_attr($style->height); ?>"/>
-                                </li>
-                                							
-
-                            </ul>
-							<div style="clear:both"></div>
+           
+                            
+						
 							
 							<div class="othersetting">
 								<?php if(isset($_slider[0]->type) && $_slider[0]->type!='intro'): ?>
@@ -561,7 +955,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 									</select>
 								</div>
 								<?php if(isset($_slider[0]->type) && $_slider[0]->type!='intro'): ?>
-								<div style="clear:both"></div>
+								
 								<div class="params customitemstyle" >
 									<label class="customlevel" for="qchero-caption-text-color" style="display: inline-block;">Random Slide</label> 
 									<select name="params[randomslide]">
@@ -618,7 +1012,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 									</select>
                                     
                                 </div>
-								<div style="clear:both"></div>
+								
 								<?php endif; ?>
 								<div class="params deseffect customitemstyle">
                                     <label class="customlevel" for="qcslide-effect-slideffect"><?php _e('Slider End Redirect Url', 'qcslide'); ?> <span class="hero_pro_features">[PRO]</span></label>
@@ -670,7 +1064,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 								</div>
 								<?php endif; ?>
 								<?php if( isset($_slider[0]->type) && $_slider[0]->type=='intro'): ?>
-								<div style="clear:both"></div>
+								
 								<?php endif; ?>
 								<div class="params deseffect customitemstyle">
                                     <label class="customlevel" for="qcslide-effect-slideffect"><?php _e('Slider Redirect Delay', 'qcslide'); ?> <span class="hero_pro_features">[PRO]</span></label>
@@ -706,35 +1100,11 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 
 							</div>
 							
-							<div style="clear:both"></div>
+							
 							<?php if( isset($_slider[0]->type) && $_slider[0]->type!='intro'): ?>
                             <div id="general-view" >
-								<div class="hero_content_left" style="float:left;width:50%">
-								<div class="general_view_left">
-									Vertically Order Title, Subtitle & Button Positions.
-								</div>
-                                <div id="qchero-slider-construct" >
-                                    <div id="qchero-construct-vertical"></div>
-                                    <div id="qchero-construct-horizontal"></div>
-                                    <div id="qchero-title-construct" data="title" class="qchero_construct">
-                                        <div class="constructor_text" style="margin-left:5px;color:#565855">Title</div>
-                                    </div>
-									
-                                    <div id="qchero-button1-construct" data="button1" class="qchero_construct">
-                                        <div class="constructor_text" style="margin-left:5px;color:#565855">Button</div>
-                                    </div>
-									
-                                    <div id="qchero-description-construct" data="description" class="qchero_construct">
-                                        <div class="constructor_text" style="margin-left:5px;color:#565855">Description</div>
-                                    </div>
-
-                                    <div id="zoom" class="sizer">
-                                    </div>
-                                    <a id="qchero_remove" title="Remove Element"><i class="fa fa-remove"
-                                                                                     aria-hidden="true"></i></a>
-								</div>
-								</div>
-								<div class="hero_content_right" style="float: left;margin-left: 80px;margin-top: 100px;">
+								
+								<div class="hero_content_right" style="float: left;">
 									<?php if( isset($_slider[0]->type) && $_slider[0]->type!='intro'): ?>
 									<div class="params">
 										<label class="customlevel" for="qcslide-effect-slideffect"><?php _e('Content Start From', 'qcslide'); ?>:</label>
@@ -780,6 +1150,42 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 									
 									<?php endif; ?>
 								</div>
+
+
+
+
+<div class="hero_content_left" style="float:left;width:50%">
+								<div class="general_view_left">
+									Vertically Order Title, Subtitle & Button Positions.
+								</div>
+                                <div id="qchero-slider-construct" >
+                                    <div id="qchero-construct-vertical"></div>
+                                    <div id="qchero-construct-horizontal"></div>
+                                    <div id="qchero-title-construct" data="title" class="qchero_construct">
+                                        <div class="constructor_text" style="margin-left:5px;color:#565855">Title</div>
+                                    </div>
+									
+                                    <div id="qchero-button1-construct" data="button1" class="qchero_construct">
+                                        <div class="constructor_text" style="margin-left:5px;color:#565855">Button</div>
+                                    </div>
+									
+                                    <div id="qchero-description-construct" data="description" class="qchero_construct">
+                                        <div class="constructor_text" style="margin-left:5px;color:#565855">Description</div>
+                                    </div>
+
+                                    <div id="zoom" class="sizer">
+                                    </div>
+                                    <a id="qchero_remove" title="Remove Element"><i class="fa fa-remove"
+                                                                                     aria-hidden="true"></i></a>
+								</div>
+								</div>
+
+
+<div style="clear:both"></div>
+
+
+
+
 							</div>
 							<?php endif; ?>
                         </li>
@@ -877,7 +1283,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 								<label class="customlevel" for="qchero-background-color">Bottom Decoration Color</label> <input type="text" name="params[bottomdecorationcolor]" class="color-field" value="<?php echo (isset($params->bottomdecorationcolor)?esc_attr($params->bottomdecorationcolor):''); ?>" />
 						</div>
 						
-						<div style="clear:both"></div>
+					
 							
 						<?php endif; ?>
 							
@@ -917,14 +1323,14 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 								<?php
 									if(isset($_slider[0]->bg_gradient) and strlen($_slider[0]->bg_gradient)>5){
 								?>
-									<div style="clear:both"></div>
+									
 									<div id="gradient_view" style="display:inline-block;<?php echo str_replace('"','',preg_replace('/\\\\/', '', $_slider[0]->bg_gradient)); ?>">
 										<span class="remove_gradient">x</span>
 									</div>
 								<?php 
 									}else{
 								?>	
-									<div style="clear:both"></div>
+									
 									<div id="gradient_view">
 										<span class="remove_gradient">x</span>
 									</div>
@@ -953,7 +1359,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 
 							</div>
 							
-							<div style="clear:both"></div>
+							
 							<?php if( isset($_slider[0]->type) && $_slider[0]->type!='intro'): ?>
 						
 						
@@ -1023,46 +1429,46 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 							</div>
 							<?php endif; ?>
 							<?php if($_slider[0]->type!='intro'): ?>
-						<p style="color:red;font-size: 15px;margin: 10px 0px;">
+						<p class="qcld-slidermodal-notic">
 					* Please note that some effects are not Transparent and do NOT support slider background Color, Image, Gradient or Video!<br>
 					* To use video background simply add a video from the Video Settings tab <br>
 					* Slide (background) image effect will only work if you put image in slide
 						</p>
 						<?php endif; ?>
-						<div style="clear:both"></div>
+					
 								<h2>Effect Section</h2>
 								<hr>
-<div class="tab">
-  <button class="tablinks active" onclick="openCity(event, 'animatecss')">
-  <?php 
-	if($_slider[0]->type!='intro'){
-		echo 'Animate Css & Custom';
-	}else{
-		echo 'Background Animation <span class="hero_pro_features">[PRO]</span>';
-	}
-  ?>
-  </button>
-  <?php if($_slider[0]->type!='intro'): ?>
-  <button class="tablinks" >Letter Fx <span class="hero_pro_features">[PRO]</span></button>
-  <?php endif; ?>
-</div>
+								<div class="tab">
+								<button class="tablinks active" onclick="openCity(event, 'animatecss')">
+								<?php 
+									if($_slider[0]->type!='intro'){
+										echo 'Animate Css & Custom';
+									}else{
+										echo 'Background Animation <span class="hero_pro_features">[PRO]</span>';
+									}
+								?>
+								</button>
+								<?php if($_slider[0]->type!='intro'): ?>
+								<button class="tablinks" >Letter Fx <span class="hero_pro_features">[PRO]</span></button>
+								<?php endif; ?>
+								</div>
 
-<div id="animatecss" class="tabcontent" style="display:block">
-<?php 
-require(QCLD_sliderhero_view.'/slider_hero_tab_animate_css_section.php');
-?>
-</div>
+								<div id="animatecss" class="tabcontent" style="display:block">
+								<?php 
+								require(QCLD_sliderhero_view.'/slider_hero_tab_animate_css_section.php');
+								?>
+								</div>
 
-<div id="letterfx" class="tabcontent">
-<?php
-if($_slider[0]->type!='intro'):
-	require(QCLD_sliderhero_view.'/slider_hero_tab_letterfx.php');
-endif;
-?>
-</div>						
+								<div id="letterfx" class="tabcontent">
+								<?php
+								if($_slider[0]->type!='intro'):
+									require(QCLD_sliderhero_view.'/slider_hero_tab_letterfx.php');
+								endif;
+								?>
+								</div>						
 							<h2>Control Section</h2>
 							<hr>
-							<div class="othersetting">
+							<div class="othersetting ">
 							
 								<?php if( isset($_slider[0]->type) && $_slider[0]->type!='intro'): ?>
 								
@@ -1100,7 +1506,7 @@ endif;
 								</div>
 								
 								<?php if($_slider[0]->type!='intro'): ?>
-								<div style="clear:both"></div>
+								
 								<?php endif; ?>
 								<div class="params customitemstyle" >
 									<label class="customlevel" for="qchero-caption-text-color" style="display: inline-block;">Show Pause Button</label> 
@@ -1182,7 +1588,7 @@ endif;
 									<input type="hidden" name="params[custom_video_mp4]" id="bg_video" class="regular-text" value="<?php echo (isset($params->custom_video_mp4)&& $params->custom_video_mp4!=''?$params->custom_video_mp4:''); ?>">
 									<input type="button" name="upload-btn" id="bg-video-upload-btn" class="button-secondary" value="Upload Video">
 								</div>
-								<div style="clear:both"></div>
+							
 								<div id="bg_preview_video">
 								
 								<?php 
@@ -1202,7 +1608,7 @@ endif;
 									<input type="hidden" name="params[custom_video_webm]" id="bg_video2" class="regular-text" value="<?php echo (isset($params->custom_video_webm)&& $params->custom_video_webm!=''?$params->custom_video_webm:''); ?>">
 									<input type="button" name="upload-btn" id="bg-video-upload-btn2" class="button-secondary" value="Upload Video">
 								</div>
-								<div style="clear:both"></div>
+							
 								<div id="bg_preview_video2">
 								
 								<?php 
@@ -1333,7 +1739,7 @@ endif;
 						</li>
 						
 						<li class="audio-setting">
-							<div class="othersetting" style="display: inline-block; float: left; width: 25%;">
+							<div class="othersetting" style="display: inline-block; float: left; width: 33%;">
 								<div class="params customitemstyle" style="width:100%;">
 									
 									<label class="customlevel" for="bg_image_url">Background Music</label>
@@ -1354,7 +1760,7 @@ endif;
 
 							</div>
 							
-							<div class="othersetting" style="display: inline-block; float: left; width: 25%;">
+							<div class="othersetting" style="display: inline-block; float: left; width: 33%;">
 								<div class="params customitemstyle" style="width:100%">
 									<label class="customlevel" for="qchero-background-color" style="display: inline-block;">Auto Play</label> 
 									<select name="params[audioautoplay]">
@@ -1364,7 +1770,7 @@ endif;
 								</div>
 							</div>
 							
-							<div class="othersetting" style="display: inline-block; float: left; width: 25%;">
+							<div class="othersetting" style="display: inline-block; float: left; width: 33%;">
 								<div class="params customitemstyle" style="width:100%">
 									<label class="customlevel" for="qchero-background-color" style="display: inline-block;">Audio Control</label> 
 									<select name="params[audiocontrol]">
@@ -1374,7 +1780,7 @@ endif;
 								</div>
 							</div>
 							
-							<div class="othersetting" style="display: inline-block; float: left; width: 25%;">
+							<div class="othersetting" style="display: inline-block; float: left; width: 33%;">
 								<div class="params customitemstyle" style="width:100%">
 									<label class="customlevel" for="qchero-background-color" style="display: inline-block;">Audio Repeat <span class="hero_pro_features">[PRO]</span></label> 
 									<select name="params[audiorepeat]">
@@ -1384,14 +1790,14 @@ endif;
 									</select>
 								</div>
 							</div>
-							<div class="othersetting" style="display: inline-block; float: left; width: 25%;">
+							<div class="othersetting" style="display: inline-block; float: left; width: 33%;">
 								<div class="params customitemstyle" style="width:100%">
 									<label class="customlevel" for="qchero-background-color" style="display: inline-block;">Audio Repeat Count (Leave blank for infinity)</label> 
 									<input type="text" name="params[audiorepeatcount]" placeholder="Ex: 5" value="<?php echo (isset($params->audiorepeatcount)&& $params->audiorepeatcount!=''?$params->audiorepeatcount:'') ?>" />
 										
 								</div>
 							</div>
-							<div class="othersetting" style="display: inline-block; float: left; width: 25%;">
+							<div class="othersetting" style="display: inline-block; float: left; width: 33%;">
 								<div class="params customitemstyle" style="width:100%">
 									<label class="customlevel" for="qchero-background-color" style="display: inline-block;">Controller Position</label> 
 									<select name="params[controllerposition]">
@@ -1688,7 +2094,7 @@ endif;
 
 							<?php else: ?>
 								
-									<p style="font-size: 14px;color: red;">There is no Custom Setting for this Effect</p>
+									<p style="font-size: 16px;color: #fff; font-weight:bold;">There is no Custom Setting for this Effect</p>
 								
 							<?php endif; ?>
 							</div>						
@@ -1727,13 +2133,13 @@ endif;
 							<div class="shortcodes-contents">
 								<div style="margin-bottom: 12px;">
 									Copy & paste the shortcode directly into any WordPress post or page.
-									<p style="font-size: 18px;line-height: 34px;color: #000;">[qcld_hero id=<?php echo intval($_slider[0]->id); ?>]</p>
+									<p style="font-size: 18px;line-height: 34px;color: #fff;">[qcld_hero id=<?php echo intval($_slider[0]->id); ?>]</p>
 								</div>
 								<span>OR</span>
 								<div>
 									Copy & paste this code into a template file to include the slideshow within your
                                     theme.
-                                    <p style="font-size: 18px;line-height: 34px;color: #000;">&lt;?php echo do_shortcode("[qcld_hero id=<?php echo intval($_slider[0]->id); ?>]"); ?&gt;</p>
+                                    <p style="font-size: 18px;line-height: 34px;color: #fff;">&lt;?php echo do_shortcode("[qcld_hero id=<?php echo intval($_slider[0]->id); ?>]"); ?&gt;</p>
 								</div>
 							</div>
 						</li>
@@ -1810,266 +2216,11 @@ endif;
 
         </style>
     </div>
-    <div id="qchero_slider_title_styling" class="qchero-styling main-content">
-        <div class="qchero_close"><i class="fa fa-remove" aria-hidden="true"></i></div>
-        <span class="popup-type" data="off"><img
-                src="<?php echo QCLD_SLIDERHERO_IMAGES . "/light_1.png"; ?>"></span>
-        <form id="qchero-title-styling" class="params">
-            <input type="hidden" class="width" name="params[title][style][width]" rel="px"
-                   value="<?php echo esc_attr($params->title->style->width); ?>">
-            <input type="hidden" class="height" name="params[title][style][height]" rel="px"
-                   value="<?php echo esc_attr($params->title->style->height); ?>">
-            <input type="hidden" class="top" name="params[title][style][top]" rel="0"
-                   value="<?php echo esc_attr($params->title->style->top); ?>">
-            <input type="hidden" class="left" name="params[title][style][left]" rel="0"
-                   value="<?php echo esc_attr($params->title->style->left); ?>">
-            
-        </form>
-        <div class="qchero_content">
-            <div class="qchero_title">
-                <div class="qchero_title_child"></div>
-                <span class="title">Title</span>
-            </div>
-        </div>
-    </div>
-	
-    <div id="qchero_slider_button1_styling" class="qchero-styling main-content">
-        <div class="qchero_close"><i class="fa fa-remove" aria-hidden="true"></i></div>
-        <span class="popup-type" data="off"><img
-                src="<?php echo QCLD_SLIDERHERO_IMAGES . "/light_1.png"; ?>"></span>
-        <form id="qchero-button1-styling" class="params">
-            <input type="hidden" class="width" name="params[button1][style][width]" rel="px"
-                   value="<?php echo esc_attr($params->button1->style->width); ?>">
-            <input type="hidden" class="height" name="params[button1][style][height]" rel="px"
-                   value="<?php echo esc_attr($params->button1->style->height); ?>">
-            <input type="hidden" class="top" name="params[button1][style][top]" rel="0"
-                   value="<?php echo esc_attr($params->button1->style->top); ?>">
-            <input type="hidden" class="left" name="params[button1][style][left]" rel="0"
-                   value="<?php echo esc_attr($params->button1->style->left); ?>">
-            
-        </form>
-        <div class="qchero_content">
-            <div class="qchero_button1">
-                <div class="qchero_button1_child"></div>
-                <span class="title">button1</span>
-            </div>
-        </div>
-    </div>
-	
-    <div id="qchero_slider_description_styling" class="qchero-styling main-content">
-        <div class="qchero_close"><i class="fa fa-remove" aria-hidden="true"></i></div>
-        <span class="popup-type" data="off"><img
-                src="<?php echo QCLD_SLIDERHERO_IMAGES . "/light_1.png"; ?>"></span>
-        <form id="qchero-description-styling" class="params">
-            <input type="hidden" class="width" name="params[description][style][width]" rel="px"
-                   value="<?php echo esc_attr($params->description->style->width); ?>">
-            <input type="hidden" class="height" name="params[description][style][height]" rel="px"
-                   value="<?php echo esc_attr($params->description->style->height); ?>">
-            <input type="hidden" class="top" name="params[description][style][top]" rel="0"
-                   value="<?php echo esc_attr($params->description->style->top); ?>">
-            <input type="hidden" class="left" name="params[description][style][left]" rel="0"
-                   value="<?php echo esc_attr($params->description->style->left); ?>">
-            
-        </form>
-        <div class="qchero_content">
-            <div class="qchero_description">
-                <div class="qchero_description_child"></div>
-                <span class="description">description</span>
-            </div>
-        </div>
-    </div>
-<div id="qchero_loading_overlay" style="display:none;">
-	<div class="hero_loader"></div>
-</div>
+ </div>
 
-    <style>
-        #qchero_slider_preview_popup {
-            display: none;
-            position: fixed;
-            height: 100%;
-            width: 100%;
-            background: #000000;
-            opacity: 0.7;
-            top: 0;
-            left: 0;
-            z-index: 9998;
-        }
+ </div>
 
-        #qchero_slider_preview {
-            padding: 40px;
-            overflow-y: scroll;
-            overflow: overlay;
-            display: none;
-            position: fixed;
-            height: 80%;
-            width: 90%;
-            background: #f1f1f1;
-            opacity: 1;
-            top: 10%;
-            left: 5%;
-            z-index: 10000;
-            box-sizing: border-box;
-        }
-
-        .qchero-custom-styling .qchero_content .qchero_custom .qchero_img {
-            box-sizing: border-box;
-            border-style: solid !important;
-        }
-
-        .qchero-custom-styling .qchero_content .qchero_custom img {
-            width: 100%;
-            height: 100%;
-            max-width: 100%;
-            max-height: 100%;
-            display: block;
-        }
-
-        .qcheroimg {
-            overflow: hidden;
-            box-sizing: border-box;
-            box-sizing: border-box;
-        }
-
-        #qchero_slider_preview .qchero_content {
-            position: absolute;
-            background: #FBABAB;
-            width: 100%;
-            height: 100%;
-        }
-
-        #qchero-slider-construct {
-            width: 100%;
-            height: 500px;
-            position: relative;
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
-            overflow: hidden;
-            background: #E5E3DF;
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
-            
-
-        }
-
-        .qchero_construct {
-            max-width: 100%;
-            max-height: <?php echo absint($style->height);?>px;
-            position: absolute;
-            width: 100px;
-            height: 50px;
-            margin: 0;
-            padding: 0;
-            word-wrap: break-word;
-            background: green;
-            display: inline-block;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            cursor: move;
-        }
-
-        img.qchero_construct {
-            width: 100px;
-            height: auto;
-        }
-
-        #qchero-title-construct {
-            position: absolute;
-            min-width: 50px;
-            width: 100%;
-            height: <?php echo absint($params->title->style->height);?>px;
-            background: transparent;
-            cursor: move;
-            top: <?php echo esc_attr($params->title->style->top);?>;
-            left: <?php echo esc_attr($params->title->style->left);?>;
-            opacity: 0.9;
-            color: rgb(86, 88, 85);
-            filter: alpha(opacity=<?php echo (isset($params->title->style->opacity)?abs($params->title->style->opacity):'');?>);
-            border: 2px dashed #898989;
-            word-wrap: break-word;
-            overflow: hidden;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            box-sizing: border-box;
-        }
-        #qchero-button1-construct {
-            position: absolute;
-            min-width: 50px;
-            width: 100%;
-            height: <?php echo absint($params->button1->style->height);?>px;
-            background: transparent;
-            cursor: move;
-            top: <?php echo esc_attr($params->button1->style->top);?>;
-            left: <?php echo esc_attr($params->button1->style->left);?>;
-            opacity: 0.9;
-            color: rgb(86, 88, 85);
-            filter: alpha(opacity=<?php echo (isset($params->title->style->opacity)?abs($params->title->style->opacity):'');?>);
-            border: 2px dashed #898989;
-            word-wrap: break-word;
-            overflow: hidden;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            box-sizing: border-box;
-        }
-
-        #qchero-description-construct {
-            position: absolute;
-            min-width: 50px;
-            width: 100%;
-            height: <?php echo absint($params->description->style->height);?>px;
-            background: <?php echo (isset($params->description->style->background->color)?"#".$params->description->style->background->color:'');?>;
-            background: transparent;
-
-            cursor: move;
-            top: <?php echo esc_attr($params->description->style->top);?>;
-            left: <?php echo esc_attr($params->description->style->left);?>;
-            opacity: 0.9;
-            color: rgb(86, 88, 85);
-            border: 2px dashed #898989;
-            filter: alpha(opacity=<?php echo (isset($params->description->style->opacity)?abs($params->description->style->opacity):'');?>);
-            word-wrap: break-word;
-            overflow: hidden;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            box-sizing: border-box;
-        }
-
-        #qchero-custom-construct {
-            position: absolute;
-            min-width: 50px;
-            cursor: move;
-            word-wrap: break-word;
-            overflow: hidden;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-
-        #qchero-description-construct #qchero_remove {
-            opacity: 0;
-        }
-    </style>
-</div>
-<div class="hero_bottom_save_button" style="display:none">
+<div class="hero_bottom_save_button">
 	<a class="qchero_save_all2" href="#">Save</a>
 </div>
     <?php

@@ -29,6 +29,7 @@ function qcld_sliderhero_sessions_license_callback(){
       <h3>Intro Builder Video</h3>
       <iframe width="560" height="315" src="https://www.youtube.com/embed/k9CFs-hiBUk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
+	<div style="clear:both;"></div>
   </div>
 </div>
 <style>
@@ -174,7 +175,6 @@ function qcld_sliderhero_sessions_license_callback(){
 }
 .serviceBox {
 	color: #555;
-	background-color: #fff;
 	text-align: left;
 	padding: 0 0 0;
 	margin: 40px 0 0 20px;
@@ -520,7 +520,6 @@ left: 52px;
 
 .PortfolioX-section {
     position: relative;
-	    border-top: 20px solid #f0f0f1;
 }
 
 .PortfolioX-section h2{

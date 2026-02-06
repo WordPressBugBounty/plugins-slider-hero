@@ -5,6 +5,10 @@ function qcld_sliderhero_sessions_getting_callback(){
 
 <style>
 @charset 'UTF-8';
+
+.sld-container{
+	overflow: hidden;
+}
 /* Slider */
 .slick-loading .slick-list {
 	background: #fff url('./ajax-loader.gif') center center no-repeat;
@@ -372,7 +376,6 @@ function qcld_sliderhero_sessions_getting_callback(){
 }
 .serviceBox {
 	color: #555;
-	background-color: #fff;
 	text-align: left;
 	padding: 0 0 0;
 	margin: 40px 0 0 20px;
@@ -647,7 +650,6 @@ function qcld_sliderhero_sessions_getting_callback(){
 	max-width: 1234px !important;
 }
 .serviceBox {
-	background: #fff;
 	padding: 15px;
 	display: flex;
 	align-items: center;
@@ -659,7 +661,7 @@ function qcld_sliderhero_sessions_getting_callback(){
 }
 .serviceBox {
 	position: relative;
-	border-top: 20px solid #f0f0f1;
+
 }
 .sldslider-Details {
 	padding: 0 15px 0 0;
@@ -764,7 +766,6 @@ h3.shero-video-title {
 }
 @media (max-width: 1200px) {
 .serviceBox {
-    background: #fff;
     padding: 15px;
     display: flex;
     align-items: flex-start;
@@ -784,6 +785,48 @@ h3.shero-video-title {
 .sld-note {
     padding: 0;
     margin: 0;
+}
+
+.serviceBox {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    box-shadow: inset 1px 1px 0 rgb(255 255 255 / 75%), inset 0 0 5px rgb(255 255 255 / 76%);
+    background: rgb(255 255 255 / 30%) !important;
+    backdrop-filter: blur(0px);
+    isolation: isolate;
+    border-radius: 10px;
+    height: 680px;
+     background-color: rgb(255 255 255 / 30%) !important;
+}
+.slider-hero_page_qcld_sliderhero_getting_started .serviceBox {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    box-shadow: inset 1px 1px 0 rgb(255 255 255 / 75%), inset 0 0 5px rgb(255 255 255 / 76%);
+    background: rgb(255 255 255 / 30%) !important;
+    backdrop-filter: blur(0px);
+    isolation: isolate;
+    border-radius: 10px;
+    height: 680px;
+    background-color: rgb(255 255 255 / 30%) !important;
+}
+.serviceBox {
+    min-height: inherit !important;
+}
+.serviceBox {
+    max-width: 1170px !important;
+}
+.sld_Started_carousel {
+    max-width: inherit !important;
+	width: 100% !important;
+}
+.serviceBox {
+    max-width: inherit !important;
+}
+
+.serviceBox {
+    width: auto !important;
 }
 </style>
 

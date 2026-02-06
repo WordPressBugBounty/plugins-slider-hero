@@ -123,7 +123,7 @@ if ( ! class_exists( 'OT_Cleanup' ) ) {
 
 			echo '<div class="wrap">';
 
-			echo '<h2>' . apply_filters( 'ot_cleanup_page_title', esc_html__( 'OptionTree Cleanup', 'option-tree' ) ) . '</h2>'; // phpcs:ignore
+			echo '<h3>' . apply_filters( 'ot_cleanup_page_title', esc_html__( 'OptionTree Cleanup', 'option-tree' ) ) . '</h3>'; // phpcs:ignore
 
 			if ( $ot_maybe_cleanup_posts ) {
 
