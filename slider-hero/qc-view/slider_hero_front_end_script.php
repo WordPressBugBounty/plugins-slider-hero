@@ -1285,8 +1285,8 @@ jQuery(document).ready(function($){
 	<?php if($_slider[0]->type!='intro') : ?>
     $.fn.sliderX.defaults = {
 		
-		sliderWidth:<?php echo esc_attr($style->width); ?>,
-		sliderHeight:<?php echo esc_attr($style->height); ?>,
+		sliderWidth:<?php echo esc_attr($style->width!=''?$style->width:1120); ?>,
+		sliderHeight:<?php echo esc_attr($style->height!=''?$style->height:480); ?>,
 		
         pauseTime: <?php echo ($params->effect->interval!=''?$params->effect->interval:0); ?>,
 		paddingTime: <?php echo (isset($params->paddingtime)&&$params->paddingtime!=''?$params->paddingtime:'0'); ?>,

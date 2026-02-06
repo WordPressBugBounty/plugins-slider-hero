@@ -362,18 +362,6 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 
 
 
-	<div id="qchero_slider_view_doc_inner">
-
-	<div class="qchero_slider_view_doc_content">
-		
-		<img src="<?php echo QCLD_SLIDERHERO_IMAGES.'/sliderhero.jpg' ?>" alt="Vimeo Video" />
-	 <div class="qchero_slider_view_doc_content_inner">
-	</div>	
-		</div>							
-
-	</div>
-
-
 	<div id="qchero_slider_view_doc_inner_pro_into">
 
 									<div class="qchero_slider_view_doc_inner_pro_into_inn">

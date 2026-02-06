@@ -1299,7 +1299,7 @@ background: #fff;
     align-content: center;
     align-items: center;
     text-align: center;
-        width: 28%;
+        width: 50%;
 }
 
 .qchero_slider_pro_into_inn_icon i {
@@ -1337,6 +1337,7 @@ margin-top: 8px;
 
 ul#general-settingscbgfdgb {
     width: 50%;
+    min-width: 800px;
 }
 
 .qchero_slider_view_doc_inner_pro_into_inn ul li i {
@@ -1878,4 +1879,92 @@ div#page-sliderhero_options .wrap.settings-wrap .ui-tabs-nav li {
 
 .slider-hero_page_qcld_sliderhero_getting_started{
          background: #CDDCDC;   
+}
+
+input.qcheroitem-add-url {
+    text-decoration: none;
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(30px);
+    backdrop-filter: blur(30px);
+    color: #7c8287;
+    font-size: 15px;
+    box-shadow: inset 1px 1px 0 rgb(255 255 255 / 75%), inset 0 0 5px rgb(255 255 255 / 76%);
+    /* background: rgb(255 255 255); */
+    margin: 5px 0 8px 0;
+    width: 98%;
+    margin: 5px auto 8px auto;
+    display: inline-block;
+    padding: 4px 10px;
+}
+ul#general-settingscbgfdgb input[type="radio"]:checked:before {
+    content: '';
+    width: 10px !important;
+    height: 10px !important;
+    margin: 2px 0 0 2px !important;
+    background: #1375e9 !important;
+}
+
+
+
+@media screen and (max-width: 1420px) {
+
+.qchero_slider_view_doc_inner_pro_into_inn ul {
+    margin-top: 8px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 14px;
+    width: 100%;
+    padding: 0 0 14px;
+    box-sizing: border-box;
+    align-content: start;
+}
+
+}
+
+@media screen and (max-width: 1280px) {
+li.generalcustom {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}
+ul#general-settingscbgfdgb {
+    width: 100%;
+}
+div#qchero_slider_view_doc_inner_pro_into {
+    width: 100%;
+}
+#qchero_slider_images_list {
+    grid-template-columns: repeat(2, 2fr);
+}
+.sliderhero_menu_title.effect_title {
+    width: auto !important;
+}
+.qchero_slider_main-heading_wrapper{
+    width: auto !important;
+}
+.sliderhero_menu_title {
+        width: auto !important;
+}
+div.qchero_slider_edit{
+        width: auto !important;    
+}
+div#qchero_slider_view_doc_inner_pro_into {
+        width: auto;
+    }
+div#qchero_slider_view_wrapper_top {
+    width: auto;
+}
+
+.qchero_slider_view_wrapper {
+    width: 98%;
+}
+div#qchero_slider_view_doc_inner_pro_into {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    align-items: flex-start;
+    text-align: center;
+}
 }
