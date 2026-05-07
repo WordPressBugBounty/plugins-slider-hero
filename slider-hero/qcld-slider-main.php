@@ -3,7 +3,7 @@
 * Plugin Name: Slider Hero
 * Plugin URI: https://wordpress.org/plugins/slider-hero
 * Description: Slider Hero is a Unique Hero Slider Plugin with Background Animation Effects, Video Background & Intro Builder. Animation Slider Carousels, INCREDIBLE Adverts. Animated Header with Text Carousel.
-* Version: 9.1.1
+* Version: 9.1.2
 * Author: QuantumCloud
 * Author URI: https://www.quantumcloud.com/
 * Requires at least: 4.6
@@ -463,6 +463,7 @@ function qcld_sliderhero_options_panels() {
 	// add_submenu_page('Slider-Hero',)
 }
 require_once 'qc-support-promo-page/class-qc-support-promo-page.php';
+require_once('qc-free-ai-chatbot/class-qc-free-ai-page.php');
 // shortcode setup//
 function qcld_qchero_resliders_shortcode( $atts, $content, $tag ) {
 
@@ -1265,6 +1266,8 @@ if ( function_exists( 'register_block_type' ) ) {
 function qcopd_order_index_catalog_menu_page_sliderhero( $menu_ord ) {
 	global $submenu;
 
+	//echo '<pre>'; print_r( $submenu['Slider-Hero'] ); echo '</pre>'; exit();
+
 	$arr = array();
 
 	if( isset($submenu['Slider-Hero'][3]))
@@ -1290,6 +1293,9 @@ function qcopd_order_index_catalog_menu_page_sliderhero( $menu_ord ) {
 
 	if( isset($submenu['Slider-Hero'][300]))
 		$arr[] = $submenu['Slider-Hero'][300];
+
+	if( isset($submenu['Slider-Hero'][301]))
+		$arr[] = $submenu['Slider-Hero'][301];
 
 	$submenu['Slider-Hero'] = $arr;
 
