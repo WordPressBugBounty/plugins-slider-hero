@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /**
  * Initialize the custom Meta Boxes.
  *
@@ -22,55 +25,55 @@ function custom_meta_boxes() {
 	 */
 	$my_meta_box = array(
 		'id'       => 'demo_meta_box',
-		'title'    => __( 'Demo Meta Box', 'theme-text-domain' ),
+		'title'    => esc_html('Demo Meta Box', 'slider-hero' ),
 		'desc'     => '',
 		'pages'    => array( 'post' ),
 		'context'  => 'normal',
 		'priority' => 'high',
 		'fields'   => array(
 			array(
-				'label' => __( 'Conditions', 'theme-text-domain' ),
+				'label' => esc_html('Conditions', 'slider-hero' ),
 				'id'    => 'demo_conditions',
 				'type'  => 'tab',
 			),
 			array(
-				'label' => __( 'Show Gallery', 'theme-text-domain' ),
+				'label' => esc_html('Show Gallery', 'slider-hero' ),
 				'id'    => 'demo_show_gallery',
 				'type'  => 'on-off',
-				'desc'  => sprintf( __( 'Shows the Gallery when set to %s.', 'theme-text-domain' ), '<code>on</code>' ),
+				'desc'  => sprintf( esc_html('Shows the Gallery when set to %s.', 'slider-hero' ), '<code>on</code>' ),
 				'std'   => 'off',
 			),
 			array(
 				'label'     => '',
 				'id'        => 'demo_textblock',
 				'type'      => 'textblock',
-				'desc'      => __( 'Congratulations, you created a gallery!', 'theme-text-domain' ),
+				'desc'      => esc_html('Congratulations, you created a gallery!', 'slider-hero' ),
 				'operator'  => 'and',
 				'condition' => 'demo_show_gallery:is(on),demo_gallery:not()',
 			),
 			array(
-				'label'     => __( 'Gallery', 'theme-text-domain' ),
+				'label'     => esc_html('Gallery', 'slider-hero' ),
 				'id'        => 'demo_gallery',
 				'type'      => 'gallery',
-				'desc'      => sprintf( __( 'This is a Gallery option type. It displays when %s.', 'theme-text-domain' ), '<code>demo_show_gallery:is(on)</code>' ),
+				'desc'      => sprintf( esc_html('This is a Gallery option type. It displays when %s.', 'slider-hero' ), '<code>demo_show_gallery:is(on)</code>' ),
 				'condition' => 'demo_show_gallery:is(on)',
 			),
 			array(
-				'label' => __( 'More Options', 'theme-text-domain' ),
+				'label' => esc_html('More Options', 'slider-hero' ),
 				'id'    => 'demo_more_options',
 				'type'  => 'tab',
 			),
 			array(
-				'label' => __( 'Text', 'theme-text-domain' ),
+				'label' => esc_html('Text', 'slider-hero' ),
 				'id'    => 'demo_text',
 				'type'  => 'text',
-				'desc'  => __( 'This is a demo Text field.', 'theme-text-domain' ),
+				'desc'  => esc_html('This is a demo Text field.', 'slider-hero' ),
 			),
 			array(
-				'label' => __( 'Textarea', 'theme-text-domain' ),
+				'label' => esc_html('Textarea', 'slider-hero' ),
 				'id'    => 'demo_textarea',
 				'type'  => 'textarea',
-				'desc'  => __( 'This is a demo Textarea field.', 'theme-text-domain' ),
+				'desc'  => esc_html('This is a demo Textarea field.', 'slider-hero' ),
 			),
 		),
 	);
@@ -83,3 +86,4 @@ function custom_meta_boxes() {
 		ot_register_meta_box( $my_meta_box );
 	}
 }
+

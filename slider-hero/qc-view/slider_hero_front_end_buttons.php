@@ -2,8 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit
-?>
-<?php
+
 
 $btn = json_decode(wp_unslash(htmlspecialchars_decode($slide->btn)));
 $btn2 = json_decode(wp_unslash(htmlspecialchars_decode($slide->btn2)));

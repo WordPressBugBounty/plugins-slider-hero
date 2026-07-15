@@ -127,7 +127,7 @@ if( ! class_exists( 'Wp_Usage_Feedback') ) {
 			if( empty( $plugin ) ) {
 				// We can't find the plugin data
 				// Send a message back to our home site
-				$body['message'] .= __( 'We can\'t detect any plugin information. This is most probably because you have not included the code in the plugin main file.', 'wpchatbot' );
+				$body['message'] .= esc_html('We can\'t detect any plugin information. This is most probably because you have not included the code in the plugin main file.', 'slider-hero' );
 				$body['status'] = 'Data not found'; // Never translated
 			} else {
 				if( isset( $plugin['Name'] ) ) {
@@ -166,7 +166,7 @@ if( ! class_exists( 'Wp_Usage_Feedback') ) {
 
 			$body = $this->get_data();
 			$body['status'] = 'Deactivated'; // Never translated
-			$body['deactivated_date'] = date('Y-m-d');
+			$body['deactivated_date'] = gmdate('Y-m-d');
 			
 			// Add deactivation form data
 			if( false !== get_option( 'wpbot_deactivation_reason_' . $this->plugin_name ) ) {
@@ -206,17 +206,17 @@ if( ! class_exists( 'Wp_Usage_Feedback') ) {
 		 */
 		public function form_default_text() {
 			$form = array();
-			$form['heading'] = __( 'Sorry to see you go', 'wpchatbot' );
-			$form['body'] = __( '', 'wpchatbot' );
+			$form['heading'] = esc_html('Sorry to see you go', 'slider-hero' );
+			$form['body'] 	 = esc_html(' ', 'slider-hero' );
 			$form['options'] = array(
-				__( 'Found a Bug', 'wpchatbot' ),
-				__( 'Need More Features', 'wpchatbot' ),
-				__( 'Deactivating Temporarily', 'wpchatbot' ),
-				__( 'Upgrading to Pro', 'wpchatbot' ),
+				__( 'Found a Bug', 'slider-hero' ),
+				__( 'Need More Features', 'slider-hero' ),
+				__( 'Deactivating Temporarily', 'slider-hero' ),
+				__( 'Upgrading to Pro', 'slider-hero' ),
 
 			);
-			$form['email'] = __( 'Please provide email so we can contact with bug fixes', 'wpchatbot' );
-			$form['details'] = __( 'Please provide some details so we can improve the plugin', 'wpchatbot' );
+			$form['email'] = esc_html('Please provide email so we can contact with bug fixes', 'slider-hero' );
+			$form['details'] = esc_html('Please provide some details so we can improve the plugin', 'slider-hero' );
 			return $form;
 		}
 		
@@ -260,7 +260,7 @@ if( ! class_exists( 'Wp_Usage_Feedback') ) {
 				$html .= '</div><!-- .wpb-goodbye-options -->';
 			}
 			$html .= '</div><!-- .wpb-goodbye-form-body -->';
-			$html .= '<p class="deactivating-spinner"><span class="spinner"></span> ' . __( 'Submitting form', 'wpbot-plugin' ) . '</p>';
+			$html .= '<p class="deactivating-spinner"><span class="spinner"></span> ' . esc_html('Submitting form', 'slider-hero' ) . '</p>';
 			?>
 			<div class="wpb-goodbye-form-bg"></div>
 			<style type="text/css">
@@ -340,7 +340,7 @@ if( ! class_exists( 'Wp_Usage_Feedback') ) {
 						var url = document.getElementById("wpb-goodbye-link-<?php echo esc_attr( $this->plugin_name ); ?>");
 						$('body').toggleClass('wpb-form-active');
 						$("#wpb-goodbye-form-<?php echo esc_attr( $this->plugin_name ); ?>").fadeIn();
-						$("#wpb-goodbye-form-<?php echo esc_attr( $this->plugin_name ); ?>").html( '<?php echo ( $html ); ?>' + '<div class="wpb-goodbye-form-footer"><p><a class="wpbot_just_deactivate" href="'+url+'">Just Deactivate</a> <a id="wpb-submit-form" class="button primary wpbot_submit_deactivate" href="#">Submit and Deactivate</a></p></div>');
+						$("#wpb-goodbye-form-<?php echo esc_attr( $this->plugin_name ); ?>").html( '<?php echo wp_kses_post( $html ); ?>' + '<div class="wpb-goodbye-form-footer"><p><a class="wpbot_just_deactivate" href="'+url+'">Just Deactivate</a> <a id="wpb-submit-form" class="button primary wpbot_submit_deactivate" href="#">Submit and Deactivate</a></p></div>');
 						$('#wpb-goodbye-reasons').focus();
 						$('#wpb-submit-form').on('click', function(e){
 							
@@ -370,7 +370,7 @@ if( ! class_exists( 'Wp_Usage_Feedback') ) {
 								'values': values,
 								'details': details,
 								'email': email,
-								'security': "<?php echo wp_create_nonce ( 'wpbot_goodbye_form' ); ?>",
+								'security': "<?php echo wp_kses_post(wp_create_nonce ( 'wpbot_goodbye_form' )); ?>",
 								'dataType': "json"
 							}
 							
@@ -400,11 +400,11 @@ if( ! class_exists( 'Wp_Usage_Feedback') ) {
 		public function goodbye_form_callback() {
 			check_ajax_referer( 'wpbot_goodbye_form', 'security' );
 			if( isset( $_POST['values'] ) ) {
-				$values = json_encode( wp_unslash( sanitize_text_field( $_POST['values'] ) ) );
+				$values = json_encode( sanitize_text_field( wp_unslash( $_POST['values'] ) ) );
 				update_option( 'wpbot_deactivation_reason_' . $this->plugin_name, $values );
 			}
 			if( isset( $_POST['details'] ) ) {
-				$details = sanitize_text_field( $_POST['details'] );
+				$details = sanitize_text_field( wp_unslash( $_POST['details'] ) );
 				update_option( 'wpbot_deactivation_details_' . $this->plugin_name, $details );
 			}
 

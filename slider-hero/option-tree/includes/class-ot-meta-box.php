@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /**
  * OptionTree Meta Box.
  *
@@ -260,7 +263,7 @@ if ( ! class_exists( 'OT_Meta_Box' ) ) {
 						$required_setting = array(
 							array(
 								'id'        => 'title',
-								'label'     => __( 'Title', 'option-tree' ),
+								'label'     => esc_html('Title', 'slider-hero' ),
 								'desc'      => '',
 								'std'       => '',
 								'type'      => 'text',
@@ -373,3 +376,4 @@ if ( ! function_exists( 'ot_register_meta_box' ) ) {
 		new OT_Meta_Box( $args );
 	}
 }
+

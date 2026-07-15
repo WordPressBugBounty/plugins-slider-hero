@@ -3,8 +3,8 @@ Contributors: quantumcloud
 Donate link: https://www.quantumcloud.com
 Tags: slider, video background, banner slider, elementor slider, video slider
 Requires at least: 4.6
-Tested up to: 6.9
-Stable tag: 9.1.2
+Tested up to: 7.0
+Stable tag: 9.1.4
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.quantumcloud.com
@@ -23,10 +23,10 @@ Slider Hero is not just your typical responsive image slider plugin for wordpres
 
 ** The free version works in the same way as the pro version just with less number of effects & features. The pro version also supports video sliders like Youtube Video Slider, Vimeo Video Slider or Custom Video Sliders. Video Sliders are not yet available in the free version.
 
-> Check the [Hero Introduction](http://www.slider-hero.com/intro/)
-> Dare to See [How Deep the Rabbit Hole Goes?](http://www.slider-hero.com/matrix-intro/)
+> Check the [Hero Introduction](https://dev2.testversions.com/sliderhero/intro/)
+> Dare to See [How Deep the Rabbit Hole Goes?](http://dev2.testversions.com/sliderhero//matrix-intro/)
 
-> Check out the Live Previews of the [Slider Hero](https://www.slider-hero.com/)
+> Check out the Live Previews of the [Slider Hero](https://dev2.testversions.com/sliderhero//)
 > Upgrade now to [Slider Hero Pro](https://www.quantumcloud.com/products/slider-hero/)
 
 = Create Modern Slider Carousels Easily =
@@ -34,15 +34,13 @@ Check this tutorial to see how fast, intuitive and easy it is to use this wordpr
 
 [youtube https://www.youtube.com/watch?v=KfH2KRpbObQ]
 
-> Looking for an Elegent Portfolio plugin? Try our [Portfolio X](https://wordpress.org/plugins/portfolio-x/)!
+> 🟪 Try the Best <strong>[FREE ChatBot for WordPress with AI - WPBot](https://wordpress.org/plugins/chatbot/)</strong>. It is an easy to use, Native, No coding required, AI ChatBot to provide Automated Live Chat Support. Use ChatBot to <strong>answer user questions</strong> and also <strong>collect information</strong> from the users using <strong>conversational forms</strong>. 
+> 🟪 Grab the [Best AI ChatBot for WordPress - WPBot](https://www.wpbot.pro/) Now!
 
 = Create Stunning Product Intro Adverts =
 Make unique product intros and adverts with like a pro without any additional editing tool. The intro creation process is extremely easy and insanely quick and FUN. Now introduce your products and services with a dramatic flair!
 
 [youtube https://www.youtube.com/watch?v=k9CFs-hiBUk]
-
-> //-> Try our <strong>[FREE ChatBot for WordPress with AI - WPBot](https://wordpress.org/plugins/chatbot/)</strong>. It is an easy to use, Native, No coding required, AI ChatBot to provide Automated Live Chat Support. Use ChatBot to <strong>answer user questions</strong> and also <strong>collect information</strong> from the users using <strong>conversational forms</strong>. It can be also be powered by DialogFlow, Tavily or OpenAI ChatGPT or simply use the built-in features to provide Live support and collect user data. ++ Check out [ChatBot for WordPress](https://www.wpbot.pro/) Demo.
-
 
 = Why Use Slider Hero Rather than Other WordPress Slider Plugin? =
 
@@ -58,17 +56,6 @@ The other unique feature of Slider Hero is the Intro Advert builder. Introduce y
 Build a combination of beautiful text animation along with the background animation. This can be applied in company  introductions, creative projects, for your product or service launch etc. You can easily change the color of the text, animation type and more! The intro builder interface is simple and intuitive. 
 
 > Upgrade to the [Professional Version](https://www.quantumcloud.com/products/slider-hero/)
-
-= Slider Hero Benefits = 
-
-This is the best wordpress header slider plugin with text overlay and cinematic background animation effects. This plugin is best used as Intro, Landing Page Slider or Home Page Slider. It can be used as a fullscreen slider plugin besides the full width or custom width modes. Create a memorable EXPERIENCE for your wordpress coming soon, splash page, home page or landing page that will impress your site visitors with a memorable first impression.
-
-You can use the Elementor Slider widget or Gutenberg Slider block to create HTML5 animated banners,<strong> HERO Banner</strong>, hero carousel with text and image, HERO text carousel, responsive header image slider, or simple image carousel. The pro version supports Parallax Effect and Ken Burns Effect.
-
-Marketers prefer Hero image or <strong>Hero sliders</strong> for homepage and landing pages because traditional image sliders do not convert customers as much as an animated bannere which typically occupies the most prime real estate of your website. This plugin provides a middle ground. It allows you to set a background Hero Image and/or select a GREAT javascript background animation effect and apply Title, Description and Buttons etc. as slides or carousel. <strong>Instant awesomeness</strong>. 
-
-There are quite a few great WordPress slider plugins available but they take a lot of efforts and expertise to produce awesome effects you see in their demos. With our plugin, you can make amazing looking Homepage or <strong>Landing Page Hero Sliders</strong> or animated header with cinematic effects easily and quickly like no others.
-
 
 = Slider Hero Use Cases =
 
@@ -207,7 +194,7 @@ This slider plugin is perfect to use on your Landing page, Home page, Coming Soo
 Intro Effect, Stripe Connect Effect, Clear Sky Effect, Water Ripple Effect, Aeronautics Effect, Antigravity Flow, Balls Gravity Effect, Bird Flying Effect, Blob Effect, Blade Effect, Blur Effect, Bubble, Campfire, Circle Intersection, Cloudy Sky Effect, Confetti Effect, Cosmic Web, Colorful Particle, Cursor And Paint,  Day Night Effect, Division Effect, Directional Force, Distance, Electric Clock, Firework, Fizzy Sparks, Float and Rain, Floating Leafs, Flowing Circle Effect, Flying Rocket Effect, Grid Effect, Helix Corruption, Helix Chaos, Helix Multiple, Glitch, Iconsahedron Effect, Intersecting Line Effect, Just Cloud, Link Particle, Liquid Landscape, Matrix Effect, Metaballs, Microcosm Effect, Moving Color, Wave, NASA, Neno, Hexagon, Noise Effect, Nyan Cat, Orbital Effect, Particle Effect, Particle Helix, Particle System, Hacker, Physics Bug, Racing Particles, Rain Effect, Rainy Season, Rays and Particles, Play or Work? Rain Of Line, Rising and falling cubes, Shape Animation, Space Elevator, Christmas Snow Effect, Squidematics, Stars Effect, Stellar Cloud, Subvisual, Tag Canvas, The Great Attractor, Thibaut, Tiny Galaxy Effect, Torus of Cubes, Water Effect, Wave Effect, Wave Animation Effect, Waaave Canvas, Walking Background, Star Trek Warp Speed, Water Swimming, Waving Cloth, Water Droplet, Wormhole Effect, Word Cloud, Valentine Effect, Ygekpg Effect
 
 > Upgrade to [Professional Version](https://www.quantumcloud.com/products/slider-hero/)
-> Pro Version Documentation [Documentation](https://www.quantumcloud.com/documentations/slider-hero/)
+
 
 = Getting Started  =
 
@@ -278,6 +265,12 @@ https://www.quantumcloud.com/products/support/
 
 
 == Changelog ==
+
+= 9.1.4 =
+# Improved security
+
+= 9.1.3 =
+# Improved security
 
 = 9.1.2 =
 # Nav menu updated

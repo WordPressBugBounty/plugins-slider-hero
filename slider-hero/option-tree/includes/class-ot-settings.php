@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /**
  * OptionTree Settings.
  *
@@ -264,7 +267,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
 
 						echo '<ul id="option-tree-header">';
 
-						$link = '<a href="https://wordpress.org/plugins/option-tree/" target="_blank">' . esc_html__( 'OptionTree', 'option-tree' ) . '</a>';
+						$link = '<a href="https://wordpress.org/plugins/option-tree/" target="_blank">' . esc_html( 'OptionTree', 'slider-hero' ) . '</a>';
 						echo '<li id="option-tree-logo">' . wp_kses_post( apply_filters( 'ot_header_logo_link', $link, $page['id'] ) ) . '</li>';
 
 						echo '<li id="option-tree-version"><span>' . esc_html( apply_filters( 'ot_header_version_text', 'OptionTree ' . OT_VERSION, $page['id'] ) ) . '</span></li>';
@@ -358,7 +361,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
 
 							echo '<input type="hidden" name="action" value="reset" />';
 
-							echo '<button type="submit" class="option-tree-ui-button button button-secondary left reset-settings" title="' . esc_html__( 'Reset Options', 'option-tree' ) . '">' . esc_html__( 'Reset Options', 'option-tree' ) . '</button>';
+							echo '<button type="submit" class="option-tree-ui-button button button-secondary left reset-settings" title="' . esc_html( 'Reset Options', 'slider-hero' ) . '">' . esc_html( 'Reset Options', 'slider-hero' ) . '</button>';
 
 							echo '</form>';
 						}
@@ -590,7 +593,7 @@ if ( ! class_exists( 'OT_Settings' ) ) {
 								$required_setting = array(
 									array(
 										'id'        => 'title',
-										'label'     => __( 'Title', 'option-tree' ),
+										'label'     => esc_html('Title', 'slider-hero' ),
 										'desc'      => '',
 										'std'       => '',
 										'type'      => 'text',
@@ -1010,3 +1013,4 @@ if ( ! function_exists( 'ot_register_settings' ) ) {
 		new OT_Settings( $args );
 	}
 }
+

@@ -139,7 +139,7 @@ $hero_description_tag = isset($params->hero_description_tag) ? $params->hero_des
 				
 				<div class="slider-x-item-title slider-x-item-title<?php echo intval( esc_html( $_id ) ); ?>">
 
-					<?php echo esc_attr( apply_filters('the_content', wp_unslash(htmlspecialchars_decode($slide->description))) ); ?>
+					<?php echo wp_kses_post( apply_filters('the_content', wp_unslash(htmlspecialchars_decode($slide->description))) ); ?>
 
 				</div>
 				<?php require(QCLD_sliderhero_view.'/slider_hero_front_end_buttons.php');?>
@@ -156,7 +156,7 @@ $hero_description_tag = isset($params->hero_description_tag) ? $params->hero_des
 			<div id="hg_stage">
 			  <div id="hg_credits"><span>0</span> <p>credits</p></div>
 			  <div id="hg_msg">Use your spacebar to keep me alive.</div>
-			  <div id="hg_bird"><img src="<?php echo QCLD_SLIDERHERO_IMAGES; ?>/ufo.png" alt="" /></div>
+			  <div id="hg_bird"><img src="<?php echo esc_url(QCLD_SLIDERHERO_IMAGES); ?>/ufo.png" alt="" /></div>
 			  
 			</div>	
 		<?php
@@ -164,10 +164,10 @@ $hero_description_tag = isset($params->hero_description_tag) ? $params->hero_des
 			elseif($_slider[0]->type=='hero_404')://code for hero_404
 		?>
 		<div class="qcld_hero_content_area">
-		<h2 class="hero_not_found"><span><?php echo wp_unslash( esc_js($slide->title)); ?></span></h2>
+		<h2 class="hero_not_found"><span><?php echo wp_kses_post( wp_unslash($slide->title)); ?></span></h2>
 		
 		<?php if(isset($params->hero404->title) and $params->hero404->title!=''): ?>
-		<div class="hero_not_found_title"><?php echo esc_attr( apply_filters('the_content', wp_unslash(htmlspecialchars_decode($slide->description))) ); ?></div>
+		<div class="hero_not_found_title"><?php echo wp_kses_post( apply_filters('the_content', wp_unslash(htmlspecialchars_decode($slide->description))) ); ?></div>
 		<?php endif; ?>
 		<?php require(QCLD_sliderhero_view.'/slider_hero_front_end_buttons.php');?>
 		</div>
@@ -182,7 +182,7 @@ $hero_description_tag = isset($params->hero_description_tag) ? $params->hero_des
 		?>
 			<div class="eachAnim" data-id="<?php echo esc_attr( $slide->ordering ); ?>" data-animtype="<?php echo (isset($config->hero_stomp_animation) && $config->hero_stomp_animation!=''?esc_attr( $config->hero_stomp_animation ):'zoomIn'); ?>" data-animout="<?php echo (isset($config->hero_stomp_animation_out) && $config->hero_stomp_animation_out!=''?esc_attr( $config->hero_stomp_animation_out ):'zoomOut'); ?>" data-delay="<?php echo (isset($config->hero_stomp_delay) && $config->hero_stomp_delay!=''?esc_attr( $config->hero_stomp_delay ):'500'); ?>" 
 			data-fontsize="<?php echo (isset($config->hero_stomp_fontsize) && $config->hero_stomp_fontsize!=''?esc_attr( $config->hero_stomp_fontsize ):''); ?>" data-fontweight="<?php echo (isset($config->hero_stomp_font_weight) && $config->hero_stomp_font_weight!=''?esc_attr( $config->hero_stomp_font_weight ):''); ?>" data-letterspacing="<?php echo (isset($config->hero_stomp_letter_spacing) && $config->hero_stomp_letter_spacing!=''?esc_attr( $config->hero_stomp_letter_spacing ):''); ?>" data-color="<?php echo (isset($config->hero_stomp_text_color) && $config->hero_stomp_text_color!=''?esc_attr( $config->hero_stomp_text_color ):''); ?>" style="display:none;<?php echo (isset($slide->image_link) && $slide->image_link!=''?'background:url('.esc_url( $slide->image_link ).')no-repeat':''); ?>;<?php echo (isset($config->hero_stomp_background_color)&&$config->hero_stomp_background_color!=''?'background-color:'.esc_attr( $config->hero_stomp_background_color ):''); ?>" data-fontfamily="<?php echo (isset($config->hero_intro_font_family)&&$config->hero_intro_font_family!=''?esc_attr( $config->hero_intro_font_family ):''); ?>">
-				<?php echo wp_unslash(esc_html($slide->title)); ?>
+				<?php echo wp_kses_post(wp_unslash($slide->title)); ?>
 			</div>
 			
 			
@@ -193,7 +193,7 @@ $hero_description_tag = isset($params->hero_description_tag) ? $params->hero_des
 			$preimg[] = $slide->image_link;
 		}
 		?>
-		<div class="qcld_hero_content_area" <?php echo ( isset($slide->image_link)&&$slide->image_link!='' && ( !isset($params->video) || $params->video!='youtube' ) ? 'data-bg-image="'.( $slide->image_link ).'"':'data-bg-image=""') ?> <?php echo (( isset($slider_key) && $slider_key > 0 ) ? 'style="display:none;"':'') ?>>
+		<div class="qcld_hero_content_area" <?php echo ( isset($slide->image_link)&&$slide->image_link!='' && ( !isset($params->video) || $params->video!='youtube' ) ? 'data-bg-image="'.esc_url( $slide->image_link ).'"':'data-bg-image=""') ?> <?php echo (( isset($slider_key) && $slider_key > 0 ) ? 'style="display:none;"':'') ?>>
 
 
 		
@@ -206,8 +206,8 @@ $hero_description_tag = isset($params->hero_description_tag) ? $params->hero_des
 						require(QCLD_sliderhero_view.'/slider_hero_front_end_title_effect.php');
 					}elseif($key=='description'){
 					?>
-						<div class="slider-x-item-title slider-x-item-title<?php echo intval( esc_html( $_id ) ); ?>">
-							<<?php echo $hero_description_tag; ?>>
+						<div class="slider-x-item-title slider-x-item-title<?php echo intval( esc_attr( $_id ) ); ?>">
+							<<?php echo esc_attr($hero_description_tag); ?>>
 							<?php
 
 								//Fixing for XSS issues ON 07-02-2024 by Kadir
@@ -217,7 +217,7 @@ $hero_description_tag = isset($params->hero_description_tag) ? $params->hero_des
 								echo wp_kses( wp_unslash(htmlspecialchars_decode($slide->description)), $arrayOfAllowedTags );
 
 							?>
-							</<?php echo $hero_description_tag; ?>>
+							</<?php echo esc_attr($hero_description_tag); ?>>
 						</div>
 					<?php
 					}else{
@@ -342,7 +342,7 @@ if($_slider[0]->type=='intro' and isset($params->newsliderafterend) and $params-
 <style type="text/css">
 <?php 
 $customCss = get_option( 'sh_plugin_options' );
-echo @$customCss['sh_custom_style'];
+echo wp_kses_post($customCss['sh_custom_style']);
 ?>
 </style>
 <?php

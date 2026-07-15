@@ -6,7 +6,7 @@
 		$( window ).on( "load", function() {
 
 			var data = {
-				'action': 'qcld_slider_free_ai_function_first_sld_ajax',
+				'action': 'qcld_sliderhero_free_ai_function_first_ajax',
 				'security': qcld_slider_free_ai_ajax_nonce
 			};
 

@@ -13,7 +13,8 @@
                 $.post(
                     ajaxurl,
                     {
-                        action : 'show_shortcodes_slider'
+                        action : 'show_shortcodes_slider',
+                        security: qchero_ajax_object.ajax_nonce
                         
                     },
                     function(data){

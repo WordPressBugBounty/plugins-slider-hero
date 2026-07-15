@@ -1407,9 +1407,9 @@ if(isset($params->tagcanvas->tags) and $params->tagcanvas->tags!=''):
 	foreach($htags as $k=>$v):
 ?>
 	<?php if(isset($params->tagcanvas->textcolor) && $params->tagcanvas->textcolor!=''): ?>
-	<a href="<?php echo(isset($hlinks[$k]) && $hlinks[$k]!=''?$hlinks[$k]:'#'); ?>" style="font-size: <?php echo rand(15,30) ?>px" ><?php echo esc_html(trim($v)); ?></a>
+	<a href="<?php echo esc_url(isset($hlinks[$k]) && $hlinks[$k]!=''?$hlinks[$k]:'#'); ?>" style="font-size: <?php echo esc_attr(wp_rand(15,30)); ?>px" ><?php echo esc_html(trim($v)); ?></a>
 	<?php else: ?>
-	<a href="<?php echo(isset($hlinks[$k]) && $hlinks[$k]!=''?$hlinks[$k]:'#'); ?>" style="font-size: <?php echo rand(15,30) ?>px"  ><?php echo esc_html(trim($v)); ?></a>
+	<a href="<?php echo esc_url(isset($hlinks[$k]) && $hlinks[$k]!=''?$hlinks[$k]:'#'); ?>" style="font-size: <?php echo esc_attr(wp_rand(15,30)); ?>px"  ><?php echo esc_html(trim($v)); ?></a>
 	<?php endif; ?>
 <?php 
 	endforeach;
@@ -1422,9 +1422,9 @@ if(isset($params->tagcanvas->tags) and $params->tagcanvas->tags!=''):
 
 <?php if($_slider[0]->type=='wave') : //code for wave effect ?>
 <svg id="slider_hero_mySVG" width="500" height="200" xmlns="http://www.w3.org/2000/svg">
-<path id="slider_hero_myPath" style="stroke: rgba(0, 0, 0, 0); fill: <?php echo (isset($params->wave->one_color)&&$params->wave->one_color!=''?$params->wave->one_color:'#AEE8FB') ?>"></path>
-<path id="slider_hero_myPath2" style="stroke: rgba(0, 0, 0, 0); fill: <?php echo (isset($params->wave->two_color)&&$params->wave->two_color!=''?$params->wave->two_color:'#AEE8FB') ?>"> </path>
-<path id="slider_hero_myPath3" style="stroke: rgba(0, 0, 0, 0); fill: <?php echo (isset($params->wave->three_color)&&$params->wave->three_color!=''?$params->wave->three_color:'#AEE8FB') ?>"></path>
+<path id="slider_hero_myPath" style="stroke: rgba(0, 0, 0, 0); fill: <?php echo esc_attr(isset($params->wave->one_color)&&$params->wave->one_color!=''?$params->wave->one_color:'#AEE8FB') ?>"></path>
+<path id="slider_hero_myPath2" style="stroke: rgba(0, 0, 0, 0); fill: <?php echo esc_attr(isset($params->wave->two_color)&&$params->wave->two_color!=''?$params->wave->two_color:'#AEE8FB') ?>"> </path>
+<path id="slider_hero_myPath3" style="stroke: rgba(0, 0, 0, 0); fill: <?php echo esc_attr(isset($params->wave->three_color)&&$params->wave->three_color!=''?$params->wave->three_color:'#AEE8FB') ?>"></path>
 </svg>
 <?php endif; ?>
 
@@ -1432,7 +1432,7 @@ if(isset($params->tagcanvas->tags) and $params->tagcanvas->tags!=''):
 
 <style type="text/css">
 .hero_circle {
-  fill: <?php echo (isset($params->metaballs->color)&&$params->metaballs->color!=''?$params->metaballs->color:'#3E82F7') ?>;
+  fill: <?php echo esc_attr(isset($params->metaballs->color)&&$params->metaballs->color!=''?$params->metaballs->color:'#3E82F7') ?>;
 }
 #slider_hero_particles{
 	position: absolute;

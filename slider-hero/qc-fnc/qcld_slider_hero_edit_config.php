@@ -6,10 +6,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 function qcld_check_slider_config($id){
 	
 	global $wpdb;
-	$type = sanitize_text_field($_GET['type']);
+	$type = isset($_GET['type']) ? sanitize_text_field(wp_unslash($_GET['type'])) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	
-	$query1 = "SELECT id, type, params FROM ".QCLD_TABLE_SLIDERS." where 1 and id=$id";
-	$row = $wpdb->get_row($query1);
+	$row = $wpdb->get_row($wpdb->prepare("SELECT id, type, params FROM {$wpdb->prefix}qcld_slider_hero_sliders WHERE id=%d", $id));
 	
 	if($row->type=='warp_speed'){
 		if( strpos( $row->params, 'warp_speed' ) === false ) {

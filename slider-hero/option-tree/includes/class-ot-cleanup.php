@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /**
  * OptionTree Cleanup.
  *
@@ -80,7 +83,7 @@ if ( ! class_exists( 'OT_Cleanup' ) ) {
 
 				$theme_check_bs = 'add_menu_' . 'page'; // phpcs:ignore
 
-				$theme_check_bs( apply_filters( 'ot_cleanup_page_title', __( 'OptionTree Cleanup', 'option-tree' ) ), apply_filters( 'ot_cleanup_menu_title', __( 'OptionTree Cleanup', 'option-tree' ) ), 'edit_theme_options', 'ot-cleanup', array( $this, 'options_page' ) );
+				$theme_check_bs( apply_filters( 'ot_cleanup_page_title', esc_html('OptionTree Cleanup', 'slider-hero' ) ), apply_filters( 'ot_cleanup_menu_title', esc_html('OptionTree Cleanup', 'slider-hero' ) ), 'edit_theme_options', 'ot-cleanup', array( $this, 'options_page' ) );
 			}
 		}
 
@@ -93,10 +96,10 @@ if ( ! class_exists( 'OT_Cleanup' ) ) {
 		public function cleanup_notice() {
 
 			if ( 'appearance_page_ot-cleanup' !== get_current_screen()->id ) {
-				$link = sprintf( '<a href="%s">%s</a>', admin_url( 'themes.php?page=ot-cleanup' ), apply_filters( 'ot_cleanup_menu_title', esc_html__( 'OptionTree Cleanup', 'option-tree' ) ) );
+				$link = sprintf( '<a href="%s">%s</a>', admin_url( 'themes.php?page=ot-cleanup' ), apply_filters( 'ot_cleanup_menu_title', esc_html( 'OptionTree Cleanup', 'slider-hero' ) ) );
 
 				/* translators: %s: internal admin page URL */
-				//echo '<div class="update-nag">' . sprintf( esc_html__( 'OptionTree has outdated data that should be removed. Please go to %s for more information.', 'option-tree' ), $link ) . '</div>'; // phpcs:ignore
+				//echo '<div class="update-nag">' . sprintf( esc_html( 'OptionTree has outdated data that should be removed. Please go to %s for more information.', 'slider-hero' ), $link ) . '</div>'; // phpcs:ignore
 			}
 		}
 
@@ -123,28 +126,28 @@ if ( ! class_exists( 'OT_Cleanup' ) ) {
 
 			echo '<div class="wrap">';
 
-			echo '<h3>' . apply_filters( 'ot_cleanup_page_title', esc_html__( 'OptionTree Cleanup', 'option-tree' ) ) . '</h3>'; // phpcs:ignore
+			echo '<h3>' . apply_filters( 'ot_cleanup_page_title', esc_html( 'OptionTree Cleanup', 'slider-hero' ) ) . '</h3>'; // phpcs:ignore
 
 			if ( $ot_maybe_cleanup_posts ) {
 
 				$posts = $wpdb->get_results( "SELECT * FROM $wpdb->posts WHERE post_type = 'option-tree'" ); // phpcs:ignore
 
-				echo '<h3>' . esc_html__( 'Multiple Media Posts', 'option-tree' ) . '</h3>';
+				echo '<h3>' . esc_html( 'Multiple Media Posts', 'slider-hero' ) . '</h3>';
 
 				/* translators: %1$s: number of media posts, %2$s: media post type, %3$s: table name */
-				$string = esc_html__( 'There are currently %1$s OptionTree media posts in your database. At some point in the past, a version of OptionTree added multiple %2$s media post objects cluttering up your %3$s table. There is no associated risk or harm that these posts have caused other than to add size to your overall database. Thankfully, there is a way to remove all these orphaned media posts and get your database cleaned up.', 'option-tree' );
+				$string = esc_html( 'There are currently %1$s OptionTree media posts in your database. At some point in the past, a version of OptionTree added multiple %2$s media post objects cluttering up your %3$s table. There is no associated risk or harm that these posts have caused other than to add size to your overall database. Thankfully, there is a way to remove all these orphaned media posts and get your database cleaned up.', 'slider-hero' );
 				echo '<p>' . sprintf( $string, '<code>' . number_format( count( $posts ) ) . '</code>', '<tt>option-tree</tt>', '<tt>' . $wpdb->posts . '</tt>' ) . '</p>'; // phpcs:ignore
 
 				/* translators: %s: number of media posts being deleted  */
-				echo '<p>' . sprintf( esc_html__( 'By clicking the button below, OptionTree will delete %s records and consolidate them into one single OptionTree media post for uploading attachments to. Additionally, the attachments will have their parent ID updated to the correct media post.', 'option-tree' ), '<code>' . number_format( count( $posts ) - 1 ) . '</code>' ) . '</p>';
+				echo '<p>' . sprintf( esc_html( 'By clicking the button below, OptionTree will delete %s records and consolidate them into one single OptionTree media post for uploading attachments to. Additionally, the attachments will have their parent ID updated to the correct media post.', 'slider-hero' ), '<code>' . number_format( count( $posts ) - 1 ) . '</code>' ) . '</p>';
 
-				echo '<p><strong>' . esc_html__( 'This could take a while to fully process depending on how many records you have in your database, so please be patient and wait for the script to finish.', 'option-tree' ) . '</strong></p>';
+				echo '<p><strong>' . esc_html( 'This could take a while to fully process depending on how many records you have in your database, so please be patient and wait for the script to finish.', 'slider-hero' ) . '</strong></p>';
 
 				/* translators: %1$s: the word Note wrapped in a strong attribute, %2$s: number of posts being deleted */
-				$string = __( '%1$s: Your server is running in safe mode. Which means this page will automatically reload after deleting %2$s posts, you can filter this number using %3$s if your server is having trouble processing that many at one time.', 'option-tree' );
-				echo $safe_mode ? '<p>' . sprintf( $string, '<strong>' . esc_html__( 'Note', 'option-tree' ) . '</strong>:', apply_filters( 'ot_consolidate_posts_reload', 500 ), '<tt>ot_consolidate_posts_reload</tt>' ) . '</p>' : ''; // phpcs:ignore
+				$string = esc_html('%1$s: Your server is running in safe mode. Which means this page will automatically reload after deleting %2$s posts, you can filter this number using %3$s if your server is having trouble processing that many at one time.', 'slider-hero' );
+				echo $safe_mode ? '<p>' . sprintf( $string, '<strong>' . esc_html( 'Note', 'slider-hero' ) . '</strong>:', apply_filters( 'ot_consolidate_posts_reload', 500 ), '<tt>ot_consolidate_posts_reload</tt>' ) . '</p>' : ''; // phpcs:ignore
 
-				echo '<p><a class="button button-primary" href="' . wp_nonce_url( admin_url( 'themes.php?page=ot-cleanup' ), 'consolidate-posts' ) . '">' . esc_html__( 'Consolidate Posts', 'option-tree' ) . '</a></p>'; // phpcs:ignore
+				echo '<p><a class="button button-primary" href="' . wp_nonce_url( admin_url( 'themes.php?page=ot-cleanup' ), 'consolidate-posts' ) . '">' . esc_html( 'Consolidate Posts', 'slider-hero' ) . '</a></p>'; // phpcs:ignore
 
 				if ( isset( $_GET['_wpnonce'] ) && wp_verify_nonce( $_GET['_wpnonce'], 'consolidate-posts' ) ) { // phpcs:ignore
 
@@ -173,7 +176,7 @@ if ( ! class_exists( 'OT_Cleanup' ) ) {
 
 						// Reload script in safe mode.
 						if ( $safe_mode && $count > absint( apply_filters( 'ot_consolidate_posts_reload', 500 ) ) ) {
-							echo '<br />' . esc_html__( 'Reloading...', 'option-tree' );
+							echo '<br />' . esc_html( 'Reloading...', 'slider-hero' );
 							echo '
                 <script>
                   setTimeout( ot_script_reload, 3000 )
@@ -191,7 +194,7 @@ if ( ! class_exists( 'OT_Cleanup' ) ) {
 						if ( ! empty( $attachments ) ) {
 
 							/* translators: %1$s: the post type, %2$s: the post ID  */
-							$string = esc_html__( 'Updating Attachments parent ID for %1$s post %2$s.', 'option-tree' );
+							$string = esc_html( 'Updating Attachments parent ID for %1$s post %2$s.', 'slider-hero' );
 							echo sprintf( $string . '<br />', '<tt>option-tree</tt>', '<tt>#' . $post->ID . '</tt>' ); // phpcs:ignore
 
 							foreach ( $attachments as $attachment_id => $attachment ) {
@@ -205,7 +208,7 @@ if ( ! class_exists( 'OT_Cleanup' ) ) {
 						}
 
 						/* translators: %1$s: the post type, %2$s: the post ID  */
-						$string = esc_html__( 'Deleting %1$s post %2$s.', 'option-tree' );
+						$string = esc_html( 'Deleting %1$s post %2$s.', 'slider-hero' );
 
 						// Delete post.
 						echo sprintf( $string . '<br />', '<tt>option-tree</tt>', '<tt>#' . $post->ID . '</tt>' ); // phpcs:ignore
@@ -213,7 +216,7 @@ if ( ! class_exists( 'OT_Cleanup' ) ) {
 
 					}
 
-					echo '<br />' . esc_html__( 'Clean up script has completed, the page will now reload...', 'option-tree' );
+					echo '<br />' . esc_html( 'Clean up script has completed, the page will now reload...', 'slider-hero' );
 
 					echo '
             <script>
@@ -232,19 +235,19 @@ if ( ! class_exists( 'OT_Cleanup' ) ) {
 
 				echo $ot_maybe_cleanup_posts ? '<hr />' : '';
 
-				echo '<h3>' . esc_html__( 'Outdated Table', 'option-tree' ) . '</h3>';
+				echo '<h3>' . esc_html( 'Outdated Table', 'slider-hero' ) . '</h3>';
 
 				/* translators: %s: table name  */
-				$string = esc_html__( 'If you have upgraded from an old 1.x version of OptionTree at some point, you have an extra %s table in your database that can be removed. It\'s not hurting anything, but does not need to be there. If you want to remove it. Click the button below.', 'option-tree' );
+				$string = esc_html( 'If you have upgraded from an old 1.x version of OptionTree at some point, you have an extra %s table in your database that can be removed. It\'s not hurting anything, but does not need to be there. If you want to remove it. Click the button below.', 'slider-hero' );
 
 				echo '<p>' . sprintf( $string, '<tt>' . $table_name . '</tt>' ) . '</p>'; // phpcs:ignore
 
-				echo '<p><a class="button button-primary" href="' . esc_url_raw( wp_nonce_url( admin_url( 'themes.php?page=ot-cleanup' ), 'drop-table' ) ) . '">' . esc_html__( 'Drop Table', 'option-tree' ) . '</a></p>';
+				echo '<p><a class="button button-primary" href="' . esc_url_raw( wp_nonce_url( admin_url( 'themes.php?page=ot-cleanup' ), 'drop-table' ) ) . '">' . esc_html( 'Drop Table', 'slider-hero' ) . '</a></p>';
 
 				if ( isset( $_GET['_wpnonce'] ) && wp_verify_nonce( $_GET['_wpnonce'], 'drop-table' ) ) { // phpcs:ignore
 
 					/* translators: %s: table name  */
-					$string = esc_html__( 'Deleting the outdated and unused %s table...', 'option-tree' );
+					$string = esc_html( 'Deleting the outdated and unused %s table...', 'slider-hero' );
 
 					echo '<p>' . sprintf( $string, '<tt>' . $table_name . '</tt>' ) . '</p>'; // phpcs:ignore
 
@@ -253,7 +256,7 @@ if ( ! class_exists( 'OT_Cleanup' ) ) {
 					if ( $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $table_name ) ) != $table_name ) { // phpcs:ignore
 
 						/* translators: %s: table name  */
-						$string = esc_html__( 'The %s table has been successfully deleted. The page will now reload...', 'option-tree' );
+						$string = esc_html( 'The %s table has been successfully deleted. The page will now reload...', 'slider-hero' );
 
 						echo '<p>' . sprintf( $string, '<tt>' . $table_name . '</tt>' ) . '</p>'; // phpcs:ignore
 
@@ -268,7 +271,7 @@ if ( ! class_exists( 'OT_Cleanup' ) ) {
 					} else {
 
 						/* translators: %s: table name  */
-						$string = esc_html__( 'Something went wrong. The %s table was not deleted.', 'option-tree' );
+						$string = esc_html( 'Something went wrong. The %s table was not deleted.', 'slider-hero' );
 
 						echo '<p>' . sprintf( $string, '<tt>' . $table_name . '</tt>' ) . '</p>'; // phpcs:ignore
 					}
@@ -295,3 +298,4 @@ if ( ! class_exists( 'OT_Cleanup' ) ) {
 }
 
 new OT_Cleanup();
+

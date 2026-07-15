@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /**
  * OptionTree Settings Page Functions.
  *
@@ -31,20 +34,20 @@ if ( ! function_exists( 'ot_type_theme_options_ui' ) ) {
 		// Description.
 		echo '<div class="description">';
 
-		echo '<h4>' . esc_html__( 'Warning!', 'option-tree' ) . '</h4>';
+		echo '<h4>' . esc_html( 'Warning!', 'slider-hero' ) . '</h4>';
 
 		/* translators: %s: link to theme options */
-		$string = esc_html__( 'Go to the %s page if you want to save data, this page is for adding settings.', 'option-tree' );
-		echo '<p class="warning">' . sprintf( $string, '<a href="' . esc_url_raw( get_admin_url( $blog_id, apply_filters( 'ot_theme_options_parent_slug', 'themes.php' ) ) . '?page=' . apply_filters( 'ot_theme_options_menu_slug', 'ot-theme-options' ) ) . '"><code>' . esc_html__( 'Appearance->Theme Options', 'option-tree' ) . '</code></a>' ) . '</p>'; // phpcs:ignore
+		$string = esc_html( 'Go to the %s page if you want to save data, this page is for adding settings.', 'slider-hero' );
+		echo '<p class="warning">' . sprintf( $string, '<a href="' . esc_url_raw( get_admin_url( $blog_id, apply_filters( 'ot_theme_options_parent_slug', 'themes.php' ) ) . '?page=' . apply_filters( 'ot_theme_options_menu_slug', 'ot-theme-options' ) ) . '"><code>' . esc_html( 'Appearance->Theme Options', 'slider-hero' ) . '</code></a>' ) . '</p>'; // phpcs:ignore
 
 		/* translators: %s: link to documentation */
-		$string = esc_html__( 'If you\'re unsure or not completely positive that you should be editing these settings, you should read the %s first.', 'option-tree' );
-		echo '<p class="warning">' . sprintf( $string, '<a href="' . esc_url_raw( get_admin_url( $blog_id, 'admin.php?page=ot-documentation' ) ) . '"><code>' . esc_html__( 'OptionTree->Documentation', 'option-tree' ) . '</code></a>' ) . '</p>'; // phpcs:ignore
+		$string = esc_html( 'If you\'re unsure or not completely positive that you should be editing these settings, you should read the %s first.', 'slider-hero' );
+		echo '<p class="warning">' . sprintf( $string, '<a href="' . esc_url_raw( get_admin_url( $blog_id, 'admin.php?page=ot-documentation' ) ) . '"><code>' . esc_html( 'OptionTree->Documentation', 'slider-hero' ) . '</code></a>' ) . '</p>'; // phpcs:ignore
 
-		echo '<h4>' . esc_html__( 'Things could break or be improperly displayed to the end-user if you do one of the following:', 'option-tree' ) . '</h4>';
-		echo '<p class="warning">' . esc_html__( 'Give two sections the same ID, give two settings the same ID, give two contextual help content areas the same ID, don\'t create any settings, or have a section at the end of the settings list.', 'option-tree' ) . '</p>';
-		echo '<p>' . esc_html__( 'You can create as many settings as your project requires and use them how you see fit. When you add a setting here, it will be available on the Theme Options page for use in your theme. To separate your settings into sections, click the "Add Section" button, fill in the input fields, and a new navigation menu item will be created.', 'option-tree' ) . '</p>';
-		echo '<p>' . esc_html__( 'All of the settings can be sorted and rearranged to your liking with Drag & Drop. Don\'t worry about the order in which you create your settings, you can always reorder them.', 'option-tree' ) . '</p>';
+		echo '<h4>' . esc_html( 'Things could break or be improperly displayed to the end-user if you do one of the following:', 'slider-hero' ) . '</h4>';
+		echo '<p class="warning">' . esc_html( 'Give two sections the same ID, give two settings the same ID, give two contextual help content areas the same ID, don\'t create any settings, or have a section at the end of the settings list.', 'slider-hero' ) . '</p>';
+		echo '<p>' . esc_html( 'You can create as many settings as your project requires and use them how you see fit. When you add a setting here, it will be available on the Theme Options page for use in your theme. To separate your settings into sections, click the "Add Section" button, fill in the input fields, and a new navigation menu item will be created.', 'slider-hero' ) . '</p>';
+		echo '<p>' . esc_html( 'All of the settings can be sorted and rearranged to your liking with Drag & Drop. Don\'t worry about the order in which you create your settings, you can always reorder them.', 'slider-hero' ) . '</p>';
 
 		echo '</div>';
 
@@ -90,18 +93,18 @@ if ( ! function_exists( 'ot_type_theme_options_ui' ) ) {
 		echo '</ul>';
 
 		// Buttons.
-		echo '<a href="javascript:void(0);" class="option-tree-section-add option-tree-ui-button button hug-left">' . esc_html__( 'Add Section', 'option-tree' ) . '</a>';
-		echo '<a href="javascript:void(0);" class="option-tree-setting-add option-tree-ui-button button">' . esc_html__( 'Add Setting', 'option-tree' ) . '</a>';
-		echo '<button class="option-tree-ui-button button button-primary right hug-right">' . esc_html__( 'Save Changes', 'option-tree' ) . '</button>';
+		echo '<a href="javascript:void(0);" class="option-tree-section-add option-tree-ui-button button hug-left">' . esc_html( 'Add Section', 'slider-hero' ) . '</a>';
+		echo '<a href="javascript:void(0);" class="option-tree-setting-add option-tree-ui-button button">' . esc_html( 'Add Setting', 'slider-hero' ) . '</a>';
+		echo '<button class="option-tree-ui-button button button-primary right hug-right">' . esc_html( 'Save Changes', 'slider-hero' ) . '</button>';
 
 		// Sidebar textarea.
 		echo '
 		<div class="format-setting-label" id="contextual-help-label">
-			<h3 class="label">' . esc_html__( 'Contextual Help', 'option-tree' ) . '</h3>
+			<h3 class="label">' . esc_html( 'Contextual Help', 'slider-hero' ) . '</h3>
 		</div>
 		<div class="format-settings" id="contextual-help-setting">
 			<div class="format-setting type-textarea no-desc">
-				<div class="description"><strong>' . esc_html__( 'Contextual Help Sidebar', 'option-tree' ) . '</strong>: ' . esc_html__( 'If you decide to add contextual help to the Theme Option page, enter the optional "Sidebar" HTML here. This would be an extremely useful place to add links to your themes documentation or support forum. Only after you\'ve added some content below will this display to the user.', 'option-tree' ) . '</div>
+				<div class="description"><strong>' . esc_html( 'Contextual Help Sidebar', 'slider-hero' ) . '</strong>: ' . esc_html( 'If you decide to add contextual help to the Theme Option page, enter the optional "Sidebar" HTML here. This would be an extremely useful place to add links to your themes documentation or support forum. Only after you\'ve added some content below will this display to the user.', 'slider-hero' ) . '</div>
 				<div class="format-setting-inner">
 					<textarea class="textarea" rows="10" cols="40" name="' . esc_attr( ot_settings_id() ) . '[contextual_help][sidebar]">' . ( isset( $settings['contextual_help']['sidebar'] ) ? esc_html( $settings['contextual_help']['sidebar'] ) : '' ) . '</textarea>
 				</div>
@@ -128,8 +131,8 @@ if ( ! function_exists( 'ot_type_theme_options_ui' ) ) {
 
 		echo '</ul>';
 
-		echo '<a href="javascript:void(0);" class="option-tree-help-add option-tree-ui-button button hug-left">' . esc_html__( 'Add Contextual Help Content', 'option-tree' ) . '</a>';
-		echo '<button class="option-tree-ui-button button button-primary right hug-right">' . esc_html__( 'Save Changes', 'option-tree' ) . '</button>';
+		echo '<a href="javascript:void(0);" class="option-tree-help-add option-tree-ui-button button hug-left">' . esc_html( 'Add Contextual Help Content', 'slider-hero' ) . '</a>';
+		echo '<button class="option-tree-ui-button button button-primary right hug-right">' . esc_html( 'Save Changes', 'slider-hero' ) . '</button>';
 
 		echo '</div>';
 
@@ -160,9 +163,9 @@ if ( ! function_exists( 'ot_type_import_settings' ) ) {
 		// Description.
 		echo '<div class="description">';
 
-		echo '<p>' . esc_html__( 'To import your Settings copy and paste what appears to be a random string of alpha numeric characters into this textarea and press the "Import Settings" button.', 'option-tree' ) . '</p>';
+		echo '<p>' . esc_html( 'To import your Settings copy and paste what appears to be a random string of alpha numeric characters into this textarea and press the "Import Settings" button.', 'slider-hero' ) . '</p>';
 
-		echo '<button class="option-tree-ui-button button button-primary right hug-right">' . esc_html__( 'Import Settings', 'option-tree' ) . '</button>';
+		echo '<button class="option-tree-ui-button button button-primary right hug-right">' . esc_html( 'Import Settings', 'slider-hero' ) . '</button>';
 
 		echo '</div>';
 
@@ -201,12 +204,12 @@ if ( ! function_exists( 'ot_type_import_data' ) ) {
 		echo '<div class="description">';
 
 		if ( OT_SHOW_SETTINGS_IMPORT ) {
-			echo '<p>' . esc_html__( 'Only after you\'ve imported the Settings should you try and update your Theme Options.', 'option-tree' ) . '</p>';
+			echo '<p>' . esc_html( 'Only after you\'ve imported the Settings should you try and update your Theme Options.', 'slider-hero' ) . '</p>';
 		}
 
-		echo '<p>' . esc_html__( 'To import your Theme Options copy and paste what appears to be a random string of alpha numeric characters into this textarea and press the "Import Theme Options" button.', 'option-tree' ) . '</p>';
+		echo '<p>' . esc_html( 'To import your Theme Options copy and paste what appears to be a random string of alpha numeric characters into this textarea and press the "Import Theme Options" button.', 'slider-hero' ) . '</p>';
 
-		echo '<button class="option-tree-ui-button button button-primary right hug-right">' . esc_html__( 'Import Theme Options', 'option-tree' ) . '</button>';
+		echo '<button class="option-tree-ui-button button button-primary right hug-right">' . esc_html( 'Import Theme Options', 'slider-hero' ) . '</button>';
 
 		echo '</div>';
 
@@ -244,12 +247,12 @@ if ( ! function_exists( 'ot_type_import_layouts' ) ) {
 		echo '<div class="description">';
 
 		if ( OT_SHOW_SETTINGS_IMPORT ) {
-			echo '<p>' . esc_html__( 'Only after you\'ve imported the Settings should you try and update your Layouts.', 'option-tree' ) . '</p>';
+			echo '<p>' . esc_html( 'Only after you\'ve imported the Settings should you try and update your Layouts.', 'slider-hero' ) . '</p>';
 		}
 
-		echo '<p>' . esc_html__( 'To import your Layouts copy and paste what appears to be a random string of alpha numeric characters into this textarea and press the "Import Layouts" button. Keep in mind that when you import your layouts, the active layout\'s saved data will write over the current data set for your Theme Options.', 'option-tree' ) . '</p>';
+		echo '<p>' . esc_html( 'To import your Layouts copy and paste what appears to be a random string of alpha numeric characters into this textarea and press the "Import Layouts" button. Keep in mind that when you import your layouts, the active layout\'s saved data will write over the current data set for your Theme Options.', 'slider-hero' ) . '</p>';
 
-		echo '<button class="option-tree-ui-button button button-primary right hug-right">' . esc_html__( 'Import Layouts', 'option-tree' ) . '</button>';
+		echo '<button class="option-tree-ui-button button button-primary right hug-right">' . esc_html( 'Import Layouts', 'slider-hero' ) . '</button>';
 
 		echo '</div>';
 
@@ -288,8 +291,8 @@ if ( ! function_exists( 'ot_type_export_settings_file' ) ) {
 		echo '<div class="description">';
 
 		/* translators: %1$s: file name, %2$s: link to I18n docs, %3$s: link to internal docs */
-		$string = esc_html__( 'Export your Settings into a fully functional %1$s file. If you want to add your own custom %2$s text domain to the file, enter it into the text field before exporting. For more information on how to use this file read the documentation on %3$s. Remember, you should always check the file for errors before including it in your theme.', 'option-tree' );
-		echo '<p>' . sprintf( $string, '<code>theme-options.php</code>', '<a href="http://codex.wordpress.org/I18n_for_WordPress_Developers" target="_blank">I18n</a>', '<a href="' . get_admin_url( $blog_id, 'admin.php?page=ot-documentation#section_theme_mode' ) . '">' . esc_html__( 'Theme Mode', 'option-tree' ) . '</a>' ) . '</p>'; // phpcs:ignore
+		$string = esc_html( 'Export your Settings into a fully functional %1$s file. If you want to add your own custom %2$s text domain to the file, enter it into the text field before exporting. For more information on how to use this file read the documentation on %3$s. Remember, you should always check the file for errors before including it in your theme.', 'slider-hero' );
+		echo '<p>' . sprintf( $string, '<code>theme-options.php</code>', '<a href="http://codex.wordpress.org/I18n_for_WordPress_Developers" target="_blank">I18n</a>', '<a href="' . get_admin_url( $blog_id, 'admin.php?page=ot-documentation#section_theme_mode' ) . '">' . esc_html( 'Theme Mode', 'slider-hero' ) . '</a>' ) . '</p>'; // phpcs:ignore
 
 		echo '</div>';
 
@@ -297,7 +300,7 @@ if ( ! function_exists( 'ot_type_export_settings_file' ) ) {
 
 		echo '<input type="text" name="domain" value="" class="widefat option-tree-ui-input" placeholder="text-domain" autocomplete="off" />';
 
-		echo '<button class="option-tree-ui-button button button-primary hug-left">' . esc_html__( 'Export Settings File', 'option-tree' ) . '</button>';
+		echo '<button class="option-tree-ui-button button button-primary hug-left">' . esc_html( 'Export Settings File', 'slider-hero' ) . '</button>';
 
 		echo '</div>';
 
@@ -324,8 +327,8 @@ if ( ! function_exists( 'ot_type_export_settings' ) ) {
 		echo '<div class="description">';
 
 		/* translators: %1$s: visual path to import, %2$s: visual path to settings */
-		$string = esc_html__( 'Export your Settings by highlighting this text and doing a copy/paste into a blank .txt file. Then save the file for importing into another install of WordPress later. Alternatively, you could just paste it into the %1$s %1$s textarea on another web site.', 'option-tree' );
-		echo '<p>' . sprintf( $string, '<code>' . esc_html__( 'OptionTree->Settings->Import', 'option-tree' ) . '</code>', '<code>' . esc_html__( 'Settings', 'option-tree' ) . '</code>' ) . '</p>'; // phpcs:ignore
+		$string = esc_html( 'Export your Settings by highlighting this text and doing a copy/paste into a blank .txt file. Then save the file for importing into another install of WordPress later. Alternatively, you could just paste it into the %1$s %1$s textarea on another web site.', 'slider-hero' );
+		echo '<p>' . sprintf( $string, '<code>' . esc_html( 'OptionTree->Settings->Import', 'slider-hero' ) . '</code>', '<code>' . esc_html( 'Settings', 'slider-hero' ) . '</code>' ) . '</p>'; // phpcs:ignore
 
 		echo '</div>';
 
@@ -359,8 +362,8 @@ if ( ! function_exists( 'ot_type_export_data' ) ) {
 		echo '<div class="description">';
 
 		/* translators: %1$s: visual path to import, %2$s: visual path to theme options */
-		$string = esc_html__( 'Export your Theme Options data by highlighting this text and doing a copy/paste into a blank .txt file. Then save the file for importing into another install of WordPress later. Alternatively, you could just paste it into the %1$s %2$s textarea on another web site.', 'option-tree' );
-		echo '<p>' . sprintf( $string, '<code>' . esc_html__( 'OptionTree->Settings->Import', 'option-tree' ) . '</code>', '<code>' . esc_html__( 'Theme Options', 'option-tree' ) . '</code>' ) . '</p>'; // phpcs:ignore
+		$string = esc_html( 'Export your Theme Options data by highlighting this text and doing a copy/paste into a blank .txt file. Then save the file for importing into another install of WordPress later. Alternatively, you could just paste it into the %1$s %2$s textarea on another web site.', 'slider-hero' );
+		echo '<p>' . sprintf( $string, '<code>' . esc_html( 'OptionTree->Settings->Import', 'slider-hero' ) . '</code>', '<code>' . esc_html( 'Theme Options', 'slider-hero' ) . '</code>' ) . '</p>'; // phpcs:ignore
 
 		echo '</div>';
 
@@ -394,8 +397,8 @@ if ( ! function_exists( 'ot_type_export_layouts' ) ) {
 		echo '<div class="description">';
 
 		/* translators: %1$s: visual path to import, %2$s: visual path to layouts */
-		$string = esc_html__( 'Export your Layouts by highlighting this text and doing a copy/paste into a blank .txt file. Then save the file for importing into another install of WordPress later. Alternatively, you could just paste it into the %1$s %2$s textarea on another web site.', 'option-tree' );
-		echo '<p>' . sprintf( $string, '<code>' . esc_html__( 'OptionTree->Settings->Import', 'option-tree' ) . '</code>', '<code>' . esc_html__( 'Layouts', 'option-tree' ) . '</code>' ) . '</p>'; // phpcs:ignore
+		$string = esc_html( 'Export your Layouts by highlighting this text and doing a copy/paste into a blank .txt file. Then save the file for importing into another install of WordPress later. Alternatively, you could just paste it into the %1$s %2$s textarea on another web site.', 'slider-hero' );
+		echo '<p>' . sprintf( $string, '<code>' . esc_html( 'OptionTree->Settings->Import', 'slider-hero' ) . '</code>', '<code>' . esc_html( 'Layouts', 'slider-hero' ) . '</code>' ) . '</p>'; // phpcs:ignore
 
 		echo '</div>';
 
@@ -432,14 +435,14 @@ if ( ! function_exists( 'ot_type_modify_layouts' ) ) {
 		// Description.
 		echo '<div class="description">';
 
-		echo '<p>' . esc_html__( 'To add a new layout enter a unique lower case alphanumeric string (dashes allowed) in the text field and click "Save Layouts".', 'option-tree' ) . '</p>';
-		echo '<p>' . esc_html__( 'As well, you can activate, remove, and drag & drop the order; all situations require you to click "Save Layouts" for the changes to be applied.', 'option-tree' ) . '</p>';
-		echo '<p>' . esc_html__( 'When you create a new layout it will become active and any changes made to the Theme Options will be applied to it. If you switch back to a different layout immediately after creating a new layout that new layout will have a snapshot of the current Theme Options data attached to it.', 'option-tree' ) . '</p>';
+		echo '<p>' . esc_html( 'To add a new layout enter a unique lower case alphanumeric string (dashes allowed) in the text field and click "Save Layouts".', 'slider-hero' ) . '</p>';
+		echo '<p>' . esc_html( 'As well, you can activate, remove, and drag & drop the order; all situations require you to click "Save Layouts" for the changes to be applied.', 'slider-hero' ) . '</p>';
+		echo '<p>' . esc_html( 'When you create a new layout it will become active and any changes made to the Theme Options will be applied to it. If you switch back to a different layout immediately after creating a new layout that new layout will have a snapshot of the current Theme Options data attached to it.', 'slider-hero' ) . '</p>';
 
 		if ( OT_SHOW_DOCS ) {
 			/* translators: %s: visual path to layouts overview */
-			$string = esc_html__( 'Visit %s to see a more in-depth description of what layouts are and how to use them.', 'option-tree' );
-			echo '<p>' . sprintf( $string, '<code>' . esc_html__( 'OptionTree->Documentation->Layouts Overview', 'option-tree' ) . '</code>' ) . '</p>'; // phpcs:ignore
+			$string = esc_html( 'Visit %s to see a more in-depth description of what layouts are and how to use them.', 'slider-hero' );
+			echo '<p>' . sprintf( $string, '<code>' . esc_html( 'OptionTree->Documentation->Layouts Overview', 'slider-hero' ) . '</code>' ) . '</p>'; // phpcs:ignore
 		}
 
 		echo '</div>';
@@ -476,7 +479,7 @@ if ( ! function_exists( 'ot_type_modify_layouts' ) ) {
 
 		echo '</ul>';
 
-		echo '<button class="option-tree-ui-button button button-primary right hug-right">' . esc_html__( 'Save Layouts', 'option-tree' ) . '</button>';
+		echo '<button class="option-tree-ui-button button button-primary right hug-right">' . esc_html( 'Save Layouts', 'slider-hero' ) . '</button>';
 
 		echo '</div>';
 
@@ -485,3 +488,4 @@ if ( ! function_exists( 'ot_type_modify_layouts' ) ) {
 		echo '</form>';
 	}
 }
+

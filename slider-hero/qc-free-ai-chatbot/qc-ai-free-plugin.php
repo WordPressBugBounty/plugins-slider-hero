@@ -1,13 +1,12 @@
 <?php
-if (defined('ABSPATH') === false) {
+if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-add_action( 'wp_ajax_qcld_slider_free_ai_function_first_sld_ajax', 'qcld_slider_free_ai_function_first_sld_ajax' );
-if( !function_exists('qcld_slider_free_ai_function_first_sld_ajax') ){
+add_action( 'wp_ajax_qcld_sliderhero_free_ai_function_first_ajax', 'qcld_sliderhero_free_ai_function_first_ajax' );
+if( !function_exists('qcld_sliderhero_free_ai_function_first_ajax') ){
 
-    function qcld_slider_free_ai_function_first_sld_ajax(){
-
+    function qcld_sliderhero_free_ai_function_first_ajax(){
             check_ajax_referer( 'qc-clr', 'security');
 
             require_once ABSPATH . 'wp-admin/includes/plugin-install.php';
@@ -23,11 +22,15 @@ if( !function_exists('qcld_slider_free_ai_function_first_sld_ajax') ){
                         'icons'             => true,
                         'reviews'           => true, // excludes all reviews
                     ],
-        			'live_preview'   => 'https://www.wpbot.pro/',
-        			'update_to_pro'  => 'https://www.wpbot.pro/pricing/'
+                    'live_preview'   => 'https://www.wpbot.pro/',
+                    'update_to_pro'  => 'https://www.wpbot.pro/pricing/'
                 ]
 
+
+
             ];
+
+
 
         ?>
 
@@ -83,15 +86,15 @@ if( !function_exists('qcld_slider_free_ai_function_first_sld_ajax') ){
                             $title = wp_kses( $plugin['name'], $qcld_chatplugintags );
 
                             // Remove any HTML from the description.
-                            $description = strip_tags( $plugin['short_description'] );
+                            $description = wp_strip_all_tags( $plugin['short_description'] );
                             $version     = wp_kses( $plugin['version'], $qcld_chatplugintags );
 
-                            $name = strip_tags( $title . ' ' . $version );
+                            $name = wp_strip_all_tags( $title . ' ' . $version );
 
                             $author = wp_kses( $plugin['author'], $qcld_chatplugintags );
                             if ( ! empty( $author ) ) {
                                 /* translators: %s: Plugin author. */
-                                $author = ' <cite>' . sprintf( __( 'By %s' ), $author ) . '</cite>';
+                                $author = ' <cite>' . sprintf( esc_html( 'By %s' ), $author ) . '</cite>';
                             }
 
                             $requires_php = isset( $plugin['requires_php'] ) ? $plugin['requires_php'] : null;
@@ -115,14 +118,14 @@ if( !function_exists('qcld_slider_free_ai_function_first_sld_ajax') ){
                                                     esc_attr( $plugin['slug'] ),
                                                     esc_url( $status['url'] ),
                                                     /* translators: %s: Plugin name and version. */
-                                                    esc_attr( sprintf( _x( 'Install %s now', 'plugin' ), $name ) ),
+                                                    esc_attr( sprintf( esc_html( 'Install %s now', 'slider-hero' ), $name ) ),
                                                     esc_attr( $name ),
-                                                    __( 'Install Now' )
+                                                    esc_html( 'Install Now' )
                                                 );
                                             } else {
                                                 $action_links[] = sprintf(
                                                     '<button type="button" class="button button-disabled" disabled="disabled">%s</button>',
-                                                    _x( 'Cannot Install', 'plugin' )
+                                                    esc_html( 'Cannot Install', 'slider-hero' )
                                                 );
                                             }
                                         }
@@ -137,14 +140,14 @@ if( !function_exists('qcld_slider_free_ai_function_first_sld_ajax') ){
                                                     esc_attr( $plugin['slug'] ),
                                                     esc_url( $status['url'] ),
                                                     /* translators: %s: Plugin name and version. */
-                                                    esc_attr( sprintf( _x( 'Update %s now', 'plugin' ), $name ) ),
+                                                    esc_attr( sprintf( esc_html( 'Update %s now', 'slider-hero' ), $name ) ),
                                                     esc_attr( $name ),
-                                                    __( 'Update Now' )
+                                                    esc_html( 'Update Now', 'slider-hero' )
                                                 );
                                             } else {
                                                 $action_links[] = sprintf(
                                                     '<button type="button" class="button button-disabled" disabled="disabled">%s</button>',
-                                                    _x( 'Cannot Update', 'plugin' )
+                                                    esc_html( 'Cannot Update', 'slider-hero' )
                                                 );
                                             }
                                         }
@@ -155,12 +158,12 @@ if( !function_exists('qcld_slider_free_ai_function_first_sld_ajax') ){
                                         if ( is_plugin_active( $status['file'] ) ) {
                                             $action_links[] = sprintf(
                                                 '<button type="button" class="button button-disabled" disabled="disabled">%s</button>',
-                                                _x( 'Active', 'plugin' )
+                                                esc_html( 'Active', 'slider-hero' )
                                             );
                                         } elseif ( current_user_can( 'activate_plugin', $status['file'] ) ) {
-                                            $button_text = __( 'Activate' );
+                                            $button_text = esc_html( 'Activate' );
                                             /* translators: %s: Plugin name. */
-                                            $button_label = _x( 'Activate %s', 'plugin' );
+                                            $button_label = esc_html( 'Activate %s', 'slider-hero' );
                                             $activate_url = add_query_arg(
                                                 array(
                                                     '_wpnonce' => wp_create_nonce( 'activate-plugin_' . $status['file'] ),
@@ -171,9 +174,9 @@ if( !function_exists('qcld_slider_free_ai_function_first_sld_ajax') ){
                                             );
 
                                             if ( is_network_admin() ) {
-                                                $button_text = __( 'Network Activate' );
+                                                $button_text = esc_html( 'Network Activate' );
                                                 /* translators: %s: Plugin name. */
-                                                $button_label = _x( 'Network Activate %s', 'plugin' );
+                                                $button_label = esc_html( 'Network Activate %s', 'slider-hero' );
                                                 $activate_url = add_query_arg( array( 'networkwide' => 1 ), $activate_url );
                                             }
 
@@ -186,7 +189,7 @@ if( !function_exists('qcld_slider_free_ai_function_first_sld_ajax') ){
                                         } else {
                                             $action_links[] = sprintf(
                                                 '<button type="button" class="button button-disabled" disabled="disabled">%s</button>',
-                                                _x( 'Installed', 'plugin' )
+                                                esc_html( 'Installed', 'slider-hero' )
                                             );
                                         }
                                         break;
@@ -195,7 +198,7 @@ if( !function_exists('qcld_slider_free_ai_function_first_sld_ajax') ){
 
 
                             $plugin_live_link = "https://wordpress.org/plugins/".$plugin['slug'];
-                            $action_links[] = sprintf( '%s','<a href="'.esc_url($plugin_live_link).'" target="_blank">' . esc_html__('More Details', 'qc-opd') . '</a>');
+                            $action_links[] = sprintf( '%s','<a href="'.esc_url($plugin_live_link).'" target="_blank">' . esc_html('More Details', 'slider-hero') . '</a>');
                             /*===show icon ==*/
                             if ( ! empty( $plugin['icons']['svg'] ) ) {
                                 $plugin_icon_url = $plugin['icons']['svg'];
@@ -219,44 +222,44 @@ if( !function_exists('qcld_slider_free_ai_function_first_sld_ajax') ){
                                 if ( ! $compatible_php || ! $compatible_wp ) {
                                     echo '<div class="notice inline notice-error notice-alt"><p>';
                                     if ( ! $compatible_php && ! $compatible_wp ) {
-                                        _e( 'This plugin doesn&#8217;t work with your versions of WordPress and PHP.' );
+                                        esc_html_e('This plugin doesn\'t work with your versions of WordPress and PHP.', 'slider-hero' );
                                         if ( current_user_can( 'update_core' ) && current_user_can( 'update_php' ) ) {
                                             printf(
                                             /* translators: 1: URL to WordPress Updates screen, 2: URL to Update PHP page. */
-                                                ' ' . __( '<a href="%1$s">Please update WordPress</a>, and then <a href="%2$s">learn more about updating PHP</a>.' ),
-                                                self_admin_url( 'update-core.php' ),
+                                                ' ' . esc_html( '<a href="%1$s">Please update WordPress</a>, and then <a href="%2$s">learn more about updating PHP</a>.', 'slider-hero' ),
+                                                esc_url( self_admin_url( 'update-core.php' ) ),
                                                 esc_url( wp_get_update_php_url() )
                                             );
                                             wp_update_php_annotation( '</p><p><em>', '</em>' );
                                         } elseif ( current_user_can( 'update_core' ) ) {
                                             printf(
                                             /* translators: %s: URL to WordPress Updates screen. */
-                                                ' ' . __( '<a href="%s">Please update WordPress</a>.' ),
-                                                self_admin_url( 'update-core.php' )
+                                                ' ' . esc_html( '<a href="%s">Please update WordPress</a>.' ),
+                                                esc_url(self_admin_url( 'update-core.php' ))
                                             );
                                         } elseif ( current_user_can( 'update_php' ) ) {
                                             printf(
                                             /* translators: %s: URL to Update PHP page. */
-                                                ' ' . __( '<a href="%s">Learn more about updating PHP</a>.' ),
+                                                ' ' . esc_html( '<a href="%s">Learn more about updating PHP</a>.' ),
                                                 esc_url( wp_get_update_php_url() )
                                             );
                                             wp_update_php_annotation( '</p><p><em>', '</em>' );
                                         }
                                     } elseif ( ! $compatible_wp ) {
-                                        _e( 'This plugin doesn&#8217;t work with your version of WordPress.' );
+                                        esc_html_e('This plugin doesn&#8217;t work with your version of WordPress.', 'slider-hero' );
                                         if ( current_user_can( 'update_core' ) ) {
                                             printf(
                                             /* translators: %s: URL to WordPress Updates screen. */
-                                                ' ' . __( '<a href="%s">Please update WordPress</a>.' ),
-                                                self_admin_url( 'update-core.php' )
+                                                ' ' . esc_html( '<a href="%s">Please update WordPress</a>.' ),
+                                                esc_url(self_admin_url( 'update-core.php' ))
                                             );
                                         }
                                     } elseif ( ! $compatible_php ) {
-                                        _e( 'This plugin doesn&#8217;t work with your version of PHP.' );
+                                        esc_html_e('This plugin doesn&#8217;t work with your version of PHP.', 'slider-hero' );
                                         if ( current_user_can( 'update_php' ) ) {
                                             printf(
                                             /* translators: %s: URL to Update PHP page. */
-                                                ' ' . __( '<a href="%s">Learn more about updating PHP</a>.' ),
+                                                ' ' . esc_html( '<a href="%s">Learn more about updating PHP</a>.' ),
                                                 esc_url( wp_get_update_php_url() )
                                             );
                                             wp_update_php_annotation( '</p><p><em>', '</em>' );
@@ -274,32 +277,28 @@ if( !function_exists('qcld_slider_free_ai_function_first_sld_ajax') ){
                                                 <img src="<?php echo esc_attr( $plugin_icon_url ); ?>" class="plugin-icon" alt="" />
                                             </a>
                                         </h3>
+                                        <p><?php esc_html_e('WPBot is the most feature rich AI ChatBot for WordPress websites to provide 24/7 automated Live Chat Support, Lead Generation and Collecting Information from your users. It is an easy to use, Native, No coding required ChatBot that can work with or without the AI LLM services.', 'slider-hero' ); ?></p>
                                     </div>
                                     <div class="action-links">
                                         <?php
                                         if ( $action_links ) {
-                                            echo '<ul class="plugin-action-buttons"><li>' . implode( '</li><li>', $action_links ) . '</li></ul>';
+                                            echo wp_kses_post('<ul class="plugin-action-buttons"><li>' . implode( '</li><li>', $action_links ) . '</li></ul>');
                                         }
                                         ?>
                                     </div>
-        							<?php 
+                                    <?php 
                                     
                                     if ( ( isset( $arg['live_preview'] ) && !empty( $arg['live_preview'] ) ) || ( isset( $arg['update_to_pro'] ) && !empty( $arg['update_to_pro'] ) )  ) { ?>
                                     <div class="action-pro-links">
-        								<ul class="plugin-action-pro-buttons">
+                                        <ul class="plugin-action-pro-buttons">
                                         <?php
-                                        if ( !empty( $arg['live_preview'] ) ) { 
-                                            echo '<li><a href="'.esc_url( $arg['live_preview'] ).'" target="_blank">' . esc_html__('Live Preview', 'qc-opd') . '</a></li>';
-                                        }
-                                        /*
-                                        if ( !empty( $arg['update_to_pro'] ) ) { 
-                                            echo '<li><a href="'.esc_url( $arg['update_to_pro'] ).'" target="_blank">' . esc_html__('Update To Pro', 'qc-opd') . '</a></li>';
-                                        }
-                                        */
+                                            if ( !empty( $arg['live_preview'] ) ) { 
+                                                echo wp_kses_post('<li><a href="'.esc_url( $arg['live_preview'] ).'" target="_blank">' . esc_html('Live Preview', 'slider-hero') . '</a></li>');
+                                            }
                                         ?>
-        								</ul>
+                                        </ul>
                                     </div>
-        							<?php } ?>
+                                    <?php } ?>
                                 </div>
                             </div>
                             <?php
@@ -310,12 +309,15 @@ if( !function_exists('qcld_slider_free_ai_function_first_sld_ajax') ){
             </div>
 
         </div>
-<?php 
 
-    echo  ob_get_clean();
+        <?php 
+    echo  wp_kses_post(ob_get_clean());
     exit();
 
         }
 
 }
+
+
+
 

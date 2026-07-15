@@ -3,10 +3,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 function qcld_show_arrow_items_fnc(){
-$elem 		= isset($_POST['elem']) ? sanitize_text_field($_POST['elem']) : '';
-$slidid 	= isset($_POST['slidid']) ? sanitize_text_field($_POST['slidid']) : '';
-$selfelem 	= isset($_POST['selfelem']) ? sanitize_text_field($_POST['selfelem']) : '';
-$btn 		= isset($_POST['btnval']) ? sanitize_text_field($_POST['btnval']) : '';
+    check_ajax_referer( 'slider_hero_ajax_nonce', 'security' );
+
+$elem 		= isset($_POST['elem']) ? sanitize_text_field(wp_unslash($_POST['elem'])) : '';
+$slidid 	= isset($_POST['slidid']) ? sanitize_text_field(wp_unslash($_POST['slidid'])) : '';
+$selfelem 	= isset($_POST['selfelem']) ? sanitize_text_field(wp_unslash($_POST['selfelem'])) : '';
+$btn 		= isset($_POST['btnval']) ? sanitize_text_field(wp_unslash($_POST['btnval'])) : '';
 if($btn!=''){
 	$btn = json_decode(wp_unslash(htmlspecialchars_decode($btn)));
 }
@@ -15,8 +17,8 @@ if($btn!=''){
 
 		<!-- Modal content -->
 		<div class="modal-content" data-elem="<?php echo esc_attr($elem); ?>" data-self="<?php echo esc_attr( $selfelem ); ?>" data-sid="<?php echo esc_attr( $slidid ); ?>" style="width: 60%;">
-			<span class="close"><?php _e( "X", 'Slider X' ); ?></span>
-			<h3><?php _e( "Create A Button", 'Slider X' ); ?></h3>
+			<span class="close"><?php esc_html_e( "X", 'slider-hero' ); ?></span>
+			<h3><?php esc_html_e( "Create A Button", 'slider-hero' ); ?></h3>
 	
 
 <div class="hero_tab">
@@ -175,11 +177,13 @@ add_action( 'wp_ajax_qcld_show_arrow_items', 'qcld_show_arrow_items_fnc');
 ?>
 <?php
 function qcld_show_stomp_config_fnc(){
-$elem 		= isset($_POST['elem']) ? sanitize_text_field($_POST['elem']) : '';
-$slidid 	= isset($_POST['slidid']) ? sanitize_text_field($_POST['slidid']) : '';
-$selfelem 	= isset($_POST['selfelem']) ? sanitize_text_field($_POST['selfelem']) : '';
-$btn 		= isset($_POST['btnval']) ? sanitize_text_field($_POST['btnval']) : '';
-$ordering 	= isset($_POST['ordering']) ? sanitize_text_field($_POST['ordering']) : '';
+    check_ajax_referer( 'slider_hero_ajax_nonce', 'security' );
+
+$elem 		= isset($_POST['elem']) ? sanitize_text_field(wp_unslash($_POST['elem'])) : '';
+$slidid 	= isset($_POST['slidid']) ? sanitize_text_field(wp_unslash($_POST['slidid'])) : '';
+$selfelem 	= isset($_POST['selfelem']) ? sanitize_text_field(wp_unslash($_POST['selfelem'])) : '';
+$btn 		= isset($_POST['btnval']) ? sanitize_text_field(wp_unslash($_POST['btnval'])) : '';
+$ordering 	= isset($_POST['ordering']) ? sanitize_text_field(wp_unslash($_POST['ordering'])) : '';
 if($btn!=''){
 	$btn = json_decode(wp_unslash(htmlspecialchars_decode($btn)));
 }
@@ -188,8 +192,8 @@ if($btn!=''){
 
 		<!-- Modal content -->
 		<div class="modal-content" data-elem="<?php echo esc_attr($elem); ?>" data-self="<?php echo esc_attr( $selfelem ); ?>" data-sid="<?php echo esc_attr( $slidid ); ?>" style="width: 60%;">
-			<span class="close"><?php _e( "X", 'Slider Hero' ); ?></span>
-			<h3 style="font-size: 20px;"><?php _e( "Slide Configuration -> ", 'Slider Hero' ); echo esc_attr( $ordering ); ?></h3>
+			<span class="close"><?php esc_html_e( "X", 'slider-hero' ); ?></span>
+			<h3 style="font-size: 20px;"><?php esc_html_e( "Slide Configuration -> ", 'slider-hero' ); echo esc_attr( $ordering ); ?></h3>
 			<hr/>
 
         <div class="qc-Slider-Hero-item_btn">
@@ -206,7 +210,7 @@ if($btn!=''){
 				<select id="hero_stomp_animation">
 				
 					<?php foreach($animations as $animation): ?>
-						<option <?php echo ( isset($btn->hero_stomp_animation) && ( $btn->hero_stomp_animation==$animation?'selected="selected"':'')); ?> value="<?php echo esc_attr( $animation ); ?>"><?php echo esc_attr( $animation ); ?></option>
+						<option <?php echo wp_kses_post( isset($btn->hero_stomp_animation) && ( $btn->hero_stomp_animation==$animation?'selected="selected"':'')); ?> value="<?php echo esc_attr( $animation ); ?>"><?php echo esc_attr( $animation ); ?></option>
 					<?php endforeach; ?>
 
 				</select>
@@ -216,11 +220,11 @@ if($btn!=''){
 			
 
 			<div class="hero_single_field_btn">
-				<label style="width: 250px;display: inline-block;">Delay Time</label><input style="width: 225px;" type="text" id="hero_stomp_delay" value="<?php echo (isset($btn->hero_stomp_delay)?esc_attr($btn->hero_stomp_delay):''); ?>" placeholder="1200" />
+				<label style="width: 250px;display: inline-block;">Delay Time</label><input style="width: 225px;" type="text" id="hero_stomp_delay" value="<?php echo esc_attr(isset($btn->hero_stomp_delay)?$btn->hero_stomp_delay:''); ?>" placeholder="1200" />
 			</div>
 			
 			<div class="hero_single_field_btn">
-				<label style="width: 250px;display: inline-block;">Font Size</label><input style="width: 225px;" type="text" id="hero_stomp_fontsize" value="<?php echo (isset($btn->hero_stomp_fontsize)?esc_attr($btn->hero_stomp_fontsize):''); ?>" placeholder="50px" />
+				<label style="width: 250px;display: inline-block;">Font Size</label><input style="width: 225px;" type="text" id="hero_stomp_fontsize" value="<?php echo esc_attr(isset($btn->hero_stomp_fontsize)?($btn->hero_stomp_fontsize):''); ?>" placeholder="50px" />
 			</div>
 			<div class="hero_single_field_btn">
 			<?php 
@@ -245,25 +249,25 @@ if($btn!=''){
 			</div>
 			<div class="hero_single_field_btn">
 				<label style="width: 250px;display: inline-block;">Font Weight</label><select id="hero_stomp_font_weight">
-					<option <?php echo ( isset($btn->hero_stomp_font_weight) && $btn->hero_stomp_font_weight=='normal'?'selected="selected"':''); ?> value="normal">Normal</option>
-					<option <?php echo ( isset($btn->hero_stomp_font_weight) && $btn->hero_stomp_font_weight=='bold'?'selected="selected"':''); ?> value="bold">Bold</option>
+					<option <?php echo wp_kses_post( isset($btn->hero_stomp_font_weight) && $btn->hero_stomp_font_weight=='normal'?'selected="selected"':''); ?> value="normal">Normal</option>
+					<option <?php echo wp_kses_post( isset($btn->hero_stomp_font_weight) && $btn->hero_stomp_font_weight=='bold'?'selected="selected"':''); ?> value="bold">Bold</option>
 				</select>
 			</div>
 			
 			<div class="hero_single_field_btn">
-				<label style="width: 250px;display: inline-block;">Letter Spacing</label><input style="width: 225px;" type="text" id="hero_stomp_letter_spacing" value="<?php echo (isset($btn->hero_stomp_letter_spacing)?esc_attr($btn->hero_stomp_letter_spacing):''); ?>" placeholder="Ex: 0.5px" />
+				<label style="width: 250px;display: inline-block;">Letter Spacing</label><input style="width: 225px;" type="text" id="hero_stomp_letter_spacing" value="<?php echo esc_attr(isset($btn->hero_stomp_letter_spacing)?($btn->hero_stomp_letter_spacing):''); ?>" placeholder="Ex: 0.5px" />
 			</div>
 			
 			<div class="hero_single_field_btn">
 				<label style="width: 250px;display: inline-block;">Text Color</label>
 				
-				<input type="text" name="hero_stomp_text_color" id="hero_stomp_text_color" class="color-field" value="<?php echo (isset($btn->hero_stomp_text_color)?esc_attr($btn->hero_stomp_text_color):''); ?>" />
+				<input type="text" name="hero_stomp_text_color" id="hero_stomp_text_color" class="color-field" value="<?php echo esc_attr(isset($btn->hero_stomp_text_color)?($btn->hero_stomp_text_color):''); ?>" />
 				
 			</div>
 			<div class="hero_single_field_btn">
 				<label style="width: 250px;display: inline-block;">Background Color</label>
 				
-				<input type="text" name="hero_stomp_background_color" id="hero_stomp_background_color" class="color-field" value="<?php echo (isset($btn->hero_stomp_background_color)?esc_attr($btn->hero_stomp_background_color):''); ?>" />
+				<input type="text" name="hero_stomp_background_color" id="hero_stomp_background_color" class="color-field" value="<?php echo esc_attr(isset($btn->hero_stomp_background_color)?($btn->hero_stomp_background_color):''); ?>" />
 				
 			</div>
 
@@ -273,7 +277,7 @@ if($btn!=''){
         
 	
 	<div class="hero_single_field_btn">
-		<label style="width: 250px;display: inline-block;"></label><input style="background: #4191EF; border: none;color: #fff; padding: 7px 15px; margin-right: 10px;cursor:pointer;" type="button" id="add_configuration" value="<?php echo (isset($btn->button_text)?'Update Configuration':'Add Configuration'); ?>" />
+		<label style="width: 250px;display: inline-block;"></label><input style="background: #4191EF; border: none;color: #fff; padding: 7px 15px; margin-right: 10px;cursor:pointer;" type="button" id="add_configuration" value="<?php echo esc_attr(isset($btn->button_text)?'Update Configuration':'Add Configuration'); ?>" />
 		<input style="    background: #FE8D2E; border: none;color: #fff;padding: 7px 15px;margin-right: 10px;cursor:pointer; font-size: 14px; float: none;  font-weight: normal;" type="button" class="botmclose" value="Cancel" />
 		<input style="    background: #E91E63; border: none;color: #fff;padding: 7px 15px;margin-right: 10px;cursor:pointer;" type="button" id="cancel_the_button" value="Reset" />
 
@@ -288,14 +292,16 @@ add_action( 'wp_ajax_qcld_show_stomp_config', 'qcld_show_stomp_config_fnc');
 ?>
 <?php 
 function qcld_hero_show_arrow_items_fnc(){
+    check_ajax_referer( 'slider_hero_ajax_nonce', 'security' );
+
 
 ?>
 	<div id="sm-modal" class="slider_hero_modal">
 
 		<!-- Modal content -->
 		<div class="modal-content" style="width: 800px;">
-			<span class="close"><?php _e( "X", 'Slider X' ); ?></span>
-			<h3><?php _e( "Choose an Arrow Style", 'Slider X' ); ?></h3>
+			<span class="close"><?php esc_html_e( "X", 'slider-hero' ); ?></span>
+			<h3><?php esc_html_e( "Choose an Arrow Style", 'slider-hero' ); ?></h3>
 			<hr/>
         <div class="qc-slider-x-item_arrow">
 <?php 
@@ -345,18 +351,20 @@ add_action( 'wp_ajax_qcld_hero_show_arrow_items', 'qcld_hero_show_arrow_items_fn
 // Code for google font-size
  
 function qcld_show_google_font_model_fnc(){
-$elem = sanitize_text_field($_POST['elem']);
-$slidid = sanitize_text_field($_POST['slidid']);
-$selfelem = sanitize_text_field($_POST['selfelem']);
-$exists = sanitize_text_field($_POST['exists']);
+    check_ajax_referer( 'slider_hero_ajax_nonce', 'security' );
+
+$elem = isset($_POST['elem']) ? sanitize_text_field(wp_unslash($_POST['elem'])) : '';
+$slidid = isset($_POST['slidid']) ? sanitize_text_field(wp_unslash($_POST['slidid'])) : '';
+$selfelem = isset($_POST['selfelem']) ? sanitize_text_field(wp_unslash($_POST['selfelem'])) : '';
+$exists = isset($_POST['exists']) ? sanitize_text_field(wp_unslash($_POST['exists'])) : '';
 $exists = explode(':',$exists);
 ?>
 	<div id="sm-modal" class="slider_hero_modal">
 
 		<!-- Modal content -->
 		<div class="modal-content" data-elem="<?php echo esc_attr($elem); ?>" data-sid="<?php echo esc_attr( $slidid ); ?>" data-selfelem="<?php echo esc_attr($selfelem); ?>" style="width: 800px;">
-			<span class="close"><?php _e( "X", 'Slider X' ); ?></span>
-			<h3 style="display: inline;margin-right: 15px;font-size: 20px;"><?php _e( "Choose A Google Font", 'Slider X' ); ?></h3>
+			<span class="close"><?php esc_html_e( "X", 'slider-hero' ); ?></span>
+			<h3 style="display: inline;margin-right: 15px;font-size: 20px;"><?php esc_html_e( "Choose A Google Font", 'slider-hero' ); ?></h3>
 			
 
         <div class="qc-slider-x-item_arrow">
@@ -423,7 +431,9 @@ add_action( 'wp_ajax_qcld_show_google_font_model', 'qcld_show_google_font_model_
 add_action( 'wp_ajax_qcld_show_google_font_variants', 'qcld_show_google_font_variants_fnc');
 
 function qcld_show_google_font_variants_fnc(){
-	$fontname = sanitize_text_field($_POST['fontname']);
+    check_ajax_referer( 'slider_hero_ajax_nonce', 'security' );
+
+	$fontname = isset($_POST['fontname']) ? sanitize_text_field(wp_unslash($_POST['fontname'])) : '';
 
 	qcld_show_google_font_variants_fetch( $fontname );
 

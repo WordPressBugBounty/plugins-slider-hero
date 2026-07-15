@@ -673,7 +673,7 @@ function init(){
 }
 
 function reset_scene(){
-  ctx.fillStyle = "<?php echo ((isset($params->blur->canvas_bg)&&$params->blur->canvas_bg!='')?$params->blur->canvas_bg:'#03244B');?>";
+  ctx.fillStyle = "<?php echo esc_attr((isset($params->blur->canvas_bg)&&$params->blur->canvas_bg!='')?$params->blur->canvas_bg:'#03244B');?>";
   ctx.fillRect(0,0,w,h);
 }
 
@@ -704,7 +704,7 @@ function bg_particle(){
   
   
   this.draw = function(){
-    ctx.fillStyle="<?php echo ((isset($params->blur->particle_color)&&$params->blur->particle_color!='')?$params->blur->particle_color:'#52CA70');?>";
+    ctx.fillStyle="<?php echo esc_attr((isset($params->blur->particle_color)&&$params->blur->particle_color!='')?$params->blur->particle_color:'#52CA70');?>";
     ctx.beginPath();
     ctx.arc(this.x,this.y,this.r, 0, Math.PI*2, false);
     ctx.fill();
@@ -730,10 +730,10 @@ particlesJS("particles-js<?php echo intval( esc_html( $_id ) ); ?>", {
       }
     },
     "color": {
-      "value": "<?php echo (isset($params->particle_color)&&$params->particle_color!=''?$params->particle_color:'#ffffff'); ?>"
+      "value": "<?php echo esc_attr(isset($params->particle_color)&&$params->particle_color!=''?$params->particle_color:'#ffffff'); ?>"
     },
     "shape": {
-      "type": "<?php echo (isset($params->particle_type)&&$params->particle_type!=''?$params->particle_type:'circle'); ?>",
+      "type": "<?php echo esc_attr(isset($params->particle_type)&&$params->particle_type!=''?$params->particle_type:'circle'); ?>",
       "stroke": {
         "width": 0,
         "color": "#000000"
@@ -794,7 +794,7 @@ particlesJS("particles-js<?php echo intval( esc_html( $_id ) ); ?>", {
     "events": {
       "onhover": {
         "enable": true,
-        "mode": "<?php echo (isset($params->interactivity)&&$params->interactivity!=''?$params->interactivity:'repulse'); ?>"
+        "mode": "<?php echo esc_attr(isset($params->interactivity)&&$params->interactivity!=''?$params->interactivity:'repulse'); ?>"
       },
       "onclick": {
         "enable": true,
@@ -841,10 +841,10 @@ particlesJS("particles-js<?php echo intval( esc_html( $_id ) ); ?>", {
       }
     },
     "color": {
-      "value": "<?php echo (isset($params->particle_snow->color)&&$params->particle_snow->color!=''?$params->particle_snow->color:'#ffffff'); ?>"
+      "value": "<?php echo esc_attr(isset($params->particle_snow->color)&&$params->particle_snow->color!=''?$params->particle_snow->color:'#ffffff'); ?>"
     },
     "shape": {
-      "type": "<?php echo (isset($params->particle_snow->type)&&$params->particle_snow->type!=''?$params->particle_snow->type:'circle'); ?>",
+      "type": "<?php echo esc_attr(isset($params->particle_snow->type)&&$params->particle_snow->type!=''?$params->particle_snow->type:'circle'); ?>",
       "stroke": {
         "width": 0,
         "color": "#000000"
@@ -1288,8 +1288,8 @@ jQuery(document).ready(function($){
 		sliderWidth:<?php echo esc_attr($style->width!=''?$style->width:1120); ?>,
 		sliderHeight:<?php echo esc_attr($style->height!=''?$style->height:480); ?>,
 		
-        pauseTime: <?php echo ($params->effect->interval!=''?$params->effect->interval:0); ?>,
-		paddingTime: <?php echo (isset($params->paddingtime)&&$params->paddingtime!=''?$params->paddingtime:'0'); ?>,
+        pauseTime: <?php echo esc_attr($params->effect->interval!=''?$params->effect->interval:0); ?>,
+		paddingTime: <?php echo esc_attr(isset($params->paddingtime)&&$params->paddingtime!=''?$params->paddingtime:'0'); ?>,
         startSlide: 0,
 		
 		titlePositionTop:'0%',
@@ -1414,10 +1414,10 @@ jQuery(document).ready(function($){
 		
 		redirecturl: '<?php echo (isset($params->slidendredirect) && $params->slidendredirect!=''?esc_attr($params->slidendredirect):'') ?>',
 		redirectdelay: '<?php echo (isset($params->slideredirectdelay) && $params->slideredirectdelay!=''?esc_attr($params->slideredirectdelay):'') ?>',
-		contentposition: '<?php echo (isset($params->content) && $params->content!=''?$params->content:'center') ?>',
-		bgtransition: '<?php echo (isset($params->slideimageeffect) && $params->slideimageeffect!=''?$params->slideimageeffect:'fade'); ?>',
-    bgtransitionreverse: '<?php echo (isset($params->slideimageeffectreverse) && $params->slideimageeffectreverse!=''?$params->slideimageeffectreverse:'fade'); ?>',
-    fullscreenmobile: '<?php echo (isset($params->fullscreenmobile) && $params->fullscreenmobile!=''?$params->fullscreenmobile:0); ?>',
+		contentposition: '<?php echo esc_attr(isset($params->content) && $params->content!=''?$params->content:'center') ?>',
+		bgtransition: '<?php echo esc_attr(isset($params->slideimageeffect) && $params->slideimageeffect!=''?$params->slideimageeffect:'fade'); ?>',
+    bgtransitionreverse: '<?php echo esc_attr(isset($params->slideimageeffectreverse) && $params->slideimageeffectreverse!=''?$params->slideimageeffectreverse:'fade'); ?>',
+    fullscreenmobile: '<?php echo esc_attr(isset($params->fullscreenmobile) && $params->fullscreenmobile!=''?$params->fullscreenmobile:0); ?>',
 		
 		
 		<?php 
@@ -1529,8 +1529,8 @@ jQuery(document).ready(function($){
 			
 			redirectdelay: '<?php echo (isset($params->slideredirectdelay) && $params->slideredirectdelay!=''?esc_attr($params->slideredirectdelay):'') ?>',
 			
-			loadnewslider: '<?php echo (isset($params->newsliderafterend) && $params->newsliderafterend!=''?$params->newsliderafterend:0); ?>',
-      fullscreenmobile: '<?php echo (isset($params->fullscreenmobile) && $params->fullscreenmobile!=''?$params->fullscreenmobile:0); ?>'
+			loadnewslider: '<?php echo esc_attr(isset($params->newsliderafterend) && $params->newsliderafterend!=''?$params->newsliderafterend:0); ?>',
+      fullscreenmobile: '<?php echo esc_attr(isset($params->fullscreenmobile) && $params->fullscreenmobile!=''?$params->fullscreenmobile:0); ?>'
 			
 		  });
 	<?php endif; ?>
@@ -2124,10 +2124,10 @@ particlesJS("particles-js<?php echo intval( esc_html( $_id ) ); ?>", {
       }
     },
     "color": {
-      "value": "<?php echo (isset($params->particle_color)&&$params->particle_color!=''?$params->particle_color:'#ffffff'); ?>"
+      "value": "<?php echo esc_attr(isset($params->particle_color)&&$params->particle_color!=''?$params->particle_color:'#ffffff'); ?>"
     },
     "shape": {
-      "type": "<?php echo (isset($params->particle_type)&&$params->particle_type!=''?$params->particle_type:'circle'); ?>",
+      "type": "<?php echo esc_attr(isset($params->particle_type)&&$params->particle_type!=''?$params->particle_type:'circle'); ?>",
       "stroke": {
         "width": 0,
         "color": "#000000"
@@ -2188,7 +2188,7 @@ particlesJS("particles-js<?php echo intval( esc_html( $_id ) ); ?>", {
     "events": {
       "onhover": {
         "enable": true,
-        "mode": "<?php echo (isset($params->interactivity)&&$params->interactivity!=''?$params->interactivity:'repulse'); ?>"
+        "mode": "<?php echo esc_attr(isset($params->interactivity)&&$params->interactivity!=''?$params->interactivity:'repulse'); ?>"
       },
       "onclick": {
         "enable": true,
@@ -2235,10 +2235,10 @@ particlesJS("particles-js<?php echo intval( esc_html( $_id ) ); ?>", {
       }
     },
     "color": {
-      "value": "<?php echo (isset($params->particle_snow->color)&&$params->particle_snow->color!=''?$params->particle_snow->color:'#ffffff'); ?>"
+      "value": "<?php echo esc_attr(isset($params->particle_snow->color)&&$params->particle_snow->color!=''?$params->particle_snow->color:'#ffffff'); ?>"
     },
     "shape": {
-      "type": "<?php echo (isset($params->particle_snow->type)&&$params->particle_snow->type!=''?$params->particle_snow->type:'circle'); ?>",
+      "type": "<?php echo esc_attr(isset($params->particle_snow->type)&&$params->particle_snow->type!=''?$params->particle_snow->type:'circle'); ?>",
       "stroke": {
         "width": 0,
         "color": "#000000"
@@ -2817,7 +2817,7 @@ var ray_particles = 100;
 
 <?php 
 $customjs = get_option( 'sh_plugin_options' );
-echo @$customjs['sh_custom_js'];
+echo wp_unslash( $customjs['sh_custom_js'] ?? '' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 ?>
 
 </script>
@@ -2909,4 +2909,6 @@ jQuery( document ).ready(function($) {
 	endif;
 endif;
 ?>
+
+
 

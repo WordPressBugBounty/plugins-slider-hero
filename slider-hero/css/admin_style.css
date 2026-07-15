@@ -209,7 +209,7 @@ div#qchero_slider_view_wrapper_top {
 .hero_bottom_save_button {
     position: fixed;
     bottom: 36px;
-    right: 9px;
+    right: 30px;
     z-index: 99999;
 }
 

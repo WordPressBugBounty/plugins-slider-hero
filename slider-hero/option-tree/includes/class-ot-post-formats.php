@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /**
  * OptionTree Post Formats.
  *
@@ -120,3 +123,4 @@ if ( ! class_exists( 'OT_Post_Formats' ) ) {
 if ( function_exists( 'ot_register_meta_box' ) ) {
 	new OT_Post_Formats();
 }
+

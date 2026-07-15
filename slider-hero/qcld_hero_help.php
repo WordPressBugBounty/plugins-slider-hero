@@ -20,41 +20,41 @@ if ( ! defined( 'ABSPATH' ) ) {
 						
 						<div class="clear">
 						<u>
-							<h1>Help</h1>
+							<h1><?php esc_html_e( 'Help', 'slider-hero' ); ?></h1>
 						</u>
 						</div>
 
 						<div>
-							<h3>General Settings</h3>
+							<h3><?php esc_html_e( 'General Settings', 'slider-hero' ); ?></h3>
 					
 
 							<p>
-								<strong><u>Custom:</u></strong>
+								<strong><u><?php esc_html_e( 'Custom:', 'slider-hero' ); ?></u></strong>
 								<br>
-									This option will allow you to provide custom width and height for your slider.
-								<br>
-								<br>
-								<strong><u>Full Width:</u></strong>
-								<br>
-								Provide a custom height in px for your slider. Width will be automatically calculated depending on your screen size.
+									<?php esc_html_e( 'This option will allow you to provide custom width and height for your slider.', 'slider-hero' ); ?>
 								<br>
 								<br>
-								<strong><u>Full Screen:</u></strong>
+								<strong><u><?php esc_html_e( 'Full Width:', 'slider-hero' ); ?></u></strong>
 								<br>
-								
-								No need to provide any width & height. It will automatically fit any screen size and auto-calculate necessary width and height.
+								<?php esc_html_e( 'Provide a custom height in px for your slider. Width will be automatically calculated depending on your screen size.', 'slider-hero' ); ?>
 								<br>
 								<br>
-								<strong><u>Auto:</u></strong>
+								<strong><u><?php esc_html_e( 'Full Screen:', 'slider-hero' ); ?></u></strong>
 								<br>
 								
-								Slider size will fit according to container width. You can define custom height.
+								<?php esc_html_e( 'No need to provide any width & height. It will automatically fit any screen size and auto-calculate necessary width and height.', 'slider-hero' ); ?>
+								<br>
+								<br>
+								<strong><u><?php esc_html_e( 'Auto:', 'slider-hero' ); ?></u></strong>
+								<br>
+								
+								<?php esc_html_e( 'Slider size will fit according to container width. You can define custom height.', 'slider-hero' ); ?>
 							</p>
 							
 						</div>
 
 						<div style="padding: 15px 10px; border: 1px solid #ccc; text-align: center; margin-top: 20px;">
-							 Crafted By: <a href="http://www.quantumcloud.com" target="_blank">Web Design Company</a> - QuantumCloud 
+							 <?php esc_html_e( 'Crafted By:', 'slider-hero' ); ?> <a href="<?php echo esc_url( 'http://www.quantumcloud.com' ); ?>" target="_blank"><?php esc_html_e( 'Web Design Company', 'slider-hero' ); ?></a> - <?php echo esc_attr( 'QuantumCloud' ); ?> 
 						</div>
 						
 					  </div>

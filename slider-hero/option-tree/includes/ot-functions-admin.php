@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /**
  * Functions used only while viewing the admin UI.
  *
@@ -49,15 +52,15 @@ if ( ! function_exists( 'ot_register_theme_options_page' ) ) {
 							array(
 								'id'              => 'ot_theme_options',
 								'parent_slug'     => apply_filters( 'ot_theme_options_parent_slug', 'themes.php' ),
-								'page_title'      => apply_filters( 'ot_theme_options_page_title', esc_html__( 'Theme Options', 'option-tree' ) ),
-								'menu_title'      => apply_filters( 'ot_theme_options_menu_title', esc_html__( 'Theme Options', 'option-tree' ) ),
+								'page_title'      => apply_filters( 'ot_theme_options_page_title', esc_html( 'Theme Options', 'slider-hero' ) ),
+								'menu_title'      => apply_filters( 'ot_theme_options_menu_title', esc_html( 'Theme Options', 'slider-hero' ) ),
 								'capability'      => $caps,
 								'menu_slug'       => apply_filters( 'ot_theme_options_menu_slug', 'ot-theme-options' ),
 								'icon_url'        => apply_filters( 'ot_theme_options_icon_url', null ),
 								'position'        => apply_filters( 'ot_theme_options_position', null ),
-								'updated_message' => apply_filters( 'ot_theme_options_updated_message', esc_html__( 'Theme Options updated.', 'option-tree' ) ),
-								'reset_message'   => apply_filters( 'ot_theme_options_reset_message', esc_html__( 'Theme Options reset.', 'option-tree' ) ),
-								'button_text'     => apply_filters( 'ot_theme_options_button_text', esc_html__( 'Save Changes', 'option-tree' ) ),
+								'updated_message' => apply_filters( 'ot_theme_options_updated_message', esc_html( 'Theme Options updated.', 'slider-hero' ) ),
+								'reset_message'   => apply_filters( 'ot_theme_options_reset_message', esc_html( 'Theme Options reset.', 'slider-hero' ) ),
+								'button_text'     => apply_filters( 'ot_theme_options_button_text', esc_html( 'Save Changes', 'slider-hero' ) ),
 								'contextual_help' => apply_filters( 'ot_theme_options_contextual_help', $contextual_help ),
 								'sections'        => apply_filters( 'ot_theme_options_sections', $sections ),
 								'settings'        => apply_filters( 'ot_theme_options_settings', $settings ),
@@ -101,7 +104,7 @@ if ( ! function_exists( 'ot_register_settings_page' ) ) {
 			 * Error message for custom theme options.
 			 */
 			function ot_has_custom_theme_options() {
-				echo '<div class="error"><p>' . esc_html__( 'The Theme Options UI Builder is being overridden by a custom file in your theme. Any changes you make via the UI Builder will not be saved.', 'option-tree' ) . '</p></div>';
+				echo '<div class="error"><p>' . esc_html( 'The Theme Options UI Builder is being overridden by a custom file in your theme. Any changes you make via the UI Builder will not be saved.', 'slider-hero' ) . '</p></div>';
 			}
 
 			add_action( 'admin_notices', 'ot_has_custom_theme_options' );
@@ -111,8 +114,8 @@ if ( ! function_exists( 'ot_register_settings_page' ) ) {
 		$ot_register_pages_array = array(
 			array(
 				'id'          => 'ot',
-				'page_title'  => esc_html__( 'OptionTree', 'option-tree' ),
-				'menu_title'  => esc_html__( 'OptionTree', 'option-tree' ),
+				'page_title'  => esc_html( 'OptionTree', 'slider-hero' ),
+				'menu_title'  => esc_html( 'OptionTree', 'slider-hero' ),
 				'capability'  => 'edit_theme_options',
 				'menu_slug'   => 'ot-settings',
 				'icon_url'    => null,
@@ -122,86 +125,86 @@ if ( ! function_exists( 'ot_register_settings_page' ) ) {
 			array(
 				'id'              => 'settings',
 				'parent_slug'     => 'ot-settings',
-				'page_title'      => esc_html__( 'Settings', 'option-tree' ),
-				'menu_title'      => esc_html__( 'Settings', 'option-tree' ),
+				'page_title'      => esc_html( 'Settings', 'slider-hero' ),
+				'menu_title'      => esc_html( 'Settings', 'slider-hero' ),
 				'capability'      => 'edit_theme_options',
 				'menu_slug'       => 'ot-settings',
 				'icon_url'        => null,
 				'position'        => null,
-				'updated_message' => esc_html__( 'Theme Options updated.', 'option-tree' ),
-				'reset_message'   => esc_html__( 'Theme Options reset.', 'option-tree' ),
-				'button_text'     => esc_html__( 'Save Settings', 'option-tree' ),
+				'updated_message' => esc_html( 'Theme Options updated.', 'slider-hero' ),
+				'reset_message'   => esc_html( 'Theme Options reset.', 'slider-hero' ),
+				'button_text'     => esc_html( 'Save Settings', 'slider-hero' ),
 				'show_buttons'    => false,
 				'sections'        => array(
 					array(
 						'id'    => 'create_setting',
-						'title' => esc_html__( 'Theme Options UI', 'option-tree' ),
+						'title' => esc_html( 'Theme Options UI', 'slider-hero' ),
 					),
 					array(
 						'id'    => 'import',
-						'title' => esc_html__( 'Import', 'option-tree' ),
+						'title' => esc_html( 'Import', 'slider-hero' ),
 					),
 					array(
 						'id'    => 'export',
-						'title' => esc_html__( 'Export', 'option-tree' ),
+						'title' => esc_html( 'Export', 'slider-hero' ),
 					),
 					array(
 						'id'    => 'layouts',
-						'title' => esc_html__( 'Layouts', 'option-tree' ),
+						'title' => esc_html( 'Layouts', 'slider-hero' ),
 					),
 				),
 				'settings'        => array(
 					array(
 						'id'      => 'theme_options_ui_text',
-						'label'   => esc_html__( 'Theme Options UI Builder', 'option-tree' ),
+						'label'   => esc_html( 'Theme Options UI Builder', 'slider-hero' ),
 						'type'    => 'theme_options_ui',
 						'section' => 'create_setting',
 					),
 					array(
 						'id'      => 'import_settings_text',
-						'label'   => esc_html__( 'Settings', 'option-tree' ),
+						'label'   => esc_html( 'Settings', 'slider-hero' ),
 						'type'    => 'import-settings',
 						'section' => 'import',
 					),
 					array(
 						'id'      => 'import_data_text',
-						'label'   => esc_html__( 'Theme Options', 'option-tree' ),
+						'label'   => esc_html( 'Theme Options', 'slider-hero' ),
 						'type'    => 'import-data',
 						'section' => 'import',
 					),
 					array(
 						'id'      => 'import_layouts_text',
-						'label'   => esc_html__( 'Layouts', 'option-tree' ),
+						'label'   => esc_html( 'Layouts', 'slider-hero' ),
 						'type'    => 'import-layouts',
 						'section' => 'import',
 					),
 					array(
 						'id'      => 'export_settings_file_text',
-						'label'   => esc_html__( 'Settings PHP File', 'option-tree' ),
+						'label'   => esc_html( 'Settings PHP File', 'slider-hero' ),
 						'type'    => 'export-settings-file',
 						'section' => 'export',
 					),
 					array(
 						'id'      => 'export_settings_text',
-						'label'   => esc_html__( 'Settings', 'option-tree' ),
+						'label'   => esc_html( 'Settings', 'slider-hero' ),
 						'type'    => 'export-settings',
 						'section' => 'export',
 					),
 					array(
 						'id'      => 'export_data_text',
-						'label'   => esc_html__( 'Theme Options', 'option-tree' ),
+						'label'   => esc_html( 'Theme Options', 'slider-hero' ),
 						'type'    => 'export-data',
 						'section' => 'export',
 					),
 					array(
 						'id'      => 'export_layout_text',
-						'label'   => esc_html__( 'Layouts', 'option-tree' ),
+						'label'   => esc_html( 'Layouts', 'slider-hero' ),
 						'type'    => 'export-layouts',
 						'section' => 'export',
 					),
 					array(
 						'id'      => 'modify_layouts_text',
-						'label'   => esc_html__( 'Layout Management', 'option-tree' ),
+						'label'   => esc_html( 'Layout Management', 'slider-hero' ),
 						'type'    => 'modify-layouts',
 						'section' => 'layouts',
 					),
@@ -210,92 +213,92 @@ if ( ! function_exists( 'ot_register_settings_page' ) ) {
 			array(
 				'id'              => 'documentation',
 				'parent_slug'     => 'ot-settings',
-				'page_title'      => esc_html__( 'Documentation', 'option-tree' ),
-				'menu_title'      => esc_html__( 'Documentation', 'option-tree' ),
+				'page_title'      => esc_html( 'Documentation', 'slider-hero' ),
+				'menu_title'      => esc_html( 'Documentation', 'slider-hero' ),
 				'capability'      => 'edit_theme_options',
 				'menu_slug'       => 'ot-documentation',
 				'icon_url'        => null,
 				'position'        => null,
-				'updated_message' => esc_html__( 'Theme Options updated.', 'option-tree' ),
-				'reset_message'   => esc_html__( 'Theme Options reset.', 'option-tree' ),
-				'button_text'     => esc_html__( 'Save Settings', 'option-tree' ),
+				'updated_message' => esc_html( 'Theme Options updated.', 'slider-hero' ),
+				'reset_message'   => esc_html( 'Theme Options reset.', 'slider-hero' ),
+				'button_text'     => esc_html( 'Save Settings', 'slider-hero' ),
 				'show_buttons'    => false,
 				'sections'        => array(
 					array(
 						'id'    => 'creating_options',
-						'title' => esc_html__( 'Creating Options', 'option-tree' ),
+						'title' => esc_html( 'Creating Options', 'slider-hero' ),
 					),
 					array(
 						'id'    => 'option_types',
-						'title' => esc_html__( 'Option Types', 'option-tree' ),
+						'title' => esc_html( 'Option Types', 'slider-hero' ),
 					),
 					array(
 						'id'    => 'functions',
-						'title' => esc_html__( 'Function References', 'option-tree' ),
+						'title' => esc_html( 'Function References', 'slider-hero' ),
 					),
 					array(
 						'id'    => 'theme_mode',
-						'title' => esc_html__( 'Theme Mode', 'option-tree' ),
+						'title' => esc_html( 'Theme Mode', 'slider-hero' ),
 					),
 					array(
 						'id'    => 'meta_boxes',
-						'title' => esc_html__( 'Meta Boxes', 'option-tree' ),
+						'title' => esc_html( 'Meta Boxes', 'slider-hero' ),
 					),
 					array(
 						'id'    => 'examples',
-						'title' => esc_html__( 'Code Examples', 'option-tree' ),
+						'title' => esc_html( 'Code Examples', 'slider-hero' ),
 					),
 					array(
 						'id'    => 'layouts_overview',
-						'title' => esc_html__( 'Layouts Overview', 'option-tree' ),
+						'title' => esc_html( 'Layouts Overview', 'slider-hero' ),
 					),
 				),
 				'settings'        => array(
 					array(
 						'id'      => 'creating_options_text',
-						'label'   => esc_html__( 'Overview of available Theme Option fields.', 'option-tree' ),
+						'label'   => esc_html( 'Overview of available Theme Option fields.', 'slider-hero' ),
 						'type'    => 'creating-options',
 						'section' => 'creating_options',
 					),
 					array(
 						'id'      => 'option_types_text',
-						'label'   => esc_html__( 'Option types in alphabetical order & hooks to filter them.', 'option-tree' ),
+						'label'   => esc_html( 'Option types in alphabetical order & hooks to filter them.', 'slider-hero' ),
 						'type'    => 'option-types',
 						'section' => 'option_types',
 					),
 					array(
 						'id'      => 'functions_ot_get_option',
-						'label'   => esc_html__( 'Function Reference:ot_get_option()', 'option-tree' ),
+						'label'   => esc_html( 'Function Reference:ot_get_option()', 'slider-hero' ),
 						'type'    => 'ot-get-option',
 						'section' => 'functions',
 					),
 					array(
 						'id'      => 'functions_get_option_tree',
-						'label'   => esc_html__( 'Function Reference:get_option_tree()', 'option-tree' ),
+						'label'   => esc_html( 'Function Reference:get_option_tree()', 'slider-hero' ),
 						'type'    => 'get-option-tree',
 						'section' => 'functions',
 					),
 					array(
 						'id'      => 'theme_mode_text',
-						'label'   => esc_html__( 'Theme Mode', 'option-tree' ),
+						'label'   => esc_html( 'Theme Mode', 'slider-hero' ),
 						'type'    => 'theme-mode',
 						'section' => 'theme_mode',
 					),
 					array(
 						'id'      => 'meta_boxes_text',
-						'label'   => esc_html__( 'Meta Boxes', 'option-tree' ),
+						'label'   => esc_html( 'Meta Boxes', 'slider-hero' ),
 						'type'    => 'meta-boxes',
 						'section' => 'meta_boxes',
 					),
 					array(
 						'id'      => 'example_text',
-						'label'   => esc_html__( 'Code examples for front-end development.', 'option-tree' ),
+						'label'   => esc_html( 'Code examples for front-end development.', 'slider-hero' ),
 						'type'    => 'examples',
 						'section' => 'examples',
 					),
 					array(
 						'id'      => 'layouts_overview_text',
-						'label'   => esc_html__( 'What\'s a layout anyhow?', 'option-tree' ),
+						'label'   => esc_html( 'What\'s a layout anyhow?', 'slider-hero' ),
 						'type'    => 'layouts-overview',
 						'section' => 'layouts_overview',
 					),
@@ -463,7 +466,7 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
 		}
 
 		/* translators: %1$s: the input id, %2$s: the field id */
-		$string_nums = esc_html__( 'The %1$s input field for %2$s only allows numeric values.', 'option-tree' );
+		$string_nums = esc_html( 'The %1$s input field for %2$s only allows numeric values.', 'slider-hero' );
 
 		if ( 'background' === $type ) {
 
@@ -535,7 +538,7 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
 			if ( is_string( $input ) ) {
 
 				/* translators: %s: the field id */
-				$string_color = esc_html__( 'The %s Colorpicker only allows valid hexadecimal or rgba values depending on the setting type.', 'option-tree' );
+				$string_color = esc_html( 'The %s Colorpicker only allows valid hexadecimal or rgba values depending on the setting type.', 'slider-hero' );
 
 				if ( 0 === preg_match( '/^#([a-f0-9]{6}|[a-f0-9]{3})$/i', $input ) && 0 === preg_match( '/^rgba\(\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9\.]{1,4})\s*\)/i', $input ) ) {
 					add_settings_error( 'option-tree', 'invalid_hex_or_rgba', sprintf( $string_color, '<code>' . $field_id . '</code>' ), 'error' );
@@ -683,7 +686,7 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
 
 			if ( ! empty( $input ) ) {
 				if ( ! is_numeric( $input ) ) {
-					add_settings_error( 'option-tree', 'invalid_numeric_slider', sprintf( $string_nums, '<code>' . esc_html__( 'slider', 'option-tree' ) . '</code>', '<code>' . $field_id . '</code>' ), 'error' );
+					add_settings_error( 'option-tree', 'invalid_numeric_slider', sprintf( $string_nums, '<code>' . esc_html( 'slider', 'slider-hero' ) . '</code>', '<code>' . $field_id . '</code>' ), 'error' );
 				} else {
 					$input_safe = sanitize_text_field( $input );
 				}
@@ -743,7 +746,7 @@ if ( ! function_exists( 'ot_validate_setting' ) ) {
 		} else {
 
 			/* translators: %1$s: the calling function, %2$s the filter name, %3$s the option type, %4$s the version number */
-			$string_error = esc_html__( 'Notice: %1$s was called incorrectly. All stored data must be filtered through %2$s, the %3$s option type is not using this filter. This is required since version %4$s.', 'option-tree' );
+			$string_error = esc_html( 'Notice: %1$s was called incorrectly. All stored data must be filtered through %2$s, the %3$s option type is not using this filter. This is required since version %4$s.', 'slider-hero' );
 
 			// Log a user notice that things have changed since the last version.
 			add_settings_error( 'option-tree', 'ot_validate_setting_error', sprintf( $string_error, '<code>ot_validate_setting</code>', '<code>ot_validate_setting_input_safe</code>', '<code>' . $type . '</code>', '<code>2.7.0</code>' ), 'error' );
@@ -927,22 +930,22 @@ if ( ! function_exists( 'ot_admin_scripts' ) ) {
 		$localized_array = array(
 			'ajax'                  => admin_url( 'admin-ajax.php' ),
 			'nonce'                 => wp_create_nonce( 'option_tree' ),
-			'upload_text'           => apply_filters( 'ot_upload_text', __( 'Send to OptionTree', 'option-tree' ) ),
-			'remove_media_text'     => esc_html__( 'Remove Media', 'option-tree' ),
-			'reset_agree'           => esc_html__( 'Are you sure you want to reset back to the defaults?', 'option-tree' ),
-			'remove_no'             => esc_html__( 'You can\'t remove this! But you can edit the values.', 'option-tree' ),
-			'remove_agree'          => esc_html__( 'Are you sure you want to remove this?', 'option-tree' ),
-			'activate_layout_agree' => esc_html__( 'Are you sure you want to activate this layout?', 'option-tree' ),
-			'setting_limit'         => esc_html__( 'Sorry, you can\'t have settings three levels deep.', 'option-tree' ),
-			'delete'                => esc_html__( 'Delete Gallery', 'option-tree' ),
-			'edit'                  => esc_html__( 'Edit Gallery', 'option-tree' ),
-			'create'                => esc_html__( 'Create Gallery', 'option-tree' ),
-			'confirm'               => esc_html__( 'Are you sure you want to delete this Gallery?', 'option-tree' ),
-			'date_current'          => esc_html__( 'Today', 'option-tree' ),
-			'date_time_current'     => esc_html__( 'Now', 'option-tree' ),
-			'date_close'            => esc_html__( 'Close', 'option-tree' ),
-			'replace'               => esc_html__( 'Featured Image', 'option-tree' ),
-			'with'                  => esc_html__( 'Image', 'option-tree' ),
+			'upload_text'           => apply_filters( 'ot_upload_text', esc_html('Send to OptionTree', 'slider-hero' ) ),
+			'remove_media_text'     => esc_html( 'Remove Media', 'slider-hero' ),
+			'reset_agree'           => esc_html( 'Are you sure you want to reset back to the defaults?', 'slider-hero' ),
+			'remove_no'             => esc_html( 'You can\'t remove this! But you can edit the values.', 'slider-hero' ),
+			'remove_agree'          => esc_html( 'Are you sure you want to remove this?', 'slider-hero' ),
+			'activate_layout_agree' => esc_html( 'Are you sure you want to activate this layout?', 'slider-hero' ),
+			'setting_limit'         => esc_html( 'Sorry, you can\'t have settings three levels deep.', 'slider-hero' ),
+			'delete'                => esc_html( 'Delete Gallery', 'slider-hero' ),
+			'edit'                  => esc_html( 'Edit Gallery', 'slider-hero' ),
+			'create'                => esc_html( 'Create Gallery', 'slider-hero' ),
+			'confirm'               => esc_html( 'Are you sure you want to delete this Gallery?', 'slider-hero' ),
+			'date_current'          => esc_html( 'Today', 'slider-hero' ),
+			'date_time_current'     => esc_html( 'Now', 'slider-hero' ),
+			'date_close'            => esc_html( 'Close', 'slider-hero' ),
+			'replace'               => esc_html( 'Featured Image', 'slider-hero' ),
+			'with'                  => esc_html( 'Image', 'slider-hero' ),
 		);
 
 		// Localized script attached to 'option_tree'.
@@ -977,7 +980,7 @@ if ( ! function_exists( 'ot_get_media_post_ID' ) ) {
 			global $wpdb;
 
 			// Get the media post ID.
-			$post_ID = $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM $wpdb->posts p WHERE p.post_title = %s AND p.post_type = %s AND p.post_status = %s", 'Media', 'option-tree', 'private' ) ); // phpcs:ignore
+			$post_ID = $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM $wpdb->posts p WHERE p.post_title = %s AND p.post_type = %s AND p.post_status = %s", 'Media', 'slider-hero', 'private' ) ); // phpcs:ignore
 
 			// Add to the DB.
 			if ( null !== $post_ID && 0 < $post_ID ) {
@@ -1004,7 +1007,7 @@ if ( ! function_exists( 'ot_create_media_post' ) ) {
 		register_post_type(
 			'option-tree',
 			array(
-				'labels'              => array( 'name' => esc_html__( 'Option Tree', 'option-tree' ) ),
+				'labels'              => array( 'name' => esc_html( 'Option Tree', 'slider-hero' ) ),
 				'public'              => false,
 				'show_ui'             => false,
 				'capability_type'     => 'post',
@@ -1152,14 +1155,14 @@ if ( ! function_exists( 'ot_default_settings' ) ) {
 					'sections' => array(
 						array(
 							'id'    => 'general',
-							'title' => esc_html__( 'General', 'option-tree' ),
+							'title' => esc_html( 'General', 'slider-hero' ),
 						),
 					),
 					'settings' => array(
 						array(
 							'id'        => 'sample_text',
-							'label'     => esc_html__( 'Sample Text Field Label', 'option-tree' ),
-							'desc'      => esc_html__( 'Description for the sample text field.', 'option-tree' ),
+							'label'     => esc_html( 'Sample Text Field Label', 'slider-hero' ),
+							'desc'      => esc_html( 'Description for the sample text field.', 'slider-hero' ),
 							'section'   => 'general',
 							'type'      => 'text',
 							'std'       => '',
@@ -1463,7 +1466,7 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
 		function ot_i18n_string( $string ) {
 			if ( ! empty( $string ) && isset( $_POST['domain'] ) && ! empty( $_POST['domain'] ) ) { // phpcs:ignore
 				$domain = str_replace( ' ', '-', trim( sanitize_text_field( wp_unslash( $_POST['domain'] ) ) ) ); // phpcs:ignore
-				return "esc_html__( '$string', '$domain' )";
+				return "esc_html( '$string', '$domain' )";
 			}
 			return "'$string'";
 		}
@@ -1666,6 +1669,9 @@ if ( ! function_exists( 'ot_export_php_settings_array' ) ) {
 		}
 
 		$content .= "<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /**
  * Initialize the custom theme options.
  */
@@ -2178,64 +2184,64 @@ if ( ! function_exists( 'ot_alert_message' ) ) {
 
 			if ( 'success' === $message ) {
 
-				return '<div id="message" class="updated fade below-h2"><p>' . esc_html__( 'Settings updated.', 'option-tree' ) . '</p></div>';
+				return '<div id="message" class="updated fade below-h2"><p>' . esc_html( 'Settings updated.', 'slider-hero' ) . '</p></div>';
 
 			} elseif ( 'failed' === $message ) {
 
-				return '<div id="message" class="error fade below-h2"><p>' . esc_html__( 'Settings could not be saved.', 'option-tree' ) . '</p></div>';
+				return '<div id="message" class="error fade below-h2"><p>' . esc_html( 'Settings could not be saved.', 'slider-hero' ) . '</p></div>';
 
 			}
 		} elseif ( 'import-xml' === $action || 'import-settings' === $action ) {
 
 			if ( 'success' === $message ) {
 
-				return '<div id="message" class="updated fade below-h2"><p>' . esc_html__( 'Settings Imported.', 'option-tree' ) . '</p></div>';
+				return '<div id="message" class="updated fade below-h2"><p>' . esc_html( 'Settings Imported.', 'slider-hero' ) . '</p></div>';
 
 			} elseif ( 'failed' === $message ) {
 
-				return '<div id="message" class="error fade below-h2"><p>' . esc_html__( 'Settings could not be imported.', 'option-tree' ) . '</p></div>';
+				return '<div id="message" class="error fade below-h2"><p>' . esc_html( 'Settings could not be imported.', 'slider-hero' ) . '</p></div>';
 
 			}
 		} elseif ( 'import-data' === $action ) {
 
 			if ( 'success' === $message ) {
 
-				return '<div id="message" class="updated fade below-h2"><p>' . esc_html__( 'Data Imported.', 'option-tree' ) . '</p></div>';
+				return '<div id="message" class="updated fade below-h2"><p>' . esc_html( 'Data Imported.', 'slider-hero' ) . '</p></div>';
 
 			} elseif ( 'failed' === $message ) {
 
-				return '<div id="message" class="error fade below-h2"><p>' . esc_html__( 'Data could not be imported.', 'option-tree' ) . '</p></div>';
+				return '<div id="message" class="error fade below-h2"><p>' . esc_html( 'Data could not be imported.', 'slider-hero' ) . '</p></div>';
 
 			}
 		} elseif ( 'import-layouts' === $action ) {
 
 			if ( 'success' === $message ) {
 
-				return '<div id="message" class="updated fade below-h2"><p>' . esc_html__( 'Layouts Imported.', 'option-tree' ) . '</p></div>';
+				return '<div id="message" class="updated fade below-h2"><p>' . esc_html( 'Layouts Imported.', 'slider-hero' ) . '</p></div>';
 
 			} elseif ( 'failed' === $message ) {
 
-				return '<div id="message" class="error fade below-h2"><p>' . esc_html__( 'Layouts could not be imported.', 'option-tree' ) . '</p></div>';
+				return '<div id="message" class="error fade below-h2"><p>' . esc_html( 'Layouts could not be imported.', 'slider-hero' ) . '</p></div>';
 
 			}
 		} elseif ( 'save-layouts' === $action ) {
 
 			if ( 'success' === $message ) {
 
-				return '<div id="message" class="updated fade below-h2"><p>' . esc_html__( 'Layouts Updated.', 'option-tree' ) . '</p></div>';
+				return '<div id="message" class="updated fade below-h2"><p>' . esc_html( 'Layouts Updated.', 'slider-hero' ) . '</p></div>';
 
 			} elseif ( 'failed' === $message ) {
 
-				return '<div id="message" class="error fade below-h2"><p>' . esc_html__( 'Layouts could not be updated.', 'option-tree' ) . '</p></div>';
+				return '<div id="message" class="error fade below-h2"><p>' . esc_html( 'Layouts could not be updated.', 'slider-hero' ) . '</p></div>';
 
 			} elseif ( 'deleted' === $message ) {
 
-				return '<div id="message" class="updated fade below-h2"><p>' . esc_html__( 'Layouts have been deleted.', 'option-tree' ) . '</p></div>';
+				return '<div id="message" class="updated fade below-h2"><p>' . esc_html( 'Layouts have been deleted.', 'slider-hero' ) . '</p></div>';
 
 			}
 		} elseif ( 'layout' === $updated ) {
 
-			return '<div id="message" class="updated fade below-h2"><p>' . esc_html__( 'Layout activated.', 'option-tree' ) . '</p></div>';
+			return '<div id="message" class="updated fade below-h2"><p>' . esc_html( 'Layout activated.', 'slider-hero' ) . '</p></div>';
 
 		} elseif ( 'reset' === $action ) {
 
@@ -2272,51 +2278,51 @@ if ( ! function_exists( 'ot_option_types_array' ) ) {
 		return apply_filters(
 			'ot_option_types_array',
 			array(
-				'background'                => esc_html__( 'Background', 'option-tree' ),
-				'border'                    => esc_html__( 'Border', 'option-tree' ),
-				'box-shadow'                => esc_html__( 'Box Shadow', 'option-tree' ),
-				'category-checkbox'         => esc_html__( 'Category Checkbox', 'option-tree' ),
-				'category-select'           => esc_html__( 'Category Select', 'option-tree' ),
-				'checkbox'                  => esc_html__( 'Checkbox', 'option-tree' ),
-				'colorpicker'               => esc_html__( 'Colorpicker', 'option-tree' ),
-				'colorpicker-opacity'       => esc_html__( 'Colorpicker Opacity', 'option-tree' ),
-				'css'                       => esc_html__( 'CSS', 'option-tree' ),
-				'custom-post-type-checkbox' => esc_html__( 'Custom Post Type Checkbox', 'option-tree' ),
-				'custom-post-type-select'   => esc_html__( 'Custom Post Type Select', 'option-tree' ),
-				'date-picker'               => esc_html__( 'Date Picker', 'option-tree' ),
-				'date-time-picker'          => esc_html__( 'Date Time Picker', 'option-tree' ),
-				'dimension'                 => esc_html__( 'Dimension', 'option-tree' ),
-				'gallery'                   => esc_html__( 'Gallery', 'option-tree' ),
-				'google-fonts'              => esc_html__( 'Google Fonts', 'option-tree' ),
-				'javascript'                => esc_html__( 'JavaScript', 'option-tree' ),
-				'link-color'                => esc_html__( 'Link Color', 'option-tree' ),
-				'list-item'                 => esc_html__( 'List Item', 'option-tree' ),
-				'measurement'               => esc_html__( 'Measurement', 'option-tree' ),
-				'numeric-slider'            => esc_html__( 'Numeric Slider', 'option-tree' ),
-				'on-off'                    => esc_html__( 'On/Off', 'option-tree' ),
-				'page-checkbox'             => esc_html__( 'Page Checkbox', 'option-tree' ),
-				'page-select'               => esc_html__( 'Page Select', 'option-tree' ),
-				'post-checkbox'             => esc_html__( 'Post Checkbox', 'option-tree' ),
-				'post-select'               => esc_html__( 'Post Select', 'option-tree' ),
-				'radio'                     => esc_html__( 'Radio', 'option-tree' ),
-				'radio-image'               => esc_html__( 'Radio Image', 'option-tree' ),
-				'select'                    => esc_html__( 'Select', 'option-tree' ),
-				'sidebar-select'            => esc_html__( 'Sidebar Select', 'option-tree' ),
-				'slider'                    => esc_html__( 'Slider', 'option-tree' ),
-				'social-links'              => esc_html__( 'Social Links', 'option-tree' ),
-				'spacing'                   => esc_html__( 'Spacing', 'option-tree' ),
-				'tab'                       => esc_html__( 'Tab', 'option-tree' ),
-				'tag-checkbox'              => esc_html__( 'Tag Checkbox', 'option-tree' ),
-				'tag-select'                => esc_html__( 'Tag Select', 'option-tree' ),
-				'taxonomy-checkbox'         => esc_html__( 'Taxonomy Checkbox', 'option-tree' ),
-				'taxonomy-select'           => esc_html__( 'Taxonomy Select', 'option-tree' ),
-				'text'                      => esc_html__( 'Text', 'option-tree' ),
-				'textarea'                  => esc_html__( 'Textarea', 'option-tree' ),
-				'textarea-simple'           => esc_html__( 'Textarea Simple', 'option-tree' ),
-				'textblock'                 => esc_html__( 'Textblock', 'option-tree' ),
-				'textblock-titled'          => esc_html__( 'Textblock Titled', 'option-tree' ),
-				'typography'                => esc_html__( 'Typography', 'option-tree' ),
-				'upload'                    => esc_html__( 'Upload', 'option-tree' ),
+				'background'                => esc_html( 'Background', 'slider-hero' ),
+				'border'                    => esc_html( 'Border', 'slider-hero' ),
+				'box-shadow'                => esc_html( 'Box Shadow', 'slider-hero' ),
+				'category-checkbox'         => esc_html( 'Category Checkbox', 'slider-hero' ),
+				'category-select'           => esc_html( 'Category Select', 'slider-hero' ),
+				'checkbox'                  => esc_html( 'Checkbox', 'slider-hero' ),
+				'colorpicker'               => esc_html( 'Colorpicker', 'slider-hero' ),
+				'colorpicker-opacity'       => esc_html( 'Colorpicker Opacity', 'slider-hero' ),
+				'css'                       => esc_html( 'CSS', 'slider-hero' ),
+				'custom-post-type-checkbox' => esc_html( 'Custom Post Type Checkbox', 'slider-hero' ),
+				'custom-post-type-select'   => esc_html( 'Custom Post Type Select', 'slider-hero' ),
+				'date-picker'               => esc_html( 'Date Picker', 'slider-hero' ),
+				'date-time-picker'          => esc_html( 'Date Time Picker', 'slider-hero' ),
+				'dimension'                 => esc_html( 'Dimension', 'slider-hero' ),
+				'gallery'                   => esc_html( 'Gallery', 'slider-hero' ),
+				'google-fonts'              => esc_html( 'Google Fonts', 'slider-hero' ),
+				'javascript'                => esc_html( 'JavaScript', 'slider-hero' ),
+				'link-color'                => esc_html( 'Link Color', 'slider-hero' ),
+				'list-item'                 => esc_html( 'List Item', 'slider-hero' ),
+				'measurement'               => esc_html( 'Measurement', 'slider-hero' ),
+				'numeric-slider'            => esc_html( 'Numeric Slider', 'slider-hero' ),
+				'on-off'                    => esc_html( 'On/Off', 'slider-hero' ),
+				'page-checkbox'             => esc_html( 'Page Checkbox', 'slider-hero' ),
+				'page-select'               => esc_html( 'Page Select', 'slider-hero' ),
+				'post-checkbox'             => esc_html( 'Post Checkbox', 'slider-hero' ),
+				'post-select'               => esc_html( 'Post Select', 'slider-hero' ),
+				'radio'                     => esc_html( 'Radio', 'slider-hero' ),
+				'radio-image'               => esc_html( 'Radio Image', 'slider-hero' ),
+				'select'                    => esc_html( 'Select', 'slider-hero' ),
+				'sidebar-select'            => esc_html( 'Sidebar Select', 'slider-hero' ),
+				'slider'                    => esc_html( 'Slider', 'slider-hero' ),
+				'social-links'              => esc_html( 'Social Links', 'slider-hero' ),
+				'spacing'                   => esc_html( 'Spacing', 'slider-hero' ),
+				'tab'                       => esc_html( 'Tab', 'slider-hero' ),
+				'tag-checkbox'              => esc_html( 'Tag Checkbox', 'slider-hero' ),
+				'tag-select'                => esc_html( 'Tag Select', 'slider-hero' ),
+				'taxonomy-checkbox'         => esc_html( 'Taxonomy Checkbox', 'slider-hero' ),
+				'taxonomy-select'           => esc_html( 'Taxonomy Select', 'slider-hero' ),
+				'text'                      => esc_html( 'Text', 'slider-hero' ),
+				'textarea'                  => esc_html( 'Textarea', 'slider-hero' ),
+				'textarea-simple'           => esc_html( 'Textarea Simple', 'slider-hero' ),
+				'textblock'                 => esc_html( 'Textblock', 'slider-hero' ),
+				'textblock-titled'          => esc_html( 'Textblock Titled', 'slider-hero' ),
+				'typography'                => esc_html( 'Typography', 'slider-hero' ),
+				'upload'                    => esc_html( 'Upload', 'slider-hero' ),
 			)
 		);
 	}
@@ -3108,32 +3114,32 @@ if ( ! function_exists( 'ot_radio_images' ) ) {
 			array(
 				array(
 					'value' => 'left-sidebar',
-					'label' => esc_html__( 'Left Sidebar', 'option-tree' ),
+					'label' => esc_html( 'Left Sidebar', 'slider-hero' ),
 					'src'   => OT_URL . 'assets/images/layout/left-sidebar.png',
 				),
 				array(
 					'value' => 'right-sidebar',
-					'label' => esc_html__( 'Right Sidebar', 'option-tree' ),
+					'label' => esc_html( 'Right Sidebar', 'slider-hero' ),
 					'src'   => OT_URL . 'assets/images/layout/right-sidebar.png',
 				),
 				array(
 					'value' => 'full-width',
-					'label' => esc_html__( 'Full Width (no sidebar)', 'option-tree' ),
+					'label' => esc_html( 'Full Width (no sidebar)', 'slider-hero' ),
 					'src'   => OT_URL . 'assets/images/layout/full-width.png',
 				),
 				array(
 					'value' => 'dual-sidebar',
-					'label' => esc_html__( 'Dual Sidebar', 'option-tree' ),
+					'label' => esc_html( 'Dual Sidebar', 'slider-hero' ),
 					'src'   => OT_URL . 'assets/images/layout/dual-sidebar.png',
 				),
 				array(
 					'value' => 'left-dual-sidebar',
-					'label' => esc_html__( 'Left Dual Sidebar', 'option-tree' ),
+					'label' => esc_html( 'Left Dual Sidebar', 'slider-hero' ),
 					'src'   => OT_URL . 'assets/images/layout/left-dual-sidebar.png',
 				),
 				array(
 					'value' => 'right-dual-sidebar',
-					'label' => esc_html__( 'Right Dual Sidebar', 'option-tree' ),
+					'label' => esc_html( 'Right Dual Sidebar', 'slider-hero' ),
 					'src'   => OT_URL . 'assets/images/layout/right-dual-sidebar.png',
 				),
 			),
@@ -3168,7 +3174,7 @@ if ( ! function_exists( 'ot_list_item_settings' ) ) {
 			array(
 				array(
 					'id'        => 'image',
-					'label'     => esc_html__( 'Image', 'option-tree' ),
+					'label'     => esc_html( 'Image', 'slider-hero' ),
 					'desc'      => '',
 					'std'       => '',
 					'type'      => 'upload',
@@ -3179,7 +3185,7 @@ if ( ! function_exists( 'ot_list_item_settings' ) ) {
 				),
 				array(
 					'id'        => 'link',
-					'label'     => esc_html__( 'Link', 'option-tree' ),
+					'label'     => esc_html( 'Link', 'slider-hero' ),
 					'desc'      => '',
 					'std'       => '',
 					'type'      => 'text',
@@ -3190,7 +3196,7 @@ if ( ! function_exists( 'ot_list_item_settings' ) ) {
 				),
 				array(
 					'id'        => 'description',
-					'label'     => esc_html__( 'Description', 'option-tree' ),
+					'label'     => esc_html( 'Description', 'slider-hero' ),
 					'desc'      => '',
 					'std'       => '',
 					'type'      => 'textarea-simple',
@@ -3233,19 +3239,19 @@ if ( ! function_exists( 'ot_slider_settings' ) ) {
 				array(
 					'name'  => 'image',
 					'type'  => 'image',
-					'label' => esc_html__( 'Image', 'option-tree' ),
+					'label' => esc_html( 'Image', 'slider-hero' ),
 					'class' => '',
 				),
 				array(
 					'name'  => 'link',
 					'type'  => 'text',
-					'label' => esc_html__( 'Link', 'option-tree' ),
+					'label' => esc_html( 'Link', 'slider-hero' ),
 					'class' => '',
 				),
 				array(
 					'name'  => 'description',
 					'type'  => 'textarea',
-					'label' => esc_html__( 'Description', 'option-tree' ),
+					'label' => esc_html( 'Description', 'slider-hero' ),
 					'class' => '',
 				),
 			),
@@ -3302,14 +3308,14 @@ if ( ! function_exists( 'ot_social_links_settings' ) ) {
 	function ot_social_links_settings( $field_id ) {
 
 		/* translators: %s: the http protocol */
-		$string   = esc_html__( 'Enter a link to the profile or page on the social website. Remember to add the %s part to the front of the link.', 'option-tree' );
+		$string   = esc_html( 'Enter a link to the profile or page on the social website. Remember to add the %s part to the front of the link.', 'slider-hero' );
 		$settings = apply_filters(
 			'ot_social_links_settings',
 			array(
 				array(
 					'id'    => 'name',
-					'label' => esc_html__( 'Name', 'option-tree' ),
-					'desc'  => esc_html__( 'Enter the name of the social website.', 'option-tree' ),
+					'label' => esc_html( 'Name', 'slider-hero' ),
+					'desc'  => esc_html( 'Enter the name of the social website.', 'slider-hero' ),
 					'std'   => '',
 					'type'  => 'text',
 					'class' => 'option-tree-setting-title',
@@ -3317,7 +3323,7 @@ if ( ! function_exists( 'ot_social_links_settings' ) ) {
 				array(
 					'id'    => 'title',
 					'label' => 'Title',
-					'desc'  => esc_html__( 'Enter the text shown in the title attribute of the link.', 'option-tree' ),
+					'desc'  => esc_html( 'Enter the text shown in the title attribute of the link.', 'slider-hero' ),
 					'type'  => 'text',
 				),
 				array(
@@ -3691,7 +3697,7 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
 			// Can't write to the file so we error out.
 			if ( ! is_writable( $filepath ) ) {
 				/* translators: %s: file path */
-				$string = esc_html__( 'Unable to write to file %s.', 'option-tree' );
+				$string = esc_html( 'Unable to write to file %s.', 'slider-hero' );
 				add_settings_error( 'option-tree', 'dynamic_css', sprintf( $string, '<code>' . $filepath . '</code>' ), 'error' );
 				return false;
 			}
@@ -3702,7 +3708,7 @@ if ( ! function_exists( 'ot_insert_css_with_markers' ) ) {
 			// Can't write to the file return false.
 			if ( ! $f ) {
 				/* translators: %s: file path */
-				$string = esc_html__( 'Unable to open the %s file in write mode.', 'option-tree' );
+				$string = esc_html( 'Unable to open the %s file in write mode.', 'slider-hero' );
 				add_settings_error( 'option-tree', 'dynamic_css', sprintf( $string, '<code>' . $filepath . '</code>' ), 'error' );
 				return false;
 			}
@@ -3795,7 +3801,7 @@ if ( ! function_exists( 'ot_remove_old_css' ) ) {
 			// Can't write to the file return false.
 			if ( ! $f ) {
 				/* translators: %s: file path */
-				$string = esc_html__( 'Unable to open the %s file in write mode.', 'option-tree' );
+				$string = esc_html( 'Unable to open the %s file in write mode.', 'slider-hero' );
 				add_settings_error( 'option-tree', 'dynamic_css', sprintf( $string, '<code>' . $filepath . '</code>' ), 'error' );
 				return false;
 			}
@@ -3975,26 +3981,26 @@ if ( ! function_exists( 'ot_sections_view' ) ) {
 	function ot_sections_view( $name, $key, $section = array() ) {
 
 		/* translators: %s: Section Title emphasized */
-		$str_title = esc_html__( '%s: Displayed as a menu item on the Theme Options page.', 'option-tree' );
+		$str_title = esc_html( '%s: Displayed as a menu item on the Theme Options page.', 'slider-hero' );
 
 		/* translators: %s: Section ID emphasized */
-		$str_id = esc_html__( '%s: A unique lower case alphanumeric string, underscores allowed.', 'option-tree' );
+		$str_id = esc_html( '%s: A unique lower case alphanumeric string, underscores allowed.', 'slider-hero' );
 
 		return '
 		<div class="option-tree-setting is-section">
 			<div class="open">' . ( isset( $section['title'] ) ? esc_attr( $section['title'] ) : 'Section ' . ( absint( $key ) + 1 ) ) . '</div>
 			<div class="button-section">
-				<a href="javascript:void(0);" class="option-tree-setting-edit option-tree-ui-button button left-item" title="' . esc_html__( 'edit', 'option-tree' ) . '">
-					<span class="icon ot-icon-pencil"></span>' . esc_html__( 'Edit', 'option-tree' ) . '
+				<a href="javascript:void(0);" class="option-tree-setting-edit option-tree-ui-button button left-item" title="' . esc_html( 'edit', 'slider-hero' ) . '">
+					<span class="icon ot-icon-pencil"></span>' . esc_html( 'Edit', 'slider-hero' ) . '
 				</a>
-				<a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button button button-secondary light right-item" title="' . esc_html__( 'Delete', 'option-tree' ) . '">
-					<span class="icon ot-icon-trash-o"></span>' . esc_html__( 'Delete', 'option-tree' ) . '
+				<a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button button button-secondary light right-item" title="' . esc_html( 'Delete', 'slider-hero' ) . '">
+					<span class="icon ot-icon-trash-o"></span>' . esc_html( 'Delete', 'slider-hero' ) . '
 				</a>
 			</div>
 			<div class="option-tree-setting-body">
 				<div class="format-settings">
 					<div class="format-setting type-text">
-						<div class="description">' . sprintf( $str_title, '<strong>' . esc_html__( 'Section Title', 'option-tree' ) . '</strong>', 'option-tree' ) . '</div>
+						<div class="description">' . sprintf( $str_title, '<strong>' . esc_html( 'Section Title', 'slider-hero' ) . '</strong>', 'slider-hero' ) . '</div>
 						<div class="format-setting-inner">
 							<input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][title]" value="' . ( isset( $section['title'] ) ? esc_attr( $section['title'] ) : '' ) . '" class="widefat option-tree-ui-input option-tree-setting-title section-title" autocomplete="off" />
 						</div>
@@ -4002,7 +4008,7 @@ if ( ! function_exists( 'ot_sections_view' ) ) {
 				</div>
 				<div class="format-settings">
 					<div class="format-setting type-text">
-						<div class="description">' . sprintf( $str_id, '<strong>' . esc_html__( 'Section ID', 'option-tree' ) . '</strong>', 'option-tree' ) . '</div>
+						<div class="description">' . sprintf( $str_id, '<strong>' . esc_html( 'Section ID', 'slider-hero' ) . '</strong>', 'slider-hero' ) . '</div>
 						<div class="format-setting-inner">
 							<input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][id]" value="' . ( isset( $section['id'] ) ? esc_attr( $section['id'] ) : '' ) . '" class="widefat option-tree-ui-input section-id" autocomplete="off" />
 						</div>
@@ -4049,62 +4055,62 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
 		}
 
 		/* translators: %s: Label emphasized */
-		$str_label = esc_html__( '%s: Displayed as the label of a form element on the Theme Options page.', 'option-tree' );
+		$str_label = esc_html( '%s: Displayed as the label of a form element on the Theme Options page.', 'slider-hero' );
 
 		/* translators: %s: ID emphasized */
-		$str_id = esc_html__( '%s: A unique lower case alphanumeric string, underscores allowed.', 'option-tree' );
+		$str_id = esc_html( '%s: A unique lower case alphanumeric string, underscores allowed.', 'slider-hero' );
 
 		/* translators: %s: Type emphasized */
-		$str_type = esc_html__( '%s: Choose one of the available option types from the dropdown.', 'option-tree' );
+		$str_type = esc_html( '%s: Choose one of the available option types from the dropdown.', 'slider-hero' );
 
 		/* translators: %s: Description emphasized */
-		$str_desc = esc_html__( '%s: Enter a detailed description for the users to read on the Theme Options page, HTML is allowed. This is also where you enter content for both the Textblock & Textblock Titled option types.', 'option-tree' );
+		$str_desc = esc_html( '%s: Enter a detailed description for the users to read on the Theme Options page, HTML is allowed. This is also where you enter content for both the Textblock & Textblock Titled option types.', 'slider-hero' );
 
 		/* translators: %s: Choices emphasized */
-		$str_choices = esc_html__( '%s: This will only affect the following option types: Checkbox, Radio, Select & Select Image.', 'option-tree' );
+		$str_choices = esc_html( '%s: This will only affect the following option types: Checkbox, Radio, Select & Select Image.', 'slider-hero' );
 
 		/* translators: %s: Settings emphasized */
-		$str_settings = esc_html__( '%s: This will only affect the List Item option type.', 'option-tree' );
+		$str_settings = esc_html( '%s: This will only affect the List Item option type.', 'slider-hero' );
 
 		/* translators: %1$s: Standard emphasized, %2$s: visual path to documentation */
-		$str_standard = esc_html__( '%1$s: Setting the standard value for your option only works for some option types. Read the %2$s for more information on which ones.', 'option-tree' );
+		$str_standard = esc_html( '%1$s: Setting the standard value for your option only works for some option types. Read the %2$s for more information on which ones.', 'slider-hero' );
 
 		/* translators: %s: Rows emphasized */
-		$str_rows = esc_html__( '%s: Enter a numeric value for the number of rows in your textarea. This will only affect the following option types: CSS, Textarea, & Textarea Simple.', 'option-tree' );
+		$str_rows = esc_html( '%s: Enter a numeric value for the number of rows in your textarea. This will only affect the following option types: CSS, Textarea, & Textarea Simple.', 'slider-hero' );
 
 		/* translators: %s: Post Type emphasized */
-		$str_post_type = esc_html__( '%s: Add a comma separated list of post type like \'post,page\'. This will only affect the following option types: Custom Post Type Checkbox, & Custom Post Type Select.', 'option-tree' );
+		$str_post_type = esc_html( '%s: Add a comma separated list of post type like \'post,page\'. This will only affect the following option types: Custom Post Type Checkbox, & Custom Post Type Select.', 'slider-hero' );
 
 		/* translators: %s: Taxonomy emphasized */
-		$str_taxonomy = esc_html__( '%s: Add a comma separated list of any registered taxonomy like \'category,post_tag\'. This will only affect the following option types: Taxonomy Checkbox, & Taxonomy Select.', 'option-tree' );
+		$str_taxonomy = esc_html( '%s: Add a comma separated list of any registered taxonomy like \'category,post_tag\'. This will only affect the following option types: Taxonomy Checkbox, & Taxonomy Select.', 'slider-hero' );
 
 		/* translators: %1$s: Min, Max, & Step emphasized, %2$s: format, %3$s: range, %4$s: minimum interval */
-		$str_min_max_step = esc_html__( '%1$s: Add a comma separated list of options in the following format %2$s (slide from %3$s in intervals of %4$s). The three values represent the minimum, maximum, and step options and will only affect the Numeric Slider option type.', 'option-tree' );
+		$str_min_max_step = esc_html( '%1$s: Add a comma separated list of options in the following format %2$s (slide from %3$s in intervals of %4$s). The three values represent the minimum, maximum, and step options and will only affect the Numeric Slider option type.', 'slider-hero' );
 
 		/* translators: %s: CSS Class emphasized */
-		$str_css_class = esc_html__( '%s: Add and optional class to this option type.', 'option-tree' );
+		$str_css_class = esc_html( '%s: Add and optional class to this option type.', 'slider-hero' );
 
 		/* translators: %1$s: Condition emphasized, %2$s: example value, %3$s: list of valid conditions */
-		$str_condition = esc_html__( '%1$s: Add a comma separated list (no spaces) of conditions in which the field will be visible, leave this setting empty to always show the field. In these examples, %2$s is a placeholder for your condition, which can be in the form of %3$s.', 'option-tree' );
+		$str_condition = esc_html( '%1$s: Add a comma separated list (no spaces) of conditions in which the field will be visible, leave this setting empty to always show the field. In these examples, %2$s is a placeholder for your condition, which can be in the form of %3$s.', 'slider-hero' );
 
 		/* translators: %s: Operator emphasized */
-		$str_operator = esc_html__( '%s: Choose the logical operator to compute the result of the conditions.', 'option-tree' );
+		$str_operator = esc_html( '%s: Choose the logical operator to compute the result of the conditions.', 'slider-hero' );
 
 		return '
 		<div class="option-tree-setting">
 			<div class="open">' . ( isset( $setting['label'] ) ? esc_attr( $setting['label'] ) : 'Setting ' . ( absint( $key ) + 1 ) ) . '</div>
 			<div class="button-section">
-				<a href="javascript:void(0);" class="option-tree-setting-edit option-tree-ui-button button left-item" title="' . esc_html__( 'Edit', 'option-tree' ) . '">
-					<span class="icon ot-icon-pencil"></span>' . esc_html__( 'Edit', 'option-tree' ) . '
+				<a href="javascript:void(0);" class="option-tree-setting-edit option-tree-ui-button button left-item" title="' . esc_html( 'Edit', 'slider-hero' ) . '">
+					<span class="icon ot-icon-pencil"></span>' . esc_html( 'Edit', 'slider-hero' ) . '
 				</a>
-				<a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button button button-secondary light right-item" title="' . esc_html__( 'Delete', 'option-tree' ) . '">
-					<span class="icon ot-icon-trash-o"></span>' . esc_html__( 'Delete', 'option-tree' ) . '
+				<a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button button button-secondary light right-item" title="' . esc_html( 'Delete', 'slider-hero' ) . '">
+					<span class="icon ot-icon-trash-o"></span>' . esc_html( 'Delete', 'slider-hero' ) . '
 				</a>
 			</div>
 			<div class="option-tree-setting-body">
 				<div class="format-settings">
 					<div class="format-setting type-text wide-desc">
-						<div class="description">' . sprintf( $str_label, '<strong>' . esc_html__( 'Label', 'option-tree' ) . '</strong>' ) . '</div>
+						<div class="description">' . sprintf( $str_label, '<strong>' . esc_html( 'Label', 'slider-hero' ) . '</strong>' ) . '</div>
 						<div class="format-setting-inner">
 							<input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][label]" value="' . ( isset( $setting['label'] ) ? esc_attr( $setting['label'] ) : '' ) . '" class="widefat option-tree-ui-input option-tree-setting-title" autocomplete="off" />
 						</div>
@@ -4112,7 +4118,7 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
 				</div>
 				<div class="format-settings">
 					<div class="format-setting type-text wide-desc">
-						<div class="description">' . sprintf( $str_id, '<strong>' . esc_html__( 'ID', 'option-tree' ) . '</strong>' ) . '</div>
+						<div class="description">' . sprintf( $str_id, '<strong>' . esc_html( 'ID', 'slider-hero' ) . '</strong>' ) . '</div>
 						<div class="format-setting-inner">
 							<input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][id]" value="' . ( isset( $setting['id'] ) ? esc_attr( $setting['id'] ) : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />
 						</div>
@@ -4120,7 +4126,7 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
 				</div>
 				<div class="format-settings">
 					<div class="format-setting type-select wide-desc">
-						<div class="description">' . sprintf( $str_type, '<strong>' . esc_html__( 'Type', 'option-tree' ) . '</strong>' ) . '</div>
+						<div class="description">' . sprintf( $str_type, '<strong>' . esc_html( 'Type', 'slider-hero' ) . '</strong>' ) . '</div>
 						<div class="format-setting-inner">
 							<select name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][type]" value="' . esc_attr( $type ) . '" class="option-tree-ui-select">
 								' . ot_loop_through_option_types( $type, $child ) . '
@@ -4130,7 +4136,7 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
 				</div>
 				<div class="format-settings">
 					<div class="format-setting type-textarea wide-desc">
-						<div class="description">' . sprintf( $str_desc, '<strong>' . esc_html__( 'Description', 'option-tree' ) . '</strong>' ) . '</div>
+						<div class="description">' . sprintf( $str_desc, '<strong>' . esc_html( 'Description', 'slider-hero' ) . '</strong>' ) . '</div>
 						<div class="format-setting-inner">
 							<textarea class="textarea" rows="10" cols="40" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][desc]">' . ( isset( $setting['desc'] ) ? esc_html( $setting['desc'] ) : '' ) . '</textarea>
 						</div>
@@ -4138,29 +4144,29 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
 				</div>
 				<div class="format-settings">
 					<div class="format-setting type-textblock wide-desc">
-						<div class="description">' . sprintf( $str_choices, '<strong>' . esc_html__( 'Choices', 'option-tree' ) . '</strong>' ) . '</div>
+						<div class="description">' . sprintf( $str_choices, '<strong>' . esc_html( 'Choices', 'slider-hero' ) . '</strong>' ) . '</div>
 						<div class="format-setting-inner">
 							<ul class="option-tree-setting-wrap option-tree-sortable" data-name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . ']">
 								' . ( isset( $setting['choices'] ) ? ot_loop_through_choices( $name . '[' . $key . ']', $setting['choices'] ) : '' ) . '
 							</ul>
-							<a href="javascript:void(0);" class="option-tree-choice-add option-tree-ui-button button hug-left">' . esc_html__( 'Add Choice', 'option-tree' ) . '</a>
+							<a href="javascript:void(0);" class="option-tree-choice-add option-tree-ui-button button hug-left">' . esc_html( 'Add Choice', 'slider-hero' ) . '</a>
 						</div>
 					</div>
 				</div>
 				<div class="format-settings">
 					<div class="format-setting type-textblock wide-desc">
-						<div class="description">' . sprintf( $str_settings, '<strong>' . esc_html__( 'Settings', 'option-tree' ) . '</strong>' ) . '</div>
+						<div class="description">' . sprintf( $str_settings, '<strong>' . esc_html( 'Settings', 'slider-hero' ) . '</strong>' ) . '</div>
 						<div class="format-setting-inner">
 							<ul class="option-tree-setting-wrap option-tree-sortable" data-name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . ']">
 								' . ( isset( $setting['settings'] ) ? ot_loop_through_sub_settings( $name . '[' . $key . '][settings]', $setting['settings'] ) : '' ) . '
 							</ul>
-							<a href="javascript:void(0);" class="option-tree-list-item-setting-add option-tree-ui-button button hug-left">' . esc_html__( 'Add Setting', 'option-tree' ) . '</a>
+							<a href="javascript:void(0);" class="option-tree-list-item-setting-add option-tree-ui-button button hug-left">' . esc_html( 'Add Setting', 'slider-hero' ) . '</a>
 						</div>
 					</div>
 				</div>
 				<div class="format-settings">
 					<div class="format-setting type-text wide-desc">
-						<div class="description">' . sprintf( $str_standard, '<strong>' . esc_html__( 'Standard', 'option-tree' ) . '</strong>', '<code>' . esc_html__( 'OptionTree->Documentation', 'option-tree' ) . '</code>' ) . '</div>
+						<div class="description">' . sprintf( $str_standard, '<strong>' . esc_html( 'Standard', 'slider-hero' ) . '</strong>', '<code>' . esc_html( 'OptionTree->Documentation', 'slider-hero' ) . '</code>' ) . '</div>
 						<div class="format-setting-inner">
 							' . $std_form_element . '
 						</div>
@@ -4168,7 +4174,7 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
 				</div>
 				<div class="format-settings">
 					<div class="format-setting type-text wide-desc">
-						<div class="description">' . sprintf( $str_rows, '<strong>' . esc_html__( 'Rows', 'option-tree' ) . '</strong>' ) . '</div>
+						<div class="description">' . sprintf( $str_rows, '<strong>' . esc_html( 'Rows', 'slider-hero' ) . '</strong>' ) . '</div>
 						<div class="format-setting-inner">
 							<input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][rows]" value="' . ( isset( $setting['rows'] ) ? esc_attr( $setting['rows'] ) : '' ) . '" class="widefat option-tree-ui-input" />
 						</div>
@@ -4176,7 +4182,7 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
 				</div>
 				<div class="format-settings">
 					<div class="format-setting type-text wide-desc">
-						<div class="description">' . sprintf( $str_post_type, '<strong>' . esc_html__( 'Post Type', 'option-tree' ) . '</strong>' ) . '</div>
+						<div class="description">' . sprintf( $str_post_type, '<strong>' . esc_html( 'Post Type', 'slider-hero' ) . '</strong>' ) . '</div>
 						<div class="format-setting-inner">
 							<input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][post_type]" value="' . ( isset( $setting['post_type'] ) ? esc_attr( $setting['post_type'] ) : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />
 						</div>
@@ -4184,7 +4190,7 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
 				</div>
 				<div class="format-settings">
 					<div class="format-setting type-text wide-desc">
-						<div class="description">' . sprintf( $str_taxonomy, '<strong>' . esc_html__( 'Taxonomy', 'option-tree' ) . '</strong>' ) . '</div>
+						<div class="description">' . sprintf( $str_taxonomy, '<strong>' . esc_html( 'Taxonomy', 'slider-hero' ) . '</strong>' ) . '</div>
 						<div class="format-setting-inner">
 							<input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][taxonomy]" value="' . ( isset( $setting['taxonomy'] ) ? esc_attr( $setting['taxonomy'] ) : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />
 						</div>
@@ -4192,7 +4198,7 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
 				</div>
 				<div class="format-settings">
 					<div class="format-setting type-text wide-desc">
-						<div class="description">' . sprintf( $str_min_max_step, '<strong>' . esc_html__( 'Min, Max, & Step', 'option-tree' ) . '</strong>', '<code>0,100,1</code>', '<code>0-100</code>', '<code>1</code>' ) . '</div>
+						<div class="description">' . sprintf( $str_min_max_step, '<strong>' . esc_html( 'Min, Max, & Step', 'slider-hero' ) . '</strong>', '<code>0,100,1</code>', '<code>0-100</code>', '<code>1</code>' ) . '</div>
 						<div class="format-setting-inner">
 							<input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][min_max_step]" value="' . ( isset( $setting['min_max_step'] ) ? esc_attr( $setting['min_max_step'] ) : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />
 						</div>
@@ -4200,7 +4206,7 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
 				</div>
 				<div class="format-settings">
 					<div class="format-setting type-text wide-desc">
-						<div class="description">' . sprintf( $str_css_class, '<strong>' . esc_html__( 'CSS Class', 'option-tree' ) . '</strong>' ) . '</div>
+						<div class="description">' . sprintf( $str_css_class, '<strong>' . esc_html( 'CSS Class', 'slider-hero' ) . '</strong>' ) . '</div>
 						<div class="format-setting-inner">
 							<input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][class]" value="' . ( isset( $setting['class'] ) ? esc_attr( $setting['class'] ) : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />
 						</div>
@@ -4208,7 +4214,7 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
 				</div>
 				<div class="format-settings">
 					<div class="format-setting type-text wide-desc">
-						<div class="description">' . sprintf( $str_condition, '<strong>' . esc_html__( 'Condition', 'option-tree' ) . '</strong>', '<code>value</code>', '<code>field_id:is(value)</code>, <code>field_id:not(value)</code>, <code>field_id:contains(value)</code>, <code>field_id:less_than(value)</code>, <code>field_id:less_than_or_equal_to(value)</code>, <code>field_id:greater_than(value)</code>, or <code>field_id:greater_than_or_equal_to(value)</code>' ) . '</div>
+						<div class="description">' . sprintf( $str_condition, '<strong>' . esc_html( 'Condition', 'slider-hero' ) . '</strong>', '<code>value</code>', '<code>field_id:is(value)</code>, <code>field_id:not(value)</code>, <code>field_id:contains(value)</code>, <code>field_id:less_than(value)</code>, <code>field_id:less_than_or_equal_to(value)</code>, <code>field_id:greater_than(value)</code>, or <code>field_id:greater_than_or_equal_to(value)</code>' ) . '</div>
 						<div class="format-setting-inner">
 							<input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][condition]" value="' . ( isset( $setting['condition'] ) ? esc_attr( $setting['condition'] ) : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />
 						</div>
@@ -4216,11 +4222,11 @@ if ( ! function_exists( 'ot_settings_view' ) ) {
 				</div>
 				<div class="format-settings">
 					<div class="format-setting type-select wide-desc">
-						<div class="description">' . sprintf( $str_operator, '<strong>' . esc_html__( 'Operator', 'option-tree' ) . '</strong>' ) . '</div>
+						<div class="description">' . sprintf( $str_operator, '<strong>' . esc_html( 'Operator', 'slider-hero' ) . '</strong>' ) . '</div>
 						<div class="format-setting-inner">
 							<select name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][operator]" value="' . esc_attr( $operator ) . '" class="option-tree-ui-select">
-								<option value="and" ' . selected( $operator, 'and', false ) . '>' . esc_html__( 'and', 'option-tree' ) . '</option>
-								<option value="or" ' . selected( $operator, 'or', false ) . '>' . esc_html__( 'or', 'option-tree' ) . '</option>
+								<option value="and" ' . selected( $operator, 'and', false ) . '>' . esc_html( 'and', 'slider-hero' ) . '</option>
+								<option value="or" ' . selected( $operator, 'or', false ) . '>' . esc_html( 'or', 'slider-hero' ) . '</option>
 							</select>
 						</div>
 					</div>
@@ -4254,17 +4260,17 @@ if ( ! function_exists( 'ot_choices_view' ) ) {
 		<div class="option-tree-setting">
 			<div class="open">' . ( isset( $choice['label'] ) ? esc_attr( $choice['label'] ) : 'Choice ' . ( absint( $key ) + 1 ) ) . '</div>
 			<div class="button-section">
-				<a href="javascript:void(0);" class="option-tree-setting-edit option-tree-ui-button button left-item" title="' . esc_html__( 'Edit', 'option-tree' ) . '">
-					<span class="icon ot-icon-pencil"></span>' . esc_html__( 'Edit', 'option-tree' ) . '
+				<a href="javascript:void(0);" class="option-tree-setting-edit option-tree-ui-button button left-item" title="' . esc_html( 'Edit', 'slider-hero' ) . '">
+					<span class="icon ot-icon-pencil"></span>' . esc_html( 'Edit', 'slider-hero' ) . '
 				</a>
-				<a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button button button-secondary light right-item" title="' . esc_html__( 'Delete', 'option-tree' ) . '">
-					<span class="icon ot-icon-trash-o"></span>' . esc_html__( 'Delete', 'option-tree' ) . '
+				<a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button button button-secondary light right-item" title="' . esc_html( 'Delete', 'slider-hero' ) . '">
+					<span class="icon ot-icon-trash-o"></span>' . esc_html( 'Delete', 'slider-hero' ) . '
 				</a>
 			</div>
 			<div class="option-tree-setting-body">
 				<div class="format-settings">
 					<div class="format-setting-label">
-						<h5>' . esc_html__( 'Label', 'option-tree' ) . '</h5>
+						<h5>' . esc_html( 'Label', 'slider-hero' ) . '</h5>
 					</div>
 					<div class="format-setting type-text wide-desc">
 						<div class="format-setting-inner">
@@ -4274,7 +4280,7 @@ if ( ! function_exists( 'ot_choices_view' ) ) {
 				</div>
 				<div class="format-settings">
 					<div class="format-setting-label">
-						<h5>' . esc_html__( 'Value', 'option-tree' ) . '</h5>
+						<h5>' . esc_html( 'Value', 'slider-hero' ) . '</h5>
 					</div>
 					<div class="format-setting type-text wide-desc">
 						<div class="format-setting-inner">
@@ -4284,7 +4290,7 @@ if ( ! function_exists( 'ot_choices_view' ) ) {
 				</div>
 				<div class="format-settings">
 					<div class="format-setting-label">
-						<h5>' . esc_html__( 'Image Source (Radio Image only)', 'option-tree' ) . '</h5>
+						<h5>' . esc_html( 'Image Source (Radio Image only)', 'slider-hero' ) . '</h5>
 					</div>
 					<div class="format-setting type-text wide-desc">
 						<div class="format-setting-inner">
@@ -4318,29 +4324,29 @@ if ( ! function_exists( 'ot_contextual_help_view' ) ) {
 	function ot_contextual_help_view( $name, $key, $content = array() ) {
 
 		/* translators: %s: Title emphasized */
-		$str_title = esc_html__( '%s: Displayed as a contextual help menu item on the Theme Options page.', 'option-tree' );
+		$str_title = esc_html( '%s: Displayed as a contextual help menu item on the Theme Options page.', 'slider-hero' );
 
 		/* translators: %s: ID emphasized */
-		$str_id = esc_html__( '%s: A unique lower case alphanumeric string, underscores allowed.', 'option-tree' );
+		$str_id = esc_html( '%s: A unique lower case alphanumeric string, underscores allowed.', 'slider-hero' );
 
 		/* translators: %s: Content emphasized */
-		$str_content = esc_html__( '%s: Enter the HTML content about this contextual help item displayed on the Theme Option page for end users to read.', 'option-tree' );
+		$str_content = esc_html( '%s: Enter the HTML content about this contextual help item displayed on the Theme Option page for end users to read.', 'slider-hero' );
 
 		return '
 		<div class="option-tree-setting">
 			<div class="open">' . ( isset( $content['title'] ) ? esc_attr( $content['title'] ) : 'Content ' . ( absint( $key ) + 1 ) ) . '</div>
 			<div class="button-section">
-				<a href="javascript:void(0);" class="option-tree-setting-edit option-tree-ui-button button left-item" title="' . esc_html__( 'Edit', 'option-tree' ) . '">
-					<span class="icon ot-icon-pencil"></span>' . esc_html__( 'Edit', 'option-tree' ) . '
+				<a href="javascript:void(0);" class="option-tree-setting-edit option-tree-ui-button button left-item" title="' . esc_html( 'Edit', 'slider-hero' ) . '">
+					<span class="icon ot-icon-pencil"></span>' . esc_html( 'Edit', 'slider-hero' ) . '
 				</a>
-				<a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button button button-secondary light right-item" title="' . esc_html__( 'Delete', 'option-tree' ) . '">
-					<span class="icon ot-icon-trash-o"></span>' . esc_html__( 'Delete', 'option-tree' ) . '
+				<a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button button button-secondary light right-item" title="' . esc_html( 'Delete', 'slider-hero' ) . '">
+					<span class="icon ot-icon-trash-o"></span>' . esc_html( 'Delete', 'slider-hero' ) . '
 				</a>
 			</div>
 			<div class="option-tree-setting-body">
 				<div class="format-settings">
 					<div class="format-setting type-text no-desc">
-						<div class="description">' . sprintf( $str_title, '<strong>' . esc_html__( 'Title', 'option-tree' ) . '</strong>' ) . '</div>
+						<div class="description">' . sprintf( $str_title, '<strong>' . esc_html( 'Title', 'slider-hero' ) . '</strong>' ) . '</div>
 						<div class="format-setting-inner">
 							<input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][title]" value="' . ( isset( $content['title'] ) ? esc_attr( $content['title'] ) : '' ) . '" class="widefat option-tree-ui-input option-tree-setting-title" autocomplete="off" />
 						</div>
@@ -4348,7 +4354,7 @@ if ( ! function_exists( 'ot_contextual_help_view' ) ) {
 				</div>
 				<div class="format-settings">
 					<div class="format-setting type-text no-desc">
-						<div class="description">' . sprintf( $str_id, '<strong>' . esc_html__( 'ID', 'option-tree' ) . '</strong>' ) . '</div>
+						<div class="description">' . sprintf( $str_id, '<strong>' . esc_html( 'ID', 'slider-hero' ) . '</strong>' ) . '</div>
 						<div class="format-setting-inner">
 							<input type="text" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][id]" value="' . ( isset( $content['id'] ) ? esc_attr( $content['id'] ) : '' ) . '" class="widefat option-tree-ui-input" autocomplete="off" />
 						</div>
@@ -4356,7 +4362,7 @@ if ( ! function_exists( 'ot_contextual_help_view' ) ) {
 				</div>
 				<div class="format-settings">
 					<div class="format-setting type-textarea no-desc">
-						<div class="description">' . sprintf( $str_content, '<strong>' . esc_html__( 'Content', 'option-tree' ) . '</strong>' ) . '</div>
+						<div class="description">' . sprintf( $str_content, '<strong>' . esc_html( 'Content', 'slider-hero' ) . '</strong>' ) . '</div>
 						<div class="format-setting-inner">
 							<textarea class="textarea" rows="15" cols="40" name="' . esc_attr( $name ) . '[' . esc_attr( $key ) . '][content]">' . ( isset( $content['content'] ) ? esc_textarea( $content['content'] ) : '' ) . '</textarea>
 						</div>
@@ -4386,13 +4392,13 @@ if ( ! function_exists( 'ot_layout_view' ) ) {
 
 		return '
 		<div class="option-tree-setting">
-			<div class="open">' . ( isset( $key ) ? esc_attr( $key ) : esc_html__( 'Layout', 'option-tree' ) ) . '</div>
+			<div class="open">' . ( isset( $key ) ? esc_attr( $key ) : esc_html( 'Layout', 'slider-hero' ) ) . '</div>
 			<div class="button-section">
-				<a href="javascript:void(0);" class="option-tree-layout-activate option-tree-ui-button button left-item' . ( $active_layout === $key ? ' active' : '' ) . '" title="' . esc_html__( 'Activate', 'option-tree' ) . '">
-					<span class="icon ot-icon-square-o"></span>' . esc_html__( 'Activate', 'option-tree' ) . '
+				<a href="javascript:void(0);" class="option-tree-layout-activate option-tree-ui-button button left-item' . ( $active_layout === $key ? ' active' : '' ) . '" title="' . esc_html( 'Activate', 'slider-hero' ) . '">
+					<span class="icon ot-icon-square-o"></span>' . esc_html( 'Activate', 'slider-hero' ) . '
 				</a>
-				<a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button button button-secondary light right-item" title="' . esc_html__( 'Delete', 'option-tree' ) . '">
-					<span class="icon ot-icon-trash-o"></span>' . esc_html__( 'Delete', 'option-tree' ) . '
+				<a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button button button-secondary light right-item" title="' . esc_html( 'Delete', 'slider-hero' ) . '">
+					<span class="icon ot-icon-trash-o"></span>' . esc_html( 'Delete', 'slider-hero' ) . '
 				</a>
 			</div>
 			<input type="hidden" name="' . esc_attr( ot_layouts_id() ) . '[' . esc_attr( $key ) . ']" value="' . esc_attr( $data ) . '" />
@@ -4425,7 +4431,7 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
 		$required_setting = array(
 			array(
 				'id'        => 'title',
-				'label'     => __( 'Title', 'option-tree' ),
+				'label'     => esc_html('Title', 'slider-hero' ),
 				'desc'      => '',
 				'std'       => '',
 				'type'      => 'text',
@@ -4453,11 +4459,11 @@ if ( ! function_exists( 'ot_list_item_view' ) ) {
 		<div class="option-tree-setting">
 			<div class="open">' . ( isset( $list_item['title'] ) ? esc_attr( $list_item['title'] ) : '' ) . '</div>
 			<div class="button-section">
-				<a href="javascript:void(0);" class="option-tree-setting-edit option-tree-ui-button button left-item" title="' . esc_html__( 'Edit', 'option-tree' ) . '">
-					<span class="icon ot-icon-pencil"></span>' . esc_html__( 'Edit', 'option-tree' ) . '
+				<a href="javascript:void(0);" class="option-tree-setting-edit option-tree-ui-button button left-item" title="' . esc_html( 'Edit', 'slider-hero' ) . '">
+					<span class="icon ot-icon-pencil"></span>' . esc_html( 'Edit', 'slider-hero' ) . '
 				</a>
-				<a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button button button-secondary light right-item" title="' . esc_html__( 'Delete', 'option-tree' ) . '">
-					<span class="icon ot-icon-trash-o"></span>' . esc_html__( 'Delete', 'option-tree' ) . '
+				<a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button button button-secondary light right-item" title="' . esc_html( 'Delete', 'slider-hero' ) . '">
+					<span class="icon ot-icon-trash-o"></span>' . esc_html( 'Delete', 'slider-hero' ) . '
 				</a>
 			</div>
 			<div class="option-tree-setting-body">
@@ -4596,11 +4602,11 @@ if ( ! function_exists( 'ot_social_links_view' ) ) {
 		<div class="option-tree-setting">
 			<div class="open">' . ( isset( $list_item['name'] ) ? esc_attr( $list_item['name'] ) : '' ) . '</div>
 			<div class="button-section">
-				<a href="javascript:void(0);" class="option-tree-setting-edit option-tree-ui-button button left-item" title="' . esc_html__( 'Edit', 'option-tree' ) . '">
-					<span class="icon ot-icon-pencil"></span>' . esc_html__( 'Edit', 'option-tree' ) . '
+				<a href="javascript:void(0);" class="option-tree-setting-edit option-tree-ui-button button left-item" title="' . esc_html( 'Edit', 'slider-hero' ) . '">
+					<span class="icon ot-icon-pencil"></span>' . esc_html( 'Edit', 'slider-hero' ) . '
 				</a>
-				<a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button button button-secondary light right-item" title="' . esc_html__( 'Delete', 'option-tree' ) . '">
-					<span class="icon ot-icon-trash-o"></span>' . esc_html__( 'Delete', 'option-tree' ) . '
+				<a href="javascript:void(0);" class="option-tree-setting-remove option-tree-ui-button button button-secondary light right-item" title="' . esc_html( 'Delete', 'slider-hero' ) . '">
+					<span class="icon ot-icon-trash-o"></span>' . esc_html( 'Delete', 'slider-hero' ) . '
 				</a>
 			</div>
 			<div class="option-tree-setting-body">
@@ -4743,7 +4749,7 @@ if ( ! function_exists( 'ot_theme_options_layouts_form' ) ) {
 		/* add new layout */
 		echo '<input type="text" name="' . esc_attr( ot_layouts_id() ) . '[_add_new_layout_]" value="" class="widefat option-tree-ui-input" autocomplete="off" />';
 
-		echo '<button type="submit" class="option-tree-ui-button button button-primary save-layout" title="' . esc_html__( 'New Layout', 'option-tree' ) . '">' . esc_html__( 'New Layout', 'option-tree' ) . '</button>';
+		echo '<button type="submit" class="option-tree-ui-button button button-primary save-layout" title="' . esc_html( 'New Layout', 'slider-hero' ) . '">' . esc_html( 'New Layout', 'slider-hero' ) . '</button>';
 
 		echo '</div>';
 
@@ -5453,7 +5459,7 @@ if ( ! function_exists( 'ot_meta_box_post_format_gallery' ) ) {
 			'ot_meta_box_post_format_gallery',
 			array(
 				'id'       => 'ot-post-format-gallery',
-				'title'    => esc_html__( 'Gallery', 'option-tree' ),
+				'title'    => esc_html( 'Gallery', 'slider-hero' ),
 				'desc'     => '',
 				'pages'    => $pages,
 				'context'  => 'side',
@@ -5501,7 +5507,7 @@ if ( ! function_exists( 'ot_meta_box_post_format_link' ) ) {
 			'ot_meta_box_post_format_link',
 			array(
 				'id'       => 'ot-post-format-link',
-				'title'    => esc_html__( 'Link', 'option-tree' ),
+				'title'    => esc_html( 'Link', 'slider-hero' ),
 				'desc'     => '',
 				'pages'    => $pages,
 				'context'  => 'side',
@@ -5510,14 +5516,14 @@ if ( ! function_exists( 'ot_meta_box_post_format_link' ) ) {
 					array(
 						'id'    => '_format_link_url',
 						'label' => '',
-						'desc'  => esc_html__( 'Link URL', 'option-tree' ),
+						'desc'  => esc_html( 'Link URL', 'slider-hero' ),
 						'std'   => '',
 						'type'  => 'text',
 					),
 					array(
 						'id'    => '_format_link_title',
 						'label' => '',
-						'desc'  => esc_html__( 'Link Title', 'option-tree' ),
+						'desc'  => esc_html( 'Link Title', 'slider-hero' ),
 						'std'   => '',
 						'type'  => 'text',
 					),
@@ -5555,7 +5561,7 @@ if ( ! function_exists( 'ot_meta_box_post_format_quote' ) ) {
 			'ot_meta_box_post_format_quote',
 			array(
 				'id'       => 'ot-post-format-quote',
-				'title'    => esc_html__( 'Quote', 'option-tree' ),
+				'title'    => esc_html( 'Quote', 'slider-hero' ),
 				'desc'     => '',
 				'pages'    => $pages,
 				'context'  => 'side',
@@ -5564,28 +5570,28 @@ if ( ! function_exists( 'ot_meta_box_post_format_quote' ) ) {
 					array(
 						'id'    => '_format_quote_source_name',
 						'label' => '',
-						'desc'  => esc_html__( 'Source Name (ex. author, singer, actor)', 'option-tree' ),
+						'desc'  => esc_html( 'Source Name (ex. author, singer, actor)', 'slider-hero' ),
 						'std'   => '',
 						'type'  => 'text',
 					),
 					array(
 						'id'    => '_format_quote_source_url',
 						'label' => '',
-						'desc'  => esc_html__( 'Source URL', 'option-tree' ),
+						'desc'  => esc_html( 'Source URL', 'slider-hero' ),
 						'std'   => '',
 						'type'  => 'text',
 					),
 					array(
 						'id'    => '_format_quote_source_title',
 						'label' => '',
-						'desc'  => esc_html__( 'Source Title (ex. book, song, movie)', 'option-tree' ),
+						'desc'  => esc_html( 'Source Title (ex. book, song, movie)', 'slider-hero' ),
 						'std'   => '',
 						'type'  => 'text',
 					),
 					array(
 						'id'    => '_format_quote_source_date',
 						'label' => '',
-						'desc'  => esc_html__( 'Source Date', 'option-tree' ),
+						'desc'  => esc_html( 'Source Date', 'slider-hero' ),
 						'std'   => '',
 						'type'  => 'text',
 					),
@@ -5621,13 +5627,13 @@ if ( ! function_exists( 'ot_meta_box_post_format_video' ) ) {
 		}
 
 		/* translators: %1$s: link to WorPress Codex, %2$s: video shortcode */
-		$string = esc_html__( 'Embed video from services like Youtube, Vimeo, or Hulu. You can find a list of supported oEmbed sites in the %1$s. Alternatively, you could use the built-in %2$s shortcode.', 'option-tree' );
+		$string = esc_html( 'Embed video from services like Youtube, Vimeo, or Hulu. You can find a list of supported oEmbed sites in the %1$s. Alternatively, you could use the built-in %2$s shortcode.', 'slider-hero' );
 
 		return apply_filters(
 			'ot_meta_box_post_format_video',
 			array(
 				'id'       => 'ot-post-format-video',
-				'title'    => __( 'Video', 'option-tree' ),
+				'title'    => esc_html('Video', 'slider-hero' ),
 				'desc'     => '',
 				'pages'    => $pages,
 				'context'  => 'side',
@@ -5636,7 +5642,7 @@ if ( ! function_exists( 'ot_meta_box_post_format_video' ) ) {
 					array(
 						'id'    => '_format_video_embed',
 						'label' => '',
-						'desc'  => sprintf( $string, '<a href="https://codex.wordpress.org/Embeds" target="_blank">' . esc_html__( 'WordPress Codex', 'option-tree' ) . '</a>', '<code>[video]</code>' ),
+						'desc'  => sprintf( $string, '<a href="https://codex.wordpress.org/Embeds" target="_blank">' . esc_html( 'WordPress Codex', 'slider-hero' ) . '</a>', '<code>[video]</code>' ),
 						'std'   => '',
 						'type'  => 'textarea',
 					),
@@ -5671,13 +5677,13 @@ if ( ! function_exists( 'ot_meta_box_post_format_audio' ) ) {
 		}
 
 		/* translators: %1$s: link to WorPress Codex, %2$s: audio shortcode */
-		$string = esc_html__( 'Embed audio from services like SoundCloud and Radio. You can find a list of supported oEmbed sites in the %1$s. Alternatively, you could use the built-in %2$s shortcode.', 'option-tree' );
+		$string = esc_html( 'Embed audio from services like SoundCloud and Radio. You can find a list of supported oEmbed sites in the %1$s. Alternatively, you could use the built-in %2$s shortcode.', 'slider-hero' );
 
 		return apply_filters(
 			'ot_meta_box_post_format_audio',
 			array(
 				'id'       => 'ot-post-format-audio',
-				'title'    => esc_html__( 'Audio', 'option-tree' ),
+				'title'    => esc_html( 'Audio', 'slider-hero' ),
 				'desc'     => '',
 				'pages'    => $pages,
 				'context'  => 'side',
@@ -5686,7 +5692,7 @@ if ( ! function_exists( 'ot_meta_box_post_format_audio' ) ) {
 					array(
 						'id'    => '_format_audio_embed',
 						'label' => '',
-						'desc'  => sprintf( $string, '<a href="https://codex.wordpress.org/Embeds" target="_blank">' . esc_html__( 'WordPress Codex', 'option-tree' ) . '</a>', '<code>[audio]</code>' ),
+						'desc'  => sprintf( $string, '<a href="https://codex.wordpress.org/Embeds" target="_blank">' . esc_html( 'WordPress Codex', 'slider-hero' ) . '</a>', '<code>[audio]</code>' ),
 						'std'   => '',
 						'type'  => 'textarea',
 					),
@@ -6086,3 +6092,4 @@ if ( ! function_exists( 'ot_split_shared_term' ) ) {
 
 	add_action( 'split_shared_term', 'ot_split_shared_term', 10, 4 );
 }
+

@@ -2,6 +2,9 @@
 namespace QCLD\Slider_Hero;
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 
 /**
  * Elementor Slider Hero Widget.
@@ -40,7 +43,7 @@ class QCLD_SLIDER_HERO extends \Elementor\Widget_Base
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return esc_html( 'Slider Hero', 'elementor' );
+		return esc_html( 'Slider Hero', 'slider-hero' );
 	}
 
 	/**
@@ -83,16 +86,14 @@ class QCLD_SLIDER_HERO extends \Elementor\Widget_Base
 		$this->start_controls_section(
 			'section_name',
 			[
-				'label' => esc_html( 'Slider Heor', 'elementor' ),
+				'label' => esc_html( 'Slider Heor', 'slider-hero' ),
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
 
 		
 		global $wpdb;
-		$table_name = $wpdb->prefix.'qcld_slider_hero_sliders';
-		$squery   = "SELECT * FROM " . $table_name ;
-		$qcherodata = $wpdb->get_results( $squery );
+		$qcherodata = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}qcld_slider_hero_sliders WHERE %d", 1 ) );
 
 		$sliders_list = [
 			0 => 'Select a Slider'
@@ -104,7 +105,7 @@ class QCLD_SLIDER_HERO extends \Elementor\Widget_Base
 		$this->add_control(
 			'slider_hero_id',
 			[
-				'label' => __( 'Select A Slider', 'plugin-domain' ),
+				'label' => esc_html('Select A Slider', 'slider-hero' ),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'default' => 0,
 				'options' => $sliders_list,
@@ -129,6 +130,7 @@ class QCLD_SLIDER_HERO extends \Elementor\Widget_Base
 					<?php echo do_shortcode('[qcld_hero id='.esc_attr( $slider_id ).']'); ?>
 				</div>
 		<?php
+
 			}
 		}else{
 		?>

@@ -1,5 +1,7 @@
 <?php
-
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 // Add a custom category for panel widgets
 add_action( 'elementor/init', 'qcld_hero_slider_create_category' );
 

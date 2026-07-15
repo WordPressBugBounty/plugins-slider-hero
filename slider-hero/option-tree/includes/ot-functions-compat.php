@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /**
  * OptionTree Compatibility Functions.
  *
@@ -324,3 +327,4 @@ if ( ! function_exists( 'compat_ot_measurement_unit_types' ) ) {
 
 	}
 }
+

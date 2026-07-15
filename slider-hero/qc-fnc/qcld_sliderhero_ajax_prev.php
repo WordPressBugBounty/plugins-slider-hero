@@ -1,17 +1,18 @@
 <?php
-if ( !function_exists( 'add_action' ) ) {
-	echo 'Hi there!  I\'m just a plugin, not much I can do when called directly.';
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-function qcld_show_preview_items_fnc(){
-	ob_start();
-$id = isset($_POST['sid']) ? sanitize_text_field($_POST['sid']) : '';
 
-global $wpdb;
-$query   = $wpdb->prepare( "SELECT * FROM " . QCLD_TABLE_SLIDERS . " WHERE id = '%d' ", $id );
-$_slider = $wpdb->get_results( $query );
-$query   = $wpdb->prepare( "SELECT * FROM " . QCLD_TABLE_SLIDES . " WHERE sliderid = '%d' ORDER BY ordering DESC", $id );
-$_slide = $wpdb->get_results( $query );
+function qcld_show_preview_items_fnc(){
+    check_ajax_referer( 'slider_hero_ajax_nonce', 'security' );
+
+	ob_start();
+	$id 	= isset($_POST['sid']) ? sanitize_text_field(wp_unslash($_POST['sid'])) : '';
+	$_id  	= isset($_POST['sid']) ? sanitize_text_field(wp_unslash($_POST['sid'])) : '';
+
+	global $wpdb;
+	$_slider = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}qcld_slider_hero_sliders WHERE id = %d ", $id ) );
+	$_slide = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}qcld_slider_hero_slides WHERE sliderid = %d ORDER BY ordering DESC", $id ) );
 
 	if(!function_exists('deleteSpacesNewlines')) {
 		function deleteSpacesNewlines($str) {
@@ -19,7 +20,7 @@ $_slide = $wpdb->get_results( $query );
 		}
 	}
 	if(!$_slider) {
-		echo '<h3 style="color: #FF0011;">qcld_slider '.esc_html( $_id ).' does not exist</h3>';
+		echo '<h3 style="color: #FF0011;">qcld_slider '.esc_attr( $_id ).' does not exist</h3>';
 		return;
 	}
 	$sliderID = intval($_slider[0]->id);
@@ -33,7 +34,7 @@ $_slide = $wpdb->get_results( $query );
 	$styleJson = deleteSpacesNewlines($_slider[0]->style);
 	$customJson = deleteSpacesNewlines($_slider[0]->custom);
 	if(!$sliderID) {
-		echo '<h3 style="color: #FF0011;">qcld_slider '.esc_html( $_id ).' was removed</h3>';
+		echo '<h3 style="color: #FF0011;">qcld_slider '.esc_attr( $_id ).' was removed</h3>';
 		return;
 	}
 
@@ -51,14 +52,14 @@ asort($odarr);
 
 		<!-- Modal content -->
 		<div class="modal-content" style="width: 95%;">
-			<span class="close"><?php _e( "X", 'Slider Hero' ); ?></span>
-			<h3><?php _e( "Preview", 'Slider Hero' ); ?></h3>
+			<span class="close"><?php esc_html_e( "X", 'slider-hero' ); ?></span>
+			<h3><?php esc_html_e( "Preview", 'slider-hero' ); ?></h3>
 			<hr/>
 <?php 
 require(QCLD_sliderhero_view.'/slider_hero_front_end_style.php');
 ?>
-<style type="text/css">
-#particles-js<?php echo intval( esc_html( $_id ) ); ?>{
+<style>
+#particles-js<?php echo intval( esc_attr( $_id ) ); ?>{
 	width: 100% !important;
 	height: 87vh !important;
 	left: 0px !important;
@@ -74,7 +75,7 @@ require(QCLD_sliderhero_view.'/slider_hero_front_end_style.php');
 </style>
 
 
-<div id="particles-js<?php echo intval( esc_html( $_id ) ); ?>" <?php echo ($_slider[0]->type=='walkingbackground'?'class="slider_hero_walkingbackground"':''); ?>>
+<div id="particles-js<?php echo intval( esc_attr( $_id ) ); ?>" <?php echo wp_kses_post($_slider[0]->type=='walkingbackground'?'class="slider_hero_walkingbackground"':''); ?>>
 
 <?php
 	require(QCLD_sliderhero_view.'/slider_hero_front_end_effect_config.php');
@@ -84,7 +85,7 @@ require(QCLD_sliderhero_view.'/slider_hero_front_end_style.php');
 
 	<h2 class="hero_not_found"><span> Not Found</span></h2>
 	<?php if(isset($params->hero404->title) and $params->hero404->title!=''): ?>
-	<h3 class="hero_not_found_title"><?php echo esc_html( $params->hero404->title ); ?></h3>
+	<h3 class="hero_not_found_title"><?php echo esc_attr( $params->hero404->title ); ?></h3>
 	<?php endif; ?>
 <?php
 }else{
@@ -106,7 +107,7 @@ $totalSlide++;
 			?>
 			
 			<div class="slider-x-item-title slider-x-item-title<?php echo esc_attr( $_id ); ?>">
-				<?php echo apply_filters('the_content', wp_unslash(htmlspecialchars_decode($slide->description))); ?>
+				<?php echo wp_kses_post( apply_filters('the_content', wp_unslash(htmlspecialchars_decode($slide->description))) ); ?>
 			</div>
 			<?php require(QCLD_sliderhero_view.'/slider_hero_front_end_buttons.php');?>
 		  
@@ -134,15 +135,15 @@ $totalSlide++;
 		?>
 			<div class="eachAnim" data-id="<?php echo esc_attr( $slide->ordering ); ?>" data-animtype="<?php echo (isset($config->hero_stomp_animation) && $config->hero_stomp_animation!=''?esc_attr( $config->hero_stomp_animation ):'zoomIn'); ?>" data-delay="<?php echo (isset($config->hero_stomp_delay) && $config->hero_stomp_delay!=''?esc_attr( $config->hero_stomp_delay ):'500'); ?>" 
 			data-fontsize="<?php echo (isset($config->hero_stomp_fontsize) && $config->hero_stomp_fontsize!=''?esc_attr( $config->hero_stomp_fontsize ):''); ?>" data-fontweight="<?php echo (isset($config->hero_stomp_font_weight) && $config->hero_stomp_font_weight!=''?esc_attr( $config->hero_stomp_font_weight ):''); ?>" data-letterspacing="<?php echo (isset($config->hero_stomp_letter_spacing) && $config->hero_stomp_letter_spacing!=''?esc_attr( $config->hero_stomp_letter_spacing ):''); ?>" data-color="<?php echo (isset($config->hero_stomp_text_color) && $config->hero_stomp_text_color!=''?esc_attr( $config->hero_stomp_text_color ):''); ?>" style="display:none;<?php echo (isset($slide->image_link) && $slide->image_link!=''?'background:url('.esc_url( $slide->image_link ).')no-repeat':''); ?>;<?php echo (isset($config->hero_stomp_background_color)&&$config->hero_stomp_background_color!=''?'background-color:'.esc_url( $config->hero_stomp_background_color ):''); ?>" data-fontfamily="<?php echo (isset($config->hero_intro_font_family)&&$config->hero_intro_font_family!=''?esc_attr( $config->hero_intro_font_family ):''); ?>">
-				<?php echo wp_unslash( esc_attr( $slide->title ) ); ?>
+				<?php echo wp_kses_post( wp_unslash( $slide->title ) ); ?>
 			</div>
 			
 		<?php elseif($_slider[0]->type=='hero_404'): ?>
 		<div class="qcld_hero_content_area">
-		<h2 class="hero_not_found"><span><?php echo wp_unslash( esc_js($slide->title)); ?></span></h2>
+		<h2 class="hero_not_found"><span><?php echo wp_kses_post( wp_unslash($slide->title) ); ?></span></h2>
 		
 		<?php if(isset($params->hero404->title) and $params->hero404->title!=''): ?>
-		<div class="hero_not_found_title"><?php echo apply_filters('the_content', wp_unslash(htmlspecialchars_decode($slide->description))); ?></div>
+		<div class="hero_not_found_title"><?php echo wp_kses_post( apply_filters('the_content', wp_unslash(htmlspecialchars_decode($slide->description))) ); ?></div>
 		<?php endif; ?>
 		<?php require(QCLD_sliderhero_view.'/slider_hero_front_end_buttons.php');?>
 		</div>
@@ -153,7 +154,7 @@ $totalSlide++;
 			$preimg[] = $slide->image_link;
 		}
 		?>
-	<div class="qcld_hero_content_area" <?php echo (isset($slide->image_link)&&$slide->image_link!=''?'data-bg-image="'.esc_attr( $slide->image_link ).'"':'data-bg-image=""') ?>  <?php echo (( isset($slider_key) && $slider_key > 0 ) ? 'style="display:none;"':'') ?> >
+	<div class="qcld_hero_content_area" <?php echo wp_kses_post(isset($slide->image_link)&&$slide->image_link!=''?'data-bg-image="'.esc_attr( $slide->image_link ).'"':'data-bg-image=""') ?>  <?php echo wp_kses_post(( isset($slider_key) && $slider_key > 0 ) ? 'style="display:none;"':'') ?> >
 	
 		<?php 
 			foreach($odarr as $key=>$val ){
@@ -161,8 +162,8 @@ $totalSlide++;
 					require(QCLD_sliderhero_view.'/slider_hero_front_end_title_effect.php');
 				}elseif($key=='description'){
 				?>
-					<div class="slider-x-item-title slider-x-item-title<?php echo intval( esc_html( $_id ) ); ?>">
-						<?php echo wp_unslash(htmlspecialchars_decode($slide->description)); ?>
+					<div class="slider-x-item-title slider-x-item-title<?php echo intval( esc_attr( $_id ) ); ?>">
+						<?php echo wp_kses_post( wp_unslash(htmlspecialchars_decode($slide->description)) ); ?>
 					</div>
 				<?php
 				}else{
@@ -191,8 +192,8 @@ require(QCLD_sliderhero_view.'/slider_hero_front_end_audio.php');
 <?php if($_slider[0]->type=='video' && !empty($preimg)):?>
 
 <div class="sh_bg_video">
-	<div class="sh_bg_video_fluid" style="width: 100%;position: relative;padding: 0;padding-top: <?php echo ($style->screenoption=='2'?'56.5%':$style->height.'px'); ?>;">
-		<video id="hero_vid<?php echo intval( esc_html( $_id ) ); ?>" class="qc_hero_vid" autoplay preload="auto" <?php echo (isset($params->videoslide_loop)&& $params->videoslide_loop=='1'?'loop':''); ?> <?php echo (isset($params->videoslide_mute)&& $params->videoslide_mute=='1'?'muted':''); ?> style="margin: auto; position: absolute; z-index: -1; top: 50%; left: 50%; transform: translate(-50%, -50%); visibility: visible; opacity: 1; width: 100%; height: auto;">
+	<div class="sh_bg_video_fluid" style="width: 100%;position: relative;padding: 0;padding-top: <?php echo esc_attr( $style->screenoption=='2'?'56.5%':$style->height.'px' ); ?>;">
+		<video id="hero_vid<?php echo intval( esc_attr( $_id ) ); ?>" class="qc_hero_vid" autoplay preload="auto" <?php echo (isset($params->videoslide_loop)&& $params->videoslide_loop=='1'?'loop':''); ?> <?php echo (isset($params->videoslide_mute)&& $params->videoslide_mute=='1'?'muted':''); ?> style="margin: auto; position: absolute; z-index: -1; top: 50%; left: 50%; transform: translate(-50%, -50%); visibility: visible; opacity: 1; width: 100%; height: auto;">
 			<source src="<?php echo esc_url( $preimg[0] ); ?>" >
 		</video>
 	</div>
@@ -268,7 +269,7 @@ jQuery( document ).ready(function($) {
 	jQuery(window).load(function($){
 		
 		iframeHeight = jQuery('#hero_youtube_video').height();
-		containerHeight = jQuery('#particles-js<?php echo intval( esc_html( $_id ) ); ?>').height();
+		containerHeight = jQuery('#particles-js<?php echo intval( esc_attr( $_id ) ); ?>').height();
 		actualHeight = (iframeHeight - containerHeight)/2;
 		jQuery('.sh_bg_video_fluid> iframe').css({'top': '-'+actualHeight+'px'});
 		
@@ -291,10 +292,11 @@ jQuery( document ).ready(function($) {
 
 $content = ob_get_clean();
 $content = preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $content);
-echo $content;
+echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 
 //exit;
 }
 add_action( 'wp_ajax_qcld_show_preview_items', 'qcld_show_preview_items_fnc');
 ?>
+

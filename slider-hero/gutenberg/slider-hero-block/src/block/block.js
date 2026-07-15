@@ -31,12 +31,12 @@ function Qcld_Sliderhero_Shortcode_Preview( { shortcodeID } ) {
 
 
 registerBlockType( 'qcld-slider-hero/qcld-slider-hero-shortcode-maker', {
-    title: __( 'slider-hero' ),
+    title: esc_html('slider-hero' ),
     icon: 'slides',
     category: 'common',
     keywords: [
-        __( 'slider hero shortcode maker' ),
-        __( 'slider hero shortcode' )
+        esc_html('slider hero shortcode maker' ),
+        esc_html('slider hero shortcode' )
     ],
     attributes: {
         shortcodeID: {

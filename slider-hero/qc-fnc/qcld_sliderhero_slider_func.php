@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 
-function qcld_sliderhero_sliders_list_func() {
+function qcld_sliderhero_free_sliders_list_func() {
 	global $wpdb;
 	$s       = 1;
 	$table   = QCLD_TABLE_SLIDERS;
@@ -25,7 +25,7 @@ function qcld_sliderhero_sliders_list_func() {
 	};
 	$sliders = array_reverse( $sliders );
 
-	qcld_sliderhero_sliders_view_list( $sliders );
+	qcld_sliderhero_free_sliders_view_list( $sliders );
 }
 
 function qcld_sliderhero_add_slider( $type ) {
@@ -63,7 +63,7 @@ function qcld_sliderhero_add_slider( $type ) {
     $location = admin_url( 'admin.php?page=Slider-Hero&task=editslider&type='.$type.'&id=' . $id);
     $location = wp_nonce_url( $location, 'sliderhero_editslider_' . $id );
     $location = html_entity_decode($location);
-    wp_redirect( wp_sanitize_redirect(  $location )  );
+    wp_safe_redirect( wp_sanitize_redirect(  $location )  );
     exit;
 }
 
@@ -74,7 +74,7 @@ function qcld_sliderhero_edit_slider( $id ) {
 	$table        = QCLD_TABLE_SLIDERS;
 	$AllSLidersId = $wpdb->get_results( $wpdb->prepare( "SELECT id FROM $table WHERE %d", $s ), ARRAY_A );
 	if ( ! in_array( array( 'id' => (string) $id ), $AllSLidersId ) ) {
-		wp_die( '<h3 style="color: #FF0011;">Hero-slider ' . $id . ' does not exist</h3>' );
+		wp_die( '<h3 style="color: #FF0011;">Hero-slider ' . esc_attr($id) . ' does not exist</h3>' );
 		exit;
 	}
 	
@@ -100,7 +100,7 @@ function qchero_remove_slider( $id ) {
 		$rows->count = $count;
 		array_push( $sliders, $rows );
 	};
-	qcld_sliderhero_sliders_view_list( $sliders );
+	qcld_sliderhero_free_sliders_view_list( $sliders );
 }
 
 

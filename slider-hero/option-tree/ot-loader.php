@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 if ( class_exists( 'OT_Loader' ) && defined( 'OT_PLUGIN_MODE' ) && true === OT_PLUGIN_MODE && defined( 'ABSPATH' ) ) {
 
 	add_filter( 'ot_theme_mode', '__return_false', 999 );
@@ -7,7 +11,7 @@ if ( class_exists( 'OT_Loader' ) && defined( 'OT_PLUGIN_MODE' ) && true === OT_P
 	 * Forces Plugin Mode when OptionTree is already loaded and displays an admin notice.
 	 */
 	function ot_conflict_notice() {
-		echo '<div class="error"><p>' . esc_html__( 'OptionTree is installed as a plugin and also embedded in your current theme. Please deactivate the plugin to load the theme dependent version of OptionTree, and remove this warning.', 'option-tree' ) . '</p></div>';
+		echo '<div class="error"><p>' . esc_html( 'OptionTree is installed as a plugin and also embedded in your current theme. Please deactivate the plugin to load the theme dependent version of OptionTree, and remove this warning.', 'slider-hero' ) . '</p></div>';
 	}
 
 	add_action( 'admin_notices', 'ot_conflict_notice' );
@@ -706,7 +710,7 @@ if ( ! class_exists( 'OT_Loader' ) && defined( 'ABSPATH' ) ) {
 
 				// Once is enough.
 				remove_filter( 'gettext', array( $this, 'ot_change_image_button' ) );
-				return apply_filters( 'ot_upload_text', esc_html__( 'Send to OptionTree', 'option-tree' ) );
+				return apply_filters( 'ot_upload_text', esc_html( 'Send to OptionTree', 'slider-hero' ) );
 
 			}
 

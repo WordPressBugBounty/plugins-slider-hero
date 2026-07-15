@@ -43,10 +43,10 @@
 					'post_subject': subject,
 					'post_message': message,
 					'post_plugin_name': plugin_name,
-					'security': qcld_seo_ajax_nonce
+					'security': qcld_sliderhero_recommend_ajax_nonce
 				};
 
-				jQuery.post(qcld_seo_ajaxurl, data, function(response) {
+				jQuery.post(qcld_sliderhero_recommend_ajaxurl, data, function(response) {
 					var json = $.parseJSON(response);
 
 					$("#qc-support-form #support-form-loading").hide();
@@ -86,16 +86,14 @@
 		});
 
 
-		$( window ).on( "load", function() {
-
-
+		/*$( window ).on( "load", function() {
 				
 			var data = {
-				'action': 'qcld_recommend_support_function_ajax',
-				'security': qcld_sliderhero_ajax_nonce
+				'action': 'qcld_sliderhero_recommend_support_function_ajax',
+				'security': qcld_sliderhero_recommend_ajax_nonce
 			};
 
-	        jQuery.post(qcld_sliderhero_ajaxurl, data, function (response) {
+	        jQuery.post(qcld_sliderhero_recommend_ajaxurl, data, function (response) {
 
 	           	$('.qcld-sliderhero-support').find('.qcld-plugins-lists').html(response);
 
@@ -104,7 +102,64 @@
 
 
 
-		});
+		});*/
+
+
+		$( window ).on( "load", function() {
+				
+			var data = {
+				'action': 'qcld_sliderhero_recommend_support_function_first_ajax',
+				'security': qcld_sliderhero_recommend_ajax_nonce
+			};
+
+	        jQuery.post(qcld_sliderhero_recommend_ajaxurl, data, function (response) {
+
+	           	$('.qcld-sliderhero-support').find('.qcld-plugins-lists').prepend(response);
+
+				var data = {
+					'action': 'qcld_sliderhero_recommend_support_function_second_ajax',
+					'security': qcld_sliderhero_recommend_ajax_nonce
+				};
+
+				jQuery.post(qcld_sliderhero_recommend_ajaxurl, data, function (response) {
+
+					$('.qcld-sliderhero-support').find('.qcld-plugins-lists').find('.recommended-plugins').last().after(response);
+
+					var data = {
+						'action': 'qcld_sliderhero_recommend_support_function_third_ajax',
+						'security': qcld_sliderhero_recommend_ajax_nonce
+					};
+
+					jQuery.post(qcld_sliderhero_recommend_ajaxurl, data, function (response) {
+
+						$('.qcld-sliderhero-support').find('.qcld-plugins-lists').find('.recommended-plugins').last().after(response);
+
+						var data = {
+							'action': 'qcld_sliderhero_recommend_support_function_four_ajax',
+							'security': qcld_sliderhero_recommend_ajax_nonce
+						};
+
+						jQuery.post(qcld_sliderhero_recommend_ajaxurl, data, function (response) {
+
+							$('.qcld-sliderhero-support').find('.qcld-plugins-lists').find('.recommended-plugins').last().after(response);
+							$('.qcld-plugins-loading').remove();
+
+			        	});
+
+		        	});
+
+	        	});
+
+	        });
+
+	        
+	    });
+
+
+
+
+
+
 
 
 	});

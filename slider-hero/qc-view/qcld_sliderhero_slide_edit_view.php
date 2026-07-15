@@ -36,9 +36,9 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
         var qcheror = {
             id: '<?php echo esc_attr( $_id );?>',
             name: '<?php echo esc_html( $_slider[0]->title );?>',
-            params: JSON.parse('<?php echo ($paramsJson);?>'),
-            style: JSON.parse('<?php echo ($styleJson);?>'),
-            custom: JSON.parse('<?php echo ($customJson);?>'),
+            params: <?php echo wp_json_encode($params) ?: '{}'; ?>,
+            style: <?php echo wp_json_encode($style) ?: '{}'; ?>,
+            custom: <?php echo wp_json_encode($customs) ?: '{}'; ?>,
             count: parseInt('<?php echo esc_attr( $count );?>'),
             length: 0,
 
@@ -63,7 +63,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
         qcheror.slides['slide' + '<?php echo esc_attr( $row->id );?>']['type'] = '<?php echo esc_html( $row->type );?>';
         qcheror.slides['slide' + '<?php echo esc_attr( $row->id );?>']['published'] = +'<?php echo esc_html( $row->published );?>';
         qcheror.slides['slide' + '<?php echo esc_attr( $row->id );?>']['ordering'] = +'<?php echo esc_html( $row->ordering );?>';
-        qcheror.slides['slide' + '<?php echo esc_attr( $row->id );?>']['custom'] = JSON.parse('<?php echo ($customSlideJson);?>');
+        qcheror.slides['slide' + '<?php echo esc_attr( $row->id );?>']['custom'] = <?php $slide_custom = json_decode($row->custom); echo wp_json_encode($slide_custom) ?: '{}'; ?>;
         <?php
         }?>
         qcheror.length = +'<?php echo esc_attr( $Slidecount );?>';
@@ -85,18 +85,23 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 
 
 	
+    <div class="wrap">
     <div class="qchero_slider_view_wrapper">
 	<div id="qchero_slider_view_wrapper_top">
 
 	
 		<div class="sliderhero_menu_title effect_title" style="margin-bottom: 10px;width: 100%;margin-top: 8px;">
-			<?php if( isset($_slider[0]->type) && $_slider[0]->type=='intro'): ?>
+			<?php 
+			if ( ! isset( $delay_time ) ) {
+				$delay_time = 0;
+			}
+			if( isset($_slider[0]->type) && $_slider[0]->type=='intro'): ?>
 				<h2>TOTAL SLIDE TIME : <span class="total_delay_time"><?php echo esc_attr( $delay_time ); ?></span></h2>
 			<?php else: ?>
 				<h2>Change Effect</h2>
 			<?php endif; ?>
 				<div class="right_form_effect">
-					<form action="admin.php" method="post">
+					<form action="<?php echo esc_url(admin_url('admin-post.php?page=Slider-Hero&task=editslider&type='.(isset($_slider[0]->type)?$_slider[0]->type:'').'&id=' . $_id)); ?>" method="post">
 						<select name="effect" id="effect" style="display: inline-block;">
 							<option value="no_effect" <?php echo (isset($_slider[0]->type)&&$_slider[0]->type=='no_effect'?'selected="selected"':''); ?> >No Effect</option>
 							<option value="youtube_video" <?php echo (isset($_slider[0]->type)&&$_slider[0]->type=='youtube_video'?'selected="selected"':''); ?> >Youtube Video</option>
@@ -118,7 +123,6 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 							<option value="blade" <?php echo (isset($_slider[0]->type)&&$_slider[0]->type=='blade'?'selected="selected"':''); ?> disabled>Blade Effect</option>
 							
 							<option value="blob" <?php echo (isset($_slider[0]->type)&&$_slider[0]->type=='blob'?'selected="selected"':''); ?> disabled>Blob Effect</option>
-							
 							<option value="blur" <?php echo (isset($_slider[0]->type)&&$_slider[0]->type=='blur'?'selected="selected"':''); ?> disabled>Blur Effect</option>
 							
 							
@@ -249,11 +253,12 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 							<option value="ygekpg" <?php echo (isset($_slider[0]->type)&&$_slider[0]->type=='ygekpg'?'selected="selected"':''); ?> disabled>Ygekpg Effect</option>
 
 						</select>
-						<input type="hidden" name="page" value="Slider-Hero" />
-						<input type="hidden" name="task" value="hero_changeeffect" />
-						<input type="hidden" name="id" value="<?php echo esc_attr( $_id ); ?>" />
-						
-						<input class="effect_change_button" type="Submit" value="Change and Save" name="submit" />
+  						<input type="hidden" name="page" value="Slider-Hero" />
+  						<input type="hidden" name="action" value="slider_hero_change_effect" />
+  						<input type="hidden" name="task" value="hero_changeeffect" />
+  						<input type="hidden" name="id" value="<?php echo esc_attr( $_id ); ?>" />
+  						<?php wp_nonce_field( 'change_effect_action', 'slider_hero_nonce' ); ?>
+ 						<input class="effect_change_button" type="Submit" value="Change and Save" name="submit" />
 					
 					</form>
 				</div>
@@ -264,14 +269,15 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 
 											 
              <div class="qchero_slider_main-heading_wrapper">
-				<div class="qchero_slider_main-heading_wrapper_title"><span><img src="https://ps.w.org/slider-hero/assets/icon-256x256.png"/></span>Slider Hero</div>
+				<div class="qchero_slider_main-heading_wrapper_title">
+					<span><img src="<?php echo esc_url('https://ps.w.org/slider-hero/assets/icon-256x256.png') ?>"/></span>
+					Slider Hero
+				</div>
 				<div class="qchero_slider_main-heading_wrapper_setting">
-
 					<ul>
 						<li> <a class="openPopup">Settings</a></li>
-						<li><a href="https://www.quantumcloud.com/products/slider-hero/" target="_blank">Go Pro</a></li>
+						<li><a href="<?php echo esc_url('https://www.quantumcloud.com/products/slider-hero/') ?>" target="_blank">Go Pro</a></li>
 					</ul>
-
 				</div>
 			</div>
 
@@ -280,7 +286,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 
 
 			<div class="sliderhero_menu_title" style="margin-bottom: 10px;width: 100%;margin-top: 7px;">
-				<h2 style="font-size: 26px;"><?php echo wp_unslash($_slider[0]->title); ?></h2>
+				<h2 style="font-size: 26px;"><?php echo wp_kses_post( wp_unslash( $_slider[0]->title ) ); ?></h2>
 					
                     <a class="qchero_save_all" href="#">Save</a>
 <a class="<?php echo (  (isset($_slider[0]->type) && $_slider[0]->type=='directional') ||  (isset($_slider[0]->type) && $_slider[0]->type=='ygekpg') ?'qchero_preview_p5':'qchero_preview') ?>" href="#" data-id="<?php echo esc_attr( $_id ); ?>" style="margin-right: 12px;">Save & Preview</a>		
@@ -448,7 +454,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 										<div class="qcheroitem-image">
 											<div class="slide_image_container">
 											<?php if(isset($rows->image_link) and $rows->image_link!=''): ?>
-												<img data-slide-id="<?php echo esc_attr( $rows->id ); ?>" src="<?php echo (isset($_slider[0]->type) && $_slider[0]->type=='video'?QCLD_SLIDERHERO_IMAGES.'/video.png':$rows->image_link); ?>" <?php echo (isset($_slider[0]->type) && $_slider[0]->type=='video'?'style="width:57px"':''); ?> />
+												<img data-slide-id="<?php echo esc_attr( $rows->id ); ?>" src="<?php echo esc_url( isset($_slider[0]->type) && $_slider[0]->type=='video'?QCLD_SLIDERHERO_IMAGES.'/video.png':$rows->image_link ); ?>" <?php echo (isset($_slider[0]->type) && $_slider[0]->type=='video'?'style="width:57px"':''); ?> />
 												<span class="qchero_slide_image_remove" data-slide-id="<?php echo esc_attr( $rows->id ); ?>" title="Remove image">X</span>
 											<?php else: ?>
 												<button class="qchero_slide_image_upload" data-slide-id="<?php echo esc_attr( $rows->id ); ?>"><?php echo (isset($_slider[0]->type) && $_slider[0]->type=='video'?'Upload Video':'Upload Image'); ?></button>
@@ -467,7 +473,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 										
 										<div class="slider-hero-slide-number">
 											<span class="slide-number-title">Slide</span>
-											<span class="slide-order-number"><?php echo ($slide_count); ?></span>
+											<span class="slide-order-number"><?php echo esc_html( $slide_count ); ?></span>
 											<?php 
 											if(isset($rows->draft) and $rows->draft==1){
 												echo '<span class="hero_draft_style">Draft</span>';
@@ -497,7 +503,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 											
                                             <input type="text" class="qcheroitem-edit-title"
                                                    value="<?php echo esc_attr( wp_unslash( $rows->title ) ); ?>" placeholder="Default Title">
-                                            <textarea class="qcheroitem-edit-description"><?php echo qchero_text_sanitize( $rows->description ); ?></textarea>
+                                            <textarea class="qcheroitem-edit-description"><?php echo wp_kses_post( qchero_text_sanitize( $rows->description ) ); ?></textarea>
 											
 											
 											<div class="hero_configuration_info">
@@ -540,22 +546,22 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 											
 											
 											<div class="hero_slide_inputs">
-												<input type="text" class="hero_title_gfont" placeholder="Title Font" value="<?php echo wp_unslash( $rows->t_font ); ?>" /><input type="text" class="hero_description_gfont" placeholder="Description Font" value="<?php echo wp_unslash( $rows->d_font ); ?>" />
-												<input type="text" class="hero_title_lspace" placeholder="Title Letter Spacing(px)" value="<?php echo wp_unslash( $rows->tl_space ); ?>" />
-												<input type="text" class="hero_description_lspace" placeholder="Desc Letter Spacing(px)" value="<?php echo wp_unslash( $rows->dl_space ); ?>" />
+												<input type="text" class="hero_title_gfont" placeholder="Title Font" value="<?php echo esc_attr( wp_unslash( $rows->t_font ) ); ?>" /><input type="text" class="hero_description_gfont" placeholder="Description Font" value="<?php echo esc_attr( wp_unslash( $rows->d_font ) ); ?>" />
+												<input type="text" class="hero_title_lspace" placeholder="Title Letter Spacing(px)" value="<?php echo esc_attr( wp_unslash( $rows->tl_space ) ); ?>" />
+												<input type="text" class="hero_description_lspace" placeholder="Desc Letter Spacing(px)" value="<?php echo esc_attr( wp_unslash( $rows->dl_space ) ); ?>" />
 											</div>
 											<input type="hidden" class="qcheroitem-add-btn"
-                                                   value="<?php echo wp_unslash( esc_js($rows->btn) ); ?>" placeholder="Add Button">
+                                                   value="<?php echo esc_attr( wp_unslash( esc_js($rows->btn) ) ); ?>" placeholder="Add Button">
 											<input type="button" class="qcheroitem-add-btn1" style="width: 49%;border: 1px solid #ddd;float:left;" value="<?php echo (isset($rows->btn)&&strlen($rows->btn)>10)?'Edit Button':'Add A Button';?>" />  
 											
 											<input type="hidden" class="qcheroitem-btn2-hd"
-                                                   value="<?php echo wp_unslash( esc_js($rows->btn2) ); ?>" placeholder="Add Button">
+                                                   value="<?php echo esc_attr( wp_unslash( esc_js($rows->btn2) ) ); ?>" placeholder="Add Button">
 											<input type="button" class="qcheroitem-btn2-sw" style="width: 49%;border: 1px solid #ddd;" value="<?php echo (isset($rows->btn2)&&strlen($rows->btn2)>10)?'Edit Button':'Add A Button';?>" />
 
 											<input type="button" data-ordering="<?php echo esc_attr( $rows->ordering ); ?>" class="qcheroitem-stomp-config" style="width: 99%;border: 1px solid #ddd;" value="<?php echo (isset($rows->stomp)&&strlen($rows->stomp)>10)?'Edit Configuration':'Add Configuration';?>" />
 											
 											<input type="hidden" class="qcheroitem-stomp-value"
-                                                   value="<?php echo wp_unslash( esc_js($rows->stomp) ); ?>" />
+                                                   value="<?php echo esc_attr( wp_unslash( esc_js($rows->stomp) ) ); ?>" />
 											<input type="hidden" class="qcheroitem-draft-value"
                                                    value="0" />
 											<?php if(isset($_slider[0]->type) && $_slider[0]->type!='youtube_video'): ?>
@@ -577,11 +583,11 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 <li class="qcld-hero-add-new-slide">
 			<?php if( isset($_slider[0]->type) && $_slider[0]->type=='play_or_work'): ?>
 				<?php if(! count( $_row )): ?>
-                <div class="add_slide_container"><a class="add_image"><span><?php _e( 'Add Slide', 'qchero' ); ?></span><span><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                <div class="add_slide_container"><a class="add_image"><span><?php esc_html_e( 'Add Slide', 'slider-hero' ); ?></span><span><i class="fa fa-plus-circle" aria-hidden="true"></i>
 </span></a></div>
 				<?php endif; ?>		
 			<?php else: ?>
-				<div class="add_slide_container"><a class="add_image"><span><?php _e( 'Add Slide', 'qchero' ); ?></span><span><i class="fa fa-plus-circle" aria-hidden="true"></i>
+				<div class="add_slide_container"><a class="add_image"><span><?php esc_html_e( 'Add Slide', 'slider-hero' ); ?></span><span><i class="fa fa-plus-circle" aria-hidden="true"></i>
 </span></a></div>
 			<?php endif; ?>		
 			</li>
@@ -610,7 +616,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
     <div id="qchero_slider_title_styling" class="qchero-styling main-content">
         <div class="qchero_close"><i class="fa fa-remove" aria-hidden="true"></i></div>
         <span class="popup-type" data="off"><img
-                src="<?php echo QCLD_SLIDERHERO_IMAGES . "/light_1.png"; ?>"></span>
+                src="<?php echo esc_url(QCLD_SLIDERHERO_IMAGES). "/light_1.png"; ?>"></span>
         <form id="qchero-title-styling" class="params">
             <input type="hidden" class="width" name="params[title][style][width]" rel="px"
                    value="<?php echo esc_attr($params->title->style->width); ?>">
@@ -633,7 +639,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
     <div id="qchero_slider_button1_styling" class="qchero-styling main-content">
         <div class="qchero_close"><i class="fa fa-remove" aria-hidden="true"></i></div>
         <span class="popup-type" data="off"><img
-                src="<?php echo QCLD_SLIDERHERO_IMAGES . "/light_1.png"; ?>"></span>
+                src="<?php echo esc_url(QCLD_SLIDERHERO_IMAGES). "/light_1.png"; ?>"></span>
         <form id="qchero-button1-styling" class="params">
             <input type="hidden" class="width" name="params[button1][style][width]" rel="px"
                    value="<?php echo esc_attr($params->button1->style->width); ?>">
@@ -656,7 +662,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
     <div id="qchero_slider_description_styling" class="qchero-styling main-content">
         <div class="qchero_close"><i class="fa fa-remove" aria-hidden="true"></i></div>
         <span class="popup-type" data="off"><img
-                src="<?php echo QCLD_SLIDERHERO_IMAGES . "/light_1.png"; ?>"></span>
+                src="<?php echo esc_url(QCLD_SLIDERHERO_IMAGES). "/light_1.png"; ?>"></span>
         <form id="qchero-description-styling" class="params">
             <input type="hidden" class="width" name="params[description][style][width]" rel="px"
                    value="<?php echo esc_attr($params->description->style->width); ?>">
@@ -784,7 +790,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
             left: <?php echo esc_attr($params->title->style->left);?>;
             opacity: 0.9;
             color: rgb(86, 88, 85);
-            filter: alpha(opacity=<?php echo (isset($params->title->style->opacity)?abs($params->title->style->opacity):'');?>);
+            filter: alpha(opacity=<?php echo esc_attr(isset($params->title->style->opacity)?abs($params->title->style->opacity):'');?>);
             border: 2px dashed #898989;
             word-wrap: break-word;
             overflow: hidden;
@@ -807,7 +813,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
             left: <?php echo esc_attr($params->button1->style->left);?>;
             opacity: 0.9;
             color: rgb(86, 88, 85);
-            filter: alpha(opacity=<?php echo (isset($params->title->style->opacity)?abs($params->title->style->opacity):'');?>);
+            filter: alpha(opacity=<?php echo esc_attr(isset($params->title->style->opacity)?abs($params->title->style->opacity):'');?>);
             border: 2px dashed #898989;
             word-wrap: break-word;
             overflow: hidden;
@@ -825,7 +831,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
             min-width: 50px;
             width: 100%;
             height: <?php echo absint($params->description->style->height);?>px;
-            background: <?php echo (isset($params->description->style->background->color)?"#".$params->description->style->background->color:'');?>;
+            background: <?php echo esc_attr( isset($params->description->style->background->color)?"#".$params->description->style->background->color:'' );?>;
             background: transparent;
 
             cursor: move;
@@ -834,7 +840,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
             opacity: 0.9;
             color: rgb(86, 88, 85);
             border: 2px dashed #898989;
-            filter: alpha(opacity=<?php echo (isset($params->description->style->opacity)?abs($params->description->style->opacity):'');?>);
+            filter: alpha(opacity=<?php echo esc_attr(isset($params->description->style->opacity)?abs($params->description->style->opacity):'');?>);
             word-wrap: break-word;
             overflow: hidden;
             -webkit-touch-callout: none;
@@ -913,15 +919,15 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 							<div class="othersetting">
 								<?php if(isset($_slider[0]->type) && $_slider[0]->type!='intro'): ?>
 									<div class="params deseffect customitemstyle">
-										<label class="customlevel" for="qchero-effect-interval"><?php _e('Slide Delay Time', 'qchero'); ?>:</label>
+										<label class="customlevel" for="qchero-effect-interval"><?php esc_html_e('Slide Delay Time', 'slider-hero'); ?>:</label>
 										<input class="myElements" style="width: 96%;" type="number" name="params[effect][interval]"
 											   value="<?php echo esc_attr($params->effect->interval); ?>">
 									</div>
 									
 									<div class="params deseffect customitemstyle">
-										<label class="customlevel" for="qchero-effect-interval"><?php _e('Slide Padding Time', 'qchero'); ?>:</label>
+										<label class="customlevel" for="qchero-effect-interval"><?php esc_html_e('Slide Padding Time', 'slider-hero'); ?>:</label>
 										<input class="myElements" style="width: 96%;" type="number" name="params[paddingtime]"
-											   value="<?php echo (isset($params->paddingtime)&&$params->paddingtime!=''?$params->paddingtime:'500'); ?>">
+											   value="<?php echo esc_attr( isset($params->paddingtime)&&$params->paddingtime!=''?$params->paddingtime:'500' ); ?>">
 									</div>
 									
 									<div class="params customitemstyle">
@@ -955,30 +961,30 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 								
 									
 								<div class="params deseffect customitemstyle">
-                                    <label class="customlevel" for="qcslide-effect-slideffect"><?php _e('Title Alignment', 'qcslide'); ?>:</label>
+                                    <label class="customlevel" for="qcslide-effect-slideffect"><?php esc_html_e('Title Alignment', 'slider-hero'); ?>:</label>
 									<select class="myElements" name="params[title][align]" style="width: 96%;">
 										
 										
-										<option value="left" <?php echo ($params->title->align=='left'?'selected="selected"':''); ?>><?php _e('Left', 'qcslide'); ?></option>
+										<option value="left" <?php echo ($params->title->align=='left'?'selected="selected"':''); ?>><?php esc_html_e('Left', 'slider-hero'); ?></option>
 										
-										<option value="center" <?php echo ($params->title->align=='center'?'selected="selected"':''); ?>><?php _e('Center', 'qcslide'); ?></option>
+										<option value="center" <?php echo ($params->title->align=='center'?'selected="selected"':''); ?>><?php esc_html_e('Center', 'slider-hero'); ?></option>
 										
-										<option value="right" <?php echo ($params->title->align=='right'?'selected="selected"':''); ?>><?php _e('Right', 'qcslide'); ?></option>
+										<option value="right" <?php echo ($params->title->align=='right'?'selected="selected"':''); ?>><?php esc_html_e('Right', 'slider-hero'); ?></option>
 										
 										
 									</select>
                                     
                                 </div>
 								<div class="params deseffect customitemstyle">
-                                    <label class="customlevel" for="qcslide-effect-slideffect"><?php _e('Description Alignment', 'qcslide'); ?>:</label>
+                                    <label class="customlevel" for="qcslide-effect-slideffect"><?php esc_html_e('Description Alignment', 'slider-hero'); ?>:</label>
 									<select class="myElements" name="params[description][align]" style="width: 96%;">
 										
 										
-										<option value="left" <?php echo ($params->description->align=='left'?'selected="selected"':''); ?>><?php _e('Left', 'qcslide'); ?></option>
+										<option value="left" <?php echo ($params->description->align=='left'?'selected="selected"':''); ?>><?php esc_html_e('Left', 'slider-hero'); ?></option>
 										
-										<option value="center" <?php echo ($params->description->align=='center'?'selected="selected"':''); ?>><?php _e('Center', 'qcslide'); ?></option>
+										<option value="center" <?php echo ($params->description->align=='center'?'selected="selected"':''); ?>><?php esc_html_e('Center', 'slider-hero'); ?></option>
 										
-										<option value="right" <?php echo ($params->description->align=='right'?'selected="selected"':''); ?>><?php _e('Right', 'qcslide'); ?></option>
+										<option value="right" <?php echo ($params->description->align=='right'?'selected="selected"':''); ?>><?php esc_html_e('Right', 'slider-hero'); ?></option>
 										
 										
 									</select>
@@ -986,15 +992,15 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
                                 </div>
 								
 								<div class="params deseffect customitemstyle">
-                                    <label class="customlevel" for="qcslide-effect-slideffect"><?php _e('Button Alignment', 'qcslide'); ?>:</label>
+                                    <label class="customlevel" for="qcslide-effect-slideffect"><?php esc_html_e('Button Alignment', 'slider-hero'); ?>:</label>
 									<select class="myElements" name="params[button1][align]" style="width: 96%;">
 										
 										
-										<option value="left" <?php echo ($params->button1->align=='left'?'selected="selected"':''); ?>><?php _e('Left', 'qcslide'); ?></option>
+										<option value="left" <?php echo ($params->button1->align=='left'?'selected="selected"':''); ?>><?php esc_html_e('Left', 'slider-hero'); ?></option>
 										
-										<option value="center" <?php echo ($params->button1->align=='center'?'selected="selected"':''); ?>><?php _e('Center', 'qcslide'); ?></option>
+										<option value="center" <?php echo ($params->button1->align=='center'?'selected="selected"':''); ?>><?php esc_html_e('Center', 'slider-hero'); ?></option>
 										
-										<option value="right" <?php echo ($params->button1->align=='right'?'selected="selected"':''); ?>><?php _e('Right', 'qcslide'); ?></option>
+										<option value="right" <?php echo ($params->button1->align=='right'?'selected="selected"':''); ?>><?php esc_html_e('Right', 'slider-hero'); ?></option>
 										
 										
 									</select>
@@ -1003,16 +1009,16 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 								
 								<?php endif; ?>
 								<div class="params deseffect customitemstyle">
-                                    <label class="customlevel" for="qcslide-effect-slideffect"><?php _e('Slider End Redirect Url', 'qcslide'); ?> <span class="hero_pro_features">[PRO]</span></label>
+                                    <label class="customlevel" for="qcslide-effect-slideffect"><?php esc_html_e('Slider End Redirect Url', 'slider-hero'); ?> <span class="hero_pro_features">[PRO]</span></label>
 									<input class="myElements" style="width: 96%;" type="text" name="params[slidendredirect]"
-											   value="<?php echo (isset($params->slidendredirect) && $params->slidendredirect!=''?$params->slidendredirect:''); ?>" placeholder="Ex: http://www.example.com" disabled />
+											   value="<?php echo esc_attr(isset($params->slidendredirect) && $params->slidendredirect!=''?$params->slidendredirect:''); ?>" placeholder="Ex: http://www.example.com" disabled />
                                 </div>
 								
 								<?php if(isset($_slider[0]->type) && $_slider[0]->type=='intro'): ?>
 								<div class="params deseffect customitemstyle">
 									<div style="display: inline-block;">Or</div>
 									<div style="display: inline-block;width: 92%;">
-										<label class="customlevel" for="qcslide-effect-slideffect"><?php _e('Slider End Load New slider', 'qcslide'); ?><span class="hero_pro_features">[PRO]</span></label>
+										<label class="customlevel" for="qcslide-effect-slideffect"><?php esc_html_e('Slider End Load New slider', 'slider-hero'); ?><span class="hero_pro_features">[PRO]</span></label>
 										
 										<select class="myElements" name="params[newsliderafterend]" style="width:100%">
 											<option value="">None</option>
@@ -1055,7 +1061,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 								
 								<?php endif; ?>
 								<div class="params deseffect customitemstyle">
-                                    <label class="customlevel" for="qcslide-effect-slideffect"><?php _e('Slider Redirect Delay', 'qcslide'); ?> <span class="hero_pro_features">[PRO]</span></label>
+                                    <label class="customlevel" for="qcslide-effect-slideffect"><?php esc_html_e('Slider Redirect Delay', 'slider-hero'); ?> <span class="hero_pro_features">[PRO]</span></label>
 									<input class="myElements" style="width: 96%;" type="number" name="params[slideredirectdelay]"
 											   value="" placeholder="Ex: 1000" disabled />
                                 </div>
@@ -1095,42 +1101,42 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 								<div class="hero_content_right" style="float: left;">
 									<?php if( isset($_slider[0]->type) && $_slider[0]->type!='intro'): ?>
 									<div class="params">
-										<label class="customlevel" for="qcslide-effect-slideffect"><?php _e('Content Start From', 'qcslide'); ?>:</label>
+										<label class="customlevel" for="qcslide-effect-slideffect"><?php esc_html_e('Content Start From', 'slider-hero'); ?>:</label>
 										<select class="myElements" name="params[content]" style="width: 96%;">
 											
 											
-											<option value="center" <?php echo (isset($params->content) && $params->content=='center'?'selected="selected"':''); ?>><?php _e('Center', 'qcslide'); ?></option>
+											<option value="center" <?php echo (isset($params->content) && $params->content=='center'?'selected="selected"':''); ?>><?php esc_html_e('Center', 'slider-hero'); ?></option>
 											
-											<option value="top" <?php echo (isset($params->content) && $params->content=='top'?'selected="selected"':''); ?>><?php _e('Top', 'qcslide'); ?></option>
+											<option value="top" <?php echo (isset($params->content) && $params->content=='top'?'selected="selected"':''); ?>><?php esc_html_e('Top', 'slider-hero'); ?></option>
 											
-											<option value="bottom" <?php echo (isset($params->content) && $params->content=='bottom'?'selected="selected"':''); ?>><?php _e('Bottom', 'qcslide'); ?></option>
+											<option value="bottom" <?php echo (isset($params->content) && $params->content=='bottom'?'selected="selected"':''); ?>><?php esc_html_e('Bottom', 'slider-hero'); ?></option>
 											
 											
 										</select>
 										
 									</div>
 									<div class="params deseffect">
-										<label class="customlevel" for="qcslide-effect-slideffect"><?php _e('Content Margin from Top or Bottom', 'qcslide'); ?></label>
+										<label class="customlevel" for="qcslide-effect-slideffect"><?php esc_html_e('Content Margin from Top or Bottom', 'slider-hero'); ?></label>
 										<input class="myElements" style="width: 96%;" type="text" name="params[contentspace]"
 												   value="<?php echo (isset($params->contentspace) && $params->contentspace!=''?esc_attr($params->contentspace):''); ?>" placeholder="Ex: 50px or 10%" />
 										
 									</div>
 									
 									<div class="params deseffect">
-										<label class="customlevel" for="qcslide-effect-slideffect"><?php _e('Title Bottom Margin', 'qcslide'); ?></label>
+										<label class="customlevel" for="qcslide-effect-slideffect"><?php esc_html_e('Title Bottom Margin', 'slider-hero'); ?></label>
 										<input class="myElements" style="width: 96%;" type="text" name="params[titlebottommargin]"
 												   value="<?php echo (isset($params->titlebottommargin) && $params->titlebottommargin!=''?esc_attr($params->titlebottommargin):''); ?>" placeholder="Ex: 50px or 10%" />
 
 									</div>
 									<div class="params deseffect">
-										<label class="customlevel" for="qcslide-effect-slideffect"><?php _e('Description Bottom Margin', 'qcslide'); ?></label>
+										<label class="customlevel" for="qcslide-effect-slideffect"><?php esc_html_e('Description Bottom Margin', 'slider-hero'); ?></label>
 										<input class="myElements" style="width: 96%;" type="text" name="params[descriptionbottommargin]"
 												   value="<?php echo (isset($params->descriptionbottommargin) && $params->descriptionbottommargin!=''?esc_attr($params->descriptionbottommargin):''); ?>" placeholder="Ex: 50px or 10%" />
 										
 									</div>
 									
 									<div class="params deseffect">
-										<label class="customlevel" for="qcslide-effect-slideffect"><?php _e('Button Bottom Margin', 'qcslide'); ?></label>
+										<label class="customlevel" for="qcslide-effect-slideffect"><?php esc_html_e('Button Bottom Margin', 'slider-hero'); ?></label>
 										<input class="myElements" style="width: 96%;" type="text" name="params[buttonbottommargin]"
 												   value="<?php echo (isset($params->buttonbottommargin) && $params->buttonbottommargin!=''?esc_attr($params->buttonbottommargin):''); ?>" placeholder="Ex: 50px or 10%" />
 										
@@ -1202,7 +1208,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 							
 							
 							<div class="params deseffect customitemstyle">
-								 <label class="customlevel" for="qcslide-effect-slideffect"><?php _e('Top Decoration', 'qcslide'); ?>:</label>
+								 <label class="customlevel" for="qcslide-effect-slideffect"><?php esc_html_e('Top Decoration', 'slider-hero'); ?>:</label>
 								<select class="myElements" name="params[herotop][decoration]">
 															
 									<option value="">None</option>
@@ -1237,7 +1243,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 									<label class="customlevel" for="qchero-background-color">Top Decoration Color</label> <input type="text" name="params[topdecorationcolor]" class="color-field" value="<?php echo (isset($params->topdecorationcolor)?esc_attr($params->topdecorationcolor):''); ?>" />
 							</div>
 						<div class="params deseffect customitemstyle">
-							 <label class="customlevel" for="qcslide-effect-slideffect"><?php _e('Bottom Decoration', 'qcslide'); ?>:</label>
+							 <label class="customlevel" for="qcslide-effect-slideffect"><?php esc_html_e('Bottom Decoration', 'slider-hero'); ?>:</label>
 							<select class="myElements" name="params[herobottom][decoration]">
 							
 								<option value="">None</option>
@@ -1304,7 +1310,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 									<div class="params customitemstyle" style="width:100%;">
 									
 									<label class="customlevel" for="bg_image_url">Background Gradient</label>
-									<input type="hidden" name="cs[bg_gradient]" id="bg_gradient" class="regular-text" value='<?php echo str_replace('"','',preg_replace('/\\\\/', '', $_slider[0]->bg_gradient)); ?>' />
+									<input type="hidden" name="cs[bg_gradient]" id="bg_gradient" class="regular-text" value='<?php echo esc_attr(str_replace('"','',preg_replace('/\\\\/', '', $_slider[0]->bg_gradient))); ?>' />
 									<input type="button" name="upload-btn" id="bg_gradient_select" class="button-secondary" value="Select Gradient">
 
 								</div>
@@ -1312,7 +1318,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 									if(isset($_slider[0]->bg_gradient) and strlen($_slider[0]->bg_gradient)>5){
 								?>
 									
-									<div id="gradient_view" style="display:inline-block;<?php echo str_replace('"','',preg_replace('/\\\\/', '', $_slider[0]->bg_gradient)); ?>">
+									<div id="gradient_view" style="display:inline-block;<?php echo esc_attr(str_replace('"','',preg_replace('/\\\\/', '', $_slider[0]->bg_gradient))); ?>">
 										<span class="remove_gradient">x</span>
 									</div>
 								<?php 
@@ -1352,7 +1358,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 						
 						
 						<div class="params deseffect customitemstyle">
-							<label class="customlevel" for="qcslide-effect-slideffect"><?php _e('Slide Image Effect', 'qcslide'); ?>:</label>
+							<label class="customlevel" for="qcslide-effect-slideffect"><?php esc_html_e('Slide Image Effect', 'slider-hero'); ?>:</label>
 							<select class="myElements" name="params[slideimageeffect]">
 
 								<option value="fade" <?php echo (isset($params->slideimageeffect) && $params->slideimageeffect=='fade'?'selected="selected"':''); ?>>Fade</option>
@@ -1369,7 +1375,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 							
 						</div>
 						<div class="params deseffect customitemstyle">
-							<label class="customlevel" for="qcslide-effect-slideffect"><?php _e('Reverse Slide Image Effect', 'qcslide'); ?>:</label>
+							<label class="customlevel" for="qcslide-effect-slideffect"><?php esc_html_e('Reverse Slide Image Effect', 'slider-hero'); ?>:</label>
 							<select class="myElements" name="params[slideimageeffectreverse]">
 
 								<option value="fade" <?php echo (isset($params->slideimageeffectreverse) && $params->slideimageeffectreverse=='fade'?'selected="selected"':''); ?>>Fade</option>
@@ -1462,7 +1468,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 								
 								<div class="params customitemstyle">
 									<label class="customlevel" for="qchero-background-color">Content Offset(Left & Right)</label> 
-									<input type="text" placeholder="45px or 10%" value="<?php echo (isset($params->contentoffset)&& $params->contentoffset!=''?$params->contentoffset:''); ?>" name="params[contentoffset]" />
+									<input type="text" placeholder="45px or 10%" value="<?php echo esc_attr(isset($params->contentoffset)&& $params->contentoffset!=''?$params->contentoffset:''); ?>" name="params[contentoffset]" />
 								</div>
 								
 								
@@ -1573,7 +1579,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 								<div class="params customitemstyle" style="width:100%;">
 									
 									<label class="customlevel" for="bg_video">Background Video (MP4)</label>
-									<input type="hidden" name="params[custom_video_mp4]" id="bg_video" class="regular-text" value="<?php echo (isset($params->custom_video_mp4)&& $params->custom_video_mp4!=''?$params->custom_video_mp4:''); ?>">
+									<input type="hidden" name="params[custom_video_mp4]" id="bg_video" class="regular-text" value="<?php echo esc_attr(isset($params->custom_video_mp4)&& $params->custom_video_mp4!=''?$params->custom_video_mp4:''); ?>">
 									<input type="button" name="upload-btn" id="bg-video-upload-btn" class="button-secondary" value="Upload Video">
 								</div>
 							
@@ -1583,7 +1589,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 									if(isset($params->custom_video_mp4)&& $params->custom_video_mp4!='') :
 								?>
 									<span class="remove_bg_video">X</span>
-									<img style="width:100px;" src="<?php echo QCLD_SLIDERHERO_IMAGES.'/video.png'; ?>" alt="" />
+									<img style="width:100px;" src="<?php echo esc_url( QCLD_SLIDERHERO_IMAGES.'/video.png' ); ?>" alt="" />
 								<?php endif; ?>
 								</div>
 
@@ -1593,7 +1599,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 								<div class="params customitemstyle" style="width:100%;">
 									
 									<label class="customlevel" for="bg_video2">Background Video (webm)</label>
-									<input type="hidden" name="params[custom_video_webm]" id="bg_video2" class="regular-text" value="<?php echo (isset($params->custom_video_webm)&& $params->custom_video_webm!=''?$params->custom_video_webm:''); ?>">
+									<input type="hidden" name="params[custom_video_webm]" id="bg_video2" class="regular-text" value="<?php echo esc_attr(isset($params->custom_video_webm)&& $params->custom_video_webm!=''?$params->custom_video_webm:''); ?>">
 									<input type="button" name="upload-btn" id="bg-video-upload-btn2" class="button-secondary" value="Upload Video">
 								</div>
 							
@@ -1603,7 +1609,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 									if(isset($params->custom_video_webm)&& $params->custom_video_webm!='') :
 								?>
 									<span class="remove_bg_video2">X</span>
-									<img style="width:100px;" src="<?php echo QCLD_SLIDERHERO_IMAGES.'/video.png'; ?>" alt="" />
+									<img style="width:100px;" src="<?php echo esc_url( QCLD_SLIDERHERO_IMAGES.'/video.png' ); ?>" alt="" />
 								<?php endif; ?>
 								</div>
 
@@ -1613,7 +1619,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 								<div class="params customitemstyle" style="width:100%;">
 									
 									<label class="customlevel" for="bg_video">Background Video (Youtube)</label>
-									<input type="text" name="params[bg_video_youtube]" id="bg_video_youtube" placeholder="Video ID" class="myElements" value="<?php echo (isset($params->bg_video_youtube)&& $params->bg_video_youtube!=''?$params->bg_video_youtube:''); ?>">
+									<input type="text" name="params[bg_video_youtube]" id="bg_video_youtube" placeholder="Video ID" class="myElements" value="<?php echo esc_attr(isset($params->bg_video_youtube)&& $params->bg_video_youtube!=''?$params->bg_video_youtube:''); ?>">
 									
 								</div>
 								
@@ -1623,7 +1629,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 								<div class="params customitemstyle" style="width:100%;">
 									
 									<label class="customlevel" for="bg_video">Background Video (Vimeo)</label>
-									<input type="text" name="params[bg_video_vimeo]" id="bg_video_vimeo" placeholder="Video ID" class="myElements" value="<?php echo (isset($params->bg_video_vimeo)&& $params->bg_video_vimeo!=''?$params->bg_video_vimeo:''); ?>">
+									<input type="text" name="params[bg_video_vimeo]" id="bg_video_vimeo" placeholder="Video ID" class="myElements" value="<?php echo esc_attr(isset($params->bg_video_vimeo)&& $params->bg_video_vimeo!=''?$params->bg_video_vimeo:''); ?>">
 									
 								</div>
 								
@@ -1741,7 +1747,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 									if($_slider[0]->bg_audio_url != '') :
 								?>
 									<span class="remove_bg_audio">X</span>
-									<img style="width:50px;" src="<?php echo QCLD_SLIDERHERO_IMAGES.'/audio.png'; ?>" alt="" />
+									<img style="width:50px;" src="<?php echo esc_url( QCLD_SLIDERHERO_IMAGES.'/audio.png' ); ?>" alt="" />
 								<?php endif; ?>
 								</div>
 							
@@ -1781,7 +1787,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 							<div class="othersetting" style="display: inline-block; float: left; width: 33%;">
 								<div class="params customitemstyle" style="width:100%">
 									<label class="customlevel" for="qchero-background-color" style="display: inline-block;">Audio Repeat Count (Leave blank for infinity)</label> 
-									<input type="text" name="params[audiorepeatcount]" placeholder="Ex: 5" value="<?php echo (isset($params->audiorepeatcount)&& $params->audiorepeatcount!=''?$params->audiorepeatcount:'') ?>" />
+									<input type="text" name="params[audiorepeatcount]" placeholder="Ex: 5" value="<?php echo esc_attr( isset($params->audiorepeatcount)&& $params->audiorepeatcount!=''?$params->audiorepeatcount:'' ); ?>" />
 										
 								</div>
 							</div>
@@ -2211,5 +2217,8 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 <div class="hero_bottom_save_button">
 	<a class="qchero_save_all2" href="#">Save</a>
 </div>
+</div>
     <?php
 }
+
+

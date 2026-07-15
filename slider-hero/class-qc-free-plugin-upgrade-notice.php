@@ -1,5 +1,7 @@
 <?php
-
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /*******************************************
  * QuantumCloud Plugin Upgrade Link for Free Plugins
  * Last Updated On: 05-24-2017
@@ -119,7 +121,7 @@ if( !class_exists('QcPluginUpgradeToProNotice') )
 			if ( strpos( $file, "$this->plugin_main_file" ) !== false ) {
 			
 				$new_links = array(
-					'<a class="'.esc_attr($this->link_class).'" style="font-weight: bold; color: '.esc_attr($this->link_color).';" href="' . esc_url( $this->upgrade_link ) . '" title="'.esc_attr($this->link_text).'" target="'.esc_attr($this->link_target).'">' . __( $this->link_text, 'quantumcloud' ) . '</a>'
+					'<a class="'.esc_attr($this->link_class).'" style="font-weight: bold; color: '.esc_attr($this->link_color).';" href="' . esc_url( $this->upgrade_link ) . '" title="'.esc_attr($this->link_text).'" target="'.esc_attr($this->link_target).'">' . esc_attr( $this->link_text, 'slider-hero' ) . '</a>'
 				);
 				
 				$links = array_merge( $links, $new_links );
@@ -205,4 +207,5 @@ if( is_admin() )
 	$instance_slider_hero_free->hook_with_plugin_submenu();
 
 }
+
 

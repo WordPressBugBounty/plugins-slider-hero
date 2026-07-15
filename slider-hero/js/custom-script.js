@@ -69,6 +69,7 @@
 						ajaxurl,
 						{
 							action : 'qcld_show_preview_items',
+							security: qchero_ajax_object.ajax_nonce,
 							sid : id,
 							
 						},
@@ -92,6 +93,7 @@
 						ajaxurl,
 						{
 							action : 'qcld_show_preview_items2',
+							security: qchero_ajax_object.ajax_nonce,
 							sid : id,
 							
 						},
@@ -164,6 +166,7 @@ $(document).on('click', '.slider_hero_pop_modal_close', function(){
 			
 			{
 				action : 'qcld_show_google_font_model',
+				security: qchero_ajax_object.ajax_nonce,
 				elem : parelem,
 				slidid: slidid,
 				selfelem:selfelem,
@@ -192,6 +195,7 @@ $(document).on('click', '.slider_hero_pop_modal_close', function(){
 			
 			{
 				action : 'qcld_show_google_font_model',
+				security: qchero_ajax_object.ajax_nonce,
 				elem : parelem,
 				slidid: slidid,
 				selfelem: selfelem,
@@ -217,6 +221,7 @@ $(document).on('click', '.slider_hero_pop_modal_close', function(){
 				ajaxurl,
 				{
 					action : 'qcld_show_google_font_variants',
+				security: qchero_ajax_object.ajax_nonce,
 					fontname:$('#hero_font_family').val(),
 				},
 				function(data){
@@ -279,6 +284,7 @@ $(document).on('click', '.slider_hero_pop_modal_close', function(){
 			
 			{
 				action : 'qcld_show_stomp_config',
+				security: qchero_ajax_object.ajax_nonce,
 				elem : parelem,
 				selfelem : selfelem,
 				slidid: slidid,
@@ -394,6 +400,7 @@ $(document).on('click', '.slider_hero_pop_modal_close', function(){
 			
 			{
 				action : 'qcld_show_arrow_items',
+				security: qchero_ajax_object.ajax_nonce,
 				elem : parelem,
 				selfelem : selfelem,
 				slidid: slidid,
@@ -424,6 +431,7 @@ $(document).on('click', '.slider_hero_pop_modal_close', function(){
 			
 			{
 				action : 'qcld_show_arrow_items',
+				security: qchero_ajax_object.ajax_nonce,
 				elem : parelem,
 				selfelem : selfelem,
 				slidid: slidid,
@@ -637,6 +645,7 @@ function openCity(evt, cityName) {
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " hero_active";
 }
+
 
 
 

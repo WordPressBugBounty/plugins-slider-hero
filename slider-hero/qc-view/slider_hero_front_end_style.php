@@ -100,7 +100,7 @@ if($_slider[0]->type=='walkingbackground'):
 	?>
 	background: url(<?php echo esc_url($bg_image_url); ?>);
 	<?php else: ?>
-	background: url(<?php echo QCLD_SLIDERHERO_IMAGES; ?>/bg.jpg);
+	background: url(<?php echo esc_url( QCLD_SLIDERHERO_IMAGES ); ?>/bg.jpg);
 	<?php endif; ?>
 }
 <?php endif; ?>
@@ -172,8 +172,8 @@ if($_slider[0]->type=='cloudysky'):
   }
 }
 .slider_hero_clouds-1 {
-  background-image: url("<?php echo QCLD_SLIDERHERO_IMAGES; ?>/clouds_2.png");
-  animation: clouds-loop-1 <?php echo (isset($params->cloudysky->speed)&&$params->cloudysky->speed>0?($params->cloudysky->speed-10):'30'); ?>s infinite linear;
+  background-image: url("<?php echo esc_url( QCLD_SLIDERHERO_IMAGES ); ?>/clouds_2.png");
+  animation: clouds-loop-1 <?php echo esc_attr(isset($params->cloudysky->speed)&&$params->cloudysky->speed>0?($params->cloudysky->speed-10):'30'); ?>s infinite linear;
 }
 
 @keyframes clouds-loop-2 {
@@ -182,8 +182,8 @@ if($_slider[0]->type=='cloudysky'):
   }
 }
 .slider_hero_clouds-2 {
-  background-image: url("<?php echo QCLD_SLIDERHERO_IMAGES; ?>/clouds_1.png");
-  animation: clouds-loop-2 <?php echo (isset($params->cloudysky->speed)&&$params->cloudysky->speed>0?($params->cloudysky->speed):'40'); ?>s infinite linear;
+  background-image: url("<?php echo esc_url( QCLD_SLIDERHERO_IMAGES ); ?>/clouds_1.png");
+  animation: clouds-loop-2 <?php echo esc_attr(isset($params->cloudysky->speed)&&$params->cloudysky->speed>0?($params->cloudysky->speed):'40'); ?>s infinite linear;
 }
 
 @keyframes clouds-loop-3 {
@@ -192,8 +192,8 @@ if($_slider[0]->type=='cloudysky'):
   }
 }
 .slider_hero_clouds-3 {
-  background-image: url("<?php echo QCLD_SLIDERHERO_IMAGES; ?>/clouds_3.png");
-  animation: clouds-loop-3 <?php echo (isset($params->cloudysky->speed)&&$params->cloudysky->speed>0?($params->cloudysky->speed-5):'35'); ?>s infinite linear;
+  background-image: url("<?php echo esc_url( QCLD_SLIDERHERO_IMAGES ); ?>/clouds_3.png");
+  animation: clouds-loop-3 <?php echo esc_attr(isset($params->cloudysky->speed)&&$params->cloudysky->speed>0?($params->cloudysky->speed-5):'35'); ?>s infinite linear;
 }
 
 
@@ -296,7 +296,7 @@ if(isset($params->canvasopacity) and $params->canvasopacity!=''){
     left: 0;
     width: 100%;
     height: 100%;
-    background: #294372 url('<?php echo QCLD_SLIDERHERO_IMAGES; ?>/sunset.jpg') center top no-repeat;
+    background: #294372 url('<?php echo esc_url( QCLD_SLIDERHERO_IMAGES ); ?>/sunset.jpg') center top no-repeat;
     background-size: cover;
     opacity: 0;
     z-index: 1
@@ -455,7 +455,7 @@ svg {
 
 <?php if($_slider[0]->type=='just_cloud'): //code for Just Cloud effect ?>
 #hero_just_clouds{
-  background:url("<?php echo QCLD_SLIDERHERO_IMAGES; ?>/just-clouds.png") repeat 0 0 transparent;
+  background:url("<?php echo esc_url( QCLD_SLIDERHERO_IMAGES ); ?>/just-clouds.png") repeat 0 0 transparent;
   width:100%;
   height:190px;
   
@@ -467,7 +467,7 @@ svg {
 
 <?php if($_slider[0]->type=='intro' && isset($params->introbgeffect) && $params->introbgeffect=='just_cloud'): //code for Just Cloud effect ?>
 #hero_just_clouds{
-  background:url("<?php echo QCLD_SLIDERHERO_IMAGES; ?>/just-clouds.png") repeat 0 0 transparent;
+  background:url("<?php echo esc_url( QCLD_SLIDERHERO_IMAGES ); ?>/just-clouds.png") repeat 0 0 transparent;
   width:100%;
   height:190px;
   position:absolute;
@@ -527,7 +527,7 @@ svg {
 
 
 .hero-slid {
-  background-image: url(<?php echo QCLD_SLIDERHERO_IMAGES; ?>/wormholebg.jpg);
+  background-image: url(<?php echo esc_url( QCLD_SLIDERHERO_IMAGES ); ?>/wormholebg.jpg);
   background-size: 32em 10em;
   -webkit-filter: hue-rotate(-11.25deg);
           filter: hue-rotate(-11.25deg);
@@ -745,8 +745,8 @@ if(isset($params->titlecolor) and $params->titlecolor!=''){
 ?>
   text-transform: uppercase;
   animation: blur-play-info-text-in 9.5s ease-in;
-  text-shadow: 0px 0px 3px <?php echo (isset($params->titlecolor) && $params->titlecolor!=''?$params->titlecolor:'#fff'); ?>,
-      0px 0px 5px <?php echo (isset($params->titlecolor) && $params->titlecolor!=''?$params->titlecolor:'#fff'); ?>;
+  text-shadow: 0px 0px 3px <?php echo esc_attr(isset($params->titlecolor) && $params->titlecolor!=''?$params->titlecolor:'#fff'); ?>,
+      0px 0px 5px <?php echo esc_attr(isset($params->titlecolor) && $params->titlecolor!=''?$params->titlecolor:'#fff'); ?>;
 }
 .play_info_text_out {
 
@@ -768,24 +768,24 @@ if(isset($params->titlecolor) and $params->titlecolor!=''){
   opacity: 0;
   animation: blur-play-info-text-out 9.5s ease-in;
   text-shadow:
-      0px 0px 10px <?php echo (isset($params->titlecolor) && $params->titlecolor!=''?$params->titlecolor:'#fff'); ?>,
-      0px 0px 25px <?php echo (isset($params->titlecolor) && $params->titlecolor!=''?$params->titlecolor:'#fff'); ?>,
-      0px 0px 50px <?php echo (isset($params->titlecolor) && $params->titlecolor!=''?$params->titlecolor:'#fff'); ?>,
-      0px 0px 150px <?php echo (isset($params->titlecolor) && $params->titlecolor!=''?$params->titlecolor:'#fff'); ?>,
-      0px 10px 100px <?php echo (isset($params->titlecolor) && $params->titlecolor!=''?$params->titlecolor:'#fff'); ?>,
-      0px -10px 100px <?php echo (isset($params->titlecolor) && $params->titlecolor!=''?$params->titlecolor:'#fff'); ?>;
+      0px 0px 10px <?php echo esc_attr(isset($params->titlecolor) && $params->titlecolor!=''?$params->titlecolor:'#fff'); ?>,
+      0px 0px 25px <?php echo esc_attr(isset($params->titlecolor) && $params->titlecolor!=''?$params->titlecolor:'#fff'); ?>,
+      0px 0px 50px <?php echo esc_attr(isset($params->titlecolor) && $params->titlecolor!=''?$params->titlecolor:'#fff'); ?>,
+      0px 0px 150px <?php echo esc_attr(isset($params->titlecolor) && $params->titlecolor!=''?$params->titlecolor:'#fff'); ?>,
+      0px 10px 100px <?php echo esc_attr(isset($params->titlecolor) && $params->titlecolor!=''?$params->titlecolor:'#fff'); ?>,
+      0px -10px 100px <?php echo esc_attr(isset($params->titlecolor) && $params->titlecolor!=''?$params->titlecolor:'#fff'); ?>;
 }
 
 @keyframes blur-play-info-text-in {
   from {
     opacity: 0;
     text-shadow:
-      0px 0px 10px <?php echo (isset($params->titlecolor) && $params->titlecolor!=''?$params->titlecolor:'#fff'); ?>,
-      0px 0px 25px <?php echo (isset($params->titlecolor) && $params->titlecolor!=''?$params->titlecolor:'#fff'); ?>,
-      0px 0px 50px <?php echo (isset($params->titlecolor) && $params->titlecolor!=''?$params->titlecolor:'#fff'); ?>,
-      0px 0px 150px <?php echo (isset($params->titlecolor) && $params->titlecolor!=''?$params->titlecolor:'#fff'); ?>,
-      0px 10px 100px <?php echo (isset($params->titlecolor) && $params->titlecolor!=''?$params->titlecolor:'#fff'); ?>,
-      0px -10px 100px <?php echo (isset($params->titlecolor) && $params->titlecolor!=''?$params->titlecolor:'#fff'); ?>;
+      0px 0px 10px <?php echo esc_attr(isset($params->titlecolor) && $params->titlecolor!=''?$params->titlecolor:'#fff'); ?>,
+      0px 0px 25px <?php echo esc_attr(isset($params->titlecolor) && $params->titlecolor!=''?$params->titlecolor:'#fff'); ?>,
+      0px 0px 50px <?php echo esc_attr(isset($params->titlecolor) && $params->titlecolor!=''?$params->titlecolor:'#fff'); ?>,
+      0px 0px 150px <?php echo esc_attr(isset($params->titlecolor) && $params->titlecolor!=''?$params->titlecolor:'#fff'); ?>,
+      0px 10px 100px <?php echo esc_attr(isset($params->titlecolor) && $params->titlecolor!=''?$params->titlecolor:'#fff'); ?>,
+      0px -10px 100px <?php echo esc_attr(isset($params->titlecolor) && $params->titlecolor!=''?$params->titlecolor:'#fff'); ?>;
   }
 }
 
@@ -793,8 +793,8 @@ if(isset($params->titlecolor) and $params->titlecolor!=''){
   from {
     opacity: 1;
     text-shadow:
-      0px 0px 3px <?php echo (isset($params->titlecolor) && $params->titlecolor!=''?$params->titlecolor:'#fff'); ?>,
-      0px 0px 5px <?php echo (isset($params->titlecolor) && $params->titlecolor!=''?$params->titlecolor:'#fff'); ?>;
+      0px 0px 3px <?php echo esc_attr(isset($params->titlecolor) && $params->titlecolor!=''?$params->titlecolor:'#fff'); ?>,
+      0px 0px 5px <?php echo esc_attr(isset($params->titlecolor) && $params->titlecolor!=''?$params->titlecolor:'#fff'); ?>;
   }
 }
 </style>
@@ -807,7 +807,7 @@ if($_slider[0]->type=='play_or_work'):
 #hg_stage{
   width: 100%;
   height: 100%;
-  background:url(<?php echo QCLD_SLIDERHERO_IMAGES; ?>/test_background_game.jpg) repeat-x;
+  background:url(<?php echo esc_url( QCLD_SLIDERHERO_IMAGES ); ?>/test_background_game.jpg) repeat-x;
   background-position: 0 bottom;
   margin: 0 auto;
   overflow: hidden;
@@ -836,7 +836,7 @@ if($_slider[0]->type=='play_or_work'):
 
 #hg_bird:after {
   content:"";
-  background: url('<?php echo QCLD_SLIDERHERO_IMAGES; ?>/fire.png') no-repeat center center;
+  background: url('<?php echo esc_url( QCLD_SLIDERHERO_IMAGES ); ?>/fire.png') no-repeat center center;
   background-size: contain;
   height: 50px;
   width: 25px;
@@ -900,7 +900,7 @@ if($_slider[0]->type=='play_or_work'):
   position: absolute;
   height: 200%;
   width: 200%;
-  background: url(<?php echo QCLD_SLIDERHERO_IMAGES; ?>/smash.png) no-repeat center center;
+  background: url(<?php echo esc_url( QCLD_SLIDERHERO_IMAGES ); ?>/smash.png) no-repeat center center;
   background-size: contain;
   transform: translate(-25%,-25%);
 }
@@ -923,7 +923,7 @@ if($_slider[0]->type=='play_or_work'):
   position: absolute;
   height: 200%;
   width: 200%;
-  background:url(<?php echo QCLD_SLIDERHERO_IMAGES; ?>/gold.png) no-repeat center center;
+  background:url(<?php echo esc_url( QCLD_SLIDERHERO_IMAGES ); ?>/gold.png) no-repeat center center;
   background-size: contain;
   transform: translate(-25%,-25%);
 }
@@ -1409,7 +1409,7 @@ if($_slider[0]->type=='the_great_attractor'){
   left: 50%;
 }
 .slider-hero-m-intro:before {
-  background-image: url("<?php echo QCLD_SLIDERHERO_IMAGES; ?>/circle_inner.png");
+  background-image: url("<?php echo esc_url( QCLD_SLIDERHERO_IMAGES ); ?>/circle_inner.png");
   background-size: 100% auto;
   -webkit-animation: rotate 30s infinite linear;
   -moz-animation: rotate 30s infinite linear;
@@ -1417,7 +1417,7 @@ if($_slider[0]->type=='the_great_attractor'){
   animation: rotate 30s infinite linear;
 }
 .slider-hero-m-intro:after {
-  background-image: url("<?php echo QCLD_SLIDERHERO_IMAGES; ?>/circle_outer.png");
+  background-image: url("<?php echo esc_url( QCLD_SLIDERHERO_IMAGES ); ?>/circle_outer.png");
   background-size: 100% auto;
   -webkit-animation: rotate 80s infinite linear;
   -moz-animation: rotate 80s infinite linear;
@@ -1461,7 +1461,7 @@ if($_slider[0]->type=='the_great_attractor'){
 	overflow:hidden;
 }
 .sh_clouds_one {
-  background: url("<?php echo QCLD_SLIDERHERO_IMAGES; ?>/zc06.png");
+  background: url("<?php echo esc_url( QCLD_SLIDERHERO_IMAGES ); ?>/zc06.png");
   position: absolute;
   left: 0;
   top: 0;
@@ -1476,7 +1476,7 @@ if($_slider[0]->type=='the_great_attractor'){
 }
 
 .sh_clouds_two {
-  background: url("<?php echo QCLD_SLIDERHERO_IMAGES; ?>/clouds-transparent-background-2.png");
+  background: url("<?php echo esc_url( QCLD_SLIDERHERO_IMAGES ); ?>/clouds-transparent-background-2.png");
   position: absolute;
   left: 0;
   top: 0;
@@ -1690,3 +1690,4 @@ if($_slider[0]->type=='the_great_attractor'){
 
 </style>
 <?php } ?>
+

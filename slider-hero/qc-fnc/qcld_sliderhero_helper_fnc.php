@@ -25,6 +25,8 @@ function str_split_unicode($str, $l = 0) {
 }
 
  function render_shortcode_modal_slider() {
+    check_ajax_referer( 'slider_hero_ajax_nonce', 'security' );
+
 global $wpdb;
 	?>
 
@@ -33,7 +35,7 @@ global $wpdb;
 		<!-- Modal content -->
 		<div class="modal-content">
 			<span class="close">×</span>
-			<h3>Slider-Hero<?php _e( ' - Shortcode Maker' , 'slider-hero' ); ?></h3>
+			<h3>Slider-Hero<?php esc_html_e( ' - Shortcode Maker' , 'slider-hero'); ?></h3>
 			<hr/>
 			<div class="sm_shortcode_list">
 			<div class="ilist_single_field_shortcode">
@@ -64,3 +66,4 @@ global $wpdb;
 	exit;
 }
 add_action( 'wp_ajax_show_shortcodes_slider', 'render_shortcode_modal_slider');
+

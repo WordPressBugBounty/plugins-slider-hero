@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /**
  * OptionTree Deprecated Functions.
  *
@@ -92,3 +95,4 @@ if ( ! function_exists( 'option_tree_stripslashes' ) ) {
 		return $input;
 	}
 }
+
