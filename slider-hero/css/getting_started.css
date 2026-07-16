@@ -950,3 +950,6 @@
 
     width: auto !important;
 }
+.qcld_sliderhero-container .slick-dots li button:before {
+    font-size: 16px !important;
+}

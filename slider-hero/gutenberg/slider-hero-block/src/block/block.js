@@ -16,27 +16,25 @@ import { ServerSideRender } from '@wordpress/components';
 
 
 function Qcld_Sliderhero_Shortcode_Preview( { shortcodeID } ) {
-	if( shortcodeID > 0 ){
-	    return(
-			<div>
-				 [qcld_hero id = {shortcodeID} ]
-			</div>
-	    )
-	}else{
-		return(
-			''
-	    )
-	}
+    if( shortcodeID > 0 ){
+        return(
+            <div>
+                 [qcld_hero id={shortcodeID}]
+            </div>
+        )
+    }else{
+        return null;
+    }
 }
 
 
 registerBlockType( 'qcld-slider-hero/qcld-slider-hero-shortcode-maker', {
-    title: esc_html('slider-hero' ),
+    title: __( 'Slider Hero', 'slider-hero' ),
     icon: 'slides',
     category: 'common',
     keywords: [
-        esc_html('slider hero shortcode maker' ),
-        esc_html('slider hero shortcode' )
+        __( 'slider hero shortcode maker', 'slider-hero' ),
+        __( 'slider hero shortcode', 'slider-hero' )
     ],
     attributes: {
         shortcodeID: {
@@ -47,27 +45,30 @@ registerBlockType( 'qcld-slider-hero/qcld-slider-hero-shortcode-maker', {
     edit: function( props ) {
         const { attributes: { shortcodeID }, setAttributes } = props;
 
- 		jQuery(document).on('change', '.qcld_hero_shortcode_maker', function(e){
-			const selected = event.target.querySelector( 'option:checked' );
+        jQuery(document).on('change', '.qcld_hero_shortcode_maker', function(e){
+            const selected = event.target.querySelector( 'option:checked' );
             setAttributes( { shortcodeID: selected.value } );
-	    });
+        });
 
         return (
             <div className={ props.className }>
                 <ServerSideRender
-					block="qcld-slider-hero/render-all-sliders"
-				/>
-            	<Qcld_Sliderhero_Shortcode_Preview shortcodeID = { shortcodeID } />
+                    block="qcld-slider-hero/render-all-sliders"
+                />
+                <Qcld_Sliderhero_Shortcode_Preview shortcodeID = { shortcodeID } />
             </div>
         );
     },
     save: function( props ) {
         const { attributes: { shortcodeID } } = props;
-        return (
-            <div>
-            	<Qcld_Sliderhero_Shortcode_Preview shortcodeID = { shortcodeID } />
-            </div>
-        );
+        if ( shortcodeID > 0 ) {
+            return (
+                <div>
+                    [qcld_hero id={shortcodeID}]
+                </div>
+            );
+        }
+        return null;
     }
 } );
 

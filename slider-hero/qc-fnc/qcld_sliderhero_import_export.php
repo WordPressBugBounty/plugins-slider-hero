@@ -114,7 +114,7 @@ function qcld_sliderhero_free_sliders_import_export(){
                     </div>
 
                     <div style="padding: 15px 10px; border: 1px solid #ccc; text-align: center; margin-top: 20px;">
-                        <?php echo esc_html( 'Crafted By:', 'slider-hero' ); ?> <a href="<?php echo esc_url('http://www.quantumcloud.com'); ?>" target="_blank"><?php echo esc_html( 'Web Design Company', 'slider-hero' ); ?></a> - QuantumCloud
+                        <?php echo esc_html( 'Crafted By:', 'slider-hero' ); ?> <a href="<?php echo esc_url('http://www.quantumcloud.com'); ?>" target="_blank" rel="nofollow"><?php echo esc_html( 'Web Design Company', 'slider-hero' ); ?></a> - QuantumCloud
                     </div>
 
                 </div>

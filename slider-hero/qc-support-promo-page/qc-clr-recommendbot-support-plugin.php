@@ -1152,16 +1152,6 @@ if( !function_exists('qcld_sliderhero_recommend_support_function_four_ajax') ){
                 ], 
 
                 [
-                    'slug'      => 'slider-hero',
-                    'fields'    => [
-                        'short_description' => true,
-                        'icons'             => true,
-                        'reviews'           => false, // excludes all reviews
-                    ],
-                    'live_preview'   => '',
-                    'update_to_pro'  => 'https://www.dna88.com/product/seo-help-pro/'
-                ], 
-                [
                     'slug'      => 'logo-or-image-replace',
                     'fields'    => [
                         'short_description' => true,

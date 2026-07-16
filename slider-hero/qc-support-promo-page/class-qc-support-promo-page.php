@@ -93,7 +93,7 @@ if ( ! function_exists( 'qcld_sliderhero_promo_support_page_callback_func' ) ) {
                 <div class="qc-column-12" >
                     <div class="support-btn">
                         
-                        <a class="premium-support premium-support-free" href="<?php echo esc_url('https://www.quantumcloud.com/resources/free-support/') ?>" target="_blank"><?php esc_html_e('Get Support for Free Version', 'slider-hero') ?></a>
+                        <a class="premium-support premium-support-free" href="<?php echo esc_url('https://wordpress.org/support/plugin/slider-hero/') ?>" target="_blank"><?php esc_html_e('Get Support for Free Version', 'slider-hero') ?></a>
                     </div>
                 </div>
             </div>

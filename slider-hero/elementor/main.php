@@ -2,9 +2,6 @@
 namespace QCLD;
 use QCLD\Slider_Hero;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
-}
 
 /**
  * Main Class
@@ -47,6 +44,10 @@ final class QCLD_SLIDER_HERO_MAIN {
 		
 		// Register widget
 		add_action( 'elementor/widgets/widgets_registered', [ $this, 'register_widgets' ] );
+		
+		// Add Custom Icon CSS
+		add_action( 'elementor/editor/after_enqueue_styles', [ $this, 'editor_enqueue_styles' ] );
+		
 	}
 
 	/**
@@ -67,6 +68,23 @@ final class QCLD_SLIDER_HERO_MAIN {
 	public function enqueue_styles(){}
 
 	public function enqueue_scripts(){}
+	
+	public function editor_enqueue_styles() {
+		echo "<style>
+			i.qcld-slider-hero-el-icon {
+				background-image: url('" . plugins_url( 'icon.png', __FILE__ ) . "') !important;
+				background-size: contain !important;
+				background-repeat: no-repeat !important;
+				background-position: center !important;
+				width: 28px !important;
+				height: 28px !important;
+				display: inline-block !important;
+			}
+			i.qcld-slider-hero-el-icon::before {
+				content: '' !important;
+			}
+		</style>";
+	}
 
 }
 

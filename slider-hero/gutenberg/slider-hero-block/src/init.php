@@ -8,10 +8,6 @@
  * @package CGB
  */
 
-// Exit if accessed directly.
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
 
 /**
  * Enqueue Gutenberg block assets for both frontend + backend.
@@ -23,7 +19,7 @@ function qcld_slider_hero_block_assets() { // phpcs:ignore
 	// Styles.
 	wp_enqueue_style(
 		'qcld-slider-hero-style-css', // Handle.
-		plugins_url( 'dist/blocks.style.build.css', dirname( __FILE__ ) ), // Block style CSS.
+		plugins_url( 'dist/blocks.style.build.css', dirname( __DIR__ ) . '/plugin.php' ), // Block style CSS.
 		array( 'wp-editor' ) // Dependency to include the CSS after it.
 	);
 }
@@ -44,8 +40,8 @@ function qcld_slider_hero_editor_assets() { // phpcs:ignore
 	// Scripts.
 	wp_enqueue_script(
 		'qcld-slider-hero-block-js', // Handle.
-		plugins_url( '/dist/blocks.build.js', dirname( __FILE__ ) ), // Block.build.js: We register the block here. Built with Webpack.
-		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ), // Dependencies, defined above.
+		plugins_url( 'dist/blocks.build.js', dirname( __DIR__ ) . '/plugin.php' ), // Block.build.js: We register the block here. Built with Webpack.
+		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor', 'wp-server-side-render' ), // Dependencies, defined above.
 		true // Enqueue the script in the footer.
 	);
 
@@ -56,7 +52,7 @@ function qcld_slider_hero_editor_assets() { // phpcs:ignore
 	// Styles.
 	wp_enqueue_style(
 		'qcld-slider-hero-block-editor-css', // Handle.
-		plugins_url( 'dist/blocks.editor.build.css', dirname( __FILE__ ) ), // Block editor CSS.
+		plugins_url( 'dist/blocks.editor.build.css', dirname( __DIR__ ) . '/plugin.php' ), // Block editor CSS.
 		array( 'wp-edit-blocks' ) // Dependency to include the CSS after it.
 	);
 }
@@ -81,7 +77,7 @@ function qcld_slider_hero_list(){
 	<img class="shortcode-static-graphics" src="<?php echo esc_url(QCLD_SLIDERHERO_IMAGES).'/superman.png' ?>" alt="Slider Hero Graphics" width="150" height="150">
 	<label>Select A Slider: <br />
         <select class='qcld_hero_shortcode_maker'>
-        	<option value="0"><?php echo esc_html('Select A Slider', 'slider-hero'); ?> </option>
+        	<option value="0"><?php echo esc_html__( 'Select A Slider', 'slider-hero' ); ?> </option>
         	<?php foreach ($sliders as $key => $value) { ?>
             	<option value="<?php echo esc_attr( $value['id'] ); ?>"><?php echo esc_attr( $value['title'] ); ?></option>
             <?php } ?>

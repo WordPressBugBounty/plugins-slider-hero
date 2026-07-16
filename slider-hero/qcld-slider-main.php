@@ -3,7 +3,7 @@
 * Plugin Name: Slider Hero
 * Plugin URI: https://www.quantumcloud.com/products/slider-hero
 * Description: Slider Hero is a Unique Hero Slider Plugin with Background Animation Effects, Video Background & Intro Builder. Animation Slider Carousels, INCREDIBLE Adverts. Animated Header with Text Carousel.
-* Version: 9.1.4
+* Version: 9.1.5
 * Author: QuantumCloud
 * Author URI: https://www.quantumcloud.com/
 * Requires at least: 5.2
@@ -1355,6 +1355,9 @@ if ( function_exists( 'register_block_type' ) ) {
 	}
 	add_action( 'init', 'qcld_slider_hero_gutenberg_block' );
 }
+
+// Elementor Integration
+require_once plugin_dir_path( __FILE__ ) . 'elementor/init.php';
 
 function qcld_sliderhero_order_index_catalog_menu_page( $menu_ord ) {
 	global $submenu;

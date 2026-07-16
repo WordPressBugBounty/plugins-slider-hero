@@ -2,9 +2,6 @@
 namespace QCLD\Slider_Hero;
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
-}
 
 /**
  * Elementor Slider Hero Widget.
@@ -56,7 +53,7 @@ class QCLD_SLIDER_HERO extends \Elementor\Widget_Base
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'fa fa-columns';
+		return 'qcld-slider-hero-el-icon';
 	}
 
 	/**
@@ -134,7 +131,7 @@ class QCLD_SLIDER_HERO extends \Elementor\Widget_Base
 			}
 		}else{
 		?>
-			<div class="qc_slider_hero_elemetor_block">Select a Slider</div>
+			<div class="qc_slider_hero_elemetor_block"><?php echo esc_html('Select a Slider', 'slider-hero'); ?></div>
 		<?php
 		}
 	}

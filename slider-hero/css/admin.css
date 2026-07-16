@@ -64,6 +64,12 @@ footer, header, .hgroup, menu, nav, section {
 }
 .othersetting{display: block;
     color: #444;overflow: hidden;}
+
+
+li.arrows .othersetting{
+    overflow: visible !important;
+}
+
 .customlevel{
 	display: block;
     margin: 7px 7px 7px 0;

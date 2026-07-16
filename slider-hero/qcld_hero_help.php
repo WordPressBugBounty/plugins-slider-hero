@@ -54,7 +54,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						</div>
 
 						<div style="padding: 15px 10px; border: 1px solid #ccc; text-align: center; margin-top: 20px;">
-							 <?php esc_html_e( 'Crafted By:', 'slider-hero' ); ?> <a href="<?php echo esc_url( 'http://www.quantumcloud.com' ); ?>" target="_blank"><?php esc_html_e( 'Web Design Company', 'slider-hero' ); ?></a> - <?php echo esc_attr( 'QuantumCloud' ); ?> 
+							 <?php esc_html_e( 'Crafted By:', 'slider-hero' ); ?> <a href="<?php echo esc_url( 'http://www.quantumcloud.com' ); ?>" target="_blank" rel="nofollow"><?php esc_html_e( 'Web Design Company', 'slider-hero' ); ?></a> - <?php echo esc_attr( 'QuantumCloud' ); ?> 
 						</div>
 						
 					  </div>
