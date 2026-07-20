@@ -49,7 +49,7 @@ if(isset($params->herotop->decoration) and $params->herotop->decoration !==''):
     margin: 0 auto;
     margin-top: 0;
 }
-#particles-js<?php echo intval( esc_html( $_id ) ); ?>{
+#particles-js<?php echo intval( esc_attr( $_id ) ); ?>{
 	overflow: inherit !important;
 }
 </style>

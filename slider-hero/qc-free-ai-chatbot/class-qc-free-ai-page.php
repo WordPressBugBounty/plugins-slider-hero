@@ -57,7 +57,7 @@ if ( ! function_exists( 'qcld_slider_free_ai_include_promo_page_scripts' ) ) {
 	function qcld_slider_free_ai_include_promo_page_scripts( ) {   
 
 
-        if( isset($_GET["page"]) && !empty($_GET["page"]) && (   $_GET["page"] == "qcld_slider_free_ai"  ) ){
+        if( isset($_GET["page"]) && !empty($_GET["page"]) && ( sanitize_text_field( wp_unslash($_GET["page"])) == "qcld_slider_free_ai"  ) ){
                              
             wp_enqueue_style( 'qcld_slider_free_ai_css', qcld_slider_free_ai_support_url . "css/qc-ai-free-style.css");
 

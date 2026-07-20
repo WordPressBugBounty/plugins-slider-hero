@@ -22,7 +22,7 @@ opacity: <?php echo esc_attr( ( isset( $params->video_overlay_opacity ) && $para
 }
 
 
-#particles-js<?php echo intval( esc_html( $_id ) ); ?> .qcld_hero_content_area{
+#particles-js<?php echo intval( esc_attr( $_id ) ); ?> .qcld_hero_content_area{
 	position:absolute;
 	
 	width: 100%;
@@ -42,21 +42,21 @@ opacity: <?php echo esc_attr( ( isset( $params->video_overlay_opacity ) && $para
 	
 }
 
-#particles-js<?php echo intval( esc_html( $_id ) ); ?> .slider-x-lead-title, #particles-js<?php echo intval( esc_html( $_id ) ); ?> .hero_slider_button, #particles-js<?php echo intval( esc_html( $_id ) ); ?> .slider-x-item-title{margin: 15px 0px;}
+#particles-js<?php echo intval( esc_attr( $_id ) ); ?> .slider-x-lead-title, #particles-js<?php echo intval( esc_attr( $_id ) ); ?> .hero_slider_button, #particles-js<?php echo intval( esc_attr( $_id ) ); ?> .slider-x-item-title{margin: 15px 0px;}
 
-#particles-js<?php echo intval( esc_html( $_id ) ); ?> .slider-x-lead-title{
+#particles-js<?php echo intval( esc_attr( $_id ) ); ?> .slider-x-lead-title{
 <?php if(isset($params->titlebottommargin)&&$params->titlebottommargin!=''): ?>
 	margin-bottom: <?php echo esc_attr( $params->titlebottommargin ); ?>;
 <?php endif; ?>	
 }
 
-#particles-js<?php echo intval( esc_html( $_id ) ); ?> .hero_slider_button{
+#particles-js<?php echo intval( esc_attr( $_id ) ); ?> .hero_slider_button{
 <?php if(isset($params->buttonbottommargin)&&$params->buttonbottommargin!=''): ?>
 	margin-bottom: <?php echo esc_attr( $params->buttonbottommargin ); ?>;
 <?php endif; ?>	
 }
 
-#particles-js<?php echo intval( esc_html( $_id ) ); ?> .slider-x-item-title{
+#particles-js<?php echo intval( esc_attr( $_id ) ); ?> .slider-x-item-title{
 <?php if(isset($params->descriptionbottommargin)&&$params->descriptionbottommargin!=''): ?>
 	margin-bottom: <?php echo esc_attr( $params->descriptionbottommargin ); ?>;
 <?php endif; ?>	
@@ -106,7 +106,7 @@ if($_slider[0]->type=='walkingbackground'):
 <?php endif; ?>
 
 
-#particles-js<?php echo intval( esc_html( $_id ) ); ?> canvas {
+#particles-js<?php echo intval( esc_attr( $_id ) ); ?> canvas {
 	position:absolute;
 	<?php if($_slider[0]->type=='rainy_season'): ?>
 	z-index:0;
@@ -119,7 +119,7 @@ if($_slider[0]->type=='walkingbackground'):
 <?php 
 if($_slider[0]->type=='intro'):
 ?>
-#particles-js<?php echo intval( esc_html( $_id ) ); ?> .eachAnim {
+#particles-js<?php echo intval( esc_attr( $_id ) ); ?> .eachAnim {
 font-family: "Lato", Arial, sans-serif;
     font-weight: 300;
     font-size: 50px;
@@ -136,7 +136,7 @@ font-family: "Lato", Arial, sans-serif;
 	background-size: cover !important;
     background-position: center center !important;
 }
-#particles-js<?php echo intval( esc_html( $_id ) ); ?> canvas{
+#particles-js<?php echo intval( esc_attr( $_id ) ); ?> canvas{
 	position: absolute;
     top: 0;
 }
@@ -222,11 +222,11 @@ if($_slider[0]->type=='cloudysky'):
 }
 <?php endif; ?>
 
-#particles-js<?php echo intval( esc_html( $_id ) ); ?> > img{
+#particles-js<?php echo intval( esc_attr( $_id ) ); ?> > img{
 	position:absolute;
 	z-index:1;
 }
-#particles-js<?php echo intval( esc_html( $_id ) ); ?>{
+#particles-js<?php echo intval( esc_attr( $_id ) ); ?>{
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -283,7 +283,7 @@ endif;
 <?php 
 if(isset($params->canvasopacity) and $params->canvasopacity!=''){
 ?>
-#particles-js<?php echo intval( esc_html( $_id ) ); ?> > canvas{
+#particles-js<?php echo intval( esc_attr( $_id ) ); ?> > canvas{
 	opacity: <?php echo esc_html($params->canvasopacity); ?>;
 }
 <?php
@@ -302,7 +302,7 @@ if(isset($params->canvasopacity) and $params->canvasopacity!=''){
     z-index: 1
 }
 
-.slider-x-lead-title<?php echo intval( esc_html( $_id ) ); ?>{
+.slider-x-lead-title<?php echo intval( esc_attr( $_id ) ); ?>{
 /*position: absolute;
 top: <?php echo esc_attr($params->title->style->top); ?>;*/
 left: 0px;
@@ -316,7 +316,7 @@ box-sizing: border-box;
 
 
 }
-.slider-x-item-title<?php echo intval( esc_html( $_id ) ); ?>{
+.slider-x-item-title<?php echo intval( esc_attr( $_id ) ); ?>{
 /*
 position: absolute;
 top: <?php echo esc_attr($params->description->style->top); ?>;*/
@@ -341,7 +341,7 @@ box-sizing: border-box;
 
 }
 
-.slider-x-lead-title<?php echo intval( esc_html( $_id ) ); ?>{
+.slider-x-lead-title<?php echo intval( esc_attr( $_id ) ); ?>{
 
 <?php //title font size
 if(isset($params->titlefontsize) and $params->titlefontsize!=''){
@@ -373,7 +373,7 @@ if(isset($params->titlefontheight) and $params->titlefontheight!=''){
 
 }
 
-.hero_slider_btn<?php echo intval( esc_html( $_id ) ); ?>{
+.hero_slider_btn<?php echo intval( esc_attr( $_id ) ); ?>{
 	/*
 	position:absolute;
 	top: <?php echo esc_attr($params->button1->style->top); ?>;*/
@@ -393,12 +393,12 @@ if(isset($params->button1->align) and $params->button1->align!=''){
 
 ?>
 }
-.hero_slider_btn<?php echo intval( esc_html( $_id ) ); ?> a{
+.hero_slider_btn<?php echo intval( esc_attr( $_id ) ); ?> a{
 	z-index: 9;
     position: relative;
 }
 
-.slider-x-item-title<?php echo intval( esc_html( $_id ) ); ?>, .slider-x-item-title<?php echo intval( esc_html( $_id ) ); ?> > p, .slider-x-item-title<?php echo intval( esc_html( $_id ) ); ?> > *{
+.slider-x-item-title<?php echo intval( esc_attr( $_id ) ); ?>, .slider-x-item-title<?php echo intval( esc_attr( $_id ) ); ?> > p, .slider-x-item-title<?php echo intval( esc_attr( $_id ) ); ?> > *{
 <?php //description font color
 if(isset($params->descriptioncolor) and $params->descriptioncolor!=''){
 	echo 'color: '.esc_attr($params->descriptioncolor).';';	
@@ -460,7 +460,7 @@ svg {
   height:190px;
   
 }
-#particles-js<?php echo intval( esc_html( $_id ) ); ?>{
+#particles-js<?php echo intval( esc_attr( $_id ) ); ?>{
 	background:#ACE6FF !important;
 }
 <?php endif; ?>
@@ -473,13 +473,13 @@ svg {
   position:absolute;
   
 }
-#particles-js<?php echo intval( esc_html( $_id ) ); ?>{
+#particles-js<?php echo intval( esc_attr( $_id ) ); ?>{
 	background:#ACE6FF !important;
 }
 <?php endif; ?>
 
 <?php if($_slider[0]->type=='wormhole'): //code for Just Cloud effect ?>
-#particles-js<?php echo intval( esc_html( $_id ) ); ?> {
+#particles-js<?php echo intval( esc_attr( $_id ) ); ?> {
   background-color: #1e0059;
   
   margin: 0;
@@ -488,7 +488,7 @@ svg {
           perspective: 5em;
 }
 
-#particles-js<?php echo intval( esc_html( $_id ) ); ?>::after {
+#particles-js<?php echo intval( esc_attr( $_id ) ); ?>::after {
   background-color: inherit;
   border-radius: 50%;
   box-shadow: 0 0 2em 2em #1e0059;
@@ -1027,12 +1027,12 @@ endif;
 if($_slider[0]->type=='rays_particles'):
 ?>
 <style type="text/css">
-#particles-js<?php echo intval( esc_html( $_id ) ); ?> canvas {
+#particles-js<?php echo intval( esc_attr( $_id ) ); ?> canvas {
   position: absolute;
   width: 100%;
   height: 100%;
 }
-#particles-js<?php echo intval( esc_html( $_id ) ); ?> form {
+#particles-js<?php echo intval( esc_attr( $_id ) ); ?> form {
   position: absolute;
   padding: 30px;
   width: 150px;
@@ -1041,28 +1041,28 @@ if($_slider[0]->type=='rays_particles'):
     z-index: 999;
 }
 
-#particles-js<?php echo intval( esc_html( $_id ) ); ?> label {
+#particles-js<?php echo intval( esc_attr( $_id ) ); ?> label {
   display: block;
   text-align: center;
   font-family: "Open Sans Condensed", sans-serif;
   color: white;
 }
 
-#particles-js<?php echo intval( esc_html( $_id ) ); ?> input[type=range] {
+#particles-js<?php echo intval( esc_attr( $_id ) ); ?> input[type=range] {
   -webkit-appearance: none;
   margin-bottom: 18px;
   width: 100%;
 }
-#particles-js<?php echo intval( esc_html( $_id ) ); ?> input[type=range]:focus {
+#particles-js<?php echo intval( esc_attr( $_id ) ); ?> input[type=range]:focus {
   outline: none;
 }
-#particles-js<?php echo intval( esc_html( $_id ) ); ?> input[type=range]::-webkit-slider-runnable-track {
+#particles-js<?php echo intval( esc_attr( $_id ) ); ?> input[type=range]::-webkit-slider-runnable-track {
   width: 100%;
   height: 2px;
   cursor: pointer;
   background: white;
 }
-#particles-js<?php echo intval( esc_html( $_id ) ); ?> input[type=range]::-webkit-slider-thumb {
+#particles-js<?php echo intval( esc_attr( $_id ) ); ?> input[type=range]::-webkit-slider-thumb {
   height: 13px;
   width: 13px;
   border-radius: 50%;
@@ -1071,13 +1071,13 @@ if($_slider[0]->type=='rays_particles'):
   -webkit-appearance: none;
   margin-top: -6px;
 }
-#particles-js<?php echo intval( esc_html( $_id ) ); ?> input[type=range]::-moz-range-track {
+#particles-js<?php echo intval( esc_attr( $_id ) ); ?> input[type=range]::-moz-range-track {
   width: 100%;
   height: 2px;
   cursor: pointer;
   background: white;
 }
-#particles-js<?php echo intval( esc_html( $_id ) ); ?> input[type=range]::-moz-range-thumb {
+#particles-js<?php echo intval( esc_attr( $_id ) ); ?> input[type=range]::-moz-range-thumb {
   height: 16px;
   width: 16px;
   border-radius: 50%;
@@ -1117,7 +1117,7 @@ endif;
 if($_slider[0]->type=='svg_animation'):
 ?>
 <style type="text/css">
-#particles-js<?php echo intval( esc_html( $_id ) ); ?> {
+#particles-js<?php echo intval( esc_attr( $_id ) ); ?> {
 position:relative;
 background: linear-gradient(to top, #7b00e0, #ff006a);
   margin: 0 auto;
@@ -1292,7 +1292,7 @@ canvas {
 if($_slider[0]->type=='fizzy_sparks'){
 ?>
 <style type="text/css">
-#particles-js<?php echo intval( esc_html( $_id ) ); ?>{
+#particles-js<?php echo intval( esc_attr( $_id ) ); ?>{
 	overflow:hidden;
 	background:black !important;
 }
@@ -1320,7 +1320,7 @@ canvas {
 if($_slider[0]->type=='pretend_hacker'){
 ?>
 <style type="text/css">
-#particles-js<?php echo intval( esc_html( $_id ) ); ?>{
+#particles-js<?php echo intval( esc_attr( $_id ) ); ?>{
 	overflow:hidden;
 	
 }
@@ -1457,7 +1457,7 @@ if($_slider[0]->type=='the_great_attractor'){
 
 <?php if($_slider[0]->type=='animated_cloud'){ ?>
 <style>
-#particles-js<?php echo intval( esc_html( $_id ) ); ?>{
+#particles-js<?php echo intval( esc_attr( $_id ) ); ?>{
 	overflow:hidden;
 }
 .sh_clouds_one {

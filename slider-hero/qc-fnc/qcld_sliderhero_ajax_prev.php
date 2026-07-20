@@ -38,14 +38,14 @@ function qcld_show_preview_items_fnc(){
 		return;
 	}
 
-/*Ordering section*/
-$odarr = array(
-	'title'			=> str_replace('%','',$params->title->style->top),
-	'description'	=> str_replace('%','',$params->description->style->top),
-	'button'		=> str_replace('%','',$params->button1->style->top)
-);
+	/*Ordering section*/
+	$odarr = array(
+		'title'			=> str_replace('%','',$params->title->style->top),
+		'description'	=> str_replace('%','',$params->description->style->top),
+		'button'		=> str_replace('%','',$params->button1->style->top)
+	);
 
-asort($odarr);
+	asort($odarr);
 ?>
 
 	<div id="sm-modal" class="slider_hero_modal">
@@ -81,15 +81,13 @@ require(QCLD_sliderhero_view.'/slider_hero_front_end_style.php');
 	require(QCLD_sliderhero_view.'/slider_hero_front_end_effect_config.php');
 ?>
 
-<?php if($_slider[0]->type=='hero_404'){?>
+<?php if($_slider[0]->type=='hero_404'){ ?>
 
 	<h2 class="hero_not_found"><span> Not Found</span></h2>
 	<?php if(isset($params->hero404->title) and $params->hero404->title!=''): ?>
 	<h3 class="hero_not_found_title"><?php echo esc_attr( $params->hero404->title ); ?></h3>
 	<?php endif; ?>
-<?php
-}else{
-?>
+<?php }else{ ?>
 <?php $totalSlide = 0; ?>
 <?php foreach($_slide as $slider_key => $slide) : 
 
@@ -183,10 +181,9 @@ $totalSlide++;
 endif;
 endforeach;
 require(QCLD_sliderhero_view.'/slider_hero_front_end_audio.php');
-?>
-<?php
+
 }
- ?>
+?>
  
  
 <?php if($_slider[0]->type=='video' && !empty($preimg)):?>
@@ -210,13 +207,7 @@ require(QCLD_sliderhero_view.'/slider_hero_front_end_audio.php');
 
 <?php endif; ?>
 
-<?php if($_slider[0]->type=='youtube_video' && !empty($preimg)):
-
-	//var_dump( $preimg[0] );
-	//wp_die();
-
-
-	?>
+<?php if($_slider[0]->type=='youtube_video' && !empty($preimg)): ?>
 <div class="sh_bg_video sh_bg_video_y">
 	<div class="sh_bg_video_fluid sh_bg_video_fluid_y" style="width: 100%;position: relative;padding: 0;padding-top: 56.5%;">
 		<div id="hero_youtube_video"></div>
@@ -298,5 +289,3 @@ echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 //exit;
 }
 add_action( 'wp_ajax_qcld_show_preview_items', 'qcld_show_preview_items_fnc');
-?>
-

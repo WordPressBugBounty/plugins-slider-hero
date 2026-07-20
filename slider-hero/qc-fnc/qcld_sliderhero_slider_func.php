@@ -2,12 +2,8 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
 //Load style for specific slider effect//
-
-
-
-
-
 
 function qcld_sliderhero_free_sliders_list_func() {
 	global $wpdb;

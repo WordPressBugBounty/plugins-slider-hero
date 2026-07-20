@@ -27,7 +27,7 @@ function str_split_unicode($str, $l = 0) {
  function render_shortcode_modal_slider() {
     check_ajax_referer( 'slider_hero_ajax_nonce', 'security' );
 
-global $wpdb;
+	global $wpdb;
 	?>
 
 	<div id="sm-modal" class="slider_hero_modal">

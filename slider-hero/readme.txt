@@ -4,7 +4,7 @@ Donate link: https://www.quantumcloud.com
 Tags: slider, video background, banner slider, elementor slider, video slider
 Requires at least: 4.6
 Tested up to: 7.0
-Stable tag: 9.1.5
+Stable tag: 9.1.6
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.quantumcloud.com
@@ -265,6 +265,9 @@ https://www.quantumcloud.com/products/support/
 
 
 == Changelog ==
+
+= 9.1.6 =
+# Fixed some PHP issues
 
 = 9.1.5 =
 # Fixed support link

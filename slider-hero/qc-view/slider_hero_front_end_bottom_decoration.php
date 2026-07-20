@@ -2,8 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-?>
-<?php //slope-left
+
 if(isset($params->herobottom->decoration) and $params->herobottom->decoration !==''):
 ?>
 <style type="text/css">

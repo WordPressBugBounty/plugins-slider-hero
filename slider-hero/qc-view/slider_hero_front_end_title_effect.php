@@ -30,7 +30,7 @@ $titletag = isset($params->titletag) ? $params->titletag : 'h2';
 ?>
 
 <style type="text/css">
-.slider-x-lead-title<?php echo intval($_id); ?>, .slider-x-lead-title<?php echo intval($_id); ?> p, .slider-x-lead-title<?php echo intval($_id); ?> h1, .slider-x-lead-title<?php echo intval($_id); ?> h2, .slider-x-lead-title<?php echo intval($_id); ?> <?php echo esc_attr( $titletag ); ?>, .slider-x-lead-title<?php echo intval($_id); ?> span{
+.slider-x-lead-title<?php echo intval( esc_attr( $_id ) ); ?>, .slider-x-lead-title<?php echo intval( esc_attr( $_id ) ); ?> p, .slider-x-lead-title<?php echo intval( esc_attr( $_id ) ); ?> h1, .slider-x-lead-title<?php echo intval( esc_attr( $_id ) ); ?> h2, .slider-x-lead-title<?php echo intval( esc_attr( $_id ) ); ?> <?php echo esc_attr( $titletag ); ?>, .slider-x-lead-title<?php echo intval( esc_attr( $_id ) ); ?> span{
 	<?php if($tfont!=''): ?>
 	font-family:'<?php echo esc_attr( $tfont ); ?>', sans-serif !important;
 	<?php endif; ?>
@@ -38,7 +38,7 @@ $titletag = isset($params->titletag) ? $params->titletag : 'h2';
 	letter-spacing: <?php echo esc_attr( $tlspace ); ?> !important;
 	<?php endif; ?>
 }
-.slider-x-item-title<?php echo intval($_id); ?>, .slider-x-item-title<?php echo intval($_id); ?> p,, .slider-x-item-title<?php echo intval($_id); ?> <?php echo esc_attr( $titletag ); ?>, .slider-x-item-title<?php echo intval($_id); ?> div{
+.slider-x-item-title<?php echo intval( esc_attr( $_id ) ); ?>, .slider-x-item-title<?php echo intval( esc_attr( $_id ) ); ?> p,, .slider-x-item-title<?php echo intval( esc_attr( $_id ) ); ?> <?php echo esc_attr( $titletag ); ?>, .slider-x-item-title<?php echo intval( esc_attr( $_id ) ); ?> div{
 	<?php if($dfont!=''): ?>
 	font-family:'<?php echo esc_attr( $dfont ); ?>', sans-serif !important;
 	<?php endif; ?>
@@ -72,7 +72,7 @@ if(isset($params->titleffect) and $params->titleffect=='hero_peeled_effect'):
 			color:#fff !important;
 		}
 	</style>
-	<<?php echo esc_attr( $titletag ); ?> class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?>"><?php 
+	<<?php echo esc_attr( $titletag ); ?> class="slider-x-lead-title slider-x-lead-title<?php echo intval( esc_attr( $_id ) ); ?>"><?php 
 		$titletext = wp_kses_post( wp_unslash(($slide->title)) );
 		$titletext = str_split_unicode($titletext,1);
 		foreach($titletext as $k=>$v):
@@ -82,7 +82,7 @@ if(isset($params->titleffect) and $params->titleffect=='hero_peeled_effect'):
 <?php // code for Text Animation effect
 elseif(isset($params->titleffect) and $params->titleffect=='hero_text_animation'):
 ?>
-	<<?php echo esc_attr( $titletag ); ?> class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?>">
+	<<?php echo esc_attr( $titletag ); ?> class="slider-x-lead-title slider-x-lead-title<?php echo intval( esc_attr( $_id ) ); ?>">
 		<svg class="hero_svg_style">
 			<symbol id="s-text<?php echo esc_attr( $slide->id ); ?>">
 				<text text-anchor="middle" x="50%" y="80%"><?php echo wp_kses_post( wp_unslash(($slide->title)) ); ?></text>
@@ -102,7 +102,7 @@ elseif(isset($params->titleffect) and $params->titleffect=='hero_text_animation'
 <?php // code for Happy Text effect
 elseif(isset($params->titleffect) and $params->titleffect=='hero_happy_text'):
 ?>
-<<?php echo esc_attr( $titletag ); ?> class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?>"><?php 
+<<?php echo esc_attr( $titletag ); ?> class="slider-x-lead-title slider-x-lead-title<?php echo intval( esc_attr( $_id ) ); ?>"><?php 
 		$titletext = wp_kses_post( wp_unslash(($slide->title)) );
 		$titletext = str_split_unicode($titletext,1);
 		foreach($titletext as $k=>$v):
@@ -113,7 +113,7 @@ elseif(isset($params->titleffect) and $params->titleffect=='hero_happy_text'):
 <?php // code for Hero Glitch effect
 elseif(isset($params->titleffect) and $params->titleffect=='hero_glitch'):
 ?>
-<div class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?> hero_glitch_header" id="hero-glitch">
+<div class="slider-x-lead-title slider-x-lead-title<?php echo intval( esc_attr( $_id ) ); ?> hero_glitch_header" id="hero-glitch">
 	<<?php echo esc_attr( $titletag ); ?> class="glitched"><?php echo wp_kses_post( wp_unslash(($slide->title)) ); ?></<?php echo esc_attr( $titletag ); ?>>
 </div>
 <script type="text/javascript">
@@ -147,7 +147,7 @@ padding: 10px;
 }
 </style>
 
-<div class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?>" id="hero-shuffle" data-title="<?php echo esc_attr( wp_unslash(($slide->title)) ) ?>">
+<div class="slider-x-lead-title slider-x-lead-title<?php echo intval( esc_attr( $_id ) ); ?>" id="hero-shuffle" data-title="<?php echo esc_attr( wp_unslash(($slide->title)) ) ?>">
 
 	<<?php echo esc_attr( $titletag ); ?>></<?php echo esc_attr( $titletag ); ?>>
 	
@@ -190,7 +190,7 @@ if(isset($params->titlecolor) and $params->titlecolor!=''){
 padding: 10px;
 }
 </style>
-<div class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?>" id="hero-rearrange">
+<div class="slider-x-lead-title slider-x-lead-title<?php echo intval( esc_attr( $_id ) ); ?>" id="hero-rearrange">
 	<<?php echo esc_attr( $titletag ); ?>><?php echo wp_kses_post( wp_unslash(($slide->title)) ) ?></<?php echo esc_attr( $titletag ); ?>>
 </div>
 
@@ -198,7 +198,7 @@ padding: 10px;
 elseif(isset($params->titleffect) and $params->titleffect=='hollywood_console'):
 ?>
 
-<div class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?>">
+<div class="slider-x-lead-title slider-x-lead-title<?php echo intval( esc_attr( $_id ) ); ?>">
 	<<?php echo esc_attr( $titletag ); ?> id="play_info_text" class="pre_play_info_text"><?php echo wp_kses_post( wp_unslash(($slide->title)) ); ?></<?php echo esc_attr( $titletag ); ?>>
 </div>
 
@@ -284,7 +284,7 @@ animateInfoTextIn();
 
 ?>
 
-<<?php echo esc_attr( $titletag ); ?> class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?> mast__text">
+<<?php echo esc_attr( $titletag ); ?> class="slider-x-lead-title slider-x-lead-title<?php echo intval( esc_attr( $_id ) ); ?> mast__text">
 	<?php 
 
 		$titletext = wp_kses_post( wp_unslash(($slide->title)) );
@@ -306,7 +306,7 @@ animateInfoTextIn();
 
 ?>
 
-<<?php echo esc_attr( $titletag ); ?> class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?>" id="hero_multicolor">
+<<?php echo esc_attr( $titletag ); ?> class="slider-x-lead-title slider-x-lead-title<?php echo intval( esc_attr( $_id ) ); ?>" id="hero_multicolor">
 	<?php 
 
 		$titletext = wp_kses_post( wp_unslash(($slide->title)) );
@@ -333,7 +333,7 @@ animateInfoTextIn();
 	var sentences = new Array ('<?php echo esc_js( $titledata ); ?>');
 </script>
 
-<div class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?> hero_text_box"></div>
+<div class="slider-x-lead-title slider-x-lead-title<?php echo intval( esc_attr( $_id ) ); ?> hero_text_box"></div>
  
 <?php // code for hero_matrix Effect
 
@@ -341,7 +341,7 @@ animateInfoTextIn();
 
 ?>
 
-<div class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?> hero_prompt">
+<div class="slider-x-lead-title slider-x-lead-title<?php echo intval( esc_attr( $_id ) ); ?> hero_prompt">
 	<<?php echo esc_attr( $titletag ); ?>><?php echo wp_kses_post( wp_unslash(($slide->title)) ); ?></<?php echo esc_attr( $titletag ); ?>>
 </div>
  
@@ -353,7 +353,7 @@ animateInfoTextIn();
 ?>
 
 
-<div class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?> spintext">
+<div class="slider-x-lead-title slider-x-lead-title<?php echo intval( esc_attr( $_id ) ); ?> spintext">
 
 	<?php 
 
@@ -377,7 +377,7 @@ animateInfoTextIn();
 ?>
 
 
-<<?php echo esc_attr( $titletag ); ?> class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?> flag">
+<<?php echo esc_attr( $titletag ); ?> class="slider-x-lead-title slider-x-lead-title<?php echo intval( esc_attr( $_id ) ); ?> flag">
 
 	<?php echo wp_kses_post( trim(wp_unslash($slide->title)) ); ?>
 		
@@ -397,7 +397,7 @@ animateInfoTextIn();
 
 ?>
 
-<div class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?>">
+<div class="slider-x-lead-title slider-x-lead-title<?php echo intval( esc_attr( $_id ) ); ?>">
 	<<?php echo esc_attr( $titletag ); ?> class="slidingtext"><span><?php echo wp_kses_post( trim(wp_unslash($slide->title)) ); ?></span></<?php echo esc_attr( $titletag ); ?>>
 </div>
 
@@ -426,7 +426,7 @@ animateInfoTextIn();
 
 <?php wp_enqueue_script( 'qcld_hero_qcmax_js', QCLD_SLIDERHERO_JS . '/qcmax.js', array('jquery'), QCLD_SLIDERHERO_VERSION, true ); ?>
 
-<<?php echo esc_attr( $titletag ); ?> class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?> clip-text clip-text_one">
+<<?php echo esc_attr( $titletag ); ?> class="slider-x-lead-title slider-x-lead-title<?php echo intval( esc_attr( $_id ) ); ?> clip-text clip-text_one">
 	
 	<?php echo wp_kses_post( wp_unslash(($slide->title)) ); ?>
 		
@@ -450,7 +450,7 @@ animateInfoTextIn();
 	}
 	</style>
 
-<<?php echo esc_attr( $titletag ); ?> class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?>">
+<<?php echo esc_attr( $titletag ); ?> class="slider-x-lead-title slider-x-lead-title<?php echo intval( esc_attr( $_id ) ); ?>">
 	
 	<?php echo wp_kses_post( wp_unslash(($slide->title)) ); ?>
 		
@@ -460,7 +460,7 @@ animateInfoTextIn();
 
 	<?php if(isset($params->titlebgcolor) and $params->titlebgcolor!=''): ?>
 
-		<<?php echo esc_attr( $titletag ); ?> class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?>">
+		<<?php echo esc_attr( $titletag ); ?> class="slider-x-lead-title slider-x-lead-title<?php echo intval( esc_attr( $_id ) ); ?>">
 			<span style="background-color:<?php echo esc_attr( $params->titlebgcolor ); ?>;padding: 0px 10px;">
 				
 				<?php echo wp_kses_post( wp_unslash(($slide->title)) ); ?>
@@ -470,7 +470,7 @@ animateInfoTextIn();
 
 	<?php else: ?>
 	
-		<<?php echo esc_attr( $titletag ); ?> class="slider-x-lead-title slider-x-lead-title<?php echo intval($_id); ?>">
+		<<?php echo esc_attr( $titletag ); ?> class="slider-x-lead-title slider-x-lead-title<?php echo intval( esc_attr( $_id ) ); ?>">
 
 			<?php echo wp_kses_post( wp_unslash(($slide->title)) ); ?>
 				

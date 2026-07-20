@@ -270,13 +270,13 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 											 
              <div class="qchero_slider_main-heading_wrapper">
 				<div class="qchero_slider_main-heading_wrapper_title">
-					<span><img src="<?php echo esc_url('https://ps.w.org/slider-hero/assets/icon-256x256.png') ?>"/></span>
+					<span><img src="<?php echo esc_url( QCLD_SLIDERHERO_IMAGES . '/icon.png'); ?>"/></span>
 					Slider Hero
 				</div>
 				<div class="qchero_slider_main-heading_wrapper_setting">
 					<ul>
 						<li> <a class="openPopup">Settings</a></li>
-						<li><a href="<?php echo esc_url('https://www.quantumcloud.com/products/slider-hero/') ?>" target="_blank">Go Pro</a></li>
+						<li><a href="<?php echo esc_url('https://www.quantumcloud.com/products/slider-hero/'); ?>" target="_blank">Go Pro</a></li>
 					</ul>
 				</div>
 			</div>

@@ -56,8 +56,7 @@ if($btn!=''){
 			</div>
 			<div class="hero_single_field_btn">
 				<label style="width: 250px;display: inline-block;">Button Effect</label>
-				<div style="display: inline-block;
-    width: 57%;line-height: 23px;">
+				<div style="display: inline-block; width: 57%;line-height: 23px;">
 				None <input type="radio" checked <?php echo ( isset($btn->button_effect) && $btn->button_effect=='none'?'checked':''); ?> name="hero_button_effect" value="none" />
 				
 				Glitch <input type="radio" <?php echo ( isset($btn->button_effect) && $btn->button_effect=='glitch'?'checked':''); ?> name="hero_button_effect" value="glitch" />

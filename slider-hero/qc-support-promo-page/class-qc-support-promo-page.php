@@ -44,7 +44,7 @@ if ( ! function_exists( 'qcld_sliderhero_include_promo_page_scripts' ) ) {
 	function qcld_sliderhero_include_promo_page_scripts( ) {   
 
 
-        if( isset($_GET["page"]) && !empty($_GET["page"]) && (   $_GET["page"] == "qcld-sliderhero-help-supports"  ) ){
+        if( isset($_GET["page"]) && !empty($_GET["page"]) && ( sanitize_text_field( wp_unslash( $_GET["page"] )) == "qcld-sliderhero-help-supports"  ) ){
 
             wp_enqueue_style( 'qcld-support-fontawesome-css', qcld_sliderhero_support_url . "css/font-awesome.min.css");                              
             wp_enqueue_style( 'qcld-sliderhero-support-style-css', qcld_sliderhero_support_url . "css/style.css");

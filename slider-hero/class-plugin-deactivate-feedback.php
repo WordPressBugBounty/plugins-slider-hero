@@ -1,5 +1,4 @@
 <?php
-
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -401,11 +400,11 @@ if( ! class_exists( 'Wp_Usage_Feedback') ) {
 			check_ajax_referer( 'wpbot_goodbye_form', 'security' );
 			if( isset( $_POST['values'] ) ) {
 				$values = json_encode( sanitize_text_field( wp_unslash( $_POST['values'] ) ) );
-				update_option( 'wpbot_deactivation_reason_' . $this->plugin_name, $values );
+				update_option( 'wpbot_deactivation_reason_' . $this->plugin_name, $values, false );
 			}
 			if( isset( $_POST['details'] ) ) {
 				$details = sanitize_text_field( wp_unslash( $_POST['details'] ) );
-				update_option( 'wpbot_deactivation_details_' . $this->plugin_name, $details );
+				update_option( 'wpbot_deactivation_details_' . $this->plugin_name, $details, false );
 			}
 
 			echo 'success';

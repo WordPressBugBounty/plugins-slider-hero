@@ -9,11 +9,11 @@ if ( !function_exists( 'add_action' ) ) {
 function qcld_show_preview_items2_fnc(){
     check_ajax_referer( 'slider_hero_ajax_nonce', 'security' );
 
-$_id = $id = isset($_POST['sid']) ? sanitize_text_field(wp_unslash($_POST['sid'])) : '';
+	$_id = $id = isset($_POST['sid']) ? sanitize_text_field(wp_unslash($_POST['sid'])) : '';
 
-global $wpdb;
-$_slider = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}qcld_slider_hero_sliders WHERE id = %d ", $id ) );
-$_slide = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}qcld_slider_hero_slides WHERE sliderid = %d ORDER BY ordering DESC", $id ) );
+	global $wpdb;
+	$_slider 	= $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}qcld_slider_hero_sliders WHERE id = %d ", $id ) );
+	$_slide 	= $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}qcld_slider_hero_slides WHERE sliderid = %d ORDER BY ordering DESC", $id ) );
 
 	if(!function_exists('deleteSpacesNewlines')) {
 		function deleteSpacesNewlines($str) {
@@ -24,16 +24,16 @@ $_slide = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}qcld
 		echo '<h3 style="color: #FF0011;">qcld_slider '.esc_attr( $_id ).' does not exist</h3>';
 		return;
 	}
-	$sliderID = intval($_slider[0]->id);
-	$style = json_decode($_slider[0]->style);
-	$params = json_decode($_slider[0]->params);
-	$customs = json_decode($_slider[0]->custom);
-	$title = $_slider[0]->title;
-	$bg_image_url = $_slider[0]->bg_image_url;
-	$description = $params->description;
-	$paramsJson = deleteSpacesNewlines($_slider[0]->params);
-	$styleJson = deleteSpacesNewlines($_slider[0]->style);
-	$customJson = deleteSpacesNewlines($_slider[0]->custom);
+	$sliderID 		= intval($_slider[0]->id);
+	$style 			= json_decode($_slider[0]->style);
+	$params 		= json_decode($_slider[0]->params);
+	$customs 		= json_decode($_slider[0]->custom);
+	$title 			= $_slider[0]->title;
+	$bg_image_url 	= $_slider[0]->bg_image_url;
+	$description 	= $params->description;
+	$paramsJson 	= deleteSpacesNewlines($_slider[0]->params);
+	$styleJson 		= deleteSpacesNewlines($_slider[0]->style);
+	$customJson 	= deleteSpacesNewlines($_slider[0]->custom);
 	if(!$sliderID) {
 		echo '<h3 style="color: #FF0011;">qcld_slider '.esc_attr( $_id ).' was removed</h3>';
 		return;
@@ -46,69 +46,50 @@ $_slide = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}qcld
 
 
 #slider_hero_pop_modal_content{
-  max-width: 100% !important;
-  height: 100%;
+  	max-width: 100% !important;
+  	height: 100%;
     overflow-x: hidden;
-  overflow-y: hidden;
-<?php
-
-if($_slider[0]->type!='walkingbackground'){
-if(isset($_slider[0]->bg_gradient) and strlen($_slider[0]->bg_gradient)>2){
-	echo esc_html( str_replace('"','',$_slider[0]->bg_gradient) );
-}else{
-?>
-  background-color: <?php
-
-echo ($params->background==''?'#4684b5':esc_attr($params->background)); ?>;
-  background-image: url('<?php
-
-echo esc_url($bg_image_url); ?>');
-<?php
-
-}
-?> 
-  background-size: cover;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-<?php
-
-} ?>
-  position:relative;
+  	overflow-y: hidden;
+<?php if($_slider[0]->type!='walkingbackground'){
+	if(isset($_slider[0]->bg_gradient) and strlen($_slider[0]->bg_gradient)>2){
+		echo esc_html( str_replace('"','',$_slider[0]->bg_gradient) );
+	}else{ ?>
+	background-color: <?php echo esc_attr($params->background==''?'#4684b5':esc_attr($params->background)); ?>;
+	background-image: url("<?php echo esc_url($bg_image_url); ?>");
+	<?php } ?> 
+  	background-size: cover;
+  	background-position: 50% 50%;
+  	background-repeat: no-repeat;
+<?php } ?>
+  	position:relative;
 }
 
 .qcld_hero_content_area h2{
-position: absolute;
-top: <?php
-
-echo esc_attr($params->title->style->top); ?>;
-left: 0px;
-width: 100%;
-padding: 0px 46px !important
-box-sizing: border-box;
-z-index: 9;
+	position: absolute;
+	top: <?php echo esc_attr($params->title->style->top); ?>;
+	left: 0px;
+	width: 100%;
+	padding: 0px 46px !important
+	box-sizing: border-box;
+	z-index: 9;
 }
 .qcld_hero_content_area > .slider-x-item-title{
-position: absolute;
-top: <?php
-
-echo esc_attr($params->description->style->top); ?>;
-left: 0px;
-width: 100%;
-padding: 0px 46px !important;
-box-sizing: border-box;
-z-index: 9;
+	position: absolute;
+	top: <?php echo esc_attr($params->description->style->top); ?>;
+	left: 0px;
+	width: 100%;
+	padding: 0px 46px !important;
+	box-sizing: border-box;
+	z-index: 9;
 }
 
 .qcld_hero_content_area h2{
 <?php
-
 if(isset($params->titlefontsize) and $params->titlefontsize!=''){
 	echo 'font-size: '.esc_attr($params->titlefontsize).'px;';	
 }else{
 	echo 'font-size: 54px;';
 }
-?>
-<?php
 
 if(isset($params->titlecolor) and $params->titlecolor!=''){
 	echo 'color: '.esc_attr($params->titlecolor).';';	
@@ -124,9 +105,7 @@ text-shadow: initial;
 }
 .hero_slider_btn{
 	position:absolute;
-	top: <?php
-
-echo esc_attr($params->button1->style->top); ?>;
+	top: <?php echo esc_attr($params->button1->style->top); ?>;
 	left:0px;
 	width:100%;
 	padding: 0px 46px;
@@ -134,9 +113,9 @@ echo esc_attr($params->button1->style->top); ?>;
 	z-index: 9;
 <?php
 
-if(isset($params->button1->align) and $params->button1->align!=''){
-	echo 'text-align: '.esc_attr($params->button1->align).';';	
-}
+	if(isset($params->button1->align) and $params->button1->align!=''){
+		echo 'text-align: '.esc_attr($params->button1->align).';';	
+	}
 
 ?>
 }
@@ -200,11 +179,7 @@ $totalSlide++;
 
 require(QCLD_sliderhero_view.'/slider_hero_front_end_title_effect.php');
 		?>
-		<div class="slider-x-item-title slider-x-item-title<?php
-
-echo intval( esc_attr( $_id ) ); ?>"><?php
-
-echo wp_kses_post(apply_filters('the_content', wp_unslash(htmlspecialchars_decode($slide->description)))); ?>
+		<div class="slider-x-item-title slider-x-item-title<?php echo intval( esc_attr( $_id ) ); ?>"><?php echo wp_kses_post(apply_filters('the_content', wp_unslash(htmlspecialchars_decode($slide->description)))); ?>
 		</div>
 <?php
 
@@ -226,124 +201,64 @@ endforeach;
 		sliderWidth: 800,
 		sliderHeight:450,
 	
-        pauseTime: <?php
-
-echo esc_attr($params->effect->interval); ?>,
+        pauseTime: <?php echo esc_attr($params->effect->interval); ?>,
         startSlide: 0,
 		
-		titlePositionTop:<?php
-
-echo esc_attr(str_replace(array('px','%'),'',$params->title->style->top)) ?>,
+		titlePositionTop:<?php echo esc_attr(str_replace(array('px','%'),'',$params->title->style->top)) ?>,
 		
 		titlePositionLeft:'0%',
 		
-		descPositionTop:<?php
-
-echo esc_attr(str_replace(array('px','%'),'',$params->description->style->top)) ?>,
+		descPositionTop:<?php echo esc_attr(str_replace(array('px','%'),'',$params->description->style->top)) ?>,
 		
 		descPositionLeft:'0%',
 		
 		//titleTextAnimation:'pulse',
-		titleTextColor:'<?php
-
-echo $params->titlecolor != ''? esc_attr($params->titlecolor):'#000' ?>',
-		arrowClass: '<?php
-
-echo $params->arrow != ''? esc_attr($params->arrow):'qc-sliderX' ?>',
-		descriptionTextColor:'<?php
-
-echo $params->descriptioncolor != ''? esc_attr($params->descriptioncolor):'#000' ?>',
+		titleTextColor:'<?php echo $params->titlecolor != ''? esc_attr($params->titlecolor):'#000' ?>',
+		arrowClass: '<?php echo $params->arrow != ''? esc_attr($params->arrow):'qc-sliderX' ?>',
+		descriptionTextColor:'<?php echo $params->descriptioncolor != ''? esc_attr($params->descriptioncolor):'#000' ?>',
 		
-		titleFontSize:'<?php
-
-echo $params->titlefontsize != ''? esc_attr($params->titlefontsize):'20' ?>',
+		titleFontSize:'<?php echo $params->titlefontsize != ''? esc_attr($params->titlefontsize):'20' ?>',
 		
-		descriptionFontSize:'<?php
-
-echo $params->descfontsize != ''? esc_attr($params->descfontsize):'30' ?>',
-		<?php
-
-if(isset($style->screenoption) and $style->screenoption=='1'){
-		?>
+		descriptionFontSize:'<?php echo $params->descfontsize != ''? esc_attr($params->descfontsize):'30' ?>',
+		<?php if(isset($style->screenoption) and $style->screenoption=='1'){ ?>
 		fullWidth:false,
-		<?php
-
-}else{
-		?>
+		<?php }else{ ?>
 		fullWidth:false,
-		<?php
+		<?php } 
 
-}
-		?>
-		<?php
-
-if(isset($style->screenoption) and $style->screenoption=='2'){
+		if(isset($style->screenoption) and $style->screenoption=='2'){
 		?>
 		fullScreen:false,
-		<?php
-
-}else{
-		?>
+		<?php }else{ ?>
 		fullScreen:false,
-		<?php
+		<?php }
 
-}
-		?>
-		<?php
-
-if(isset($style->screenoption) and $style->screenoption=='3'){
+		if(isset($style->screenoption) and $style->screenoption=='3'){
 		?>
 		Screenauto:false,
-		<?php
-
-}else{
-		?>
+		<?php }else{ ?>
 		Screenauto:false,
-		<?php
+		<?php } 
 
-}
-		?>		
-		<?php
-
-if($totalSlide > 1){
+		if($totalSlide > 1){
 		?>
 		directionCon:true,
 		bottomCon:true,
 		slideStart: true,
-		<?php
-
-}else{
-		?>
+		<?php }else{ ?>
 		directionCon:false,
 		bottomCon:false,
 		slideStart: false,
-		<?php
-
-}
-		?>
+		<?php } ?>
 		prevSlideText:'Previous',
 		nextSlideText:'Next',
-		titleAnimation: '<?php
-
-echo ($params->titleffect!=''?esc_attr($params->titleffect):'normal') ?>',
-		desAnimation: '<?php
-
-echo ($params->deseffect!=''?esc_attr($params->deseffect):'normal') ?>',
-		lfxtitlein:'<?php
-
-echo (isset($params->lfxtitlein) && $params->lfxtitlein!=''?esc_attr($params->lfxtitlein):'') ?>',
-		lfxtitleout:'<?php
-
-echo (isset($params->lfxtitleout) && $params->lfxtitleout!=''?esc_attr($params->lfxtitleout):'') ?>',
-		lfxdesin:'<?php
-
-echo (isset($params->lfxdesin) && $params->lfxdesin!=''?esc_attr($params->lfxdesin):'') ?>',
-		lfxdesout:'<?php
-
-echo (isset($params->lfxdesout) && $params->lfxdesout!=''?esc_attr($params->lfxdesout):'') ?>',
-		fullscreenmobile:'<?php
-
-echo (isset($params->fullscreenmobile) && $params->fullscreenmobile!=''?esc_attr($params->fullscreenmobile):'') ?>',
+		titleAnimation: '<?php echo ($params->titleffect!=''?esc_attr($params->titleffect):'normal') ?>',
+		desAnimation: '<?php echo ($params->deseffect!=''?esc_attr($params->deseffect):'normal') ?>',
+		lfxtitlein:'<?php echo (isset($params->lfxtitlein) && $params->lfxtitlein!=''?esc_attr($params->lfxtitlein):'') ?>',
+		lfxtitleout:'<?php echo (isset($params->lfxtitleout) && $params->lfxtitleout!=''?esc_attr($params->lfxtitleout):'') ?>',
+		lfxdesin:'<?php echo (isset($params->lfxdesin) && $params->lfxdesin!=''?esc_attr($params->lfxdesin):'') ?>',
+		lfxdesout:'<?php echo (isset($params->lfxdesout) && $params->lfxdesout!=''?esc_attr($params->lfxdesout):'') ?>',
+		fullscreenmobile:'<?php echo (isset($params->fullscreenmobile) && $params->fullscreenmobile!=''?esc_attr($params->fullscreenmobile):'') ?>',
 		
 		mainId: 'slider_hero_pop_modal_content',
         beforeChange: function(){
@@ -359,7 +274,3 @@ echo (isset($params->fullscreenmobile) && $params->fullscreenmobile!=''?esc_attr
 exit;
 }
 add_action( 'wp_ajax_qcld_show_preview_items2', 'qcld_show_preview_items2_fnc');
-?>
-
-
-

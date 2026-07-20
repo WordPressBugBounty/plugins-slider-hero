@@ -7,41 +7,21 @@ if(isset($params->video)&& $params->video=='custom'):  ?>
 
 if(isset($params->sound_control) && $params->sound_control==0): ?>
 <div class="hero_mute_div">
-	<span <?php
-
-echo (isset($params->video_mute)&& $params->video_mute=='1'?'style="display:block"':'style="display:none"'); ?> id="hero_video_mute<?php
-
-echo esc_attr( $_slider[0]->id ); ?>"><i class="fa fa-volume-off" aria-hidden="true"></i></span>
-	<span <?php
-
-echo (isset($params->video_mute)&& $params->video_mute=='1'?'style="display:none"':'style="display:block"'); ?> id="hero_video_sound<?php
-
-echo esc_attr( $_slider[0]->id ); ?>"><i class="fa fa-volume-up" aria-hidden="true"></i></span>
+	<span <?php echo (isset($params->video_mute)&& $params->video_mute=='1'?'style="display:block"':'style="display:none"'); ?> id="hero_video_mute<?php echo esc_attr( $_slider[0]->id ); ?>"><i class="fa fa-volume-off" aria-hidden="true"></i></span>
+	<span <?php echo (isset($params->video_mute)&& $params->video_mute=='1'?'style="display:none"':'style="display:block"'); ?> id="hero_video_sound<?php echo esc_attr( $_slider[0]->id ); ?>"><i class="fa fa-volume-up" aria-hidden="true"></i></span>
 </div>
 <script type="text/javascript">
 jQuery(window).load(function($){
 	
-	jQuery('#hero_video_mute<?php
-
-echo esc_attr( $_slider[0]->id ); ?>').on('click', function(){
+	jQuery('#hero_video_mute<?php echo esc_attr( $_slider[0]->id ); ?>').on('click', function(){
 		jQuery(this).hide();
-		jQuery('#hero_video_sound<?php
-
-echo esc_attr( $_slider[0]->id ); ?>').show();
-		jQuery("#hero_vid<?php
-
-echo intval( esc_html( $_id ) ); ?>").prop('muted', false);
+		jQuery('#hero_video_sound<?php echo esc_attr( $_slider[0]->id ); ?>').show();
+		jQuery("#hero_vid<?php echo intval( esc_html( $_id ) ); ?>").prop('muted', false);
 	})
-	jQuery('#hero_video_sound<?php
-
-echo esc_attr( $_slider[0]->id ); ?>').on('click', function(){
+	jQuery('#hero_video_sound<?php echo esc_attr( $_slider[0]->id ); ?>').on('click', function(){
 		jQuery(this).hide();
-		jQuery('#hero_video_mute<?php
-
-echo esc_attr( $_slider[0]->id ); ?>').show();
-		jQuery("#hero_vid<?php
-
-echo intval( esc_html( $_id ) ); ?>").prop('muted', true);
+		jQuery('#hero_video_mute<?php echo esc_attr( $_slider[0]->id ); ?>').show();
+		jQuery("#hero_vid<?php echo intval( esc_html( $_id ) ); ?>").prop('muted', true);
 	})
 	
 })
@@ -83,9 +63,7 @@ endif; ?>
 if(isset($_slider[0]->bg_audio_url) && $_slider[0]->bg_audio_url!=''){
 ?>
 
-<audio src="<?php
-
-echo esc_attr($_slider[0]->bg_audio_url); ?>" type="audio" preload="auto" id="hero_audio"></audio>
+<audio src="<?php echo esc_attr($_slider[0]->bg_audio_url); ?>" type="audio" preload="auto" id="hero_audio"></audio>
 <style type="text/css">
 .hero_audio_control{
 <?php

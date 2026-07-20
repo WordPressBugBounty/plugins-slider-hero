@@ -14,10 +14,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 				
 					<div id="post-body-content" style="position: relative;">
 				
-
-						
-
-						
 						<div class="clear">
 						<u>
 							<h1><?php esc_html_e( 'Help', 'slider-hero' ); ?></h1>
@@ -59,8 +55,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 						
 					  </div>
 					  <!-- /post-body-content -->	
-					  
-
 						
 					</div>
 					<!-- /post-body-->	

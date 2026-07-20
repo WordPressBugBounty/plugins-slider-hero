@@ -30,7 +30,7 @@ function heroisMobile(){
 <?php if(isset($params->disableinmobile) && $params->disableinmobile==1): ?>
 if(heroisMobile()==true){
 	jQuery('.hero_preloader').remove();   
-	jQuery('#particles-js<?php echo intval( esc_html( $_id ) ); ?>').remove();
+	jQuery('#particles-js<?php echo intval( esc_attr( $_id ) ); ?>').remove();
 }
 <?php endif; ?>
 
@@ -42,7 +42,7 @@ function getOffset1( el ) {
         _y += el.offsetTop - el.scrollTop;
         el = el.offsetParent;
     }
-	_x = parseInt(_x) + parseInt(jQuery('#particles-js<?php echo intval( esc_html( $_id ) ); ?>').parent().css('padding-left'));
+	_x = parseInt(_x) + parseInt(jQuery('#particles-js<?php echo intval( esc_attr( $_id ) ); ?>').parent().css('padding-left'));
     return { top: _y, left: _x };
 }
 	<?php if((isset($params->video) && $params->video == 'vimeo') || ($_slider[0]->type=='vimeo_video')): ?>
@@ -60,19 +60,19 @@ function getOffset1( el ) {
 		<?php if(isset($preloader['hero_enable_preloader']) && $preloader['hero_enable_preloader']=='on'): ?>
 		   jQuery('.hero_preloader').remove();
 	   <?php endif; ?>
-	   jQuery('#particles-js<?php echo intval( esc_html( $_id ) ); ?>').show();
-	   jQuery('#particles-js<?php echo intval( esc_html( $_id ) ); ?> canvas').width(jQuery('#particles-js<?php echo intval( esc_html( $_id ) ); ?>').width());
+	   jQuery('#particles-js<?php echo intval( esc_attr( $_id ) ); ?>').show();
+	   jQuery('#particles-js<?php echo intval( esc_attr( $_id ) ); ?> canvas').width(jQuery('#particles-js<?php echo intval( esc_attr( $_id ) ); ?>').width());
 	   
 	   <?php if(isset($params->content) && $params->content!='' && $params->content=='center'): ?>
-			jQuery('#particles-js<?php echo intval( esc_html( $_id ) ); ?> .qcld_hero_content_area:visible').css('margin-top','-'+Math.round(jQuery('#particles-js<?php echo intval( esc_html( $_id ) ); ?> .qcld_hero_content_area:visible').height()/2)+'px');
+			jQuery('#particles-js<?php echo intval( esc_attr( $_id ) ); ?> .qcld_hero_content_area:visible').css('margin-top','-'+Math.round(jQuery('#particles-js<?php echo intval( esc_attr( $_id ) ); ?> .qcld_hero_content_area:visible').height()/2)+'px');
 		<?php endif; ?>
 	   
 	   <?php if(isset($style->screenoption) and $style->screenoption=='1'){ ?>
 	   
 		   var fullwidth = jQuery("body").prop("clientWidth"); 
-			var maindivcon = jQuery('#particles-js<?php echo intval( esc_html( $_id ) ); ?>').parent()[0];
+			var maindivcon = jQuery('#particles-js<?php echo intval( esc_attr( $_id ) ); ?>').parent()[0];
 			var getleft = getOffset1(maindivcon);
-			jQuery('#particles-js<?php echo intval( esc_html( $_id ) ); ?>').css({
+			jQuery('#particles-js<?php echo intval( esc_attr( $_id ) ); ?>').css({
 
 				'left':'-'+getleft.left+'px',
 			});
@@ -86,9 +86,9 @@ function getOffset1( el ) {
 		
 			var fullwidth = jQuery("body").prop("clientWidth"); 
 			var fullheight = window.innerHeight;
-			var maindivcon = jQuery('#particles-js<?php echo intval( esc_html( $_id ) ); ?>').parent()[0];
+			var maindivcon = jQuery('#particles-js<?php echo intval( esc_attr( $_id ) ); ?>').parent()[0];
 			var getleft = getOffset1(maindivcon);
-			jQuery('#particles-js<?php echo intval( esc_html( $_id ) ); ?>').css({
+			jQuery('#particles-js<?php echo intval( esc_attr( $_id ) ); ?>').css({
 				'width':fullwidth+'px',
 				'height':fullheight+'px',
 				'left':'-'+getleft.left+'px',
@@ -110,7 +110,7 @@ function getOffset1( el ) {
 
         console.log(new_height)
 				
-				jQuery('#particles-js<?php echo intval( esc_html( $_id ) ); ?>').css({
+				jQuery('#particles-js<?php echo intval( esc_attr( $_id ) ); ?>').css({
 					'width':fullwidth+'px',
 					'height':(parseFloat(new_height)+1)+'px',
 				});
@@ -123,10 +123,10 @@ function getOffset1( el ) {
 		?>
 		<?php if((isset($params->video)&& $params->video=='custom') or ($_slider[0]->type=='video')): ?>
 		setTimeout(function(){
-			if(jQuery("#hero_vid<?php echo intval( esc_html( $_id ) ); ?>").get(0).paused==true){
+			if(jQuery("#hero_vid<?php echo intval( esc_attr( $_id ) ); ?>").get(0).paused==true){
 				jQuery(".hero_play_video_button").show();
 				jQuery(".sh_video_preload").show();
-				jQuery("#hero_ge_pause_button<?php echo intval( esc_html( $_id ) ); ?>").click();				
+				jQuery("#hero_ge_pause_button<?php echo intval( esc_attr( $_id ) ); ?>").click();				
 				console.log('video paused!!!!');
 			}else{				
 				jQuery(".hero_play_video_button").hide();
@@ -136,7 +136,7 @@ function getOffset1( el ) {
 
 		jQuery(document).on('visibilitychange', function(){
 			setTimeout(function(){
-				if(jQuery(".hero_play_video_button").is(":visible") && jQuery("#hero_vid<?php echo intval( esc_html( $_id ) ); ?>").get(0).paused!==true){
+				if(jQuery(".hero_play_video_button").is(":visible") && jQuery("#hero_vid<?php echo intval( esc_attr( $_id ) ); ?>").get(0).paused!==true){
 					jQuery(".hero_play_video_button").hide();
 				}
 			},500)
@@ -145,8 +145,8 @@ function getOffset1( el ) {
 		jQuery('.hero_play_video_button').on('click', function(){
 			jQuery(this).hide();
 			jQuery(".sh_video_preload").hide();
-			jQuery("#hero_vid<?php echo intval( esc_html( $_id ) ); ?>").get(0).play();
-			jQuery("#hero_ge_play_button<?php echo intval( esc_html( $_id ) ); ?>").click();
+			jQuery("#hero_vid<?php echo intval( esc_attr( $_id ) ); ?>").get(0).play();
+			jQuery("#hero_ge_play_button<?php echo intval( esc_attr( $_id ) ); ?>").click();
 			setTimeout(function(){
 				controlHeight_custom();
 			},200)
@@ -158,22 +158,22 @@ function getOffset1( el ) {
 			if(isset($params->bg_video_youtube)&& $params->bg_video_youtube!=''):
 		?>
     var myYInterval = setInterval(function(){
-      if(jQuery('#hero_youtube_video<?php echo intval( esc_html( $_id ) ); ?>').parent().attr('class')=='fluid-width-video-wrapper'){
-        jQuery('#hero_youtube_video<?php echo intval( esc_html( $_id ) ); ?>').unwrap();
+      if(jQuery('#hero_youtube_video<?php echo intval( esc_attr( $_id ) ); ?>').parent().attr('class')=='fluid-width-video-wrapper'){
+        jQuery('#hero_youtube_video<?php echo intval( esc_attr( $_id ) ); ?>').unwrap();
         clearInterval(myYInterval);
       }
     }, 500);
 		<?php endif;endif; ?>
 		<?php if($_slider[0]->type=='youtube_video'): ?>
       var myYInterval = setInterval(function(){
-        if(jQuery('#hero_youtube_video<?php echo intval( esc_html( $_id ) ); ?>').parent().attr('class')=='fluid-width-video-wrapper'){
-          jQuery('#hero_youtube_video<?php echo intval( esc_html( $_id ) ); ?>').unwrap();
+        if(jQuery('#hero_youtube_video<?php echo intval( esc_attr( $_id ) ); ?>').parent().attr('class')=='fluid-width-video-wrapper'){
+          jQuery('#hero_youtube_video<?php echo intval( esc_attr( $_id ) ); ?>').unwrap();
           clearInterval(myYInterval);
         }
       }, 500);
 		<?php endif; ?>
 		
-		var maindivcontainer = jQuery('#particles-js<?php echo intval( esc_html( $_id ) ); ?>');
+		var maindivcontainer = jQuery('#particles-js<?php echo intval( esc_attr( $_id ) ); ?>');
 		if(jQuery(window).width() < 767){
 			maindivcontainer.find('.qcld_hero_content_area:visible').css('margin-top','-'+Math.round(maindivcontainer.find('.qcld_hero_content_area:visible').height()/2)+'px');
 			
@@ -534,7 +534,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var Growth = function Growth() {
   _classCallCheck(this, Growth);
 };
-var mainArea = document.getElementById("particles-js<?php echo intval( esc_html( $_id ) ); ?>");
+var mainArea = document.getElementById("particles-js<?php echo intval( esc_attr( $_id ) ); ?>");
 var Blade = function () {
   function Blade(c) {
     _classCallCheck(this, Blade);
@@ -623,11 +623,11 @@ new Scene();
 
 <?php if($_slider[0]->type=='blur') : ?>
 
-var mainArea = document.getElementById("particles-js<?php echo intval( esc_html( $_id ) ); ?>");
+var mainArea = document.getElementById("particles-js<?php echo intval( esc_attr( $_id ) ); ?>");
 <?php 
 	if(isset($params->blur->canvas_bg)&&$params->blur->canvas_bg!=''){
 ?>
-jQuery(("#particles-js<?php echo intval( esc_html( $_id ) ); ?>")).css({
+jQuery(("#particles-js<?php echo intval( esc_attr( $_id ) ); ?>")).css({
 	'background-color':'<?php echo esc_attr( $params->blur->canvas_bg ); ?>'
 })
 <?php
@@ -720,7 +720,7 @@ animloop();
 
 <?php endif ?>
 		<?php if($_slider[0]->type=='particle') : ?>
-particlesJS("particles-js<?php echo intval( esc_html( $_id ) ); ?>", {
+particlesJS("particles-js<?php echo intval( esc_attr( $_id ) ); ?>", {
   "particles": {
     "number": {
       "value": 80,
@@ -831,7 +831,7 @@ particlesJS("particles-js<?php echo intval( esc_html( $_id ) ); ?>", {
   "retina_detect": true
 });
 <?php elseif($_slider[0]->type=='particle_snow' or (isset($params->introbgeffect) && $params->introbgeffect=='particle_snow')) : ?>
-particlesJS("particles-js<?php echo intval( esc_html( $_id ) ); ?>", {
+particlesJS("particles-js<?php echo intval( esc_attr( $_id ) ); ?>", {
   "particles": {
     "number": {
       "value": 400,
@@ -942,7 +942,7 @@ particlesJS("particles-js<?php echo intval( esc_html( $_id ) ); ?>", {
   "retina_detect": true
 });
 <?php elseif($_slider[0]->type=='particle_nasa' or (isset($params->introbgeffect) && $params->introbgeffect=='particle_nasa')) : ?>
-particlesJS("particles-js<?php echo intval( esc_html( $_id ) ); ?>", {
+particlesJS("particles-js<?php echo intval( esc_attr( $_id ) ); ?>", {
   "particles": {
     "number": {
       "value": 160,
@@ -1053,7 +1053,7 @@ particlesJS("particles-js<?php echo intval( esc_html( $_id ) ); ?>", {
   "retina_detect": true
 });
 <?php elseif($_slider[0]->type=='particle_bubble' or (isset($params->introbgeffect) && $params->introbgeffect=='particle_bubble')) : ?>
-particlesJS("particles-js<?php echo intval( esc_html( $_id ) ); ?>", {
+particlesJS("particles-js<?php echo intval( esc_attr( $_id ) ); ?>", {
   "particles": {
     "number": {
       "value": 6,
@@ -1164,7 +1164,7 @@ particlesJS("particles-js<?php echo intval( esc_html( $_id ) ); ?>", {
   "retina_detect": true
 });
 <?php elseif($_slider[0]->type=='nyan_cat' or (isset($params->introbgeffect) && $params->introbgeffect=='nyan_cat')) : ?>
-particlesJS("particles-js<?php echo intval( esc_html( $_id ) ); ?>", {
+particlesJS("particles-js<?php echo intval( esc_attr( $_id ) ); ?>", {
   "particles": {
     "number": {
       "value": 100,
@@ -1457,15 +1457,15 @@ jQuery(document).ready(function($){
 		
 		
 		
-		mainId: 'particles-js<?php echo intval( esc_html( $_id ) ); ?>',
-		sid: '<?php echo intval( esc_html( $_id ) ); ?>',
+		mainId: 'particles-js<?php echo intval( esc_attr( $_id ) ); ?>',
+		sid: '<?php echo intval( esc_attr( $_id ) ); ?>',
 		slidertype: '<?php echo esc_attr( $_slider[0]->type ); ?>',
         beforeChange: function(){
 			//alert("i am changing..");
 		}
     };   
     function firesliderx(){
-		jQuery('#particles-js<?php echo intval( esc_html( $_id ) ); ?>').sliderX();
+		jQuery('#particles-js<?php echo intval( esc_attr( $_id ) ); ?>').sliderX();
 	}
 	<?php if(!isset($params->newsliderafterend)): ?>
 		if(jQuery('.second_div_hero').length<1)
@@ -1473,12 +1473,12 @@ jQuery(document).ready(function($){
 	<?php endif; ?>
 	
 	<?php else: ?>
-		$('#particles-js<?php echo intval( esc_html( $_id ) ); ?>').changeWords({
+		$('#particles-js<?php echo intval( esc_attr( $_id ) ); ?>').changeWords({
 			time: 800,
 			animate: "zoomIn",
 			selector: ".eachAnim",
-			mainId: 'particles-js<?php echo intval( esc_html( $_id ) ); ?>',
-			sid: '<?php echo intval( esc_html( $_id ) ); ?>',
+			mainId: 'particles-js<?php echo intval( esc_attr( $_id ) ); ?>',
+			sid: '<?php echo intval( esc_attr( $_id ) ); ?>',
 			sliderWidth:<?php echo esc_attr($style->width); ?>,
 			sliderHeight:<?php echo esc_attr($style->height); ?>,
 			<?php 
@@ -1542,9 +1542,9 @@ if(isset($style->screenoption) and $style->screenoption=='1'){
 $(window).resize(function() {
 	setTimeout(function(){
 		var fullwidth = jQuery(window).width(); 
-		var maindivcon = $('#particles-js<?php echo intval( esc_html( $_id ) ); ?>').parent()[0];
+		var maindivcon = $('#particles-js<?php echo intval( esc_attr( $_id ) ); ?>').parent()[0];
 		var getleft = getOffset1(maindivcon);
-		jQuery('#particles-js<?php echo intval( esc_html( $_id ) ); ?>').css({
+		jQuery('#particles-js<?php echo intval( esc_attr( $_id ) ); ?>').css({
 			'left':'-'+getleft.left+'px',
 		});
 	}, 500);
@@ -1552,12 +1552,12 @@ $(window).resize(function() {
 
 	var fullwidth = jQuery(window).width();
 	<?php if(isset($params->newsliderafterend) && $params->newsliderafterend!=''): ?>
-		var maindivcon = $('.second_div_hero > #particles-js<?php echo intval( esc_html( $_id ) ); ?>').parent()[0];
+		var maindivcon = $('.second_div_hero > #particles-js<?php echo intval( esc_attr( $_id ) ); ?>').parent()[0];
 	<?php else: ?>
-		var maindivcon = $('#particles-js<?php echo intval( esc_html( $_id ) ); ?>').parent()[0];
+		var maindivcon = $('#particles-js<?php echo intval( esc_attr( $_id ) ); ?>').parent()[0];
 	<?php endif; ?>
 	var getleft = getOffset1(maindivcon);
-	jQuery('#particles-js<?php echo intval( esc_html( $_id ) ); ?>').css({
+	jQuery('#particles-js<?php echo intval( esc_attr( $_id ) ); ?>').css({
 		'left':'-'+getleft.left+'px',
 	});
 
@@ -1572,9 +1572,9 @@ $(window).resize(function() {
 	setTimeout(function(){
 		var fullwidth = jQuery(window).width(); 
 		var fullheight = window.innerHeight;
-		var maindivcon = $('#particles-js<?php echo intval( esc_html( $_id ) ); ?>').parent()[0];
+		var maindivcon = $('#particles-js<?php echo intval( esc_attr( $_id ) ); ?>').parent()[0];
 		var getleft = getOffset1(maindivcon);
-		jQuery('#particles-js<?php echo intval( esc_html( $_id ) ); ?>').css({
+		jQuery('#particles-js<?php echo intval( esc_attr( $_id ) ); ?>').css({
 			'width':fullwidth+'px',
 			'height':fullheight+'px',
 			'left':'-'+getleft.left+'px',
@@ -1595,7 +1595,7 @@ $(window).resize(function() {
       
       <?php } ?>
 			
-			jQuery('#particles-js<?php echo intval( esc_html( $_id ) ); ?>').css({
+			jQuery('#particles-js<?php echo intval( esc_attr( $_id ) ); ?>').css({
 				'width':fullwidth+'px',
 				'height':(parseFloat(new_height)+1)+'px',
 			});
@@ -1612,7 +1612,7 @@ $(window).resize(function() {
 $(window).resize(function() {
 	setTimeout(function(){
 		if(jQuery(window).width()<767){
-			var maindivcontainer = $('#particles-js<?php echo intval( esc_html( $_id ) ); ?>');
+			var maindivcontainer = $('#particles-js<?php echo intval( esc_attr( $_id ) ); ?>');
 			var present_slide = maindivcontainer.find('.qcld_hero_content_area:visible');
 			//present_slide.css('height',maindivcontainer.height()+'px');
 		}
@@ -1625,7 +1625,7 @@ $('body').css({
 
 <?php if($_slider[0]->type=='ripples') : ?>
 	try {
-		$('#particles-js<?php echo intval( esc_html( $_id ) ); ?>').ripples({
+		$('#particles-js<?php echo intval( esc_attr( $_id ) ); ?>').ripples({
 			resolution: 512,
 			dropRadius: 20, //px
 			perturbance: 0.04,
@@ -1638,10 +1638,10 @@ $('body').css({
 	$(window).resize(function() {
 		
 		setTimeout(function(){
-			$('#particles-js<?php echo intval( esc_html( $_id ) ); ?>').ripples('destroy')
+			$('#particles-js<?php echo intval( esc_attr( $_id ) ); ?>').ripples('destroy')
 		}, 500);
 		setTimeout(function(){
-			$('#particles-js<?php echo intval( esc_html( $_id ) ); ?>').ripples({
+			$('#particles-js<?php echo intval( esc_attr( $_id ) ); ?>').ripples({
 				resolution: 512,
 				dropRadius: 15, //px
 				perturbance: 0.04,
@@ -1655,7 +1655,7 @@ $('body').css({
 
 <?php if($_slider[0]->type=='intro' && isset($params->introbgeffect) && $params->introbgeffect=='ripples') : ?>
 	try {
-		$('#particles-js<?php echo intval( esc_html( $_id ) ); ?>').ripples({
+		$('#particles-js<?php echo intval( esc_attr( $_id ) ); ?>').ripples({
 			resolution: 512,
 			dropRadius: 15, //px
 			perturbance: 0.04,
@@ -2026,7 +2026,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var Growth = function Growth() {
   _classCallCheck(this, Growth);
 };
-var mainArea = document.getElementById("particles-js<?php echo intval( esc_html( $_id ) ); ?>");
+var mainArea = document.getElementById("particles-js<?php echo intval( esc_attr( $_id ) ); ?>");
 var Blade = function () {
   function Blade(c) {
     _classCallCheck(this, Blade);
@@ -2114,7 +2114,7 @@ new Scene();
 <?php endif; ?>
 
 <?php if($_slider[0]->type=='particle') : ?>
-particlesJS("particles-js<?php echo intval( esc_html( $_id ) ); ?>", {
+particlesJS("particles-js<?php echo intval( esc_attr( $_id ) ); ?>", {
   "particles": {
     "number": {
       "value": 80,
@@ -2225,7 +2225,7 @@ particlesJS("particles-js<?php echo intval( esc_html( $_id ) ); ?>", {
   "retina_detect": true
 });
 <?php elseif($_slider[0]->type=='particle_snow' or (isset($params->introbgeffect) && $params->introbgeffect=='particle_snow')) : ?>
-particlesJS("particles-js<?php echo intval( esc_html( $_id ) ); ?>", {
+particlesJS("particles-js<?php echo intval( esc_attr( $_id ) ); ?>", {
   "particles": {
     "number": {
       "value": 400,
@@ -2336,7 +2336,7 @@ particlesJS("particles-js<?php echo intval( esc_html( $_id ) ); ?>", {
   "retina_detect": true
 });
 <?php elseif($_slider[0]->type=='particle_nasa' or (isset($params->introbgeffect) && $params->introbgeffect=='particle_nasa')) : ?>
-particlesJS("particles-js<?php echo intval( esc_html( $_id ) ); ?>", {
+particlesJS("particles-js<?php echo intval( esc_attr( $_id ) ); ?>", {
   "particles": {
     "number": {
       "value": 160,
@@ -2447,7 +2447,7 @@ particlesJS("particles-js<?php echo intval( esc_html( $_id ) ); ?>", {
   "retina_detect": true
 });
 <?php elseif($_slider[0]->type=='particle_bubble' or (isset($params->introbgeffect) && $params->introbgeffect=='particle_bubble')) : ?>
-particlesJS("particles-js<?php echo intval( esc_html( $_id ) ); ?>", {
+particlesJS("particles-js<?php echo intval( esc_attr( $_id ) ); ?>", {
   "particles": {
     "number": {
       "value": 6,
@@ -2558,7 +2558,7 @@ particlesJS("particles-js<?php echo intval( esc_html( $_id ) ); ?>", {
   "retina_detect": true
 });
 <?php elseif($_slider[0]->type=='nyan_cat' or (isset($params->introbgeffect) && $params->introbgeffect=='nyan_cat')) : ?>
-particlesJS("particles-js<?php echo intval( esc_html( $_id ) ); ?>", {
+particlesJS("particles-js<?php echo intval( esc_attr( $_id ) ); ?>", {
   "particles": {
     "number": {
       "value": 100,
@@ -2673,7 +2673,7 @@ particlesJS("particles-js<?php echo intval( esc_html( $_id ) ); ?>", {
 
 <?php elseif($_slider[0]->type=='stars' || ($_slider[0]->type=='intro' and isset($params->introbgeffect) and $params->introbgeffect=='stars')) : ?>
 
-var mainArea = document.getElementById("particles-js<?php echo intval( esc_html( $_id ) ); ?>");
+var mainArea = document.getElementById("particles-js<?php echo intval( esc_attr( $_id ) ); ?>");
 var createCanvas = mainArea.appendChild(document.createElement('canvas'));
 createCanvas.setAttribute("id", "space");
 createCanvas.style.width = "100%";
@@ -2880,8 +2880,8 @@ jQuery( document ).ready(function($) {
   function onPlayerStateChange(event) {
   	console.log(player.getPlayerState(), 'rtesererwe');
     var myYInterval = setInterval(function(){
-      if(jQuery('#hero_youtube_video<?php echo intval( esc_html( $_id ) ); ?>').parent().attr('class')=='fluid-width-video-wrapper'){
-        jQuery('#hero_youtube_video<?php echo intval( esc_html( $_id ) ); ?>').unwrap();
+      if(jQuery('#hero_youtube_video<?php echo intval( esc_attr( $_id ) ); ?>').parent().attr('class')=='fluid-width-video-wrapper'){
+        jQuery('#hero_youtube_video<?php echo intval( esc_attr( $_id ) ); ?>').unwrap();
         clearInterval(myYInterval);
       }
     }, 500);
@@ -2893,8 +2893,8 @@ jQuery( document ).ready(function($) {
 
   	})
   	
-  	iframeHeight = jQuery('#hero_youtube_video<?php echo intval( esc_html( $_id ) ); ?>').height();
-  	containerHeight = jQuery('#particles-js<?php echo intval( esc_html( $_id ) ); ?>').height();
+  	iframeHeight = jQuery('#hero_youtube_video<?php echo intval( esc_attr( $_id ) ); ?>').height();
+  	containerHeight = jQuery('#particles-js<?php echo intval( esc_attr( $_id ) ); ?>').height();
   	actualHeight = (iframeHeight - containerHeight)/2;
   	jQuery('.sh_bg_video_fluid > iframe').css({'top': '-'+actualHeight+'px'});
   	

@@ -1,9 +1,9 @@
 <?php
 /**
 * Plugin Name: Slider Hero
-* Plugin URI: https://www.quantumcloud.com/products/slider-hero
+* Plugin URI: https://wordpress.org/plugins/slider-hero
 * Description: Slider Hero is a Unique Hero Slider Plugin with Background Animation Effects, Video Background & Intro Builder. Animation Slider Carousels, INCREDIBLE Adverts. Animated Header with Text Carousel.
-* Version: 9.1.5
+* Version: 9.1.6
 * Author: QuantumCloud
 * Author URI: https://www.quantumcloud.com/
 * Requires at least: 5.2
@@ -40,7 +40,7 @@ $qcld_sliderhero_admin_menu_pages;
 // Define table names For Slider-Hero.
 global $wpdb;
 if ( ! defined( 'QCLD_SLIDERHERO_VERSION' ) ) {
-	define( 'QCLD_SLIDERHERO_VERSION', '9.1.4' );
+	define( 'QCLD_SLIDERHERO_VERSION', '9.1.6' );
 }
 if ( ! defined( 'QCLD_TABLE_SLIDERS' ) ) {
 	define( 'QCLD_TABLE_SLIDERS', $wpdb->prefix . 'qcld_slider_hero_sliders' );
@@ -117,14 +117,21 @@ add_action( 'wp_ajax_nopriv_qcld_sliderhero_actions', 'qcld_sliderhero_free_ajax
 
 add_action( 'admin_post_slider_hero_add_slider', 'qcld_sliderhero_add_slider_admin_post' );
 function qcld_sliderhero_add_slider_admin_post() {
+
 	if ( ! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), 'slider_hero_create_action' ) ) {
 		wp_die( 'Security check failed' );
 	}
-	if ( isset( $_GET['type'] ) && $_GET['type'] != '' ) {
+
+	if ( isset( $_GET['type'] ) && sanitize_text_field( wp_unslash( $_GET['type'] )) != '' ) {
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( 'Unauthorized' );
+		}
 		$type = sanitize_text_field( wp_unslash( $_GET['type'] ) );
 		require_once 'qc-fnc/qcld_sliderhero_slider_func.php';
 		qcld_sliderhero_add_slider( $type );
 	}
+
 }
 
 // activation hook for Slider-Hero
@@ -243,7 +250,7 @@ function qcld_sliderhero_admin_style_scripts( $hook ) {
 			)
 		);
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		if ( isset( $_GET['task'] ) && sanitize_text_field( wp_unslash( $_GET['task'] ) ) == 'editslider' && isset( $_GET['id'] ) && $_GET['id'] != '' ) {
+		if ( isset( $_GET['task'] ) && sanitize_text_field( wp_unslash( $_GET['task'] ) ) == 'editslider' && isset( $_GET['id'] ) && sanitize_text_field( wp_unslash($_GET['id'])) != '' ) {
 			$slider_id = intval( sanitize_text_field( wp_unslash( $_GET['id'] ) ) );
 			$slider_row = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM " . $table . " WHERE id = %d", $slider_id ) );
 
@@ -288,7 +295,7 @@ function qcld_sliderhero_admin_style_scripts( $hook ) {
 		);
 
 		if ( isset( $_GET['id'] ) ) {
-			$id = intval( $_GET['id'] );
+			$id = intval( sanitize_text_field( wp_unslash( $_GET['id'] ) ));
 			if ( ! $id ) {
 				$id = 0;
 			}
@@ -320,7 +327,7 @@ function qcld_sliderhero_admin_style_scripts( $hook ) {
 	});";
 	wp_add_inline_script( 'jq-slick.min-js', ( $scrolljs ) );
 
-	if ( isset( $_GET['page'] ) and $_GET['page'] == 'New-Slider-Hero' ) {
+	if ( isset( $_GET['page'] ) && sanitize_text_field( wp_unslash($_GET['page'])) == 'New-Slider-Hero' ) {
 		wp_enqueue_style( 'qcld-sliderhero_admin_css', QCLD_SLIDERHERO_CSS . '/admin.css' , array(), QCLD_SLIDERHERO_VERSION);
 	}
 }
@@ -336,12 +343,12 @@ function qcld_sliderhero_duplicate() {
 
 	global $wpdb;
 
-	if ( isset( $_GET['page'] ) && $_GET['page'] == 'Slider-Hero' ) {
-		if ( isset( $_GET['task'] ) && $_GET['task'] == 'heroduplicateslider' ) {
+	if ( isset( $_GET['page'] ) && sanitize_text_field( wp_unslash($_GET['page'])) == 'Slider-Hero' ) {
+		if ( isset( $_GET['task'] ) && sanitize_text_field( wp_unslash($_GET['task'])) == 'heroduplicateslider' ) {
 			if ( ! current_user_can( 'manage_options' ) ) {
 				wp_die( 'Unauthorized' );
 			}
-			$id = isset( $_GET['id'] ) ? absint( wp_unslash( $_GET['id'] ) ) : 0;
+			$id = isset( $_GET['id'] ) ? absint( sanitize_text_field( wp_unslash( $_GET['id'] ) ) ) : 0;
 
 			if ( ! isset( $_REQUEST['slider_hero_duplicate_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['slider_hero_duplicate_nonce'] ) ), 'slider_hero_duplicateslider_' . $id ) ) {
 				die( esc_html( 'Security check failed', 'slider-hero' ) );
@@ -393,8 +400,8 @@ function qcld_sliderhero_duplicate() {
 // Code for change Effect
 function qcld_slider_hero_change_effects() {
 	global $wpdb;
-	if ( isset( $_POST['page'] ) && $_POST['page'] == 'Slider-Hero' ) {
-		if ( isset( $_POST['task'] ) && $_POST['task'] == 'hero_changeeffect' ) {
+	if ( isset( $_POST['page'] ) && sanitize_text_field( wp_unslash( $_POST['page'] ) ) == 'Slider-Hero' ) {
+		if ( isset( $_POST['task'] ) && sanitize_text_field( wp_unslash( $_POST['task'] ) ) == 'hero_changeeffect' ) {
 			
 			if ( ! current_user_can( 'manage_options' ) ) {
 				wp_die( 'Unauthorized' );
@@ -432,82 +439,82 @@ function qcld_slider_hero_script_js() {
 	if ( is_admin() ) :
 		// script for daynight effect
 
-		if ( isset( $_GET['type'] ) and $_GET['type'] == 'cubes_animation' ) :
+		if ( isset( $_GET['type'] ) && sanitize_text_field( wp_unslash( $_GET['type'] )) == 'cubes_animation' ) :
 			wp_enqueue_script( 'qcld_hero_torus_three_js', QCLD_SLIDERHERO_JS . '/three.js', array( 'jquery' ), QCLD_SLIDERHERO_VERSION, false );
 			wp_enqueue_script( 'qcld_hero_torus_tweenmax_js', QCLD_SLIDERHERO_JS . '/orbitcontrols.js', array( 'jquery' ), QCLD_SLIDERHERO_VERSION, false );
 			wp_enqueue_script( 'qcld_hero_torus_perlin_js', QCLD_SLIDERHERO_JS . '/cubes_animation.js', array( 'jquery' ), QCLD_SLIDERHERO_VERSION, false );
 		endif;
 
-		if ( isset( $_GET['type'] ) and $_GET['type'] == 'warp_speed' ) :
+		if ( isset( $_GET['type'] ) && sanitize_text_field( wp_unslash( $_GET['type'] )) == 'warp_speed' ) :
 			wp_enqueue_script( 'qcld_hero_wrap_speed_three_js', QCLD_SLIDERHERO_JS . '/three.js', array( 'jquery' ), QCLD_SLIDERHERO_VERSION, false );
 			wp_enqueue_script( 'qcld_hero_wrap_speed_tweenmax_js', QCLD_SLIDERHERO_JS . '/qcmax.js', array( 'jquery' ), QCLD_SLIDERHERO_VERSION, false );
 
 		endif;
-		if ( isset( $_GET['type'] ) and $_GET['type'] == 'intro' ) :
+		if ( isset( $_GET['type'] ) && sanitize_text_field( wp_unslash( $_GET['type'] )) == 'intro' ) :
 			wp_enqueue_script( 'qcld_hero_wrap_speed_three_js', QCLD_SLIDERHERO_JS . '/three.js', array( 'jquery' ), QCLD_SLIDERHERO_VERSION, false );
 			wp_enqueue_script( 'qcld_hero_wrap_speed_tweenmax_js', QCLD_SLIDERHERO_JS . '/qcmax.js', array( 'jquery' ), QCLD_SLIDERHERO_VERSION, false );
 
 		endif;
-		if ( isset( $_GET['type'] ) and $_GET['type'] == 'daynight' ) :
+		if ( isset( $_GET['type'] ) && sanitize_text_field( wp_unslash( $_GET['type'] )) == 'daynight' ) :
 			wp_enqueue_script( 'qcld_hero_daynight_three_js', QCLD_SLIDERHERO_JS . '/three.js', array( 'jquery' ), QCLD_SLIDERHERO_VERSION, false );
 		endif;
-		if ( isset( $_GET['type'] ) and $_GET['type'] == 'floatrain' ) :
+		if ( isset( $_GET['type'] ) && sanitize_text_field( wp_unslash( $_GET['type'] )) == 'floatrain' ) :
 			wp_enqueue_script( 'qcld_hero_floatrain_three_js', QCLD_SLIDERHERO_JS . '/three.js', array( 'jquery' ), QCLD_SLIDERHERO_VERSION, false );
 		endif;
-		if ( isset( $_GET['type'] ) and $_GET['type'] == 'tiny_galaxy' ) :
+		if ( isset( $_GET['type'] ) && sanitize_text_field( wp_unslash( $_GET['type'] )) == 'tiny_galaxy' ) :
 			wp_enqueue_script( 'qcld_hero_tiny_galaxy_three_js', QCLD_SLIDERHERO_JS . '/three.js', array( 'jquery' ), QCLD_SLIDERHERO_VERSION, false );
 		endif;
-		if ( isset( $_GET['type'] ) and $_GET['type'] == 'ygekpg' ) :
+		if ( isset( $_GET['type'] ) && sanitize_text_field( wp_unslash( $_GET['type'] )) == 'ygekpg' ) :
 			wp_enqueue_script( 'qcld_hero_ygekpg_three_js', QCLD_SLIDERHERO_JS . '/p5.js', array( 'jquery' ), QCLD_SLIDERHERO_VERSION, false );
 			wp_enqueue_script( 'qcld_hero_ygekpg_js', QCLD_SLIDERHERO_JS . '/ygekpg.js', array( 'jquery' ), QCLD_SLIDERHERO_VERSION, true );
 		endif;
-		if ( isset( $_GET['type'] ) and $_GET['type'] == 'directional' ) :
+		if ( isset( $_GET['type'] ) && sanitize_text_field( wp_unslash( $_GET['type'] )) == 'directional' ) :
 			wp_enqueue_script( 'qcld_hero_directional_three_js', QCLD_SLIDERHERO_JS . '/p5.js', array( 'jquery' ), QCLD_SLIDERHERO_VERSION, false );
 			wp_enqueue_script( 'qcld_hero_directional_js', QCLD_SLIDERHERO_JS . '/directional.js', array( 'jquery' ), QCLD_SLIDERHERO_VERSION, true );
 
 		endif;
-		if ( isset( $_GET['type'] ) and $_GET['type'] == 'rain' ) :
+		if ( isset( $_GET['type'] ) && sanitize_text_field( wp_unslash( $_GET['type'] )) == 'rain' ) :
 			wp_enqueue_script( 'qcld_hero_rain_three_js', QCLD_SLIDERHERO_JS . '/three.js', array( 'jquery' ), QCLD_SLIDERHERO_VERSION, false );
 			wp_enqueue_script( 'qcld_hero_rain_tween_js', QCLD_SLIDERHERO_JS . '/tween.js', array( 'jquery' ), QCLD_SLIDERHERO_VERSION, false );
 		endif;
 
-		if ( isset( $_GET['type'] ) and $_GET['type'] == 'waterdroplet' ) :
+		if ( isset( $_GET['type'] ) && sanitize_text_field( wp_unslash( $_GET['type'] )) == 'waterdroplet' ) :
 			wp_enqueue_script( 'qcld_hero_waterdroplet_pixi_js', QCLD_SLIDERHERO_JS . '/pixi.js', array( 'jquery' ), QCLD_SLIDERHERO_VERSION, false );
 			wp_enqueue_script( 'qcld_hero_waterdroplet_stat_js', QCLD_SLIDERHERO_JS . '/stat.js', array( 'jquery' ), QCLD_SLIDERHERO_VERSION, false );
 		endif;
 
-		if ( isset( $_GET['type'] ) and $_GET['type'] == 'rising_cubes' ) :
+		if ( isset( $_GET['type'] ) && sanitize_text_field( wp_unslash( $_GET['type'] )) == 'rising_cubes' ) :
 			wp_enqueue_script( 'qcld_hero_rising_three_js', QCLD_SLIDERHERO_JS . '/three.js', array( 'jquery' ), QCLD_SLIDERHERO_VERSION, false );
 			wp_enqueue_script( 'qcld_hero_rising_OrbitControls_js', QCLD_SLIDERHERO_JS . '/OrbitControls.js', array( 'jquery' ), QCLD_SLIDERHERO_VERSION, false );
 			wp_enqueue_script( 'qcld_hero_rising_SubdivisionModifier_js', QCLD_SLIDERHERO_JS . '/SubdivisionModifier.js', array( 'jquery' ), QCLD_SLIDERHERO_VERSION, false );
 
 		endif;
 
-		if ( isset( $_GET['type'] ) and $_GET['type'] == 'liquid_landscape' ) :
+		if ( isset( $_GET['type'] ) && sanitize_text_field( wp_unslash( $_GET['type'] )) == 'liquid_landscape' ) :
 			wp_enqueue_script( 'qcld_liquid_landscape_three_js', QCLD_SLIDERHERO_JS . '/three.js', array( 'jquery' ), QCLD_SLIDERHERO_VERSION, false );
 			wp_enqueue_script( 'qcld_liquid_landscape_OrbitControls_js', QCLD_SLIDERHERO_JS . '/OrbitControls.js', array( 'jquery' ), QCLD_SLIDERHERO_VERSION, false );
 		endif;
 
-		if ( isset( $_GET['type'] ) and $_GET['type'] == 'firework' ) :
+		if ( isset( $_GET['type'] ) && sanitize_text_field( wp_unslash( $_GET['type'] )) == 'firework' ) :
 			wp_enqueue_script( 'qcld_firework_stage_js', QCLD_SLIDERHERO_JS . '/stage.js', array( 'jquery' ), QCLD_SLIDERHERO_VERSION, false );
 			wp_enqueue_script( 'qcld_firework_math_js', QCLD_SLIDERHERO_JS . '/math.js', array( 'jquery' ), QCLD_SLIDERHERO_VERSION, false );
 		endif;
 
-		if ( isset( $_GET['type'] ) and $_GET['type'] == 'rays_particles' ) :
+		if ( isset( $_GET['type'] ) && sanitize_text_field( wp_unslash( $_GET['type'] )) == 'rays_particles' ) :
 			wp_enqueue_script( 'qcld_rays_particles_vector_js', QCLD_SLIDERHERO_JS . '/vector2.js', array( 'jquery' ), QCLD_SLIDERHERO_VERSION, false );
 
 		endif;
 
-		if ( isset( $_GET['type'] ) and $_GET['type'] == 'blob' ) :
+		if ( isset( $_GET['type'] ) && sanitize_text_field( wp_unslash( $_GET['type'] )) == 'blob' ) :
 			wp_enqueue_script( 'qcld_blob_three_js', QCLD_SLIDERHERO_JS . '/three.js', array( 'jquery' ), QCLD_SLIDERHERO_VERSION, false );
 
 		endif;
-		if ( isset( $_GET['type'] ) and $_GET['type'] == 'racing_particles' ) :
+		if ( isset( $_GET['type'] ) && sanitize_text_field( wp_unslash( $_GET['type'] )) == 'racing_particles' ) :
 			wp_enqueue_script( 'qcld_racing_particles_three_js', QCLD_SLIDERHERO_JS . '/three.js', array( 'jquery' ), QCLD_SLIDERHERO_VERSION, false );
 
 		endif;
 
-		if ( isset( $_GET['type'] ) and $_GET['type'] == 'bird' ) :
+		if ( isset( $_GET['type'] ) && sanitize_text_field( wp_unslash( $_GET['type'] )) == 'bird' ) :
 			wp_enqueue_script( 'qcld_racing_particles_three_js', QCLD_SLIDERHERO_JS . '/three.js', array( 'jquery' ), QCLD_SLIDERHERO_VERSION, false );
 			wp_enqueue_script( 'qcld_hero_three_js', QCLD_SLIDERHERO_JS . '/three.min.js', array( 'jquery' ), QCLD_SLIDERHERO_VERSION, false );
 			wp_enqueue_script( 'qcld_hero_projector_js', QCLD_SLIDERHERO_JS . '/Projector.js', array( 'jquery' ), QCLD_SLIDERHERO_VERSION, false );
@@ -583,7 +590,7 @@ function qcld_sliderhero_loaded_slider_callbacks() {
 		return;
 	}
 
-	if ( isset( $_GET['page'] ) && $_GET['page'] == 'Slider-Hero' ) {
+	if ( isset( $_GET['page'] ) && sanitize_text_field( wp_unslash($_GET['page'])) == 'Slider-Hero' ) {
 
 		if ( isset( $_GET['task'] ) ) {
 			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -605,7 +612,7 @@ function qcld_sliderhero_loaded_slider_callbacks() {
 					wp_die( 'Unauthorized' );
 				}
 				check_admin_referer( 'slider_hero_create_action' );
-				if ( isset( $_GET['type'] ) && $_GET['type'] != '' ) {
+				if ( isset( $_GET['type'] ) && sanitize_text_field( wp_unslash($_GET['type'])) != '' ) {
 					$type = sanitize_text_field( wp_unslash( $_GET['type'] ) );
 					qcld_sliderhero_add_slider( $type );
 				}
@@ -694,42 +701,42 @@ function qcld_sliderhero_free_slider_activate() {
 
 	$table             = QCLD_TABLE_SLIDERS;
 	$sql_sliders_Table = "
-CREATE TABLE IF NOT EXISTS `$table` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(100) NOT NULL,
-  `type` varchar(30) NOT NULL,
-  `params` mediumtext NOT NULL,
-  `time` datetime NOT NULL,
-  `slide` longtext,
-  `style` text NOT NULL,
-  `custom` text NOT NULL,
-  `bg_image_url` text NOT NULL,
-  `bg_audio_url` text NOT NULL,
-  `bg_gradient` text NOT NULL,
-  PRIMARY KEY (`id`)
-)  $collate AUTO_INCREMENT=1 ";
+	CREATE TABLE IF NOT EXISTS `$table` (
+	  `id` int(11) NOT NULL AUTO_INCREMENT,
+	  `title` varchar(100) NOT NULL,
+	  `type` varchar(30) NOT NULL,
+	  `params` mediumtext NOT NULL,
+	  `time` datetime NOT NULL,
+	  `slide` longtext,
+	  `style` text NOT NULL,
+	  `custom` text NOT NULL,
+	  `bg_image_url` text NOT NULL,
+	  `bg_audio_url` text NOT NULL,
+	  `bg_gradient` text NOT NULL,
+	  PRIMARY KEY (`id`)
+	)  $collate AUTO_INCREMENT=1 ";
 	$table             = QCLD_TABLE_SLIDES;
 	$sql_slides_Table  = "
-CREATE TABLE IF NOT EXISTS  `$table`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(200) NOT NULL,
-  `sliderid` int(11) NOT NULL,
-  `published` tinyint(1) NOT NULL DEFAULT '1',
-  `slide` longtext,
-  `description` text NOT NULL,
-  `thumbnail` varchar(255) NOT NULL,
-  `custom` text NOT NULL,
-  `ordering` int(11) NOT NULL,
-  `type` varchar(255) NOT NULL,
-  `btn` text NOT NULL,
-  `btn2` text NOT NULL,
-  `t_font` text NOT NULL,
-  `d_font` text NOT NULL,
-  `tl_space` varchar(10) NOT NULL,
-  `dl_space` varchar(10) NOT NULL,
-  `stomp` text NOT NULL,
-  PRIMARY KEY (`id`)
-)   $collate AUTO_INCREMENT = 1";
+	CREATE TABLE IF NOT EXISTS  `$table`  (
+	  `id` int(11) NOT NULL AUTO_INCREMENT,
+	  `title` varchar(200) NOT NULL,
+	  `sliderid` int(11) NOT NULL,
+	  `published` tinyint(1) NOT NULL DEFAULT '1',
+	  `slide` longtext,
+	  `description` text NOT NULL,
+	  `thumbnail` varchar(255) NOT NULL,
+	  `custom` text NOT NULL,
+	  `ordering` int(11) NOT NULL,
+	  `type` varchar(255) NOT NULL,
+	  `btn` text NOT NULL,
+	  `btn2` text NOT NULL,
+	  `t_font` text NOT NULL,
+	  `d_font` text NOT NULL,
+	  `tl_space` varchar(10) NOT NULL,
+	  `dl_space` varchar(10) NOT NULL,
+	  `stomp` text NOT NULL,
+	  PRIMARY KEY (`id`)
+	)   $collate AUTO_INCREMENT = 1";
 	$table             = QCLD_TABLE_SLIDERS;
 
 	/**

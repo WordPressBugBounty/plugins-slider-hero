@@ -22,13 +22,13 @@ if(!empty($btn2) && !isset($btn2->button_effect)){
 if($slide->btn!='' || $slide->btn2!='' ){
 
 ?>
-		<div class="hero_slider_button hero_slider_btn<?php echo intval( esc_html( $_id ) ); ?>">
+		<div class="hero_slider_button hero_slider_btn<?php echo intval( esc_attr( $_id ) ); ?>">
 			<?php 
 				if(isset($btn->hero_button_shortcode) && $btn->hero_button_shortcode!='1'):
 			?>
 			<style type="text/css">
 
-			.slider_hero_btn_cls_one<?php echo intval( esc_html( $_id ) ); ?>{
+			.slider_hero_btn_cls_one<?php echo intval( esc_attr( $_id ) ); ?>{
 				<?php if(isset($btn->hero_btn_font_family) and $btn->hero_btn_font_family!=''){ ?>
 				font-family: <?php echo esc_attr( $btn->hero_btn_font_family ); ?>;
 				<?php } ?>
@@ -77,7 +77,7 @@ if($slide->btn!='' || $slide->btn2!='' ){
 				text-shadow: none;
 				
 			}
-			.slider_hero_btn1_display<?php echo intval( esc_html( $_id ) ); ?>{
+			.slider_hero_btn1_display<?php echo intval( esc_attr( $_id ) ); ?>{
 				display: -webkit-inline-flex;
 				-webkit-box-orient: vertical;
 				-webkit-box-direction: normal;
@@ -89,7 +89,7 @@ if($slide->btn!='' || $slide->btn2!='' ){
 				-webkit-align-items: center;
 				vertical-align: middle;
 			}
-			.slider_hero_btn_cls_one<?php echo intval( esc_html( $_id ) ); ?>:hover{
+			.slider_hero_btn_cls_one<?php echo intval( esc_attr( $_id ) ); ?>:hover{
 				<?php if($btn->button_hover_color!='') : ?>
 				color:<?php echo esc_attr($btn->button_hover_color); ?>!important;
 				<?php endif; ?>
@@ -110,21 +110,21 @@ if($slide->btn!='' || $slide->btn2!='' ){
 				if(isset($btn->button_effect) and $btn->button_effect=='glitch'):
 			?>
 				<style type="text/css">
-					.shero_glitch_button<?php echo intval( esc_html( $_id ) ); ?> > a:link{
+					.shero_glitch_button<?php echo intval( esc_attr( $_id ) ); ?> > a:link{
 						color: <?php echo esc_attr($btn->button_color); ?> !important;
 					}
-					.shero_glitch_button<?php echo intval( esc_html( $_id ) ); ?> > a:hover{
+					.shero_glitch_button<?php echo intval( esc_attr( $_id ) ); ?> > a:hover{
 						color: <?php echo esc_attr($btn->button_hover_color); ?>!important;
 					}
 				</style>
 				
-				<label for="switch" class="hg_ctaStartGame shero_glitch_button shero_glitch_button<?php echo intval( esc_html( $_id ) ); ?> slider_hero_btn_cls_one<?php echo intval( esc_html( $_id ) ); ?> slider_hero_btn1_display<?php echo intval( esc_html( $_id ) ); ?>"><a href="<?php echo esc_url($btn->button_url); ?>" target="<?php echo esc_attr($btn->button_target); ?>" class=""><?php echo esc_attr($btn->button_text); ?></a></label>
+				<label for="switch" class="hg_ctaStartGame shero_glitch_button shero_glitch_button<?php echo intval( esc_attr( $_id ) ); ?> slider_hero_btn_cls_one<?php echo intval( esc_attr( $_id ) ); ?> slider_hero_btn1_display<?php echo intval( esc_attr( $_id ) ); ?>"><a href="<?php echo esc_url($btn->button_url); ?>" target="<?php echo esc_attr($btn->button_target); ?>" class=""><?php echo esc_attr($btn->button_text); ?></a></label>
 			
 			<?php // Area for Animated Fill Effect
 				elseif(isset($btn->button_effect) and $btn->button_effect=='fill'):
 			?>
 				<style type="text/css">
-					.hero_btn1_fill<?php echo intval( esc_html( $_id ) ); ?> {
+					.hero_btn1_fill<?php echo intval( esc_attr( $_id ) ); ?> {
 						
 						<?php if(isset($btn->hero_btn_font_family) and $btn->hero_btn_font_family!=''){ ?>
 						font-family: <?php echo esc_attr( $btn->hero_btn_font_family ); ?>;
@@ -160,31 +160,31 @@ if($slide->btn!='' || $slide->btn2!='' ){
 						<?php endif; ?>
 						margin-right: 10px;
 					}
-					.hero_btn1_fill<?php echo intval( esc_html( $_id ) ); ?>:before {
+					.hero_btn1_fill<?php echo intval( esc_attr( $_id ) ); ?>:before {
 						background: <?php echo esc_attr($btn->button_background_color); ?>;
 					}
-					.hero_btn1_fill<?php echo intval( esc_html( $_id ) ); ?>:hover {
+					.hero_btn1_fill<?php echo intval( esc_attr( $_id ) ); ?>:hover {
 						<?php if($btn->button_hover_color!='') : ?>
 						color:<?php echo esc_attr($btn->button_hover_color); ?> !important;
 						<?php endif; ?>
 					}
 				</style>
-				<a href="<?php echo esc_url($btn->button_url); ?>" target="<?php echo esc_attr($btn->button_target); ?>" class="hg_ctaStartGame hero_btn hero_btn--border hero_btn--primary hero_btn--animated hero_btn1_fill<?php echo intval( esc_html( $_id ) ); ?>"><?php echo esc_attr($btn->button_text); ?></a>
+				<a href="<?php echo esc_url($btn->button_url); ?>" target="<?php echo esc_attr($btn->button_target); ?>" class="hg_ctaStartGame hero_btn hero_btn--border hero_btn--primary hero_btn--animated hero_btn1_fill<?php echo intval( esc_attr( $_id ) ); ?>"><?php echo esc_attr($btn->button_text); ?></a>
 				
 			<?php // Area for Spin Effect
 				elseif(isset($btn->button_effect) and $btn->button_effect=='spin'):
 			?>
-				<a href="<?php echo esc_url($btn->button_url); ?>" target="<?php echo esc_attr($btn->button_target); ?>"><div class="hg_ctaStartGame hero_spinner_tag slider_hero_btn_cls_one<?php echo intval( esc_html( $_id ) ); ?> slider_hero_btn1_display<?php echo intval( esc_html( $_id ) ); ?>" data-content-default="<?php echo esc_attr($btn->button_text); ?>" data-content-spinning="<?php echo esc_attr($btn->button_text); ?>"></div></a>
+				<a href="<?php echo esc_url($btn->button_url); ?>" target="<?php echo esc_attr($btn->button_target); ?>"><div class="hg_ctaStartGame hero_spinner_tag slider_hero_btn_cls_one<?php echo intval( esc_attr( $_id ) ); ?> slider_hero_btn1_display<?php echo intval( esc_attr( $_id ) ); ?>" data-content-default="<?php echo esc_attr($btn->button_text); ?>" data-content-spinning="<?php echo esc_attr($btn->button_text); ?>"></div></a>
 			
 			<?php // Area for Shiney Effect
 				elseif(isset($btn->button_effect) and $btn->button_effect=='shiney'):
 			?>
-				<a href="<?php echo esc_url($btn->button_url); ?>" target="<?php echo esc_attr($btn->button_target); ?>" class="hg_ctaStartGame slider_hero_btn_cls_one<?php echo intval( esc_html( $_id ) ); ?> slider_hero_btn1_display<?php echo intval( esc_html( $_id ) ); ?> hero_shiney_effect"><?php echo esc_attr($btn->button_text); ?></a>
+				<a href="<?php echo esc_url($btn->button_url); ?>" target="<?php echo esc_attr($btn->button_target); ?>" class="hg_ctaStartGame slider_hero_btn_cls_one<?php echo intval( esc_attr( $_id ) ); ?> slider_hero_btn1_display<?php echo intval( esc_attr( $_id ) ); ?> hero_shiney_effect"><?php echo esc_attr($btn->button_text); ?></a>
 			<?php // Area for 3D Effect
 				elseif(isset($btn->button_effect) and $btn->button_effect=='3d'):
 			?>
 				<style type="text/css">
-					.hero_btn1_3d<?php echo intval( esc_html( $_id ) ); ?> {
+					.hero_btn1_3d<?php echo intval( esc_attr( $_id ) ); ?> {
 						
 						<?php if(isset($btn->hero_btn_font_family) and $btn->hero_btn_font_family!=''){ ?>
 						font-family: <?php echo esc_attr( $btn->hero_btn_font_family ); ?>;
@@ -216,13 +216,13 @@ if($slide->btn!='' || $slide->btn2!='' ){
 						<?php endif; ?>
 						margin-right: 10px;
 					}
-					.hero_btn1_3d<?php echo intval( esc_html( $_id ) ); ?>:before{
+					.hero_btn1_3d<?php echo intval( esc_attr( $_id ) ); ?>:before{
 						background: <?php echo esc_attr($btn->button_background_color); ?>;
 					}
-					.hero_btn1_3d<?php echo intval( esc_html( $_id ) ); ?>:after{
+					.hero_btn1_3d<?php echo intval( esc_attr( $_id ) ); ?>:after{
 						background: <?php echo esc_attr($btn->button_background_color); ?>;
 					}
-					.hero_btn1_3d<?php echo intval( esc_html( $_id ) ); ?>:hover{
+					.hero_btn1_3d<?php echo intval( esc_attr( $_id ) ); ?>:hover{
 						background: <?php echo esc_attr($btn->button_background_hover_color); ?>;
 						<?php if($btn->button_hover_color!='') : ?>
 						color:<?php echo esc_attr($btn->button_hover_color); ?>!important;
@@ -230,12 +230,12 @@ if($slide->btn!='' || $slide->btn2!='' ){
 					}
 					
 				</style>
-				<a href="<?php echo esc_url($btn->button_url); ?>" target="<?php echo esc_attr($btn->button_target); ?>" class="hg_ctaStartGame hero_3d_button hero_btn1_3d<?php echo intval( esc_html( $_id ) ); ?>"><?php echo esc_attr($btn->button_text); ?></a>
+				<a href="<?php echo esc_url($btn->button_url); ?>" target="<?php echo esc_attr($btn->button_target); ?>" class="hg_ctaStartGame hero_3d_button hero_btn1_3d<?php echo intval( esc_attr( $_id ) ); ?>"><?php echo esc_attr($btn->button_text); ?></a>
 			<?php // Area for Expending Border Effect
 				elseif(isset($btn->button_effect) and $btn->button_effect=='exborder'):
 			?>
 				<style type="text/css">
-					.hero_btn1_exborder<?php echo intval( esc_html( $_id ) ); ?> {
+					.hero_btn1_exborder<?php echo intval( esc_attr( $_id ) ); ?> {
 						<?php if(isset($btn->hero_btn_font_family) and $btn->hero_btn_font_family!=''){ ?>
 						font-family: <?php echo esc_attr( $btn->hero_btn_font_family ); ?>;
 						<?php } ?>
@@ -268,15 +268,15 @@ if($slide->btn!='' || $slide->btn2!='' ){
 					<?php endif; ?>
 					margin-right: 10px;
 					}
-					.hero_btn1_exborder<?php echo intval( esc_html( $_id ) ); ?>:before{
+					.hero_btn1_exborder<?php echo intval( esc_attr( $_id ) ); ?>:before{
 						border-color: <?php echo esc_attr($btn->button_background_color); ?> !important;
 					}
-					.hero_btn1_exborder<?php echo intval( esc_html( $_id ) ); ?>:after{
+					.hero_btn1_exborder<?php echo intval( esc_attr( $_id ) ); ?>:after{
 						border-color: <?php echo esc_attr($btn->button_background_color); ?> !important;
 					}
 					
-					.hero_btn1_exborder<?php echo intval( esc_html( $_id ) ); ?>:hover,
-					.hero_btn1_exborder<?php echo intval( esc_html( $_id ) ); ?>.hover{
+					.hero_btn1_exborder<?php echo intval( esc_attr( $_id ) ); ?>:hover,
+					.hero_btn1_exborder<?php echo intval( esc_attr( $_id ) ); ?>.hover{
 						background-color: <?php echo esc_attr($btn->button_background_hover_color); ?>;
 						border-color:<?php echo esc_attr($btn->button_background_hover_color); ?> !important;
 						<?php if($btn->button_hover_color!='') : ?>
@@ -285,16 +285,16 @@ if($slide->btn!='' || $slide->btn2!='' ){
 						
 					}
 					
-					.hero_btn1_exborder<?php echo intval( esc_html( $_id ) ); ?>:hover:before, .hero_btn1_exborder<?php echo intval( esc_html( $_id ) ); ?>:hover:after{
+					.hero_btn1_exborder<?php echo intval( esc_attr( $_id ) ); ?>:hover:before, .hero_btn1_exborder<?php echo intval( esc_attr( $_id ) ); ?>:hover:after{
 						border-color:<?php echo esc_attr($btn->button_background_hover_color); ?> !important;
 					}
 					
 				</style>
-				<a href="<?php echo esc_url($btn->button_url); ?>" target="<?php echo esc_attr($btn->button_target); ?>" class="hg_ctaStartGame hero_exborder hero_btn1_exborder<?php echo intval( esc_html( $_id ) ); ?>"><?php echo esc_attr($btn->button_text); ?></a>
+				<a href="<?php echo esc_url($btn->button_url); ?>" target="<?php echo esc_attr($btn->button_target); ?>" class="hg_ctaStartGame hero_exborder hero_btn1_exborder<?php echo intval( esc_attr( $_id ) ); ?>"><?php echo esc_attr($btn->button_text); ?></a>
 			<?php // Area for nanuk Border Effect
 				elseif(isset($btn->button_effect) and $btn->button_effect=='nanuk'):
 			?>
-				<a href="<?php echo esc_url($btn->button_url); ?>" target="<?php echo esc_attr($btn->button_target); ?>" class="hg_ctaStartGame slider_hero_btn_cls_one<?php echo intval( esc_html( $_id ) ); ?> button--nanuk">
+				<a href="<?php echo esc_url($btn->button_url); ?>" target="<?php echo esc_attr($btn->button_target); ?>" class="hg_ctaStartGame slider_hero_btn_cls_one<?php echo intval( esc_attr( $_id ) ); ?> button--nanuk">
 					<?php 
 						$btnchr = str_split($btn->button_text);
 						foreach($btnchr as $btnk=>$btnv){
@@ -305,7 +305,7 @@ if($slide->btn!='' || $slide->btn2!='' ){
 			<?php // Area for nina Effect
 				elseif(isset($btn->button_effect) and $btn->button_effect=='nina'):
 			?>
-				<a href="<?php echo esc_url($btn->button_url); ?>" target="<?php echo esc_attr($btn->button_target); ?>" class="hg_ctaStartGame slider_hero_btn_cls_one<?php echo intval( esc_html( $_id ) ); ?> button--nina" >
+				<a href="<?php echo esc_url($btn->button_url); ?>" target="<?php echo esc_attr($btn->button_target); ?>" class="hg_ctaStartGame slider_hero_btn_cls_one<?php echo intval( esc_attr( $_id ) ); ?> button--nina" >
 					<?php 
 						$btnchr = str_split($btn->button_text);
 						foreach($btnchr as $btnk=>$btnv){
@@ -316,27 +316,27 @@ if($slide->btn!='' || $slide->btn2!='' ){
 			<?php // Area for Moema Effect
 				elseif(isset($btn->button_effect) and $btn->button_effect=='moema'):
 			?>
-				<a href="<?php echo esc_url($btn->button_url); ?>" target="<?php echo esc_attr($btn->button_target); ?>" class="hg_ctaStartGame slider_hero_btn_cls_one<?php echo intval( esc_html( $_id ) ); ?> button--moema" >
+				<a href="<?php echo esc_url($btn->button_url); ?>" target="<?php echo esc_attr($btn->button_target); ?>" class="hg_ctaStartGame slider_hero_btn_cls_one<?php echo intval( esc_attr( $_id ) ); ?> button--moema" >
 					<?php echo esc_attr($btn->button_text); ?>
 				</a>
 			
 			<?php
 				else:
 			?>
-				<a href="<?php echo esc_url($btn->button_url); ?>" target="<?php echo esc_attr($btn->button_target); ?>" class="hg_ctaStartGame slider_hero_btn_cls_one<?php echo intval( esc_html( $_id ) ); ?> slider_hero_btn1_display<?php echo intval( esc_html( $_id ) ); ?>"><?php echo esc_attr($btn->button_text); ?></a>
+				<a href="<?php echo esc_url($btn->button_url); ?>" target="<?php echo esc_attr($btn->button_target); ?>" class="hg_ctaStartGame slider_hero_btn_cls_one<?php echo intval( esc_attr( $_id ) ); ?> slider_hero_btn1_display<?php echo intval( esc_attr( $_id ) ); ?>"><?php echo esc_attr($btn->button_text); ?></a>
 			<?php endif; ?>
 			<?php endif; ?>
 			
 			
 			
-<!--Second button configuration-->
+			<!--Second button configuration-->
 			<?php
 			if($slide->btn2!='' && $btn2->hero_button_shortcode!='1' ):
 			
 			?>
 			
 			<style type="text/css">
-			.hero_btn_cls_one2<?php echo intval( esc_html( $_id ) ); ?>{
+			.hero_btn_cls_one2<?php echo intval( esc_attr( $_id ) ); ?>{
 				
 				<?php if(isset($btn2->hero_btn_font_family) and $btn2->hero_btn_font_family!=''){ ?>
 				font-family: <?php echo esc_attr( $btn2->hero_btn_font_family ); ?>;
@@ -383,7 +383,7 @@ if($slide->btn!='' || $slide->btn2!='' ){
 				
 				
 			}
-			.hero_btn_cls_one2<?php echo intval( esc_html( $_id ) ); ?>:hover{
+			.hero_btn_cls_one2<?php echo intval( esc_attr( $_id ) ); ?>:hover{
 				<?php if($btn2->button_hover_color!='') : ?>
 				color:<?php echo esc_attr($btn2->button_hover_color); ?>!important;
 				<?php endif; ?>
@@ -404,19 +404,19 @@ if($slide->btn!='' || $slide->btn2!='' ){
 				if(isset($btn2->button_effect) and $btn2->button_effect=='glitch'):
 			?>
 				<style type="text/css">
-					.shero_glitch_button<?php echo intval( esc_html( $_id ) ); ?> > a:link{
+					.shero_glitch_button<?php echo intval( esc_attr( $_id ) ); ?> > a:link{
 						color: <?php echo esc_attr($btn2->button_color); ?>;
 					}
-					.shero_glitch_button<?php echo intval( esc_html( $_id ) ); ?> > a:hover{
+					.shero_glitch_button<?php echo intval( esc_attr( $_id ) ); ?> > a:hover{
 						color: <?php echo esc_attr($btn2->button_hover_color); ?>!important;
 					}
 				</style>
-			<label for="switch" class="shero_glitch_button shero_glitch_button<?php echo intval( esc_html( $_id ) ); ?> hero_btn_cls_one2<?php echo intval( esc_html( $_id ) ); ?> slider_hero_btn1_display<?php echo intval( esc_html( $_id ) ); ?>"><a href="<?php echo esc_url($btn2->button_url); ?>" target="<?php echo esc_attr($btn2->button_target); ?>" class=""><?php echo esc_attr($btn2->button_text); ?></a></label>
+			<label for="switch" class="shero_glitch_button shero_glitch_button<?php echo intval( esc_attr( $_id ) ); ?> hero_btn_cls_one2<?php echo intval( esc_attr( $_id ) ); ?> slider_hero_btn1_display<?php echo intval( esc_attr( $_id ) ); ?>"><a href="<?php echo esc_url($btn2->button_url); ?>" target="<?php echo esc_attr($btn2->button_target); ?>" class=""><?php echo esc_attr($btn2->button_text); ?></a></label>
 			<?php // Button 2 Fill Effect //
 				elseif(isset($btn2->button_effect) and $btn2->button_effect=='fill'):
 			?>
 				<style type="text/css">
-					.hero_btn2_fill<?php echo intval( esc_html( $_id ) ); ?> {
+					.hero_btn2_fill<?php echo intval( esc_attr( $_id ) ); ?> {
 						
 						<?php if(isset($btn2->hero_btn_font_family) and $btn2->hero_btn_font_family!=''){ ?>
 						font-family: <?php echo esc_attr( $btn2->hero_btn_font_family ); ?>;
@@ -451,30 +451,30 @@ if($slide->btn!='' || $slide->btn2!='' ){
 						font-weight: <?php echo esc_attr( $btn2->button_font_weight ); ?> !important;
 					<?php endif; ?>
 					}
-					.hero_btn2_fill<?php echo intval( esc_html( $_id ) ); ?>:before {
+					.hero_btn2_fill<?php echo intval( esc_attr( $_id ) ); ?>:before {
 						background: <?php echo esc_attr($btn2->button_background_color); ?>;
 					}
-					.hero_btn2_fill<?php echo intval( esc_html( $_id ) ); ?>:hover {
+					.hero_btn2_fill<?php echo intval( esc_attr( $_id ) ); ?>:hover {
 						<?php if($btn2->button_hover_color!='') : ?>
 						color:<?php echo esc_attr($btn2->button_hover_color); ?> !important;
 						<?php endif; ?>
 					}
 				</style>
-				<a href="<?php echo esc_url($btn2->button_url); ?>" target="<?php echo esc_attr($btn2->button_target); ?>" class="hero_btn hero_btn--border hero_btn--primary hero_btn--animated hero_btn2_fill<?php echo intval( esc_html( $_id ) ); ?>"><?php echo esc_attr($btn2->button_text); ?></a>
+				<a href="<?php echo esc_url($btn2->button_url); ?>" target="<?php echo esc_attr($btn2->button_target); ?>" class="hero_btn hero_btn--border hero_btn--primary hero_btn--animated hero_btn2_fill<?php echo intval( esc_attr( $_id ) ); ?>"><?php echo esc_attr($btn2->button_text); ?></a>
 				
 			<?php // Area for Spin Effect
 				elseif(isset($btn2->button_effect) and $btn2->button_effect=='spin'):
 			?>
-				<a href="<?php echo esc_url($btn2->button_url); ?>" target="<?php echo esc_attr($btn2->button_target); ?>"><div class="hero_spinner_tag hero_btn_cls_one2<?php echo intval( esc_html( $_id ) ); ?> slider_hero_btn1_display<?php echo intval( esc_html( $_id ) ); ?>" data-content-default="<?php echo esc_attr($btn2->button_text); ?>" data-content-spinning="<?php echo esc_attr($btn2->button_text); ?>"></div></a>
+				<a href="<?php echo esc_url($btn2->button_url); ?>" target="<?php echo esc_attr($btn2->button_target); ?>"><div class="hero_spinner_tag hero_btn_cls_one2<?php echo intval( esc_attr( $_id ) ); ?> slider_hero_btn1_display<?php echo intval( esc_attr( $_id ) ); ?>" data-content-default="<?php echo esc_attr($btn2->button_text); ?>" data-content-spinning="<?php echo esc_attr($btn2->button_text); ?>"></div></a>
 			<?php // Area for Shiney Effect
 				elseif(isset($btn2->button_effect) and $btn2->button_effect=='shiney'):
 			?>
-				<a href="<?php echo esc_url($btn2->button_url); ?>" target="<?php echo esc_attr($btn2->button_target); ?>" class="hero_btn_cls_one2<?php echo intval( esc_html( $_id ) ); ?> slider_hero_btn1_display<?php echo intval( esc_html( $_id ) ); ?> hero_shiney_effect"><?php echo esc_attr($btn2->button_text); ?></a>
+				<a href="<?php echo esc_url($btn2->button_url); ?>" target="<?php echo esc_attr($btn2->button_target); ?>" class="hero_btn_cls_one2<?php echo intval( esc_attr( $_id ) ); ?> slider_hero_btn1_display<?php echo intval( esc_attr( $_id ) ); ?> hero_shiney_effect"><?php echo esc_attr($btn2->button_text); ?></a>
 			<?php // Area for 3D Effect
 				elseif(isset($btn2->button_effect) and $btn2->button_effect=='3d'):
 			?>
 				<style type="text/css">
-					.hero_btn2_3d<?php echo intval( esc_html( $_id ) ); ?> {
+					.hero_btn2_3d<?php echo intval( esc_attr( $_id ) ); ?> {
 						<?php if(isset($btn2->hero_btn_font_family) and $btn2->hero_btn_font_family!=''){ ?>
 						font-family: <?php echo esc_attr( $btn2->hero_btn_font_family ); ?>;
 						<?php } ?>
@@ -505,13 +505,13 @@ if($slide->btn!='' || $slide->btn2!='' ){
 						font-weight: <?php echo esc_attr( $btn2->button_font_weight ); ?> !important;
 					<?php endif; ?>
 					}
-					.hero_btn2_3d<?php echo intval( esc_html( $_id ) ); ?>:before{
+					.hero_btn2_3d<?php echo intval( esc_attr( $_id ) ); ?>:before{
 						background: <?php echo esc_attr($btn2->button_background_color); ?>;
 					}
-					.hero_btn2_3d<?php echo intval( esc_html( $_id ) ); ?>:after{
+					.hero_btn2_3d<?php echo intval( esc_attr( $_id ) ); ?>:after{
 						background: <?php echo esc_attr($btn2->button_background_color); ?>;
 					}
-					.hero_btn2_3d<?php echo intval( esc_html( $_id ) ); ?>:hover{
+					.hero_btn2_3d<?php echo intval( esc_attr( $_id ) ); ?>:hover{
 						background: <?php echo esc_attr($btn2->button_background_hover_color); ?>;
 						<?php if($btn2->button_hover_color!='') : ?>
 						color:<?php echo esc_attr($btn2->button_hover_color); ?>!important;
@@ -519,13 +519,13 @@ if($slide->btn!='' || $slide->btn2!='' ){
 					}
 					
 				</style>
-				<a href="<?php echo esc_url($btn2->button_url); ?>" target="<?php echo esc_attr($btn2->button_target); ?>" class="hero_3d_button hero_btn2_3d<?php echo intval( esc_html( $_id ) ); ?>"><?php echo esc_attr($btn2->button_text); ?></a>
+				<a href="<?php echo esc_url($btn2->button_url); ?>" target="<?php echo esc_attr($btn2->button_target); ?>" class="hero_3d_button hero_btn2_3d<?php echo intval( esc_attr( $_id ) ); ?>"><?php echo esc_attr($btn2->button_text); ?></a>
 				
 			<?php // Area for Expending Border Effect
 				elseif(isset($btn2->button_effect) and $btn2->button_effect=='exborder'):
 			?>
 				<style type="text/css">
-					.hero_btn2_exborder<?php echo intval( esc_html( $_id ) ); ?> {
+					.hero_btn2_exborder<?php echo intval( esc_attr( $_id ) ); ?> {
 						<?php if(isset($btn2->hero_btn_font_family) and $btn2->hero_btn_font_family!=''){ ?>
 						font-family: <?php echo esc_attr( $btn2->hero_btn_font_family ); ?>;
 						<?php } ?>
@@ -557,15 +557,15 @@ if($slide->btn!='' || $slide->btn2!='' ){
 						font-weight: <?php echo esc_attr( $btn2->button_font_weight ); ?> !important;
 					<?php endif; ?>
 					}
-					.hero_btn2_exborder<?php echo intval( esc_html( $_id ) ); ?>:before{
+					.hero_btn2_exborder<?php echo intval( esc_attr( $_id ) ); ?>:before{
 						border-color: <?php echo esc_attr($btn2->button_background_color); ?> !important;
 					}
-					.hero_btn2_exborder<?php echo intval( esc_html( $_id ) ); ?>:after{
+					.hero_btn2_exborder<?php echo intval( esc_attr( $_id ) ); ?>:after{
 						border-color: <?php echo esc_attr($btn2->button_background_color); ?> !important;
 					}
 					
-					.hero_btn2_exborder<?php echo intval( esc_html( $_id ) ); ?>:hover,
-					.hero_btn2_exborder<?php echo intval( esc_html( $_id ) ); ?>.hover{
+					.hero_btn2_exborder<?php echo intval( esc_attr( $_id ) ); ?>:hover,
+					.hero_btn2_exborder<?php echo intval( esc_attr( $_id ) ); ?>.hover{
 						background-color: <?php echo esc_attr($btn2->button_background_hover_color); ?>;
 						border-color:<?php echo esc_attr($btn2->button_background_hover_color); ?> !important;
 						
@@ -574,17 +574,17 @@ if($slide->btn!='' || $slide->btn2!='' ){
 						color:<?php echo esc_attr($btn2->button_hover_color); ?> !important;
 						<?php endif; ?>
 					}
-					.hero_btn2_exborder:hover<?php echo intval( esc_html( $_id ) ); ?>:before, .hero_btn2_exborder<?php echo intval( esc_html( $_id ) ); ?>:hover:after{
+					.hero_btn2_exborder:hover<?php echo intval( esc_attr( $_id ) ); ?>:before, .hero_btn2_exborder<?php echo intval( esc_attr( $_id ) ); ?>:hover:after{
 						border-color:<?php echo esc_attr($btn2->button_background_hover_color); ?> !important;
 					}
 					
 				</style>
-				<a href="<?php echo esc_url($btn2->button_url); ?>" target="<?php echo esc_attr($btn2->button_target); ?>" class="hero_exborder hero_btn2_exborder<?php echo intval( esc_html( $_id ) ); ?>"><?php echo esc_attr($btn2->button_text); ?></a>
+				<a href="<?php echo esc_url($btn2->button_url); ?>" target="<?php echo esc_attr($btn2->button_target); ?>" class="hero_exborder hero_btn2_exborder<?php echo intval( esc_attr( $_id ) ); ?>"><?php echo esc_attr($btn2->button_text); ?></a>
 			
 			<?php // Area for Expending Border Effect
 				elseif(isset($btn2->button_effect) and $btn2->button_effect=='nanuk'):
 			?>
-				<a href="<?php echo esc_url($btn2->button_url); ?>" target="<?php echo esc_attr($btn2->button_target); ?>" class="hero_btn_cls_one2<?php echo intval( esc_html( $_id ) ); ?> button--nanuk">
+				<a href="<?php echo esc_url($btn2->button_url); ?>" target="<?php echo esc_attr($btn2->button_target); ?>" class="hero_btn_cls_one2<?php echo intval( esc_attr( $_id ) ); ?> button--nanuk">
 					<?php 
 						$btnchr = str_split($btn2->button_text);
 						foreach($btnchr as $btnk=>$btnv){
@@ -595,7 +595,7 @@ if($slide->btn!='' || $slide->btn2!='' ){
 			<?php // Area for nina Effect
 				elseif(isset($btn2->button_effect) and $btn2->button_effect=='nina'):
 			?>
-				<a href="<?php echo esc_url($btn2->button_url); ?>" target="<?php echo esc_attr($btn2->button_target); ?>" class="hero_btn_cls_one2<?php echo intval( esc_html( $_id ) ); ?> button--nina" >
+				<a href="<?php echo esc_url($btn2->button_url); ?>" target="<?php echo esc_attr($btn2->button_target); ?>" class="hero_btn_cls_one2<?php echo intval( esc_attr( $_id ) ); ?> button--nina" >
 					<?php 
 						$btnchr = str_split($btn2->button_text);
 						foreach($btnchr as $btnk=>$btnv){
@@ -606,13 +606,13 @@ if($slide->btn!='' || $slide->btn2!='' ){
 			<?php // Area for Moema Effect
 				elseif(isset($btn2->button_effect) and $btn2->button_effect=='moema'):
 			?>
-				<a href="<?php echo esc_url($btn2->button_url); ?>" target="<?php echo esc_attr($btn2->button_target); ?>" class="hero_btn_cls_one2<?php echo intval( esc_html( $_id ) ); ?> button--moema" >
+				<a href="<?php echo esc_url($btn2->button_url); ?>" target="<?php echo esc_attr($btn2->button_target); ?>" class="hero_btn_cls_one2<?php echo intval( esc_attr( $_id ) ); ?> button--moema" >
 					<?php echo esc_attr($btn2->button_text); ?>
 				</a>
 			<?php 
 				else:
 			?>
-				<a href="<?php echo esc_url($btn2->button_url); ?>" target="<?php echo esc_attr($btn2->button_target); ?>" class="hero_btn_cls_one2<?php echo intval( esc_html( $_id ) ); ?> slider_hero_btn1_display<?php echo intval( esc_html( $_id ) ); ?>"><?php echo esc_attr($btn2->button_text); ?></a>
+				<a href="<?php echo esc_url($btn2->button_url); ?>" target="<?php echo esc_attr($btn2->button_target); ?>" class="hero_btn_cls_one2<?php echo intval( esc_attr( $_id ) ); ?> slider_hero_btn1_display<?php echo intval( esc_attr( $_id ) ); ?>"><?php echo esc_attr($btn2->button_text); ?></a>
 			<?php endif; ?>
 			<?php endif; ?>
 			

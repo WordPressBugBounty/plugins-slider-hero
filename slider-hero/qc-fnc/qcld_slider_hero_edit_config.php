@@ -286,33 +286,33 @@ function qcld_check_slider_config($id){
 	}
 	
 	
-		if( strpos( $row->params, 'herotop' ) === false ) {
-			$new_param1 = substr_replace( $row->params, '"herotop":{"decoration":""},', 1, 0 );
-			$wpdb->update(
-				QCLD_TABLE_SLIDERS,
-				array( 'params' =>  $new_param1),
-				array( 'id' => $row->id )
-			);
-		}
-	
-	
-	
-		if( strpos( $row->params, 'herobottom' ) === false ) {
-			$new_param1 = substr_replace( $row->params, '"herobottom":{"decoration":""},', 1, 0 );
-			$wpdb->update(
-				QCLD_TABLE_SLIDERS,
-				array( 'params' =>  $new_param1),
-				array( 'id' => $row->id )
-			);
-		}
-		if( strpos( $row->params, 'watereffect' ) === false ) {
-			$new_param1 = substr_replace( $row->params, '"watereffect":{"color":""},', 1, 0 );
-			$wpdb->update(
-				QCLD_TABLE_SLIDERS,
-				array( 'params' =>  $new_param1),
-				array( 'id' => $row->id )
-			);
-		}
+	if( strpos( $row->params, 'herotop' ) === false ) {
+		$new_param1 = substr_replace( $row->params, '"herotop":{"decoration":""},', 1, 0 );
+		$wpdb->update(
+			QCLD_TABLE_SLIDERS,
+			array( 'params' =>  $new_param1),
+			array( 'id' => $row->id )
+		);
+	}
+
+
+
+	if( strpos( $row->params, 'herobottom' ) === false ) {
+		$new_param1 = substr_replace( $row->params, '"herobottom":{"decoration":""},', 1, 0 );
+		$wpdb->update(
+			QCLD_TABLE_SLIDERS,
+			array( 'params' =>  $new_param1),
+			array( 'id' => $row->id )
+		);
+	}
+	if( strpos( $row->params, 'watereffect' ) === false ) {
+		$new_param1 = substr_replace( $row->params, '"watereffect":{"color":""},', 1, 0 );
+		$wpdb->update(
+			QCLD_TABLE_SLIDERS,
+			array( 'params' =>  $new_param1),
+			array( 'id' => $row->id )
+		);
+	}
 		
 		
 	

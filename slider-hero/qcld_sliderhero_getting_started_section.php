@@ -5,8 +5,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 function qcld_sliderhero_sessions_getting_callback(){
 ?>
 
-
-
 <div class="wrap">
 	<div id="getting_started">
 	  <h1><?php echo esc_html( 'Getting Started', 'slider-hero' ); ?></h1>
