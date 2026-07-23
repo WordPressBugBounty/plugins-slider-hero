@@ -1995,7 +1995,7 @@ body .popup-type img {
     opacity: 0.7;
     top: 0;
     left: 0;
-    z-index: 9998;
+    z-index: 999999999;
 }
 
 #qchero_loading_overlay > div {

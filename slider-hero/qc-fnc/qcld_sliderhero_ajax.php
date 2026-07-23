@@ -81,9 +81,10 @@ if($btn!=''){
 			</div>
 			<div class="hero_single_field_btn">
 			<?php 
-				$json  = file_get_contents( QCLD_SLIDER_HERO_DIR . '/fonts/webfont.json' );
-				$json = json_decode($json);
-				$items = $json->items;
+ 				$request 	= wp_remote_get( QCLD_SLIDERHERO_FONTS . '/webfont.json', array( 'sslverify' => false )  );
+ 				$json 		= ! is_wp_error( $request ) ? wp_remote_retrieve_body( $request ) : '';
+ 				$json 		= json_decode($json);
+				$items 		= $json->items;
 			?>
 				<label style="width: 250px;display: inline-block;">Font Family</label>
 				<select id="hero_btn_font_family">
@@ -227,9 +228,10 @@ if($btn!=''){
 			</div>
 			<div class="hero_single_field_btn">
 			<?php 
-				$json  = file_get_contents( QCLD_SLIDER_HERO_DIR . '/fonts/webfont.json' );
-				$json = json_decode($json);
-				$items = $json->items;
+ 				$request 	= wp_remote_get( QCLD_SLIDERHERO_FONTS . '/webfont.json', array( 'sslverify' => false )  );
+ 				$json 		= ! is_wp_error( $request ) ? wp_remote_retrieve_body( $request ) : '';
+ 				$json 		= json_decode($json);
+				$items 		= $json->items;
 			?>
 				<label style="width: 250px;display: inline-block;font-size: 18px;">Font Family <span class="hero_pro_features">[PRO]</span></label>
 				<select id="hero_intro_font_family">
@@ -368,11 +370,11 @@ $exists = explode(':',$exists);
 
         <div class="qc-slider-x-item_arrow">
 <?php 
-	$json  = file_get_contents( QCLD_SLIDER_HERO_DIR . '/fonts/webfont.json' );
-	
-	$json = json_decode($json);
-	
-	$items = $json->items;
+			$request 	= wp_remote_get( QCLD_SLIDERHERO_FONTS . '/webfont.json', array( 'sslverify' => false )  );
+			$json 		= ! is_wp_error( $request ) ? wp_remote_retrieve_body( $request ) : '';
+			$json 		= json_decode($json);
+			$items 		= $json->items;
+
 ?>
 			
 			<div class="hero_single_field_btn">
@@ -441,9 +443,11 @@ function qcld_show_google_font_variants_fnc(){
 
 function qcld_show_google_font_variants_fetch( $fontname, $existing = '' ){
 	
-	$json  = file_get_contents( QCLD_SLIDER_HERO_DIR . '/fonts/webfont.json' );
-	$json = json_decode($json);
-	$items = $json->items;
+	$request 	= wp_remote_get( QCLD_SLIDERHERO_FONTS . '/webfont.json', array( 'sslverify' => false )  );
+	$json 		= !is_wp_error( $request ) ? wp_remote_retrieve_body( $request ) : '';
+	$json 		= json_decode($json);
+	$items 		= $json->items;
+
 	foreach($items as $item){
 		if($item->family==$fontname){
 			foreach($item->variants as $varient){

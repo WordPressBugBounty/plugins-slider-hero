@@ -221,7 +221,7 @@ $(document).on('click', '.slider_hero_pop_modal_close', function(){
 				ajaxurl,
 				{
 					action : 'qcld_show_google_font_variants',
-				security: qchero_ajax_object.ajax_nonce,
+					security: qchero_ajax_object.ajax_nonce,
 					fontname:$('#hero_font_family').val(),
 				},
 				function(data){

@@ -34,6 +34,9 @@ function qcld_sliderhero_sessions_license_callback(){
 	    </div>
 		<div style="clear:both;"></div>
 	  </div>
+
+
+	  <p class="hero_section_dev_credit"><?php echo esc_html( 'Developed by ChatBot for WordPress', 'slider-hero' ); ?> <a href="<?php echo esc_url('https://www.wpbot.pro/'); ?>" target="_blank" rel="nofollow"> <?php echo esc_html( 'WPBot', 'slider-hero' ); ?></a></p>
 	</div>
 </div>
 
