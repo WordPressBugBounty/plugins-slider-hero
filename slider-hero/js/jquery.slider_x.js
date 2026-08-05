@@ -507,6 +507,9 @@ function preloadImage(url)
 			
             // Get our vars
             var vars = slider.data('sliderXData');
+            if (typeof vars === 'undefined' || !vars) {
+                return;
+            }
            //console.log(vars.currentBlock);
 			//sliderX next previous button controlling logic.
             if(typeof(flag)=='string') {

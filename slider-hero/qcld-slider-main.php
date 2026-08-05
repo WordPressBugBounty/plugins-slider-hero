@@ -1,9 +1,9 @@
 <?php
 /**
 * Plugin Name: Slider Hero
-* Plugin URI: https://wordpress.org/plugins/slider-hero
+* Plugin URI: https://www.quantumcloud.com/products/slider-hero/
 * Description: Slider Hero is a Unique Hero Slider Plugin with Background Animation Effects, Video Background & Intro Builder. Animation Slider Carousels, INCREDIBLE Adverts. Animated Header with Text Carousel.
-* Version: 9.1.7
+* Version: 9.1.8
 * Author: QuantumCloud
 * Author URI: https://www.quantumcloud.com/
 * Requires at least: 5.2
@@ -40,7 +40,7 @@ $qcld_sliderhero_admin_menu_pages;
 // Define table names For Slider-Hero.
 global $wpdb;
 if ( ! defined( 'QCLD_SLIDERHERO_VERSION' ) ) {
-	define( 'QCLD_SLIDERHERO_VERSION', '9.1.7' );
+	define( 'QCLD_SLIDERHERO_VERSION', '9.1.8' );
 }
 if ( ! defined( 'QCLD_TABLE_SLIDERS' ) ) {
 	define( 'QCLD_TABLE_SLIDERS', $wpdb->prefix . 'qcld_slider_hero_sliders' );
@@ -118,9 +118,7 @@ add_action( 'wp_ajax_nopriv_qcld_sliderhero_actions', 'qcld_sliderhero_free_ajax
 add_action( 'admin_post_slider_hero_add_slider', 'qcld_sliderhero_add_slider_admin_post' );
 function qcld_sliderhero_add_slider_admin_post() {
 
-	if ( ! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), 'slider_hero_create_action' ) ) {
-		wp_die( 'Security check failed' );
-	}
+	check_admin_referer( 'slider_hero_create_action' );
 
 	if ( isset( $_GET['type'] ) && sanitize_text_field( wp_unslash( $_GET['type'] )) != '' ) {
 
@@ -343,16 +341,18 @@ function qcld_sliderhero_duplicate() {
 
 	global $wpdb;
 
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+
 	if ( isset( $_GET['page'] ) && sanitize_text_field( wp_unslash($_GET['page'])) == 'Slider-Hero' ) {
 		if ( isset( $_GET['task'] ) && sanitize_text_field( wp_unslash($_GET['task'])) == 'heroduplicateslider' ) {
-			if ( ! current_user_can( 'manage_options' ) ) {
-				wp_die( 'Unauthorized' );
-			}
 			$id = isset( $_GET['id'] ) ? absint( sanitize_text_field( wp_unslash( $_GET['id'] ) ) ) : 0;
-
-			if ( ! isset( $_REQUEST['slider_hero_duplicate_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['slider_hero_duplicate_nonce'] ) ), 'slider_hero_duplicateslider_' . $id ) ) {
-				die( esc_html( 'Security check failed', 'slider-hero' ) );
+			if ( empty( $id ) ) {
+				return;
 			}
+
+			check_admin_referer( 'slider_hero_duplicateslider_' . $id, 'slider_hero_duplicate_nonce' );
 
 			$table    = QCLD_TABLE_SLIDERS;
 			$query    = $wpdb->prepare( 'SELECT * FROM ' . $table . ' WHERE id=%d', $id );
@@ -378,18 +378,26 @@ function qcld_sliderhero_duplicate() {
 			$table         = QCLD_TABLE_SLIDES;
 			$query         = $wpdb->prepare( 'SELECT * FROM ' . $table . ' WHERE sliderid=%d', $id );
 			$r_sliders     = $wpdb->get_results( $query );
-			$r_slider_list = '';
 			foreach ( $r_sliders as $key => $r_slider ) {
-				$new_r_slider   = "('";
-				$new_r_slider  .= $r_slider->title . "','" . $last_key . "','" . $r_slider->published . "','" . $r_slider->slide . "','" .
-								 $r_slider->description . "','" . $r_slider->image_link . "','" . $r_slider->image_link_new_tab . "','" . $r_slider->thumbnail . "','" . $r_slider->custom . "','" .
-								 $r_slider->ordering . "','" . $r_slider->type . "', '" . $r_slider->btn . "', '" . $r_slider->btn2 . "')";
-				$r_slider_list .= $new_r_slider . ',';
+				$wpdb->insert(
+					$table,
+					array(
+						'title'              => $r_slider->title,
+						'sliderid'           => $last_key,
+						'published'          => $r_slider->published,
+						'slide'              => $r_slider->slide,
+						'description'        => $r_slider->description,
+						'image_link'         => $r_slider->image_link,
+						'image_link_new_tab' => $r_slider->image_link_new_tab,
+						'thumbnail'          => $r_slider->thumbnail,
+						'custom'             => $r_slider->custom,
+						'ordering'           => $r_slider->ordering,
+						'type'               => $r_slider->type,
+						'btn'                => $r_slider->btn,
+						'btn2'               => $r_slider->btn2,
+					)
+				);
 			}
-			$r_slider_list = substr( $r_slider_list, 0, strlen( $r_slider_list ) - 1 );
-			$query         = 'INSERT into ' . $table . ' (title,sliderid,published,slide,description,image_link,image_link_new_tab,thumbnail,custom,ordering,type,btn,btn2)
-			VALUES ' . $r_slider_list;
-			$wpdb->query( $query );
 
 			wp_safe_redirect( 'admin.php?page=Slider-Hero' );
 			exit();
@@ -1039,9 +1047,7 @@ function qcld_sliderhero_free_ajax_action_callback() {
 				die( esc_html( 'Invalid ID', 'slider-hero' ) );
 			}
 
-			if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['nonce'] ) ), 'qchero_save_images_' . $id ) ) {
-				die( esc_html( 'Security check failed', 'slider-hero' ) );
-			}
+			check_ajax_referer( 'qchero_save_images_' . $id, 'nonce' );
 
 			if ( isset( $_POST['images'] ) && ! empty( $_POST['images'] ) ) {
 				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
@@ -1178,9 +1184,7 @@ function qcld_sliderhero_free_ajax_action_callback() {
 				die( esc_html( 'Invalid ID', 'slider-hero' ) );
 			}
 
-			if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['nonce'] ) ), 'qchero_save_image_' . $id ) ) {
-				die( esc_html( 'Security check failed', 'slider-hero' ) );
-			}
+			check_ajax_referer( 'qchero_save_image_' . $id, 'nonce' );
 
 			if ( isset( $_POST['slide'] ) ) {
 				$slide = sanitize_textarea_field( wp_unslash( $_POST['slide'] ) );

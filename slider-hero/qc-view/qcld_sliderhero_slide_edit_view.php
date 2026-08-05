@@ -86,6 +86,7 @@ function qcld_sliderhero_edit_slider_view( $_row, $_id, $_slider ) {
 
 	
     <div class="wrap">
+    	<h2>Manage Slider</h2>
     <div class="qchero_slider_view_wrapper">
 	<div id="qchero_slider_view_wrapper_top">
 
